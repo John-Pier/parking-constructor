@@ -41,9 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="logic\ParkingModel.cs" />
     <Compile Include="logic\SharedClass.cs" />
+    <Compile Include="models\VehicleModel.cs" />
+    <Compile Include="models\ParkingModelElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ParkingSceneConstructor.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="untils\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
