@@ -47,9 +47,9 @@
     <Compile Include="models\ParkingModelElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ParkingSceneConstructor.cs" />
+    <Compile Include="services\ParkingModelService.cs" />
+    <Compile Include="utils\MathDistribution.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="untils\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
