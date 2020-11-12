@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GasStationMs.App.DistributionLaws
+namespace ParkingConstructorLib.utils.distributions
 {
     public class NormalDistribution : IDistributionLaw
     {

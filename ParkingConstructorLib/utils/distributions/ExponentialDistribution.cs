@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GasStationMs.App.DistributionLaws
+namespace ParkingConstructorLib.utils.distributions
 {
     public class ExponentialDistribution : IDistributionLaw
     {
@@ -16,8 +16,6 @@ namespace GasStationMs.App.DistributionLaws
 
             this.lambda = lambda;
         }
-
-        public double Lambda { get; }
 
         public double GetRandNumber()
         {

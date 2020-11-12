@@ -1,4 +1,4 @@
-﻿namespace GasStationMs.App.DistributionLaws
+﻿namespace ParkingConstructorLib.utils.distributions
 {
     public class DeterminedDistribution : IDistributionLaw
     {
