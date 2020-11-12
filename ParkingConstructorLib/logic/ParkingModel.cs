@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ParkingConstructorLib.models;
+using ParkingConstructorLib.services;
 
 namespace ParkingConstructorLib.logic
 {
@@ -12,6 +13,8 @@ namespace ParkingConstructorLib.logic
         private ParkingModelElement[,] parkingLot;
         private int columnCount;
         private int rowColumn;
+
+        private ParkingModelService modelService = new ParkingModelService(); 
 
         public ParkingModel(int columnCount, int rowColumn)
         {
@@ -32,14 +35,19 @@ namespace ParkingConstructorLib.logic
             }
         }
 
+        public ParkingModelElement GetElement(int columnIndex, int rowIndex)
+        {
+            return parkingLot[columnIndex, rowIndex];
+        }
+
         public bool IsParkingModelCorrect()
         {
-            return true;
+            return modelService.CheckCorrectParkingModelElementsArray();
         }
 
         public void Clear()
         {
-            this.Clear(this.columnCount, this.rowColumn);
+            Clear(columnCount, rowColumn);
         }
 
         public void Clear(int columnCount, int rowColumn)

@@ -8,13 +8,13 @@ namespace ParkingConstructorLib.models
 {
     public abstract class ParkingModelElement
     {
-        public abstract ParkingModelElementType GetType();
+        public abstract ParkingModelElementType GetElementType();
 
-        public abstract Object GetElementModel();
+        public abstract object GetElementModel(); // Должна возвращать обьект с конретыми параметрами модели - изображение и тд.
 
         public bool IsRideableElement(VehicleModel vehicleModel)
         {
-            return vehicleModel.GetAvailableElementTypesForMovement().Contains(this.GetType());
+            return vehicleModel.GetAvailableElementTypesForMovement().Contains(GetElementType());
         }
     }
 

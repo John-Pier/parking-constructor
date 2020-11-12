@@ -7,7 +7,10 @@ using ParkingConstructorLib.logic;
 
 namespace ParkingConstructorLib
 {
-    class ParkingSceneConstructor
+    /// <summary>
+    /// Конструктор парковки
+    /// </summary>
+    public class ParkingSceneConstructor
     {
         private ParkingModel parkingModel;
 

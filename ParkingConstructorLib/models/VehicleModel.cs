@@ -9,5 +9,7 @@ namespace ParkingConstructorLib.models
     public interface VehicleModel
     {
         List<ParkingModelElementType> GetAvailableElementTypesForMovement();
+
+        int GetRequiredSize();
     }
 }

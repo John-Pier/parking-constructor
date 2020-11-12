@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="logic\ParkingModel.cs" />
     <Compile Include="logic\SharedClass.cs" />
+    <Compile Include="models\parking-elements\GrassParkingElement.cs" />
+    <Compile Include="models\vehicles\CarVehicleModel.cs" />
     <Compile Include="models\VehicleModel.cs" />
     <Compile Include="models\ParkingModelElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
