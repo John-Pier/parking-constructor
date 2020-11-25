@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingConstructorView", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingConstructorLib", "ParkingConstructorLib\ParkingConstructorLib.csproj", "{20C5BD55-C87F-4BB2-A889-E03CC8839C45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingSimulationForms", "ParkingSimulationForms\ParkingSimulationForms.csproj", "{0390F7D6-44E4-4421-822E-1302995C8454}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{20C5BD55-C87F-4BB2-A889-E03CC8839C45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20C5BD55-C87F-4BB2-A889-E03CC8839C45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20C5BD55-C87F-4BB2-A889-E03CC8839C45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0390F7D6-44E4-4421-822E-1302995C8454}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0390F7D6-44E4-4421-822E-1302995C8454}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0390F7D6-44E4-4421-822E-1302995C8454}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0390F7D6-44E4-4421-822E-1302995C8454}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
