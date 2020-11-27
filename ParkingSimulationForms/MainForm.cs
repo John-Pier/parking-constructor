@@ -50,12 +50,12 @@ namespace ParkingSimulationForms
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            MainFormSettingsController.LockRBs(radioButton3, radioButton4, radioButton5, !radioButton1.Checked);
+            MainFormSettingsController.LockRBs(radioButton3, radioButton4, radioButton5, textBoxWithPlaceholder1, textBoxWithPlaceholder2, textBoxWithPlaceholder3, textBoxWithPlaceholder4, textBoxWithPlaceholder5, textBox1, !radioButton1.Checked);
         }
 
         private void radioButton9_CheckedChanged(object sender, EventArgs e)
         {
-            MainFormSettingsController.LockRBs(radioButton8, radioButton7, radioButton6, !radioButton9.Checked);
+            MainFormSettingsController.LockRBs(radioButton8, radioButton7, radioButton6, textBoxWithPlaceholder6, textBoxWithPlaceholder7, textBoxWithPlaceholder8, textBoxWithPlaceholder9, textBoxWithPlaceholder10, textBoxWithPlaceholder11, !radioButton9.Checked);
         }
     }
 }
