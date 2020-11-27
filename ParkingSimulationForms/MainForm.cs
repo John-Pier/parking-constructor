@@ -47,5 +47,21 @@ namespace ParkingSimulationForms
         {
             MainFormVizualayzerController.changePercentValue(hScrollBar1, label18);
         }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(radioButton1.Checked)
+                MainFormSettingsController.LockRBs(radioButton3, radioButton4, radioButton5, false);
+            else
+                MainFormSettingsController.LockRBs(radioButton3, radioButton4, radioButton5, true);
+        }
+
+        private void radioButton9_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton9.Checked)
+                MainFormSettingsController.LockRBs(radioButton8, radioButton7, radioButton6, false);
+            else
+                MainFormSettingsController.LockRBs(radioButton8, radioButton7, radioButton6, true);
+        }
     }
 }
