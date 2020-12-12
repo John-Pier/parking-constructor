@@ -44,7 +44,13 @@
   <ItemGroup>
     <Compile Include="logic\ParkingModel.cs" />
     <Compile Include="logic\SharedClass.cs" />
+    <Compile Include="models\parking-elements\CashierParkingElement.cs" />
+    <Compile Include="models\parking-elements\EntryParkingElement.cs" />
+    <Compile Include="models\parking-elements\ExitParkingElement.cs" />
     <Compile Include="models\parking-elements\GrassParkingElement.cs" />
+    <Compile Include="models\parking-elements\TruckParkingSpaceElement.cs" />
+    <Compile Include="models\parking-elements\RoadParkingElement.cs" />
+    <Compile Include="models\parking-elements\ParkingSpaceElement.cs" />
     <Compile Include="models\vehicles\CarVehicleModel.cs" />
     <Compile Include="models\VehicleModel.cs" />
     <Compile Include="models\ParkingModelElement.cs" />

@@ -9,14 +9,15 @@ using System.Windows.Forms;
 using ParkingConstructorLib;
 using ParkingConstructorLib.logic;
 using ParkingConstructorLib.models;
+using ParkingConstructorLib.models.parking_elements;
 using ParkingConstructorLib.models.vehicles;
 
 namespace ParkingSimulationForms
 {
     public partial class MainForm : Form
     {
-        private ParkingSceneConstructor SceneConstructor = new ParkingSceneConstructor();
-        private ParkingSceneVisualization SceneVisualization = new ParkingSceneVisualization();
+        private readonly ParkingSceneConstructor sceneConstructor = new ParkingSceneConstructor();
+        private readonly ParkingSceneVisualization sceneVisualization = new ParkingSceneVisualization();
 
         public MainForm()
         {
@@ -72,37 +73,37 @@ namespace ParkingSimulationForms
         private void button1_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = null; // проезжая часть
+            MainFormConstructorController.CurrentElement = new RoadParkingElement(); // проезжая часть
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = null; // выезд
+            MainFormConstructorController.CurrentElement = new ExitParkingElement(); // выезд
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = null; // парвокочное место Л
+            MainFormConstructorController.CurrentElement = new ParkingSpaceElement(); // парвокочное место Л
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = null; // парвокочное место Г
+            MainFormConstructorController.CurrentElement = new TruckParkingSpaceElement(); // парвокочное место Г
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = null; // касса
+            MainFormConstructorController.CurrentElement = new CashierParkingElement(); // касса
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = null; //вьезд
+            MainFormConstructorController.CurrentElement = new EntryParkingElement(); //вьезд
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -113,9 +114,9 @@ namespace ParkingSimulationForms
 
         private void SetUpConstructorAndLockSize()
         {
-            if (!SceneConstructor.IsParkingModelCreate())
+            if (!sceneConstructor.IsParkingModelCreate())
             {
-                SceneConstructor.CreateParkingModel((int) counterHorizontal.Value, (int) counterVertical.Value);
+                sceneConstructor.CreateParkingModel((int) counterHorizontal.Value, (int) counterVertical.Value);
             }
             SetEnableEditSceneSize(false);
         }

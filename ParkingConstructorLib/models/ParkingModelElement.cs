@@ -26,6 +26,7 @@ namespace ParkingConstructorLib.models
         ParkingSpace,
         Entry,
         Exit,
-        ParkingMeter
+        ParkingMeter,
+        Cashier
     }
 }
