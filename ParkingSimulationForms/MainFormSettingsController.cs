@@ -29,5 +29,18 @@ namespace ParkingSimulationForms
             else
                 label.Text = "?%";
         }
+
+        public static void LockRBs(RadioButton rb1, RadioButton rb2, RadioButton rb3, TextBox tb1, TextBox tb2, TextBox tb3, TextBox tb4, TextBox tb5, TextBox tb6, bool isLock)
+        {
+            rb1.Enabled = isLock;
+            rb2.Enabled = isLock;
+            rb3.Enabled = isLock;
+            tb1.Enabled = isLock;
+            tb2.Enabled = isLock;
+            tb3.Enabled = isLock;
+            tb4.Enabled = isLock;
+            tb5.Enabled = isLock;
+            tb6.Enabled = !isLock;
+        }
     }
 }
