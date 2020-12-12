@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ParkingSimulationForms
+namespace ParkingSimulationForms.views.components
 {
     public class TextBoxWithPlaceholder : System.Windows.Forms.TextBox
     {

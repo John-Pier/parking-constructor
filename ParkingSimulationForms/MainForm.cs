@@ -11,6 +11,7 @@ using ParkingConstructorLib.logic;
 using ParkingConstructorLib.models;
 using ParkingConstructorLib.models.parking_elements;
 using ParkingConstructorLib.models.vehicles;
+using ParkingSimulationForms.views;
 
 namespace ParkingSimulationForms
 {
@@ -23,23 +24,27 @@ namespace ParkingSimulationForms
         {
             InitializeComponent();
             MainFormVizualayzerController.setPictureBox(pictureBox2);
-            MainFormConstructorController.DrawTemplate(pictureBox1, (int) counterHorizontal.Value,
+            MainFormConstructorController.ImageList = imageList1;
+            MainFormConstructorController.ElementsTablePanel = elementsTablePanel;
+            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
                 (int) counterVertical.Value);
             MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
             MainFormStatisticsController.initTable(tableLayoutPanel3);
+
+            elementsTablePanel.Enabled = false;
         }
 
         //Конструктор
 
         private void counterHorizontal_ValueChanged(object sender, EventArgs e)
         {
-            MainFormConstructorController.DrawTemplate(pictureBox1, (int) counterHorizontal.Value,
+            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
                 (int) counterVertical.Value);
         }
 
         private void counterVertical_ValueChanged(object sender, EventArgs e)
         {
-            MainFormConstructorController.DrawTemplate(pictureBox1, (int) counterHorizontal.Value,
+            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
                 (int) counterVertical.Value);
         }
 
@@ -106,9 +111,10 @@ namespace ParkingSimulationForms
             MainFormConstructorController.CurrentElement = new EntryParkingElement(); //вьезд
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void button8_Click(object sender, EventArgs e) // Clear
         {
             SetEnableEditSceneSize(true);
+            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value, (int)counterVertical.Value);
             MainFormConstructorController.CurrentElement = null;
         }
 
@@ -123,6 +129,7 @@ namespace ParkingSimulationForms
 
         private void SetEnableEditSceneSize(bool enable)
         {
+            elementsTablePanel.Enabled = !enable;
             counterHorizontal.Enabled = enable;
             counterVertical.Enabled = enable;
         }

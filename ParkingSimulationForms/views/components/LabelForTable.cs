@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ParkingSimulationForms
+﻿namespace ParkingSimulationForms.views.components
 {
     public class LabelForTable : System.Windows.Forms.Label
     {
