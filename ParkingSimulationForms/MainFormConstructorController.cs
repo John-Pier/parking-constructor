@@ -5,11 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ParkingConstructorLib.models;
 
 namespace ParkingSimulationForms
 {
     public static class MainFormConstructorController
     {
+        public static ParkingModelElement CurrentElement;
+
         public static void DrawTemplate(PictureBox pb, int horizontal, int vertical)
         {
             Bitmap b = new Bitmap(40 * horizontal, 40 * vertical);

@@ -85,11 +85,6 @@
       <Name>ParkingConstructorLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="views\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="resourses\Setting.xml" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

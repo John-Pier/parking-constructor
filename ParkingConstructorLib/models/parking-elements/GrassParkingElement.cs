@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ParkingConstructorLib.models.parking_elements
+﻿namespace ParkingConstructorLib.models
 {
     public class GrassParkingElement: ParkingModelElement
     {
