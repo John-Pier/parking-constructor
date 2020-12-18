@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ParkingConstructorLib.models
 {
+    [Serializable]
     public abstract  class ParkingModelElement<T> where T: class
     {
         public abstract ParkingModelElementType GetElementType();
@@ -18,6 +19,7 @@ namespace ParkingConstructorLib.models
         }
     }
 
+    [Serializable]
     public enum ParkingModelElementType
     {
         Grass,

@@ -1,7 +1,9 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace ParkingConstructorLib.models
 {
+    [Serializable]
     public class GrassParkingElement: ParkingModelElement<Image>
     {
         private readonly Image model;

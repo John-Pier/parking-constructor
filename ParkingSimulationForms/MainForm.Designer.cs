@@ -216,6 +216,7 @@ namespace ParkingSimulationForms
             this.button9.TabIndex = 7;
             this.button9.Text = "Сохранить";
             this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.onSaveClick);
             // 
             // button8
             // 
@@ -239,6 +240,7 @@ namespace ParkingSimulationForms
             this.button7.TabIndex = 5;
             this.button7.Text = "Загрузить";
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.onLoadClick);
             // 
             // panel1
             // 
@@ -324,7 +326,7 @@ namespace ParkingSimulationForms
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(93, 39);
             this.button1.TabIndex = 6;
-            this.button1.Text = "Проезжая часть";
+            this.button1.Text = "Газон";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

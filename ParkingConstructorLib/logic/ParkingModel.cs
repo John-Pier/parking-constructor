@@ -8,18 +8,22 @@ using ParkingConstructorLib.services;
 
 namespace ParkingConstructorLib.logic
 {
+    [Serializable]
     public class ParkingModel<T> where T: class
     {
         private ParkingModelElement<T>[,] parkingLot;
-        private int columnCount;
-        private int rowColumn;
 
+        public int ColumnCount { get; private set; }
+
+        public int RowColumn { get; private set; }
+
+        [NonSerialized]
         private ParkingModelService modelService = new ParkingModelService(); 
 
         public ParkingModel(int columnCount, int rowColumn)
         {
-            this.columnCount = columnCount;
-            this.rowColumn = rowColumn; 
+            this.ColumnCount = columnCount;
+            this.RowColumn = rowColumn; 
             parkingLot = new ParkingModelElement<T>[columnCount, rowColumn];
         }
 
@@ -47,13 +51,13 @@ namespace ParkingConstructorLib.logic
 
         public void Clear()
         {
-            Clear(columnCount, rowColumn);
+            Clear(ColumnCount, RowColumn);
         }
 
         public void Clear(int columnCount, int rowColumn)
         {
-            this.columnCount = columnCount;
-            this.rowColumn = rowColumn;
+            this.ColumnCount = columnCount;
+            this.RowColumn = rowColumn;
             parkingLot = new ParkingModelElement<T>[columnCount, rowColumn];
         }
     }

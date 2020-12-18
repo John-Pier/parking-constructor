@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,8 +18,11 @@ namespace ParkingSimulationForms
 {
     public partial class MainForm : Form
     {
-        private readonly ParkingSceneConstructor<Image> sceneConstructor = new ParkingSceneConstructor<Image>();
-        private readonly ParkingSceneVisualization<Image> sceneVisualization = new ParkingSceneVisualization<Image>();
+        private  ParkingSceneConstructor<Image> sceneConstructor = new ParkingSceneConstructor<Image>();
+        private  ParkingSceneVisualization<Image> sceneVisualization = new ParkingSceneVisualization<Image>();
+
+        private readonly string workDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        private string fileExtention = ".parking";
 
         public MainForm()
         {
@@ -77,7 +82,7 @@ namespace ParkingSimulationForms
         private void button1_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new RoadParkingElement(elementsImageList.Images[6]); // проезжая часть
+            MainFormConstructorController.CurrentElement = new RoadParkingElement(elementsImageList.Images[4]); // газон
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -89,19 +94,22 @@ namespace ParkingSimulationForms
         private void button3_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new ParkingSpaceElement(elementsImageList.Images[5]); // парвокочное место Л
+            MainFormConstructorController.CurrentElement =
+                new ParkingSpaceElement(elementsImageList.Images[5]); // парвокочное место Л
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new TruckParkingSpaceElement(elementsImageList.Images[7]); // парвокочное место Г
+            MainFormConstructorController.CurrentElement =
+                new TruckParkingSpaceElement(elementsImageList.Images[7]); // парвокочное место Г
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new CashierParkingElement(elementsImageList.Images[1]); // касса
+            MainFormConstructorController.CurrentElement =
+                new CashierParkingElement(elementsImageList.Images[1]); // касса
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -113,7 +121,7 @@ namespace ParkingSimulationForms
         private void button8_Click(object sender, EventArgs e) // Clear
         {
             SetEnableEditSceneSize(true);
-            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value, (int)counterVertical.Value);
+            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
             MainFormConstructorController.CurrentElement = null;
         }
 
@@ -123,6 +131,7 @@ namespace ParkingSimulationForms
             {
                 sceneConstructor.CreateParkingModel((int) counterHorizontal.Value, (int) counterVertical.Value);
             }
+
             SetEnableEditSceneSize(false);
         }
 
@@ -135,17 +144,90 @@ namespace ParkingSimulationForms
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            MainFormSettingsController.LockRBs(radioButton3, radioButton4, radioButton5, textBoxWithPlaceholder1, textBoxWithPlaceholder2, textBoxWithPlaceholder3, textBoxWithPlaceholder4, textBoxWithPlaceholder5, textBox1, !((RadioButton)sender).Checked);
+            MainFormSettingsController.LockRBs(radioButton3, radioButton4, radioButton5, textBoxWithPlaceholder1,
+                textBoxWithPlaceholder2, textBoxWithPlaceholder3, textBoxWithPlaceholder4, textBoxWithPlaceholder5,
+                textBox1, !((RadioButton) sender).Checked);
         }
 
         private void radioButton9_CheckedChanged(object sender, EventArgs e)
         {
-            MainFormSettingsController.LockRBs(radioButton6, radioButton7, radioButton8, textBoxWithPlaceholder6, textBoxWithPlaceholder7, textBoxWithPlaceholder8, textBoxWithPlaceholder9, textBoxWithPlaceholder10, textBoxWithPlaceholder11, !((RadioButton)sender).Checked);
+            MainFormSettingsController.LockRBs(radioButton6, radioButton7, radioButton8, textBoxWithPlaceholder6,
+                textBoxWithPlaceholder7, textBoxWithPlaceholder8, textBoxWithPlaceholder9, textBoxWithPlaceholder10,
+                textBoxWithPlaceholder11, !((RadioButton) sender).Checked);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+        }
 
+        private void onLoadClick(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog
+            {
+                DefaultExt = fileExtention,
+                Filter = ' ' + fileExtention + '|' + '*' + fileExtention
+            };
+
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string fullFilePath = fileDialog.FileName;
+
+                if (File.Exists(fullFilePath))
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    using (FileStream fs = new FileStream(fullFilePath, FileMode.Open))
+                    {
+                        sceneConstructor = new ParkingSceneConstructor<Image>((ParkingModel<Image>)formatter.Deserialize(fs));
+                        counterHorizontal.Value = sceneConstructor.ParkingModel.ColumnCount;
+                        counterVertical.Value = sceneConstructor.ParkingModel.RowColumn;
+
+                        MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value,
+                            (int)counterVertical.Value);
+                        SetEnableEditSceneSize(false);
+                    }
+
+                    // try
+                    // {
+                    //     Topology.Topology topology = TopologySaverAndLoader.Load(fullFilePath);
+                    //
+                    //     Constructor.Constructor constructor = new Constructor.Constructor(fullFilePath, topology);
+                    //     constructor.ShowDialog();
+                    // }
+                    // catch (SerializationException)
+                    // {
+                    //     MessageBox.Show("ОШИБКА: файл повреждён");
+                    // }
+                    // catch (Exception exc)
+                    // {
+                    //     MessageBox.Show(exc.StackTrace);
+                    // }
+                }
+                else
+                {
+                    MessageBox.Show("ОШИБКА: файл не существует");
+                }
+            }
+        }
+
+        private void onSaveClick(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                FileName = "my-parking-model",
+                DefaultExt = fileExtention,
+                Filter = ' ' + fileExtention + '|' + '*' + fileExtention
+            };
+            string fullFilePath;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                fullFilePath = saveFileDialog.FileName;
+                using (var fs = new FileStream(fullFilePath, FileMode.Create))
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    formatter.Serialize(fs, sceneConstructor.ParkingModel);
+                }
+                   
+            }
         }
     }
 }
