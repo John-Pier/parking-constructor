@@ -133,5 +133,15 @@ namespace ParkingSimulationForms
             counterHorizontal.Enabled = enable;
             counterVertical.Enabled = enable;
         }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            MainFormSettingsController.LockRBs(radioButton3, radioButton4, radioButton5, textBoxWithPlaceholder1, textBoxWithPlaceholder2, textBoxWithPlaceholder3, textBoxWithPlaceholder4, textBoxWithPlaceholder5, textBox1, !((RadioButton)sender).Checked);
+        }
+
+        private void radioButton9_CheckedChanged(object sender, EventArgs e)
+        {
+            MainFormSettingsController.LockRBs(radioButton6, radioButton7, radioButton8, textBoxWithPlaceholder6, textBoxWithPlaceholder7, textBoxWithPlaceholder8, textBoxWithPlaceholder9, textBoxWithPlaceholder10, textBoxWithPlaceholder11, !((RadioButton)sender).Checked);
+        }
     }
 }
