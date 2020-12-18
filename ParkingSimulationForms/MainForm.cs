@@ -9,7 +9,6 @@ using System.Windows.Forms;
 using ParkingConstructorLib;
 using ParkingConstructorLib.logic;
 using ParkingConstructorLib.models;
-using ParkingConstructorLib.models.parking_elements;
 using ParkingConstructorLib.models.vehicles;
 using ParkingSimulationForms.views;
 
@@ -17,14 +16,14 @@ namespace ParkingSimulationForms
 {
     public partial class MainForm : Form
     {
-        private readonly ParkingSceneConstructor sceneConstructor = new ParkingSceneConstructor();
-        private readonly ParkingSceneVisualization sceneVisualization = new ParkingSceneVisualization();
+        private readonly ParkingSceneConstructor<Image> sceneConstructor = new ParkingSceneConstructor<Image>();
+        private readonly ParkingSceneVisualization<Image> sceneVisualization = new ParkingSceneVisualization<Image>();
 
         public MainForm()
         {
             InitializeComponent();
             MainFormVizualayzerController.setPictureBox(pictureBox2);
-            MainFormConstructorController.ImageList = imageList1;
+            MainFormConstructorController.ImageList = elementsImageList;
             MainFormConstructorController.ElementsTablePanel = elementsTablePanel;
             MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
                 (int) counterVertical.Value);
@@ -64,51 +63,51 @@ namespace ParkingSimulationForms
 
         private void test()
         {
-            ParkingModel parkingModel = new ParkingModel(3, 4);
-            ParkingSceneConstructor constructor = new ParkingSceneConstructor(parkingModel);
+            //ParkingModel parkingModel = new ParkingModel(3, 4);
+            //ParkingSceneConstructor constructor = new ParkingSceneConstructor(parkingModel);
 
 
-            VehicleModel carModel = new CarVehicleModel();
-            ParkingModelElement grassElement = new GrassParkingElement();
-            parkingModel.SetElement(0, 0, grassElement);
+            //VehicleModel carModel = new CarVehicleModel();
+            //ParkingModelElement grassElement = new GrassParkingElement();
+            //parkingModel.SetElement(0, 0, grassElement);
 
-            Console.WriteLine(grassElement.IsRideableElement(carModel));
+            //Console.WriteLine(grassElement.IsRideableElement(carModel));
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new RoadParkingElement(); // проезжая часть
+            MainFormConstructorController.CurrentElement = new RoadParkingElement(elementsImageList.Images[6]); // проезжая часть
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new ExitParkingElement(); // выезд
+            MainFormConstructorController.CurrentElement = new ExitParkingElement(elementsImageList.Images[3]); // выезд
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new ParkingSpaceElement(); // парвокочное место Л
+            MainFormConstructorController.CurrentElement = new ParkingSpaceElement(elementsImageList.Images[5]); // парвокочное место Л
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new TruckParkingSpaceElement(); // парвокочное место Г
+            MainFormConstructorController.CurrentElement = new TruckParkingSpaceElement(elementsImageList.Images[7]); // парвокочное место Г
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new CashierParkingElement(); // касса
+            MainFormConstructorController.CurrentElement = new CashierParkingElement(elementsImageList.Images[1]); // касса
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new EntryParkingElement(); //вьезд
+            MainFormConstructorController.CurrentElement = new EntryParkingElement(elementsImageList.Images[2]); //вьезд
         }
 
         private void button8_Click(object sender, EventArgs e) // Clear
@@ -142,6 +141,11 @@ namespace ParkingSimulationForms
         private void radioButton9_CheckedChanged(object sender, EventArgs e)
         {
             MainFormSettingsController.LockRBs(radioButton6, radioButton7, radioButton8, textBoxWithPlaceholder6, textBoxWithPlaceholder7, textBoxWithPlaceholder8, textBoxWithPlaceholder9, textBoxWithPlaceholder10, textBoxWithPlaceholder11, !((RadioButton)sender).Checked);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

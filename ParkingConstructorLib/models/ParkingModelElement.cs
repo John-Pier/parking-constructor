@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ParkingConstructorLib.models
 {
-    public abstract class ParkingModelElement
+    public abstract  class ParkingModelElement<T> where T: class
     {
         public abstract ParkingModelElementType GetElementType();
 
-        public abstract object GetElementModel(); // Должна возвращать обьект с конретыми параметрами модели - изображение и тд.
+        public abstract T GetElementModel(); // Должна возвращать обьект с конретыми параметрами модели - изображение и тд.
 
         public bool IsRideableElement(VehicleModel vehicleModel)
         {

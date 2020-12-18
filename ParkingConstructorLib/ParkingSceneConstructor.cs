@@ -11,11 +11,11 @@ namespace ParkingConstructorLib
     /// <summary>
     /// Конструктор парковки
     /// </summary>
-    public class ParkingSceneConstructor
+    public class ParkingSceneConstructor<T> where T: class
     {
-        public ParkingModel ParkingModel { get; private set; }
+        public ParkingModel<T> ParkingModel { get; private set; }
 
-        public ParkingSceneConstructor(ParkingModel parkingModel = null)
+        public ParkingSceneConstructor(ParkingModel<T> parkingModel = null)
         {
             if (parkingModel != null)
             {
@@ -25,10 +25,10 @@ namespace ParkingConstructorLib
 
         public void CreateParkingModel(int columns, int rows)
         {
-            ParkingModel = new ParkingModel(columns, rows);
+            ParkingModel = new ParkingModel<T>(columns, rows);
         }
 
-        public void SetObjectToModel(int columnIndex, int rowIndex, ParkingModelElement element)
+        public void SetObjectToModel(int columnIndex, int rowIndex, ParkingModelElement<T> element)
         {
             ParkingModel.SetElement(columnIndex, rowIndex, element);
         }

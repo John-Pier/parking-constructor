@@ -8,9 +8,9 @@ using ParkingConstructorLib.services;
 
 namespace ParkingConstructorLib.logic
 {
-    public class ParkingModel
+    public class ParkingModel<T> where T: class
     {
-        private ParkingModelElement[,] parkingLot;
+        private ParkingModelElement<T>[,] parkingLot;
         private int columnCount;
         private int rowColumn;
 
@@ -20,10 +20,10 @@ namespace ParkingConstructorLib.logic
         {
             this.columnCount = columnCount;
             this.rowColumn = rowColumn; 
-            parkingLot = new ParkingModelElement[columnCount, rowColumn];
+            parkingLot = new ParkingModelElement<T>[columnCount, rowColumn];
         }
 
-        public void SetElement(int columnIndex, int rowIndex, ParkingModelElement element)
+        public void SetElement(int columnIndex, int rowIndex, ParkingModelElement<T> element)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace ParkingConstructorLib.logic
             }
         }
 
-        public ParkingModelElement GetElement(int columnIndex, int rowIndex)
+        public ParkingModelElement<T> GetElement(int columnIndex, int rowIndex)
         {
             return parkingLot[columnIndex, rowIndex];
         }
@@ -54,7 +54,7 @@ namespace ParkingConstructorLib.logic
         {
             this.columnCount = columnCount;
             this.rowColumn = rowColumn;
-            parkingLot = new ParkingModelElement[columnCount, rowColumn];
+            parkingLot = new ParkingModelElement<T>[columnCount, rowColumn];
         }
     }
 }

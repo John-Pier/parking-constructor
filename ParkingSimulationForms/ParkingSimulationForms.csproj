@@ -116,7 +116,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="resources\auto_space.png" />
+    <Content Include="resources\cashier_element.png" />
+    <Content Include="resources\entry.png" />
+    <Content Include="resources\exit.png" />
+    <Content Include="resources\grass_space.png" />
+    <Content Include="resources\input_elementp.png" />
+    <Content Include="resources\in_element.png" />
+    <Content Include="resources\road.png" />
+    <Content Include="resources\space.png" />
+    <Content Include="resources\stop.png" />
     <Content Include="resources\test.png" />
+    <Content Include="resources\truck_space.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

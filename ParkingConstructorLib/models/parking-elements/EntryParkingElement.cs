@@ -1,17 +1,25 @@
 ﻿using System;
+using System.Drawing;
 
 namespace ParkingConstructorLib.models
 {
-    public class EntryParkingElement: ParkingModelElement
+    public class EntryParkingElement: ParkingModelElement<Image>
     {
+        private readonly Image model;
+
+        public EntryParkingElement(Image initModel)
+        {
+            model = initModel;
+        }
+
         public override ParkingModelElementType GetElementType()
         {
             return ParkingModelElementType.Entry;
         }
 
-        public override object GetElementModel()
+        public override Image GetElementModel()
         {
-            throw new NotImplementedException();
+            return model;
         }
     }
 }

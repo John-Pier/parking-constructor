@@ -1,21 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
-namespace ParkingConstructorLib.models.parking_elements
+namespace ParkingConstructorLib.models
 {
-    public class TruckParkingSpaceElement: ParkingModelElement
+    public class TruckParkingSpaceElement: ParkingModelElement<Image>
     {
+        private readonly Image model;
+
+        public TruckParkingSpaceElement(Image initModel)
+        {
+            model = initModel;
+        }
+
         public override ParkingModelElementType GetElementType()
         {
             return ParkingModelElementType.TruckParkingSpace;
         }
 
-        public override object GetElementModel()
+        public override Image GetElementModel()
         {
-            throw new NotImplementedException();
+            return model;
         }
     }
 }

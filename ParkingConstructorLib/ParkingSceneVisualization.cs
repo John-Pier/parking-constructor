@@ -10,15 +10,15 @@ namespace ParkingConstructorLib
     /// <summary>
     /// Визуализатор парковки
     /// </summary>
-    public class ParkingSceneVisualization
+    public class ParkingSceneVisualization<T> where T: class
     {
-        private ParkingModel parkingModel;
+        private ParkingModel<T> parkingModel;
 
         public ParkingSceneVisualization()
         {
         }
 
-        public void SetParkingModel(ParkingModel parkingModel)
+        public void SetParkingModel(ParkingModel<T> parkingModel)
         {
             this.parkingModel = parkingModel;
         }

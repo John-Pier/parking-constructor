@@ -7,7 +7,7 @@ namespace ParkingSimulationForms.views
 {
     public static class MainFormConstructorController
     {
-        public static ParkingModelElement CurrentElement;
+        public static ParkingModelElement<Image> CurrentElement;
 
         public static ImageList ImageList;
 
@@ -49,10 +49,9 @@ namespace ParkingSimulationForms.views
             }
         }
 
-        private static void ClickEvent(Object sender, EventArgs e)
+        private static void ClickEvent(object sender, EventArgs e)
         {
-            Image one = ImageList.Images[0]; // Image from CurrentElement
-            ((PictureBox)sender).Image = one;
+            ((PictureBox)sender).Image = CurrentElement.GetElementModel();
         }
     }
 }
