@@ -15,7 +15,7 @@ namespace ParkingSimulationForms.views
 
         public static TableLayoutPanel ElementsTablePanel;
 
-        public static ParkingSceneConstructor<Image> currentSceneConstructor;
+        public static ParkingSceneConstructor<Image> CurrentSceneConstructor;
 
         public static void DrawTemplate(int horizontal, int vertical, ParkingModel<Image> model = null)
         {
@@ -41,7 +41,7 @@ namespace ParkingSimulationForms.views
             {
                 var pictureBox = new PictureBox
                 {
-                    BackColor = Color.White,
+                    BackColor = Color.DarkGray,
                     Dock = DockStyle.Fill,
                     BorderStyle = BorderStyle.FixedSingle,
                     SizeMode = PictureBoxSizeMode.Zoom,
@@ -60,17 +60,21 @@ namespace ParkingSimulationForms.views
 
                 pictureBox.Click += (object sender, EventArgs e) =>
                 {
-                    ((PictureBox)sender).Image = CurrentElement.GetElementModel();
-                    currentSceneConstructor?.SetObjectToModel(column, row, CurrentElement);
+                    var picture = ((PictureBox) sender);
+                    if (picture.Image != null)
+                    {
+                        picture.Image = null;
+                        CurrentSceneConstructor?.SetObjectToModel(column, row, null);
+                    }
+                    else
+                    {
+                        picture.Image = CurrentElement.GetElementModel();
+                        CurrentSceneConstructor?.SetObjectToModel(column, row, CurrentElement);
+                    }
                 };
-                    //ClickEvent;
+
                 ElementsTablePanel.Controls.Add(pictureBox);
             }
-        }
-
-        private static void ClickEvent(object sender, EventArgs e)
-        {
-            ((PictureBox)sender).Image = CurrentElement.GetElementModel();
         }
     }
 }

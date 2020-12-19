@@ -31,7 +31,7 @@ namespace ParkingSimulationForms
 
             MainFormConstructorController.ImageList = elementsImageList;
             MainFormConstructorController.ElementsTablePanel = elementsTablePanel;
-            MainFormConstructorController.currentSceneConstructor = sceneConstructor;
+            MainFormConstructorController.CurrentSceneConstructor = sceneConstructor;
             MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
 
             MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
@@ -124,8 +124,8 @@ namespace ParkingSimulationForms
         private void button8_Click(object sender, EventArgs e) // Clear
         {
             SetEnableEditSceneSize(true);
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
             MainFormConstructorController.CurrentElement = null;
+            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
         }
 
         private void SetUpConstructorAndLockSize()
@@ -167,20 +167,20 @@ namespace ParkingSimulationForms
         private void OnLoadClick(object sender, EventArgs e)
         {
             var parkingModel = formFilesService.OpenDialogAndLoadModel<Image>();
-            if (parkingModel != null)
-            {
-                sceneConstructor.SetParkingModel(parkingModel);
-                counterHorizontal.Value = sceneConstructor.ParkingModel.ColumnCount;
-                counterVertical.Value = sceneConstructor.ParkingModel.RowColumn;
 
-                MainFormConstructorController.DrawTemplate(
-                        (int)counterHorizontal.Value, 
-                        (int)counterVertical.Value,
-                        parkingModel
-                    );
+            if (parkingModel == null) return;
 
-                SetEnableEditSceneSize(false);
-            }
+            sceneConstructor.SetParkingModel(parkingModel);
+            counterHorizontal.Value = sceneConstructor.ParkingModel.ColumnCount;
+            counterVertical.Value = sceneConstructor.ParkingModel.RowColumn;
+
+            MainFormConstructorController.DrawTemplate(
+                (int)counterHorizontal.Value, 
+                (int)counterVertical.Value,
+                parkingModel
+            );
+
+            SetEnableEditSceneSize(false);
         }
 
         private void OnSaveClick(object sender, EventArgs e)
