@@ -8,13 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace ParkingConstructorView
 {
-    public partial class Form1 : Form
+    public partial class FormConstructor : Form
     {
-        public Form1()
+        public FormConstructor()
         {
             InitializeComponent();
+        }
+
+        private void buttonTest_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

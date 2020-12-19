@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ParkingConstructorLib</RootNamespace>
     <AssemblyName>ParkingConstructorLib</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,8 +43,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="logic\ParkingModel.cs" />
     <Compile Include="logic\SharedClass.cs" />
+    <Compile Include="models\parking-elements\CashierParkingElement.cs" />
+    <Compile Include="models\parking-elements\EntryParkingElement.cs" />
+    <Compile Include="models\parking-elements\ExitParkingElement.cs" />
+    <Compile Include="models\parking-elements\GrassParkingElement.cs" />
+    <Compile Include="models\parking-elements\TruckParkingSpaceElement.cs" />
+    <Compile Include="models\parking-elements\RoadParkingElement.cs" />
+    <Compile Include="models\parking-elements\ParkingSpaceElement.cs" />
+    <Compile Include="models\vehicles\CarVehicleModel.cs" />
+    <Compile Include="models\VehicleModel.cs" />
+    <Compile Include="models\ParkingModelElement.cs" />
+    <Compile Include="ParkingSceneVisualization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ParkingSceneConstructor.cs" />
+    <Compile Include="services\ParkingModelService.cs" />
+    <Compile Include="utils\distributions\DeterminedDistribution.cs" />
+    <Compile Include="utils\distributions\ExponentialDistribution.cs" />
+    <Compile Include="utils\distributions\IDistributionLaw.cs" />
+    <Compile Include="utils\distributions\MathDistribution.cs" />
+    <Compile Include="utils\distributions\NormalDistribution.cs" />
+    <Compile Include="utils\distributions\UniformDistribution.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

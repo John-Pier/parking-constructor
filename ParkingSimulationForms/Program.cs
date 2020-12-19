@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ParkingConstructorLib.logic;
 
-namespace ParkingConstructorView
+namespace ParkingSimulationForms
 {
     static class Program
     {
@@ -17,7 +16,7 @@ namespace ParkingConstructorView
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormConstructor());
+            Application.Run(new MainForm());
         }
     }
 }
