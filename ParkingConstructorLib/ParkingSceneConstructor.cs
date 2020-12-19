@@ -28,6 +28,11 @@ namespace ParkingConstructorLib
             ParkingModel = new ParkingModel<T>(columns, rows);
         }
 
+        public void SetParkingModel(ParkingModel<T> parkingModel)
+        {
+            this.ParkingModel = parkingModel;
+        }
+
         public void SetObjectToModel(int columnIndex, int rowIndex, ParkingModelElement<T> element)
         {
             ParkingModel.SetElement(columnIndex, rowIndex, element);

@@ -13,6 +13,7 @@ using ParkingConstructorLib.logic;
 using ParkingConstructorLib.models;
 using ParkingConstructorLib.models.vehicles;
 using ParkingSimulationForms.views;
+using ParkingSimulationForms.views.services;
 
 namespace ParkingSimulationForms
 {
@@ -21,21 +22,23 @@ namespace ParkingSimulationForms
         private  ParkingSceneConstructor<Image> sceneConstructor = new ParkingSceneConstructor<Image>();
         private  ParkingSceneVisualization<Image> sceneVisualization = new ParkingSceneVisualization<Image>();
 
-        private readonly string workDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        private string fileExtention = ".parking";
+        private FormFilesService formFilesService = new FormFilesService();
 
         public MainForm()
         {
             InitializeComponent();
             MainFormVizualayzerController.setPictureBox(pictureBox2);
+
             MainFormConstructorController.ImageList = elementsImageList;
             MainFormConstructorController.ElementsTablePanel = elementsTablePanel;
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
-                (int) counterVertical.Value);
+            MainFormConstructorController.currentSceneConstructor = sceneConstructor;
+            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
+
             MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
             MainFormStatisticsController.initTable(tableLayoutPanel3);
 
             elementsTablePanel.Enabled = false;
+            saveButton.Enabled = false;
         }
 
         //Конструктор
@@ -140,6 +143,7 @@ namespace ParkingSimulationForms
             elementsTablePanel.Enabled = !enable;
             counterHorizontal.Enabled = enable;
             counterVertical.Enabled = enable;
+            saveButton.Enabled = !enable;
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -160,74 +164,28 @@ namespace ParkingSimulationForms
         {
         }
 
-        private void onLoadClick(object sender, EventArgs e)
+        private void OnLoadClick(object sender, EventArgs e)
         {
-            OpenFileDialog fileDialog = new OpenFileDialog
+            var parkingModel = formFilesService.OpenDialogAndLoadModel<Image>();
+            if (parkingModel != null)
             {
-                DefaultExt = fileExtention,
-                Filter = ' ' + fileExtention + '|' + '*' + fileExtention
-            };
+                sceneConstructor.SetParkingModel(parkingModel);
+                counterHorizontal.Value = sceneConstructor.ParkingModel.ColumnCount;
+                counterVertical.Value = sceneConstructor.ParkingModel.RowColumn;
 
-            if (fileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string fullFilePath = fileDialog.FileName;
+                MainFormConstructorController.DrawTemplate(
+                        (int)counterHorizontal.Value, 
+                        (int)counterVertical.Value,
+                        parkingModel
+                    );
 
-                if (File.Exists(fullFilePath))
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    using (FileStream fs = new FileStream(fullFilePath, FileMode.Open))
-                    {
-                        sceneConstructor = new ParkingSceneConstructor<Image>((ParkingModel<Image>)formatter.Deserialize(fs));
-                        counterHorizontal.Value = sceneConstructor.ParkingModel.ColumnCount;
-                        counterVertical.Value = sceneConstructor.ParkingModel.RowColumn;
-
-                        MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value,
-                            (int)counterVertical.Value);
-                        SetEnableEditSceneSize(false);
-                    }
-
-                    // try
-                    // {
-                    //     Topology.Topology topology = TopologySaverAndLoader.Load(fullFilePath);
-                    //
-                    //     Constructor.Constructor constructor = new Constructor.Constructor(fullFilePath, topology);
-                    //     constructor.ShowDialog();
-                    // }
-                    // catch (SerializationException)
-                    // {
-                    //     MessageBox.Show("ОШИБКА: файл повреждён");
-                    // }
-                    // catch (Exception exc)
-                    // {
-                    //     MessageBox.Show(exc.StackTrace);
-                    // }
-                }
-                else
-                {
-                    MessageBox.Show("ОШИБКА: файл не существует");
-                }
+                SetEnableEditSceneSize(false);
             }
         }
 
-        private void onSaveClick(object sender, EventArgs e)
+        private void OnSaveClick(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog
-            {
-                FileName = "my-parking-model",
-                DefaultExt = fileExtention,
-                Filter = ' ' + fileExtention + '|' + '*' + fileExtention
-            };
-            string fullFilePath;
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                fullFilePath = saveFileDialog.FileName;
-                using (var fs = new FileStream(fullFilePath, FileMode.Create))
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    formatter.Serialize(fs, sceneConstructor.ParkingModel);
-                }
-                   
-            }
+            formFilesService.OpenDialogAndSaveModel(sceneConstructor.ParkingModel);
         }
     }
 }

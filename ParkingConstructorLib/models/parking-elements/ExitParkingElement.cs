@@ -3,6 +3,7 @@ using System.Drawing;
 
 namespace ParkingConstructorLib.models
 {
+    [Serializable]
     public class ExitParkingElement: ParkingModelElement<Image>
     {
         private readonly Image model;

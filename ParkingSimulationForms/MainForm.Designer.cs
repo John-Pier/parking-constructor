@@ -35,7 +35,7 @@ namespace ParkingSimulationForms
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.elementsTablePanel = new System.Windows.Forms.TableLayoutPanel();
-            this.button9 = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -163,7 +163,7 @@ namespace ParkingSimulationForms
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(230)))), ((int)(((byte)(249)))));
             this.tabPage1.Controls.Add(this.elementsTablePanel);
-            this.tabPage1.Controls.Add(this.button9);
+            this.tabPage1.Controls.Add(this.saveButton);
             this.tabPage1.Controls.Add(this.button8);
             this.tabPage1.Controls.Add(this.button7);
             this.tabPage1.Controls.Add(this.panel1);
@@ -206,17 +206,17 @@ namespace ParkingSimulationForms
             this.elementsTablePanel.Size = new System.Drawing.Size(287, 301);
             this.elementsTablePanel.TabIndex = 9;
             // 
-            // button9
+            // saveButton
             // 
-            this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(194)))), ((int)(((byte)(251)))));
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button9.Location = new System.Drawing.Point(46, 310);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(249, 31);
-            this.button9.TabIndex = 7;
-            this.button9.Text = "Сохранить";
-            this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.onSaveClick);
+            this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(194)))), ((int)(((byte)(251)))));
+            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.saveButton.Location = new System.Drawing.Point(46, 310);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(249, 31);
+            this.saveButton.TabIndex = 7;
+            this.saveButton.Text = "Сохранить";
+            this.saveButton.UseVisualStyleBackColor = false;
+            this.saveButton.Click += new System.EventHandler(this.OnSaveClick);
             // 
             // button8
             // 
@@ -240,7 +240,7 @@ namespace ParkingSimulationForms
             this.button7.TabIndex = 5;
             this.button7.Text = "Загрузить";
             this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.onLoadClick);
+            this.button7.Click += new System.EventHandler(this.OnLoadClick);
             // 
             // panel1
             // 
@@ -1343,7 +1343,7 @@ namespace ParkingSimulationForms
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button6;
