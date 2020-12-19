@@ -28,6 +28,7 @@ namespace ParkingSimulationForms
         {
             InitializeComponent();
             MainFormVizualayzerController.setPictureBox(pictureBox2);
+            MainFormVizualayzerController.CurrentSceneVisualization = sceneVisualization;
 
             MainFormConstructorController.ImageList = elementsImageList;
             MainFormConstructorController.ElementsTablePanel = elementsTablePanel;
@@ -186,6 +187,29 @@ namespace ParkingSimulationForms
         private void OnSaveClick(object sender, EventArgs e)
         {
             formFilesService.OpenDialogAndSaveModel(sceneConstructor.ParkingModel);
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 2)
+            {
+                if (sceneConstructor.IsParkingModelCreate() && sceneConstructor.ParkingModel.IsParkingModelCorrect())
+                {
+                    sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
+                }
+                else
+                {
+                    var result = MessageBox.Show(
+                        "Вы не можете запустить визуализатор, потому что текущая модель парковки не соответствует необходимым требованиям.\nХотите вернуться ?",
+                        "Модель не корректна",
+                        MessageBoxButtons.YesNo
+                    );
+                    if (result == DialogResult.Yes)
+                    {
+                        tabControl1.SelectedIndex = 0;
+                    }
+                }
+            }
         }
     }
 }

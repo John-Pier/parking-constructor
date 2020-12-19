@@ -61,7 +61,9 @@ namespace ParkingConstructorLib.logic
             {
                 for (var j = 0; j < RowColumn; j++)
                 {
-                    var elementType = parkingLot[i, j].GetElementType();
+                    var element = parkingLot[i, j];
+                    if(element == null) continue;
+                    var elementType = element.GetElementType();
                     switch (elementType)
                     {
                         case ParkingModelElementType.Entry:
@@ -90,7 +92,7 @@ namespace ParkingConstructorLib.logic
             return isEntryExists && isOneEntry && 
                    isExitExists && isOneExit &&
                    isCashierExists && isOneCashier &&
-                   isParkingSpaceExists;
+                   isParkingSpaceExists; // TODO: можно возвращать обьект с указанием того, что именно не корректно (если вдруг понадобится)
         }
 
         public void Clear()
