@@ -38,10 +38,17 @@ namespace ParkingSimulationForms
             MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
             MainFormStatisticsController.initTable(tableLayoutPanel3);
 
-            SetUpRoadImages(RoadDirections.Bottom);
-
             domainUpDown1.SelectedIndex = 0;
 
+            SetUpRoadImages(RoadDirections.Bottom);
+            InitRoadImages();
+
+            elementsTablePanel.Enabled = false;
+            saveButton.Enabled = false;
+        }
+
+        private void InitRoadImages()
+        {
             pictureRoadBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureRoadBox1.Image = elementsImageList.Images[8];
             pictureRoadBox1.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
@@ -55,9 +62,6 @@ namespace ParkingSimulationForms
 
             pictureRoadBox4.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureRoadBox4.Image = elementsImageList.Images[8];
-
-            elementsTablePanel.Enabled = false;
-            saveButton.Enabled = false;
         }
 
         private void SetUpRoadImages(RoadDirections direction)
@@ -90,7 +94,6 @@ namespace ParkingSimulationForms
                     break;
             }
         }
-
 
         //Конструктор
         private void counterHorizontal_ValueChanged(object sender, EventArgs e)

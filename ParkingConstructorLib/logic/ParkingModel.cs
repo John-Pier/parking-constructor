@@ -65,6 +65,8 @@ namespace ParkingConstructorLib.logic
 
             var isParkingSpaceExists = false;
 
+            // TODO: Проверка на корректную сторону
+
             for (var i = 0; i < ColumnCount; i++)
             {
                 for (var j = 0; j < RowCount; j++)
