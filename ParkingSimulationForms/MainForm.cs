@@ -64,29 +64,15 @@ namespace ParkingSimulationForms
         }
 
         //Визуализатор
-
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
             MainFormVizualayzerController.changePercentValue(hScrollBar1, label18);
         }
 
-        private void test()
-        {
-            //ParkingModel parkingModel = new ParkingModel(3, 4);
-            //ParkingSceneConstructor constructor = new ParkingSceneConstructor(parkingModel);
-
-
-            //VehicleModel carModel = new CarVehicleModel();
-            //ParkingModelElement grassElement = new GrassParkingElement();
-            //parkingModel.SetElement(0, 0, grassElement);
-
-            //Console.WriteLine(grassElement.IsRideableElement(carModel));
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new RoadParkingElement(elementsImageList.Images[4]); // газон
+            MainFormConstructorController.CurrentElement = new GrassParkingElement(elementsImageList.Images[4]); // газон
         }
 
         private void button2_Click(object sender, EventArgs e)
