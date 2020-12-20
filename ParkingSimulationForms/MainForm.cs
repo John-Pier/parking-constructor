@@ -38,12 +38,61 @@ namespace ParkingSimulationForms
             MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
             MainFormStatisticsController.initTable(tableLayoutPanel3);
 
+            SetUpRoadImages(RoadDirections.Bottom);
+
+            domainUpDown1.SelectedIndex = 0;
+
+            pictureRoadBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureRoadBox1.Image = elementsImageList.Images[8];
+            pictureRoadBox1.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+
+            pictureRoadBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureRoadBox2.Image = elementsImageList.Images[8];
+
+            pictureRoadBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureRoadBox3.Image = elementsImageList.Images[8];
+            pictureRoadBox3.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+
+            pictureRoadBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureRoadBox4.Image = elementsImageList.Images[8];
+
             elementsTablePanel.Enabled = false;
             saveButton.Enabled = false;
         }
 
-        //Конструктор
+        private void SetUpRoadImages(RoadDirections direction)
+        {
+            switch (direction)
+            {
+                case RoadDirections.Top:
+                    pictureRoadBox2.Visible = true;
+                    pictureRoadBox1.Visible = false;
+                    pictureRoadBox3.Visible = false;
+                    pictureRoadBox4.Visible = false;
+                    break;
+                case RoadDirections.Bottom:
+                    pictureRoadBox4.Visible = true;
+                    pictureRoadBox1.Visible = false;
+                    pictureRoadBox3.Visible = false;
+                    pictureRoadBox2.Visible = false;
+                    break;
+                case RoadDirections.Right:
+                    pictureRoadBox1.Visible = true;
+                    pictureRoadBox2.Visible = false;
+                    pictureRoadBox3.Visible = false;
+                    pictureRoadBox4.Visible = false;
+                    break;
+                case RoadDirections.Left:
+                    pictureRoadBox3.Visible = true;
+                    pictureRoadBox2.Visible = false;
+                    pictureRoadBox1.Visible = false;
+                    pictureRoadBox4.Visible = false;
+                    break;
+            }
+        }
 
+
+        //Конструктор
         private void counterHorizontal_ValueChanged(object sender, EventArgs e)
         {
             MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
@@ -119,7 +168,7 @@ namespace ParkingSimulationForms
         {
             if (!sceneConstructor.IsParkingModelCreate())
             {
-                sceneConstructor.CreateParkingModel((int) counterHorizontal.Value, (int) counterVertical.Value);
+                sceneConstructor.CreateParkingModel((int) counterHorizontal.Value, (int) counterVertical.Value, (RoadDirections)domainUpDown1.SelectedIndex);
             }
 
             SetEnableEditSceneSize(false);
@@ -195,6 +244,17 @@ namespace ParkingSimulationForms
                         tabControl1.SelectedIndex = 0;
                     }
                 }
+            }
+        }
+
+        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
+        {
+            var dropdown = (DomainUpDown) sender;
+            var direction = (RoadDirections)dropdown.SelectedIndex;
+            SetUpRoadImages(direction);
+            if (sceneConstructor.IsParkingModelCreate())
+            {
+                sceneConstructor.SetRoadDirection(direction);
             }
         }
     }
