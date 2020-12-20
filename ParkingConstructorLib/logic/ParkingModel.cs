@@ -15,16 +15,16 @@ namespace ParkingConstructorLib.logic
 
         public int ColumnCount { get; private set; }
 
-        public int RowColumn { get; private set; }
+        public int RowCount { get; private set; }
         
         // [NonSerialized]
         // private ParkingModelService modelService = new ParkingModelService(); 
 
-        public ParkingModel(int columnCount, int rowColumn)
+        public ParkingModel(int columnCount, int rowCount)
         {
             this.ColumnCount = columnCount;
-            this.RowColumn = rowColumn; 
-            parkingLot = new ParkingModelElement<T>[columnCount, rowColumn];
+            this.RowCount = rowCount; 
+            parkingLot = new ParkingModelElement<T>[columnCount, rowCount];
         }
 
         public void SetElement(int columnIndex, int rowIndex, ParkingModelElement<T> element)
@@ -59,7 +59,7 @@ namespace ParkingConstructorLib.logic
 
             for (var i = 0; i < ColumnCount; i++)
             {
-                for (var j = 0; j < RowColumn; j++)
+                for (var j = 0; j < RowCount; j++)
                 {
                     var element = parkingLot[i, j];
                     if(element == null) continue;
@@ -97,19 +97,19 @@ namespace ParkingConstructorLib.logic
 
         public void Clear()
         {
-            Clear(ColumnCount, RowColumn);
+            Clear(ColumnCount, RowCount);
         }
 
-        public void Clear(int columnCount, int rowColumn)
+        public void Clear(int columnCount, int rowCount)
         {
             this.ColumnCount = columnCount;
-            this.RowColumn = rowColumn;
-            parkingLot = new ParkingModelElement<T>[columnCount, rowColumn];
+            this.RowCount = rowCount;
+            parkingLot = new ParkingModelElement<T>[columnCount, rowCount];
         }
 
         private bool IsBorderElement(int column, int row)
         {
-            return (column == 0 || row == 0) || (column == ColumnCount - 1 || row == RowColumn - 1);
+            return (column == 0 || row == 0) || (column == ColumnCount - 1 || row == RowCount - 1);
         }
     }
 }

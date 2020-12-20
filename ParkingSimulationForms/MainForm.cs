@@ -173,7 +173,7 @@ namespace ParkingSimulationForms
 
             sceneConstructor.SetParkingModel(parkingModel);
             counterHorizontal.Value = sceneConstructor.ParkingModel.ColumnCount;
-            counterVertical.Value = sceneConstructor.ParkingModel.RowColumn;
+            counterVertical.Value = sceneConstructor.ParkingModel.RowCount;
 
             MainFormConstructorController.DrawTemplate(
                 (int)counterHorizontal.Value, 
