@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ParkingConstructorLib.logic;
+using ParkingConstructorLib.models;
+using ParkingConstructorLib.models.vehicles;
 
 namespace ParkingConstructorLib
 {
@@ -13,6 +15,7 @@ namespace ParkingConstructorLib
     public class ParkingSceneVisualization<T> where T: class
     {
         private ParkingModel<T> parkingModel;
+        private MapAvailable<T> mapAvailable;
 
         public ParkingSceneVisualization()
         {
@@ -21,6 +24,13 @@ namespace ParkingConstructorLib
         public void SetParkingModel(ParkingModel<T> parkingModel)
         {
             this.parkingModel = parkingModel;
+            mapAvailable = new MapAvailable<T>(this.parkingModel);
+            CarVehicleModel car = CarVehicleModel.spawnCar(CarVehicleModel.CarType.Car);
+            mapAvailable.addCar(car);
+            mapAvailable.printMap();
+            car.setRowIndex(2);
+            mapAvailable.reloadMap();
+            mapAvailable.printMap();
         }
     }
 }
