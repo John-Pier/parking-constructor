@@ -13,6 +13,7 @@ namespace ParkingConstructorLib.models.vehicles
         protected int rowIndex;
         protected int columnIndex;
         protected CarType type;
+        protected Coors target;
         public List<ParkingModelElementType> GetAvailableElementTypesForMovement()
         {
             return new List<ParkingModelElementType>
@@ -21,6 +22,11 @@ namespace ParkingConstructorLib.models.vehicles
                 ParkingModelElementType.ParkingSpace, 
                 ParkingModelElementType.Entry
             };
+        }
+
+        public void setTarget(Coors target)
+        {
+            this.target = target;
         }
 
         public enum CarType{
