@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="logic\ParkingModel.cs" />
     <Compile Include="logic\SharedClass.cs" />
+    <Compile Include="models\CarParkingPlace.cs" />
+    <Compile Include="models\Coors.cs" />
     <Compile Include="models\MapAvailable.cs" />
     <Compile Include="models\parking-elements\CashierParkingElement.cs" />
     <Compile Include="models\parking-elements\EntryParkingElement.cs" />
@@ -53,6 +55,7 @@
     <Compile Include="models\parking-elements\TruckParkingSpaceElement.cs" />
     <Compile Include="models\parking-elements\RoadParkingElement.cs" />
     <Compile Include="models\parking-elements\ParkingSpaceElement.cs" />
+    <Compile Include="models\TruckParkingPlace.cs" />
     <Compile Include="models\vehicles\Car.cs" />
     <Compile Include="models\vehicles\CarVehicleModel.cs" />
     <Compile Include="models\VehicleModel.cs" />

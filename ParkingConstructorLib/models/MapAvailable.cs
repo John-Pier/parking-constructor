@@ -13,16 +13,26 @@ namespace ParkingConstructorLib.models
         private bool[,] map;
         private ParkingModel<T> model;
         private LinkedList<CarVehicleModel> cars;
+        private LinkedList<CarParkingPlace> carParkingPlaces;
+        private LinkedList<TruckParkingPlace> truckParkingPlaces;
         public MapAvailable(ParkingModel<T> model)
         {
             this.model = model;
             map = new bool[model.ColumnCount, model.RowCount];
             cars = new LinkedList<CarVehicleModel>();
+            carParkingPlaces = new LinkedList<CarParkingPlace>();
+            truckParkingPlaces = new LinkedList<TruckParkingPlace>();
             reloadMap();
             for (int i = 0; i < model.ColumnCount; i++)
                 for (int j = 0; j < model.RowCount; j++)
+                {
                     if (model.GetElement(i, j) != null && model.GetElement(i, j).GetElementType() == ParkingModelElementType.Entry)
                         CarVehicleModel.setSpawnPoint(i, j);
+                    if (model.GetElement(i, j) != null && model.GetElement(i, j).GetElementType() == ParkingModelElementType.ParkingSpace)
+                        carParkingPlaces.AddLast(new CarParkingPlace(new Coors(i, j)));
+                    if (model.GetElement(i, j) != null && model.GetElement(i, j).GetElementType() == ParkingModelElementType.TruckParkingSpace)
+                        truckParkingPlaces.AddLast(new TruckParkingPlace(new Coors(i, j)));
+                }
         }
         public void reloadMap()
         {

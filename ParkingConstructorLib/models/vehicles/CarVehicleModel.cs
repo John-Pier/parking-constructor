@@ -12,6 +12,7 @@ namespace ParkingConstructorLib.models.vehicles
         private static int spawnCol;
         protected int rowIndex;
         protected int columnIndex;
+        protected CarType type;
         public List<ParkingModelElementType> GetAvailableElementTypesForMovement()
         {
             return new List<ParkingModelElementType>
@@ -26,6 +27,11 @@ namespace ParkingConstructorLib.models.vehicles
             Car,
             Truck
         };
+
+        public new string GetType()
+        {
+            return type.ToString();
+        }
 
         public static CarVehicleModel spawnCar(CarType carType)
         {
