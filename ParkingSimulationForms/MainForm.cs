@@ -19,10 +19,9 @@ namespace ParkingSimulationForms
 {
     public partial class MainForm : Form
     {
-        private  ParkingSceneConstructor<Image> sceneConstructor = new ParkingSceneConstructor<Image>();
-        private  ParkingSceneVisualization<Image> sceneVisualization = new ParkingSceneVisualization<Image>();
-
-        private FormFilesService formFilesService = new FormFilesService();
+        private readonly ParkingSceneConstructor<Image> sceneConstructor = new ParkingSceneConstructor<Image>();
+        private readonly ParkingSceneVisualization<Image> sceneVisualization = new ParkingSceneVisualization<Image>();
+        private readonly FormFilesService formFilesService = new FormFilesService();
 
         public MainForm()
         {
@@ -40,7 +39,7 @@ namespace ParkingSimulationForms
 
             domainUpDown1.SelectedIndex = 0;
 
-            SetUpRoadImages(RoadDirections.Bottom);
+            SetUpRoadImages(RoadDirections.Top);
             InitRoadImages();
 
             elementsTablePanel.Enabled = false;
@@ -165,6 +164,7 @@ namespace ParkingSimulationForms
             SetEnableEditSceneSize(true);
             MainFormConstructorController.CurrentElement = null;
             MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
+            sceneConstructor.ClearModel();
         }
 
         private void SetUpConstructorAndLockSize()
