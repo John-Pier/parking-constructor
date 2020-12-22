@@ -1,12 +1,16 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using ParkingConstructorLib;
 
 namespace ParkingSimulationForms.views
 {
     public static class MainFormVizualayzerController
     {
+        public static ParkingSceneVisualization<Image> CurrentSceneVisualization;
+
         private static PictureBox pb;
         private static double accelerate;
+
         public static void changePercentValue(HScrollBar sb, Label label)
         {
             accelerate = sb.Value;

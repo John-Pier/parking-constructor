@@ -59,5 +59,14 @@ namespace ParkingSimulationForms.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на resources/road_line.jpg.
+        /// </summary>
+        internal static string road {
+            get {
+                return ResourceManager.GetString("road", resourceCulture);
+            }
+        }
     }
 }
