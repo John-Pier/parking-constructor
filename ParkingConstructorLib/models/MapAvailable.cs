@@ -51,12 +51,12 @@ namespace ParkingConstructorLib.models
                 Console.WriteLine();
             }
         }
-        public void printLocalMap(int[,] localMap)
+        public void printLocalMap(int[,,] localMap, int mode)
         {
             for (int i = 0; i < model.RowCount; i++)
             {
                 for (int j = 0; j < model.ColumnCount; j++)
-                    Console.Write("{0,6}", localMap[j, i]);
+                    Console.Write("{0,8}", localMap[j, i, mode]);
                 Console.WriteLine();
             }
         }
@@ -87,24 +87,85 @@ namespace ParkingConstructorLib.models
             for (int i = 0; i < model.ColumnCount; i++)
                 for (int j = 0; j < model.RowCount; j++)
                 {
-                    localMap[i, j, 0] = map[i, j] ? 1 : 1000;
-                    localMap[i, j, 1] = 0;
-                    localMap[i, j, 2] = 100000;
+                    localMap[i, j, 0] = map[i, j] ? 1 : 1000;//Карта весов
+                    localMap[i, j, 1] = 0; //0 - непосещённая; 1 - посещённая
+                    localMap[i, j, 2] = 100000; //Сумма весов до точки
                 }
 
             foreach (CarVehicleModel carTemp in cars)
                 localMap[carTemp.getColumnIndex(), carTemp.getRowIndex(), 0] = 1000;
 
             dekstra(localMap, car);
+            Coors[] way = getWay(car, localMap);
+            for(int i = 0; i<way.Length; i++)
+                if(isCoorsEquals(car.getCoors(), way[i]))
+                {
+                    //Exception - машина находится на парковке
+                    car.setNextCoors(way[i + 1]);
+                    break;
+                }
         }
 
         private void dekstra(int[,,] localMap, CarVehicleModel car)
         {
-            Coors[] neighbors = getNeighbors(car.getColumnIndex(), car.getRowIndex(), localMap);
-            foreach(Coors coor in neighbors)
+            bool isFirstIteration = true;
+            Coors coorsNowIteration = null;
+            Coors[] neighbors = null;
+            bool isExit = true;
+            LinkedList<Coors> allNeighbors = new LinkedList<Coors>();
+            Coors[] allNeighborsArr = null;
+            localMap[car.getColumnIndex(), car.getRowIndex(), 2] = 0;
+            while (true)
             {
+                isExit = true;
+                if (isFirstIteration)
+                {
+                    coorsNowIteration = new Coors(car.getColumnIndex(), car.getRowIndex());
+                    isFirstIteration = false;
+                    isExit = false;
+                }
+                else
+                {
+                    allNeighborsArr = allNeighbors.ToArray();
+                    Array.Sort(allNeighborsArr);
+                    foreach (Coors coor in allNeighborsArr)
+                    {
+                        if (localMap[coor.columnIndex, coor.rowIndex, 1] == 0)
+                        {
+                            isExit = false;
+                            coorsNowIteration = coor;
+                            allNeighbors.Remove(coor);
+                            break;
+                        }
+                        allNeighbors.Remove(coor);
+                    }
+                }
+                    
+                if (isExit) break;
+                neighbors = getNeighbors(coorsNowIteration.columnIndex, coorsNowIteration.rowIndex, localMap);
 
+                foreach (Coors coor in neighbors)
+                {
+                    if (localMap[coor.columnIndex, coor.rowIndex, 1] == 0 &&
+                        localMap[coor.columnIndex, coor.rowIndex, 2] >
+                        localMap[coor.columnIndex, coor.rowIndex, 0] + localMap[coorsNowIteration.columnIndex, coorsNowIteration.rowIndex, 2])
+                    {
+                        localMap[coor.columnIndex, coor.rowIndex, 2] =
+                            localMap[coor.columnIndex, coor.rowIndex, 0] +
+                            localMap[coorsNowIteration.columnIndex, coorsNowIteration.rowIndex, 2];
+                    }
+                    allNeighbors.AddLast(coor);
+                }
+                
+                localMap[coorsNowIteration.columnIndex, coorsNowIteration.rowIndex, 1] = 1;
             }
+            
+            printLocalMap(localMap, 0);
+            Console.WriteLine("--------------------------------");
+            printLocalMap(localMap, 1);
+            Console.WriteLine("--------------------------------");
+            printLocalMap(localMap, 2);
+            Console.WriteLine("--------------------------------");
         }
 
         private Coors[] getNeighbors(int indexCol, int indexRow, int[,,] localMap)
@@ -170,7 +231,40 @@ namespace ParkingConstructorLib.models
             return coorsArr;
         }
 
+        private Coors[] getWay(CarVehicleModel car, int[,,] localMap)
+        {
+            LinkedList<Coors> coors = new LinkedList<Coors>();
+            int weight = localMap[car.getTarget().columnIndex, car.getTarget().rowIndex, 2];
+            Coors[] neighboreCoors = null;
+            coors.AddLast(new Coors(car.getTarget().columnIndex, car.getTarget().rowIndex));
+            Coors mainCoors = new Coors(car.getTarget().columnIndex, car.getTarget().rowIndex);
+            while(weight != 0)
+            {
+                neighboreCoors = getNeighbors(mainCoors.columnIndex, mainCoors.rowIndex, localMap);
+                foreach(Coors coorsTemp in neighboreCoors)
+                {
+                    if(localMap[mainCoors.columnIndex, mainCoors.rowIndex, 2] ==
+                        localMap[coorsTemp.columnIndex, coorsTemp.rowIndex, 2]+
+                        localMap[mainCoors.columnIndex, mainCoors.rowIndex, 0])
+                    {
+                        weight -= localMap[mainCoors.columnIndex, mainCoors.rowIndex, 0];
+                        mainCoors = coorsTemp;
+                        coors.AddLast(mainCoors);
+                        break;
+                    }
+                }
+            }
+            Coors[] returnCoors = coors.ToArray();
+            Array.Reverse(returnCoors);
+            return returnCoors;
+        }
 
+        private bool isCoorsEquals(Coors coors1, Coors coors2)
+        {
+            if (coors1.columnIndex == coors2.columnIndex && coors1.rowIndex == coors2.rowIndex)
+                return true;
+            return false;
+        }
 
         public void nextStep()
         {
