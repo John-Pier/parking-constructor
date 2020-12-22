@@ -37,6 +37,8 @@ namespace ParkingSimulationForms
             MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
             MainFormStatisticsController.initTable(tableLayoutPanel3);
 
+            InitSettingsForm();
+
             domainUpDown1.SelectedIndex = 0;
 
             SetUpRoadImages(RoadDirections.Top);
@@ -63,35 +65,9 @@ namespace ParkingSimulationForms
             pictureRoadBox4.Image = elementsImageList.Images[8];
         }
 
-        private void SetUpRoadImages(RoadDirections direction)
+        private void InitSettingsForm()
         {
-            switch (direction)
-            {
-                case RoadDirections.Top:
-                    pictureRoadBox2.Visible = true;
-                    pictureRoadBox1.Visible = false;
-                    pictureRoadBox3.Visible = false;
-                    pictureRoadBox4.Visible = false;
-                    break;
-                case RoadDirections.Bottom:
-                    pictureRoadBox4.Visible = true;
-                    pictureRoadBox1.Visible = false;
-                    pictureRoadBox3.Visible = false;
-                    pictureRoadBox2.Visible = false;
-                    break;
-                case RoadDirections.Right:
-                    pictureRoadBox1.Visible = true;
-                    pictureRoadBox2.Visible = false;
-                    pictureRoadBox3.Visible = false;
-                    pictureRoadBox4.Visible = false;
-                    break;
-                case RoadDirections.Left:
-                    pictureRoadBox3.Visible = true;
-                    pictureRoadBox2.Visible = false;
-                    pictureRoadBox1.Visible = false;
-                    pictureRoadBox4.Visible = false;
-                    break;
-            }
+           // MainFormSettingsController.SettingsModel
         }
 
         //Конструктор
@@ -199,10 +175,6 @@ namespace ParkingSimulationForms
                 textBoxWithPlaceholder11, !((RadioButton) sender).Checked);
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-        }
-
         private void OnLoadClick(object sender, EventArgs e)
         {
             var parkingModel = formFilesService.OpenDialogAndLoadModel<Image>();
@@ -258,6 +230,37 @@ namespace ParkingSimulationForms
             if (sceneConstructor.IsParkingModelCreate())
             {
                 sceneConstructor.SetRoadDirection(direction);
+            }
+        }
+
+        private void SetUpRoadImages(RoadDirections direction)
+        {
+            switch (direction)
+            {
+                case RoadDirections.Top:
+                    pictureRoadBox2.Visible = true;
+                    pictureRoadBox1.Visible = false;
+                    pictureRoadBox3.Visible = false;
+                    pictureRoadBox4.Visible = false;
+                    break;
+                case RoadDirections.Bottom:
+                    pictureRoadBox4.Visible = true;
+                    pictureRoadBox1.Visible = false;
+                    pictureRoadBox3.Visible = false;
+                    pictureRoadBox2.Visible = false;
+                    break;
+                case RoadDirections.Right:
+                    pictureRoadBox1.Visible = true;
+                    pictureRoadBox2.Visible = false;
+                    pictureRoadBox3.Visible = false;
+                    pictureRoadBox4.Visible = false;
+                    break;
+                case RoadDirections.Left:
+                    pictureRoadBox3.Visible = true;
+                    pictureRoadBox2.Visible = false;
+                    pictureRoadBox1.Visible = false;
+                    pictureRoadBox4.Visible = false;
+                    break;
             }
         }
     }
