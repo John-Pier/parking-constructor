@@ -47,5 +47,10 @@ namespace ParkingConstructorLib
         {
             ParkingModel.RoadDirection = roadDirection;
         }
+
+        public void ClearModel()
+        {
+            this.ParkingModel = null;
+        }
     }
 }
