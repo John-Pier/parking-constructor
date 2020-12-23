@@ -6,8 +6,6 @@ namespace ParkingSimulationForms.views
 {
     public static class MainFormSettingsController
     {
-        public static SettingsModel SettingsModel = new SettingsModel();
-
         public static void calcualePercent(TextBox tb, Label label)
         {
             string newText = tb.Text;

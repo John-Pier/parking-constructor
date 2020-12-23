@@ -24,6 +24,8 @@ namespace ParkingSimulationForms
         private readonly ParkingSceneVisualization<Image> sceneVisualization = new ParkingSceneVisualization<Image>();
         private readonly FormFilesService formFilesService = new FormFilesService();
 
+        public SettingsModel SettingsModel = new SettingsModel();
+
         public MainForm()
         {
             InitializeComponent();
@@ -210,7 +212,7 @@ namespace ParkingSimulationForms
                     return;
                 }
 
-                if (MainFormSettingsController.SettingsModel.IsModelValid())
+                if (SettingsModel.IsModelValid())
                 {
                     // TODO: Добавит логику в sceneVisualization
                 }
@@ -277,11 +279,11 @@ namespace ParkingSimulationForms
         //Настройки
         private void InitSettingsForm()
         {
-            textBox2.Text = MainFormSettingsController.SettingsModel.DayTimeRate.ToString();
-            textBox5.Text = MainFormSettingsController.SettingsModel.PercentOfTrack.ToString();
-            textBox3.Text = MainFormSettingsController.SettingsModel.NightTimeRate.ToString();
-            textBox4.Text = MainFormSettingsController.SettingsModel.EnteringProbability.ToString();
-            label14.Text = MainFormSettingsController.SettingsModel.PercentOfCar.ToString();
+            textBox2.Text = SettingsModel.DayTimeRate.ToString();
+            textBox5.Text = SettingsModel.PercentOfTrack.ToString();
+            textBox3.Text = SettingsModel.NightTimeRate.ToString();
+            textBox4.Text = SettingsModel.EnteringProbability.ToString();
+            label14.Text = SettingsModel.PercentOfCar.ToString();
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -328,7 +330,7 @@ namespace ParkingSimulationForms
         {
             if (double.TryParse(textBox4.Text, out double value))
             {
-                MainFormSettingsController.SettingsModel.SetProbabilityOfEnteringToParking(value);
+                SettingsModel.SetProbabilityOfEnteringToParking(value);
             }
             else
             {
@@ -341,7 +343,7 @@ namespace ParkingSimulationForms
         {
             if (double.TryParse(textBox1.Text, out double value))
             {
-                MainFormSettingsController.SettingsModel.SetGenerationStreamDistribution(new DeterminedDistribution(value));
+                SettingsModel.SetGenerationStreamDistribution(new DeterminedDistribution(value));
             }
             else
             {
@@ -354,7 +356,7 @@ namespace ParkingSimulationForms
         {
             if (double.TryParse(textBoxWithPlaceholder11.Text, out double value))
             {
-                MainFormSettingsController.SettingsModel.SetParkingTimeDistribution(new DeterminedDistribution(value));
+                SettingsModel.SetParkingTimeDistribution(new DeterminedDistribution(value));
             }
             else
             {
