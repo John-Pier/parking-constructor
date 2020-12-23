@@ -207,6 +207,25 @@ namespace ParkingSimulationForms
                     {
                         tabControl1.SelectedIndex = 0;
                     }
+                    return;
+                }
+
+                if (MainFormSettingsController.SettingsModel.IsModelValid())
+                {
+                    // TODO: Добавит логику в sceneVisualization
+                }
+                else
+                {
+                    var result = MessageBox.Show(
+                       "Вы не можете запустить визуализатор, потому что текущие настройки не валидны или не заданы.\nХотите вернуться ?",
+                       "Настройки не валидны",
+                       MessageBoxButtons.YesNo
+                   );
+                    if (result == DialogResult.Yes)
+                    {
+                        tabControl1.SelectedIndex = 1;
+                    }
+                    return;
                 }
             }
         }
@@ -322,7 +341,20 @@ namespace ParkingSimulationForms
         {
             if (double.TryParse(textBox1.Text, out double value))
             {
-                MainFormSettingsController.SettingsModel.SetGenerationStreamDistribution(new DeterminedDistribution(value)); 
+                MainFormSettingsController.SettingsModel.SetGenerationStreamDistribution(new DeterminedDistribution(value));
+            }
+            else
+            {
+                ShowUncorrectValueMessage();
+            }
+            InitSettingsForm();
+        }
+
+        private void textBoxWithPlaceholder11_Leave(object sender, EventArgs e)
+        {
+            if (double.TryParse(textBoxWithPlaceholder11.Text, out double value))
+            {
+                MainFormSettingsController.SettingsModel.SetParkingTimeDistribution(new DeterminedDistribution(value));
             }
             else
             {
@@ -336,6 +368,5 @@ namespace ParkingSimulationForms
             MessageBox.Show("Введено некорректное значение!", "Ошибка распознавания", MessageBoxButtons.OK);
         }
         #endregion
-
     }
 }

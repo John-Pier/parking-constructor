@@ -28,12 +28,18 @@ namespace ParkingConstructorLib.logic
             SetPercentOfTrack(50);
         }
 
+        public bool IsModelValid()
+        {
+            return GenerationStreamDistribution != null
+                && ParkingTimeDistribution != null;
+        }
+
         public void SetGenerationStreamDistribution(IDistributionLaw distributionLaw)
         {
             GenerationStreamDistribution = distributionLaw;
         }
 
-        public void GetParkingTimeDistribution(IDistributionLaw distributionLaw)
+        public void SetParkingTimeDistribution(IDistributionLaw distributionLaw)
         {
             ParkingTimeDistribution = distributionLaw;
         }
