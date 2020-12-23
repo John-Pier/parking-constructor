@@ -43,7 +43,7 @@ namespace ParkingConstructorLib.logic
             DayTimeRate = rate;
         }
 
-        public void SeNightTimeRate(int rate)
+        public void SetNightTimeRate(int rate)
         {
             NightTimeRate = rate;
         }

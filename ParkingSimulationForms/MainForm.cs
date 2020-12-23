@@ -12,6 +12,7 @@ using ParkingConstructorLib;
 using ParkingConstructorLib.logic;
 using ParkingConstructorLib.models;
 using ParkingConstructorLib.models.vehicles;
+using ParkingConstructorLib.utils.distributions;
 using ParkingSimulationForms.views;
 using ParkingSimulationForms.views.services;
 
@@ -32,7 +33,7 @@ namespace ParkingSimulationForms
             MainFormConstructorController.ImageList = elementsImageList;
             MainFormConstructorController.ElementsTablePanel = elementsTablePanel;
             MainFormConstructorController.CurrentSceneConstructor = sceneConstructor;
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
+            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value, (int)counterVertical.Value);
 
             MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
             MainFormStatisticsController.initTable(tableLayoutPanel3);
@@ -65,29 +66,17 @@ namespace ParkingSimulationForms
             pictureRoadBox4.Image = elementsImageList.Images[8];
         }
 
-        private void InitSettingsForm()
-        {
-           // MainFormSettingsController.SettingsModel
-        }
-
         //Конструктор
         private void counterHorizontal_ValueChanged(object sender, EventArgs e)
         {
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
-                (int) counterVertical.Value);
+            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value,
+                (int)counterVertical.Value);
         }
 
         private void counterVertical_ValueChanged(object sender, EventArgs e)
         {
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
-                (int) counterVertical.Value);
-        }
-
-        //Настройки
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-            MainFormSettingsController.calcualePercent(textBox5, label14);
+            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value,
+                (int)counterVertical.Value);
         }
 
         //Визуализатор
@@ -139,7 +128,7 @@ namespace ParkingSimulationForms
         {
             SetEnableEditSceneSize(true);
             MainFormConstructorController.CurrentElement = null;
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
+            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value, (int)counterVertical.Value);
             sceneConstructor.ClearModel();
         }
 
@@ -147,7 +136,7 @@ namespace ParkingSimulationForms
         {
             if (!sceneConstructor.IsParkingModelCreate())
             {
-                sceneConstructor.CreateParkingModel((int) counterHorizontal.Value, (int) counterVertical.Value, (RoadDirections)domainUpDown1.SelectedIndex);
+                sceneConstructor.CreateParkingModel((int)counterHorizontal.Value, (int)counterVertical.Value, (RoadDirections)domainUpDown1.SelectedIndex);
             }
 
             SetEnableEditSceneSize(false);
@@ -165,14 +154,14 @@ namespace ParkingSimulationForms
         {
             MainFormSettingsController.LockRBs(radioButton3, radioButton4, radioButton5, textBoxWithPlaceholder1,
                 textBoxWithPlaceholder2, textBoxWithPlaceholder3, textBoxWithPlaceholder4, textBoxWithPlaceholder5,
-                textBox1, !((RadioButton) sender).Checked);
+                textBox1, !((RadioButton)sender).Checked);
         }
 
         private void radioButton9_CheckedChanged(object sender, EventArgs e)
         {
             MainFormSettingsController.LockRBs(radioButton6, radioButton7, radioButton8, textBoxWithPlaceholder6,
                 textBoxWithPlaceholder7, textBoxWithPlaceholder8, textBoxWithPlaceholder9, textBoxWithPlaceholder10,
-                textBoxWithPlaceholder11, !((RadioButton) sender).Checked);
+                textBoxWithPlaceholder11, !((RadioButton)sender).Checked);
         }
 
         private void OnLoadClick(object sender, EventArgs e)
@@ -186,7 +175,7 @@ namespace ParkingSimulationForms
             counterVertical.Value = sceneConstructor.ParkingModel.RowCount;
 
             MainFormConstructorController.DrawTemplate(
-                (int)counterHorizontal.Value, 
+                (int)counterHorizontal.Value,
                 (int)counterVertical.Value,
                 parkingModel
             );
@@ -224,7 +213,7 @@ namespace ParkingSimulationForms
 
         private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
         {
-            var dropdown = (DomainUpDown) sender;
+            var dropdown = (DomainUpDown)sender;
             var direction = (RoadDirections)dropdown.SelectedIndex;
             SetUpRoadImages(direction);
             if (sceneConstructor.IsParkingModelCreate())
@@ -263,5 +252,90 @@ namespace ParkingSimulationForms
                     break;
             }
         }
+
+        #region Settings Form 
+
+        //Настройки
+        private void InitSettingsForm()
+        {
+            textBox2.Text = MainFormSettingsController.SettingsModel.DayTimeRate.ToString();
+            textBox5.Text = MainFormSettingsController.SettingsModel.PercentOfTrack.ToString();
+            textBox3.Text = MainFormSettingsController.SettingsModel.NightTimeRate.ToString();
+            textBox4.Text = MainFormSettingsController.SettingsModel.EnteringProbability.ToString();
+            label14.Text = MainFormSettingsController.SettingsModel.PercentOfCar.ToString();
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            MainFormSettingsController.calcualePercent(textBox5, label14);
+            if (int.TryParse(textBox5.Text, out int value))
+            {
+                MainFormSettingsController.SettingsModel.SetPercentOfTrack(value);
+            }
+            else
+            {
+                ShowUncorrectValueMessage();
+            }
+            InitSettingsForm();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(textBox2.Text, out int value))
+            {
+                MainFormSettingsController.SettingsModel.SetDayTimeRate(value);
+            }
+            else
+            {
+                ShowUncorrectValueMessage();
+            }
+            InitSettingsForm();
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(textBox3.Text, out int value))
+            {
+                MainFormSettingsController.SettingsModel.SetNightTimeRate(value);
+            }
+            else
+            {
+                ShowUncorrectValueMessage();
+            }
+            InitSettingsForm();
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            if (double.TryParse(textBox4.Text, out double value))
+            {
+                MainFormSettingsController.SettingsModel.SetProbabilityOfEnteringToParking(value);
+            }
+            else
+            {
+                ShowUncorrectValueMessage();
+            }
+            InitSettingsForm();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (double.TryParse(textBox1.Text, out double value))
+            {
+                MainFormSettingsController.SettingsModel.SetGenerationStreamDistribution(new DeterminedDistribution(value)); 
+            }
+            else
+            {
+                ShowUncorrectValueMessage();
+            }
+            InitSettingsForm();
+        }
+
+        private void ShowUncorrectValueMessage()
+        {
+            MessageBox.Show("Введено некорректное значение!", "Ошибка распознавания", MessageBoxButtons.OK);
+        }
+        #endregion
+
     }
 }
