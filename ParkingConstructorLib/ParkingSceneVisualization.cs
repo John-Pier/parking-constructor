@@ -17,6 +17,7 @@ namespace ParkingConstructorLib
     public class ParkingSceneVisualization<T> where T: class
     {
         private ParkingModel<T> parkingModel;
+        private SettingsModel settingsModel;
         private MapAvailable<T> mapAvailable;
         private static Bitmap[] textures;
         private static Bitmap image;
@@ -54,6 +55,11 @@ namespace ParkingConstructorLib
             this.parkingModel = parkingModel;
             mapAvailable = new MapAvailable<T>(this.parkingModel, textures);
 
+        }
+
+        public void SetSettingsModel(SettingsModel model)
+        {
+            settingsModel = model;
         }
 
         public static void setImage(Bitmap imageMap)

@@ -27,6 +27,8 @@ namespace ParkingSimulationForms
 
         public SettingsModel SettingsModel = new SettingsModel();
 
+        private Random generationStreamRandom = new Random(DateTime.Now.Millisecond);
+
         public MainForm()
         {
             InitializeComponent();
@@ -37,7 +39,7 @@ namespace ParkingSimulationForms
             MainFormConstructorController.ImageList = elementsImageList;
             MainFormConstructorController.ElementsTablePanel = elementsTablePanel;
             MainFormConstructorController.CurrentSceneConstructor = sceneConstructor;
-            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value, (int)counterVertical.Value);
+            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
 
             MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
             MainFormStatisticsController.initTable(tableLayoutPanel3);
@@ -74,26 +76,27 @@ namespace ParkingSimulationForms
         //Конструктор
         private void counterHorizontal_ValueChanged(object sender, EventArgs e)
         {
-            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value,
-                (int)counterVertical.Value);
+            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
+                (int) counterVertical.Value);
         }
 
         private void counterVertical_ValueChanged(object sender, EventArgs e)
         {
-            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value,
-                (int)counterVertical.Value);
+            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
+                (int) counterVertical.Value);
         }
 
         //Визуализатор
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
-            MainFormVizualayzerController.changePercentValue(hScrollBar1, label18, timer1);
+            MainFormVizualayzerController.changePercentValue(hScrollBar1, label18, modelGeneralTimer);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new GrassParkingElement(elementsImageList.Images[4]); // газон
+            MainFormConstructorController.CurrentElement =
+                new GrassParkingElement(elementsImageList.Images[4]); // газон
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -133,7 +136,7 @@ namespace ParkingSimulationForms
         {
             SetEnableEditSceneSize(true);
             MainFormConstructorController.CurrentElement = null;
-            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value, (int)counterVertical.Value);
+            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
             sceneConstructor.ClearModel();
         }
 
@@ -141,7 +144,8 @@ namespace ParkingSimulationForms
         {
             if (!sceneConstructor.IsParkingModelCreate())
             {
-                sceneConstructor.CreateParkingModel((int)counterHorizontal.Value, (int)counterVertical.Value, (RoadDirections)domainUpDown1.SelectedIndex);
+                sceneConstructor.CreateParkingModel((int) counterHorizontal.Value, (int) counterVertical.Value,
+                    (RoadDirections) domainUpDown1.SelectedIndex);
             }
 
             SetEnableEditSceneSize(false);
@@ -159,14 +163,14 @@ namespace ParkingSimulationForms
         {
             MainFormSettingsController.LockRBs(radioButton3, radioButton4, radioButton5, textBoxWithPlaceholder1,
                 textBoxWithPlaceholder2, textBoxWithPlaceholder3, textBoxWithPlaceholder4, textBoxWithPlaceholder5,
-                textBox1, !((RadioButton)sender).Checked);
+                textBox1, !((RadioButton) sender).Checked);
         }
 
         private void radioButton9_CheckedChanged(object sender, EventArgs e)
         {
             MainFormSettingsController.LockRBs(radioButton6, radioButton7, radioButton8, textBoxWithPlaceholder6,
                 textBoxWithPlaceholder7, textBoxWithPlaceholder8, textBoxWithPlaceholder9, textBoxWithPlaceholder10,
-                textBoxWithPlaceholder11, !((RadioButton)sender).Checked);
+                textBoxWithPlaceholder11, !((RadioButton) sender).Checked);
         }
 
         private void OnLoadClick(object sender, EventArgs e)
@@ -180,8 +184,8 @@ namespace ParkingSimulationForms
             counterVertical.Value = sceneConstructor.ParkingModel.RowCount;
 
             MainFormConstructorController.DrawTemplate(
-                (int)counterHorizontal.Value,
-                (int)counterVertical.Value,
+                (int) counterHorizontal.Value,
+                (int) counterVertical.Value,
                 parkingModel
             );
 
@@ -200,21 +204,21 @@ namespace ParkingSimulationForms
                 if (sceneConstructor.IsParkingModelCreate() && sceneConstructor.ParkingModel.IsParkingModelCorrect())
                 {
                     sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
-                    sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
                     sceneVisualization.nextStep(Convert.ToDouble(label18.Text));
                     Bitmap image = sceneVisualization.getImage();
 
                     Size sz = image.Size;
-                    Bitmap zoomed = (Bitmap)pictureBox2.Image;
+                    Bitmap zoomed = (Bitmap) pictureBox2.Image;
                     if (zoomed != null) zoomed.Dispose();
 
-                    zoomed = new Bitmap((int)(sz.Width * 20), (int)(sz.Height * 20));
+                    zoomed = new Bitmap((int) (sz.Width * 20), (int) (sz.Height * 20));
 
                     using (Graphics g = Graphics.FromImage(zoomed))
                     {
                         g.InterpolationMode = InterpolationMode.NearestNeighbor;
                         g.DrawImage(image, new Rectangle(Point.Empty, zoomed.Size));
                     }
+
                     pictureBox2.Image = zoomed;
                 }
                 else
@@ -228,95 +232,115 @@ namespace ParkingSimulationForms
                     {
                         tabControl1.SelectedIndex = 0;
                     }
+
                     return;
                 }
 
                 if (SettingsModel.IsModelValid())
                 {
-                    // TODO: Добавит логику в sceneVisualization
+                    sceneVisualization.SetSettingsModel(SettingsModel);
                 }
                 else
                 {
                     var result = MessageBox.Show(
-                       "Вы не можете запустить визуализатор, потому что текущие настройки не валидны или не заданы.\nХотите вернуться ?",
-                       "Настройки не валидны",
-                       MessageBoxButtons.YesNo
-                   );
+                        "Вы не можете запустить визуализатор, потому что текущие настройки не валидны или не заданы.\nХотите вернуться ?",
+                        "Настройки не валидны",
+                        MessageBoxButtons.YesNo
+                    );
                     if (result == DialogResult.Yes)
                     {
                         tabControl1.SelectedIndex = 1;
                     }
+
                     return;
                 }
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        #region Timers logic
+
+        private void startGeneralTimerClick(object sender, EventArgs e)
         {
-            sceneVisualization.nextStep(Convert.ToDouble(label18.Text));
-            Bitmap image = sceneVisualization.getImage();
+            //Set timers interval in ms
+            generationStreamTimer.Interval = (int) (SettingsModel.GenerationStreamDistribution.GetRandNumber() * 1000);
 
-            Size sz = image.Size;
-            Bitmap zoomed = (Bitmap)pictureBox2.Image;
-            if (zoomed != null) zoomed.Dispose();
-
-            zoomed = new Bitmap((int)(sz.Width * 20), (int)(sz.Height * 20));
-
-            using (Graphics g = Graphics.FromImage(zoomed))
-            {
-                g.InterpolationMode = InterpolationMode.NearestNeighbor;
-                g.DrawImage(image, new Rectangle(Point.Empty, zoomed.Size));
-            }
-            pictureBox2.Image = zoomed;
-
+            modelGeneralTimer.Start();
+            generationStreamTimer.Start();
         }
 
-        private void button17_Click(object sender, EventArgs e)
+        private void pauseGeneralTimerClick(object sender, EventArgs e)
         {
-            if(sceneVisualization.isCanAddThisCar(CarVehicleModel.CarType.Car))
-                sceneVisualization.createCar(5);
+            modelGeneralTimer.Stop();
+            generationStreamTimer.Stop();
         }
 
-        private void button18_Click(object sender, EventArgs e)
+        private void stopGeneralTimerClick(object sender, EventArgs e)
         {
-            if(sceneVisualization.isCanAddThisCar(CarVehicleModel.CarType.Truck))
-                sceneVisualization.createTruck(10);
-        }
-
-        private void button12_Click(object sender, EventArgs e)
-        {
-            timer1.Stop();
+            modelGeneralTimer.Stop();
+            generationStreamTimer.Stop();
             sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
             sceneVisualization.nextStep(Convert.ToDouble(label18.Text));
             Bitmap image = sceneVisualization.getImage();
 
             Size sz = image.Size;
-            Bitmap zoomed = (Bitmap)pictureBox2.Image;
+            Bitmap zoomed = (Bitmap) pictureBox2.Image;
             if (zoomed != null) zoomed.Dispose();
 
-            zoomed = new Bitmap((int)(sz.Width * 20), (int)(sz.Height * 20));
+            zoomed = new Bitmap((int) (sz.Width * 20), (int) (sz.Height * 20));
 
             using (Graphics g = Graphics.FromImage(zoomed))
             {
                 g.InterpolationMode = InterpolationMode.NearestNeighbor;
                 g.DrawImage(image, new Rectangle(Point.Empty, zoomed.Size));
             }
+
             pictureBox2.Image = zoomed;
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void modelGeneralTimer_Tick(object sender, EventArgs e)
         {
-            timer1.Start();
+            sceneVisualization.nextStep(Convert.ToDouble(label18.Text));
+            Bitmap image = sceneVisualization.getImage();
+
+            Size sz = image.Size;
+            Bitmap zoomed = (Bitmap) pictureBox2.Image;
+            if (zoomed != null) zoomed.Dispose();
+
+            zoomed = new Bitmap((int) (sz.Width * 20), (int) (sz.Height * 20));
+
+            using (Graphics g = Graphics.FromImage(zoomed))
+            {
+                g.InterpolationMode = InterpolationMode.NearestNeighbor;
+                g.DrawImage(image, new Rectangle(Point.Empty, zoomed.Size));
+            }
+
+            pictureBox2.Image = zoomed;
         }
 
-        private void button11_Click(object sender, EventArgs e)
+        private void generationStreamTimer_Tick(object sender, EventArgs e)
         {
-            timer1.Stop();
+            if (generationStreamRandom.Next() > 0)
+            {
+                if (sceneVisualization.isCanAddThisCar(CarVehicleModel.CarType.Car))
+                    sceneVisualization.createCar((int) (SettingsModel.ParkingTimeDistribution.GetRandNumber()));
+            }
+            else
+            {
+                if (sceneVisualization.isCanAddThisCar(CarVehicleModel.CarType.Truck))
+                    sceneVisualization.createTruck((int) (SettingsModel.ParkingTimeDistribution.GetRandNumber()));
+            }
         }
+
+        #endregion
+
+        #region GenerationStreamTimer
+
+        #endregion
+
         private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
         {
-            var dropdown = (DomainUpDown)sender;
-            var direction = (RoadDirections)dropdown.SelectedIndex;
+            var dropdown = (DomainUpDown) sender;
+            var direction = (RoadDirections) dropdown.SelectedIndex;
             SetUpRoadImages(direction);
             if (sceneConstructor.IsParkingModelCreate())
             {
@@ -355,7 +379,7 @@ namespace ParkingSimulationForms
             }
         }
 
-        #region Settings Form 
+        #region Settings Form
 
         //Настройки
         private void InitSettingsForm()
@@ -378,6 +402,7 @@ namespace ParkingSimulationForms
             {
                 ShowUncorrectValueMessage();
             }
+
             InitSettingsForm();
         }
 
@@ -391,6 +416,7 @@ namespace ParkingSimulationForms
             {
                 ShowUncorrectValueMessage();
             }
+
             InitSettingsForm();
         }
 
@@ -404,6 +430,7 @@ namespace ParkingSimulationForms
             {
                 ShowUncorrectValueMessage();
             }
+
             InitSettingsForm();
         }
 
@@ -417,6 +444,7 @@ namespace ParkingSimulationForms
             {
                 ShowUncorrectValueMessage();
             }
+
             InitSettingsForm();
         }
 
@@ -430,6 +458,7 @@ namespace ParkingSimulationForms
             {
                 ShowUncorrectValueMessage();
             }
+
             InitSettingsForm();
         }
 
@@ -443,6 +472,7 @@ namespace ParkingSimulationForms
             {
                 ShowUncorrectValueMessage();
             }
+
             InitSettingsForm();
         }
 
@@ -450,6 +480,7 @@ namespace ParkingSimulationForms
         {
             MessageBox.Show("Введено некорректное значение!", "Ошибка распознавания", MessageBoxButtons.OK);
         }
+
         #endregion
     }
 }
