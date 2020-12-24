@@ -25,11 +25,7 @@ namespace ParkingConstructorLib.models
         public int CompareTo(object o)
         {
             Coors c = o as Coors;
-            if (localMap[columnIndex, rowIndex, 2] < localMap[c.columnIndex, c.rowIndex, 2])
-                return -1;
-            if (localMap[columnIndex, rowIndex, 2] > localMap[c.columnIndex, c.rowIndex, 2])
-                return 1;
-            return 0;
+            return localMap[columnIndex, rowIndex, 2] - localMap[c.columnIndex, c.rowIndex, 2];
         }
     }
 }

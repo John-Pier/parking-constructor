@@ -47,10 +47,10 @@ namespace ParkingConstructorLib.models
                         exitCoors = new Coors(i, j);
                 }
             drawMapOriginal = new Bitmap(model.ColumnCount * 10, model.RowCount * 10);
-            for(int i = 0; i< model.ColumnCount; i++)
-                for(int j = 0; j<model.RowCount; j++)
-                    for(int k = 0; k < 10; k++)
-                        for(int l = 0; l<10; l++)
+            for (int i = 0; i < model.ColumnCount; i++)
+                for (int j = 0; j < model.RowCount; j++)
+                    for (int k = 0; k < 10; k++)
+                        for (int l = 0; l < 10; l++)
                         {
                             if (model.GetElement(i, j) != null && model.GetElement(i, j).GetElementType() == ParkingModelElementType.Entry)
                                 drawMapOriginal.SetPixel(i * 10 + k, j * 10 + l, textures[0].GetPixel(k, l));
@@ -76,11 +76,11 @@ namespace ParkingConstructorLib.models
             {
                 for (int i = 0; i < model.ColumnCount; i++)
                     for (int j = 0; j < model.RowCount; j++)
-                        if(isCoorsEquals(car.getCoors(), new Coors(i,j)))
+                        if (isCoorsEquals(car.getCoors(), new Coors(i, j)))
                             for (int k = 0; k < 10; k++)
                                 for (int l = 0; l < 10; l++)
                                 {
-                                    if(car.GetType() == "Car" && car.getLastDirection() == CarVehicleModel.LastDirection.Horizontal && textures[6].GetPixel(k, l).A > 100)
+                                    if (car.GetType() == "Car" && car.getLastDirection() == CarVehicleModel.LastDirection.Horizontal && textures[6].GetPixel(k, l).A > 100)
                                         result.SetPixel(i * 10 + k, j * 10 + l, textures[6].GetPixel(k, l));
                                     if (car.GetType() == "Car" && car.getLastDirection() == CarVehicleModel.LastDirection.Vertical && textures[7].GetPixel(k, l).A > 100)
                                         result.SetPixel(i * 10 + k, j * 10 + l, textures[7].GetPixel(k, l));
@@ -122,7 +122,7 @@ namespace ParkingConstructorLib.models
                         isCarCreated = true;
                         break;
                     }
-            if(isCarCreated)cars.AddLast(car);
+            if (isCarCreated) cars.AddLast(car);
             reloadMap();
             Draw();
         }
@@ -153,13 +153,13 @@ namespace ParkingConstructorLib.models
         {
             LinkedList<CarVehicleModel> removedCars = new LinkedList<CarVehicleModel>();
             bool stopEnding = false;
-            for(int i = 0; i<way.Length; i++)
-                if(isCoorsEquals(car.getCoors(), way[i]))
+            for (int i = 0; i < way.Length; i++)
+                if (isCoorsEquals(car.getCoors(), way[i]))
                 {
                     //Если машина на парковке
                     if (isCoorsEquals(car.getCoors(), car.getTarget()) && car.getTargetType() == CarVehicleModel.TargetType.Parking)
                     {
-                        if((DateTime.Now - car.getDateTimeStopping()).TotalMilliseconds > (car.getSecondsOnParking() * 1000)/accelerate)
+                        if ((DateTime.Now - car.getDateTimeStopping()).TotalMilliseconds > (car.getSecondsOnParking() * 1000) / accelerate)
                         {
                             stopEnding = true;
                             car.setTarget(cashierCoors);
@@ -187,13 +187,13 @@ namespace ParkingConstructorLib.models
                         }
                     }
                     //Если машина будет на парковке на следующем шаге
-                    if(i == way.Length - 2 && car.getTargetType() == CarVehicleModel.TargetType.Parking)
+                    if (i == way.Length - 2 && car.getTargetType() == CarVehicleModel.TargetType.Parking)
                     {
                         car.setDateTimeStopping(DateTime.Now);
-                        if(car.GetType() == "Car")
+                        if (car.GetType() == "Car")
                         {
                             foreach (CarParkingPlace cpp in carParkingPlaces)
-                                if(isCoorsEquals(cpp.coors, way[i + 1]))
+                                if (isCoorsEquals(cpp.coors, way[i + 1]))
                                 {
                                     cpp.car = car;
                                     break;
@@ -210,7 +210,7 @@ namespace ParkingConstructorLib.models
                         }
                     }
                     //Машина на кассе
-                    if(isCoorsEquals(cashierCoors, car.getCoors()))
+                    if (isCoorsEquals(cashierCoors, car.getCoors()))
                     {
                         car.setTarget(exitCoors);
                         car.setTargetType(CarVehicleModel.TargetType.Exit);
@@ -218,42 +218,43 @@ namespace ParkingConstructorLib.models
                         //
                     }
                     //Машина на выезде
-                    if(isCoorsEquals(exitCoors, car.getCoors()))
+                    if (isCoorsEquals(exitCoors, car.getCoors()))
                     {
                         removedCars.AddLast(car);
                     }
-                    if (isCoorsEquals(car.getCoors(), way[i]) && i != way.Length-1)
+                    if (isCoorsEquals(car.getCoors(), way[i]) && i != way.Length - 1)
                     {
                         car.setNextCoors(way[i + 1]);
                     }
-                    else if((isCoorsEquals(car.getCoors(), way[i]) && i == way.Length - 1) &&
+                    else if ((isCoorsEquals(car.getCoors(), way[i]) && i == way.Length - 1) &&
                         (stopEnding || isCoorsEquals(car.getCoors(), cashierCoors)))
                     {
                         int[,,] localMapTemp = initLocalMap(car);
                         Coors[] wayTemp = foundWay(localMapTemp, car);
                         //Ничего не трогать туть, несмотря на предупреждение о недостижимом коде
-                        for(int j = 0; j<wayTemp.Length; j++)
+                        for (int j = 0; j < wayTemp.Length; j++)
                         {
                             if (isCoorsEquals(car.getCoors(), wayTemp[i]))
                                 car.setNextCoors(wayTemp[i + 1]);
                             break;
                         }
-                            
+
                     }
                 }
             bool canGo = true;
-            foreach(CarVehicleModel carLocal in cars)
+            foreach (CarVehicleModel carLocal in cars)
             {
-                if(isCoorsEquals(carLocal.getCoors(), car.getNextCoors())){
+                if (isCoorsEquals(carLocal.getCoors(), car.getNextCoors()))
+                {
                     canGo = false;
                     break;
                 }
             }
             if (localMap[car.getNextCoors().columnIndex, car.getNextCoors().rowIndex, 2] >= 1000 && !isCoorsEquals(car.getTarget(), car.getNextCoors()))
             {
-                if(car.getCountErrors() < 6)
+                if (car.getCountErrors() < 6)
                 {
-                    car.setCountErrors(car.getCountErrors()+1);
+                    car.setCountErrors(car.getCountErrors() + 1);
                     canGo = false;
                 }
                 else
@@ -301,7 +302,7 @@ namespace ParkingConstructorLib.models
                         allNeighbors.Remove(coor);
                     }
                 }
-                    
+
                 if (isExit) break;
                 neighbors = getNeighbors(coorsNowIteration.columnIndex, coorsNowIteration.rowIndex, localMap);
 
@@ -317,10 +318,10 @@ namespace ParkingConstructorLib.models
                     }
                     allNeighbors.AddLast(coor);
                 }
-                
+
                 localMap[coorsNowIteration.columnIndex, coorsNowIteration.rowIndex, 1] = 1;
             }
-            
+
         }
 
         private Coors[] getNeighbors(int indexCol, int indexRow, int[,,] localMap)
@@ -393,13 +394,13 @@ namespace ParkingConstructorLib.models
             Coors[] neighboreCoors = null;
             coors.AddLast(new Coors(car.getTarget().columnIndex, car.getTarget().rowIndex));
             Coors mainCoors = new Coors(car.getTarget().columnIndex, car.getTarget().rowIndex);
-            while(weight != 0)
+            while (weight != 0)
             {
                 neighboreCoors = getNeighbors(mainCoors.columnIndex, mainCoors.rowIndex, localMap);
-                foreach(Coors coorsTemp in neighboreCoors)
+                foreach (Coors coorsTemp in neighboreCoors)
                 {
-                    if(localMap[mainCoors.columnIndex, mainCoors.rowIndex, 2] ==
-                        localMap[coorsTemp.columnIndex, coorsTemp.rowIndex, 2]+
+                    if (localMap[mainCoors.columnIndex, mainCoors.rowIndex, 2] ==
+                        localMap[coorsTemp.columnIndex, coorsTemp.rowIndex, 2] +
                         localMap[mainCoors.columnIndex, mainCoors.rowIndex, 0])
                     {
                         weight -= localMap[mainCoors.columnIndex, mainCoors.rowIndex, 0];
@@ -423,9 +424,9 @@ namespace ParkingConstructorLib.models
 
         public bool isCanAddCar(CarType carType)
         {
-            if(carType == CarType.Car)
+            if (carType == CarType.Car)
             {
-                foreach(CarParkingPlace placeForCar in carParkingPlaces)
+                foreach (CarParkingPlace placeForCar in carParkingPlaces)
                 {
                     if (!placeForCar.isBusy)
                         return true;
@@ -434,7 +435,7 @@ namespace ParkingConstructorLib.models
             }
             else
             {
-                foreach(TruckParkingPlace placeForTruck in truckParkingPlaces)
+                foreach (TruckParkingPlace placeForTruck in truckParkingPlaces)
                 {
                     if (!placeForTruck.isBusy)
                         return true;
@@ -460,10 +461,7 @@ namespace ParkingConstructorLib.models
                 foreach (CarVehicleModel carTemp in removedCars)
                     cars.Remove(carTemp);
             }
-            catch(Exception e)
-            {
-
-            }
+            catch (Exception) { }
             Draw();
         }
     }

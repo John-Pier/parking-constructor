@@ -38,14 +38,14 @@ namespace ParkingConstructorLib
 
         public void createCar(int timeWaitOnParkingInSeconds)
         {
-            CarVehicleModel car = CarVehicleModel.spawnCar(CarVehicleModel.CarType.Car);
+            CarVehicleModel car = spawnCar(CarType.Car);
             car.setSecondsOnParking(timeWaitOnParkingInSeconds);
             mapAvailable.addCar(car);
         }
 
         public void createTruck(int timeWaitOnParkingInSeconds)
         {
-            CarVehicleModel car = CarVehicleModel.spawnCar(CarVehicleModel.CarType.Truck);
+            CarVehicleModel car = spawnCar(CarType.Truck);
             car.setSecondsOnParking(timeWaitOnParkingInSeconds);
             mapAvailable.addCar(car);
         }

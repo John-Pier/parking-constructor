@@ -27,7 +27,7 @@ namespace ParkingSimulationForms
 
         public SettingsModel SettingsModel = new SettingsModel();
 
-        private Random generationStreamRandom = new Random(DateTime.Now.Millisecond);
+        private UniformDistribution generationStreamRandom;
 
         public MainForm()
         {
@@ -263,6 +263,7 @@ namespace ParkingSimulationForms
         {
             //Set timers interval in ms
             generationStreamTimer.Interval = (int) (SettingsModel.GenerationStreamDistribution.GetRandNumber() * 1000);
+            generationStreamRandom = new UniformDistribution(0d, 100d);
 
             modelGeneralTimer.Start();
             generationStreamTimer.Start();
@@ -319,21 +320,21 @@ namespace ParkingSimulationForms
 
         private void generationStreamTimer_Tick(object sender, EventArgs e)
         {
-            if (generationStreamRandom.Next() > 0)
+            if (generationStreamRandom.GetRandNumber() > SettingsModel.PercentOfTrack)
             {
                 if (sceneVisualization.isCanAddThisCar(CarVehicleModel.CarType.Car))
-                    sceneVisualization.createCar((int) (SettingsModel.ParkingTimeDistribution.GetRandNumber()));
+                {
+                    sceneVisualization.createCar((int)(SettingsModel.ParkingTimeDistribution.GetRandNumber()));
+                } 
             }
             else
             {
                 if (sceneVisualization.isCanAddThisCar(CarVehicleModel.CarType.Truck))
-                    sceneVisualization.createTruck((int) (SettingsModel.ParkingTimeDistribution.GetRandNumber()));
+                {
+                    sceneVisualization.createTruck((int)(SettingsModel.ParkingTimeDistribution.GetRandNumber()));
+                }  
             }
         }
-
-        #endregion
-
-        #region GenerationStreamTimer
 
         #endregion
 
@@ -482,5 +483,10 @@ namespace ParkingSimulationForms
         }
 
         #endregion
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
