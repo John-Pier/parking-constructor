@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="logic\ParkingModel.cs" />
-    <Compile Include="logic\SharedClass.cs" />
     <Compile Include="models\CarParkingPlace.cs" />
     <Compile Include="models\Coors.cs" />
     <Compile Include="models\MapAvailable.cs" />

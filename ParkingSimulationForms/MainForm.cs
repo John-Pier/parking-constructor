@@ -372,7 +372,7 @@ namespace ParkingSimulationForms
             MainFormSettingsController.calcualePercent(textBox5, label14);
             if (int.TryParse(textBox5.Text, out int value))
             {
-                MainFormSettingsController.SettingsModel.SetPercentOfTrack(value);
+                SettingsModel.SetPercentOfTrack(value);
             }
             else
             {
@@ -385,7 +385,7 @@ namespace ParkingSimulationForms
         {
             if (int.TryParse(textBox2.Text, out int value))
             {
-                MainFormSettingsController.SettingsModel.SetDayTimeRate(value);
+                SettingsModel.SetDayTimeRate(value);
             }
             else
             {
@@ -398,7 +398,7 @@ namespace ParkingSimulationForms
         {
             if (int.TryParse(textBox3.Text, out int value))
             {
-                MainFormSettingsController.SettingsModel.SetNightTimeRate(value);
+                SettingsModel.SetNightTimeRate(value);
             }
             else
             {
