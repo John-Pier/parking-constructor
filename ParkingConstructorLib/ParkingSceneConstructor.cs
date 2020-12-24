@@ -11,7 +11,7 @@ namespace ParkingConstructorLib
     /// <summary>
     /// Конструктор парковки
     /// </summary>
-    public class ParkingSceneConstructor<T> where T: class
+    public class ParkingSceneConstructor<T> where T : class
     {
         public ParkingModel<T> ParkingModel { get; private set; }
 
@@ -23,9 +23,12 @@ namespace ParkingConstructorLib
             }
         }
 
-        public void CreateParkingModel(int columns, int rows)
+        public void CreateParkingModel(int columns, int rows, RoadDirections direction = RoadDirections.Bottom)
         {
-            ParkingModel = new ParkingModel<T>(columns, rows);
+            ParkingModel = new ParkingModel<T>(columns, rows)
+            {
+                RoadDirection = direction
+            };
         }
 
         public void SetParkingModel(ParkingModel<T> parkingModel)
@@ -39,5 +42,15 @@ namespace ParkingConstructorLib
         }
 
         public bool IsParkingModelCreate() => ParkingModel != null;
+
+        public void SetRoadDirection(RoadDirections roadDirection)
+        {
+            ParkingModel.RoadDirection = roadDirection;
+        }
+
+        public void ClearModel()
+        {
+            this.ParkingModel = null;
+        }
     }
 }

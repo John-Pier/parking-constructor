@@ -13,6 +13,7 @@ using ParkingConstructorLib;
 using ParkingConstructorLib.logic;
 using ParkingConstructorLib.models;
 using ParkingConstructorLib.models.vehicles;
+using ParkingConstructorLib.utils.distributions;
 using ParkingSimulationForms.views;
 using ParkingSimulationForms.views.services;
 
@@ -20,10 +21,11 @@ namespace ParkingSimulationForms
 {
     public partial class MainForm : Form
     {
-        private  ParkingSceneConstructor<Image> sceneConstructor = new ParkingSceneConstructor<Image>();
-        private  ParkingSceneVisualization<Image> sceneVisualization = new ParkingSceneVisualization<Image>();
+        private readonly ParkingSceneConstructor<Image> sceneConstructor = new ParkingSceneConstructor<Image>();
+        private readonly ParkingSceneVisualization<Image> sceneVisualization = new ParkingSceneVisualization<Image>();
+        private readonly FormFilesService formFilesService = new FormFilesService();
 
-        private FormFilesService formFilesService = new FormFilesService();
+        public SettingsModel SettingsModel = new SettingsModel();
 
         public MainForm()
         {
@@ -35,36 +37,51 @@ namespace ParkingSimulationForms
             MainFormConstructorController.ImageList = elementsImageList;
             MainFormConstructorController.ElementsTablePanel = elementsTablePanel;
             MainFormConstructorController.CurrentSceneConstructor = sceneConstructor;
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
+            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value, (int)counterVertical.Value);
 
             MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
             MainFormStatisticsController.initTable(tableLayoutPanel3);
 
             MainFormConstructorController.createAndSetTexturesBitmapArray(texturesImageList);
+            InitSettingsForm();
+
+            domainUpDown1.SelectedIndex = 0;
+
+            SetUpRoadImages(RoadDirections.Top);
+            InitRoadImages();
 
             elementsTablePanel.Enabled = false;
             saveButton.Enabled = false;
         }
 
-        //Конструктор
+        private void InitRoadImages()
+        {
+            pictureRoadBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureRoadBox1.Image = elementsImageList.Images[8];
+            pictureRoadBox1.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
+            pictureRoadBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureRoadBox2.Image = elementsImageList.Images[8];
+
+            pictureRoadBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureRoadBox3.Image = elementsImageList.Images[8];
+            pictureRoadBox3.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+
+            pictureRoadBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureRoadBox4.Image = elementsImageList.Images[8];
+        }
+
+        //Конструктор
         private void counterHorizontal_ValueChanged(object sender, EventArgs e)
         {
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
-                (int) counterVertical.Value);
+            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value,
+                (int)counterVertical.Value);
         }
 
         private void counterVertical_ValueChanged(object sender, EventArgs e)
         {
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
-                (int) counterVertical.Value);
-        }
-
-        //Настройки
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-            MainFormSettingsController.calcualePercent(textBox5, label14);
+            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value,
+                (int)counterVertical.Value);
         }
 
         //Визуализатор
@@ -116,14 +133,15 @@ namespace ParkingSimulationForms
         {
             SetEnableEditSceneSize(true);
             MainFormConstructorController.CurrentElement = null;
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
+            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value, (int)counterVertical.Value);
+            sceneConstructor.ClearModel();
         }
 
         private void SetUpConstructorAndLockSize()
         {
             if (!sceneConstructor.IsParkingModelCreate())
             {
-                sceneConstructor.CreateParkingModel((int) counterHorizontal.Value, (int) counterVertical.Value);
+                sceneConstructor.CreateParkingModel((int)counterHorizontal.Value, (int)counterVertical.Value, (RoadDirections)domainUpDown1.SelectedIndex);
             }
 
             SetEnableEditSceneSize(false);
@@ -141,18 +159,14 @@ namespace ParkingSimulationForms
         {
             MainFormSettingsController.LockRBs(radioButton3, radioButton4, radioButton5, textBoxWithPlaceholder1,
                 textBoxWithPlaceholder2, textBoxWithPlaceholder3, textBoxWithPlaceholder4, textBoxWithPlaceholder5,
-                textBox1, !((RadioButton) sender).Checked);
+                textBox1, !((RadioButton)sender).Checked);
         }
 
         private void radioButton9_CheckedChanged(object sender, EventArgs e)
         {
             MainFormSettingsController.LockRBs(radioButton6, radioButton7, radioButton8, textBoxWithPlaceholder6,
                 textBoxWithPlaceholder7, textBoxWithPlaceholder8, textBoxWithPlaceholder9, textBoxWithPlaceholder10,
-                textBoxWithPlaceholder11, !((RadioButton) sender).Checked);
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
+                textBoxWithPlaceholder11, !((RadioButton)sender).Checked);
         }
 
         private void OnLoadClick(object sender, EventArgs e)
@@ -166,7 +180,7 @@ namespace ParkingSimulationForms
             counterVertical.Value = sceneConstructor.ParkingModel.RowCount;
 
             MainFormConstructorController.DrawTemplate(
-                (int)counterHorizontal.Value, 
+                (int)counterHorizontal.Value,
                 (int)counterVertical.Value,
                 parkingModel
             );
@@ -214,6 +228,25 @@ namespace ParkingSimulationForms
                     {
                         tabControl1.SelectedIndex = 0;
                     }
+                    return;
+                }
+
+                if (SettingsModel.IsModelValid())
+                {
+                    // TODO: Добавит логику в sceneVisualization
+                }
+                else
+                {
+                    var result = MessageBox.Show(
+                       "Вы не можете запустить визуализатор, потому что текущие настройки не валидны или не заданы.\nХотите вернуться ?",
+                       "Настройки не валидны",
+                       MessageBoxButtons.YesNo
+                   );
+                    if (result == DialogResult.Yes)
+                    {
+                        tabControl1.SelectedIndex = 1;
+                    }
+                    return;
                 }
             }
         }
@@ -280,5 +313,143 @@ namespace ParkingSimulationForms
         {
             timer1.Stop();
         }
+        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
+        {
+            var dropdown = (DomainUpDown)sender;
+            var direction = (RoadDirections)dropdown.SelectedIndex;
+            SetUpRoadImages(direction);
+            if (sceneConstructor.IsParkingModelCreate())
+            {
+                sceneConstructor.SetRoadDirection(direction);
+            }
+        }
+
+        private void SetUpRoadImages(RoadDirections direction)
+        {
+            switch (direction)
+            {
+                case RoadDirections.Top:
+                    pictureRoadBox2.Visible = true;
+                    pictureRoadBox1.Visible = false;
+                    pictureRoadBox3.Visible = false;
+                    pictureRoadBox4.Visible = false;
+                    break;
+                case RoadDirections.Bottom:
+                    pictureRoadBox4.Visible = true;
+                    pictureRoadBox1.Visible = false;
+                    pictureRoadBox3.Visible = false;
+                    pictureRoadBox2.Visible = false;
+                    break;
+                case RoadDirections.Right:
+                    pictureRoadBox1.Visible = true;
+                    pictureRoadBox2.Visible = false;
+                    pictureRoadBox3.Visible = false;
+                    pictureRoadBox4.Visible = false;
+                    break;
+                case RoadDirections.Left:
+                    pictureRoadBox3.Visible = true;
+                    pictureRoadBox2.Visible = false;
+                    pictureRoadBox1.Visible = false;
+                    pictureRoadBox4.Visible = false;
+                    break;
+            }
+        }
+
+        #region Settings Form 
+
+        //Настройки
+        private void InitSettingsForm()
+        {
+            textBox2.Text = SettingsModel.DayTimeRate.ToString();
+            textBox5.Text = SettingsModel.PercentOfTrack.ToString();
+            textBox3.Text = SettingsModel.NightTimeRate.ToString();
+            textBox4.Text = SettingsModel.EnteringProbability.ToString();
+            label14.Text = SettingsModel.PercentOfCar.ToString();
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            MainFormSettingsController.calcualePercent(textBox5, label14);
+            if (int.TryParse(textBox5.Text, out int value))
+            {
+                MainFormSettingsController.SettingsModel.SetPercentOfTrack(value);
+            }
+            else
+            {
+                ShowUncorrectValueMessage();
+            }
+            InitSettingsForm();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(textBox2.Text, out int value))
+            {
+                MainFormSettingsController.SettingsModel.SetDayTimeRate(value);
+            }
+            else
+            {
+                ShowUncorrectValueMessage();
+            }
+            InitSettingsForm();
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(textBox3.Text, out int value))
+            {
+                MainFormSettingsController.SettingsModel.SetNightTimeRate(value);
+            }
+            else
+            {
+                ShowUncorrectValueMessage();
+            }
+            InitSettingsForm();
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            if (double.TryParse(textBox4.Text, out double value))
+            {
+                SettingsModel.SetProbabilityOfEnteringToParking(value);
+            }
+            else
+            {
+                ShowUncorrectValueMessage();
+            }
+            InitSettingsForm();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (double.TryParse(textBox1.Text, out double value))
+            {
+                SettingsModel.SetGenerationStreamDistribution(new DeterminedDistribution(value));
+            }
+            else
+            {
+                ShowUncorrectValueMessage();
+            }
+            InitSettingsForm();
+        }
+
+        private void textBoxWithPlaceholder11_Leave(object sender, EventArgs e)
+        {
+            if (double.TryParse(textBoxWithPlaceholder11.Text, out double value))
+            {
+                SettingsModel.SetParkingTimeDistribution(new DeterminedDistribution(value));
+            }
+            else
+            {
+                ShowUncorrectValueMessage();
+            }
+            InitSettingsForm();
+        }
+
+        private void ShowUncorrectValueMessage()
+        {
+            MessageBox.Show("Введено некорректное значение!", "Ошибка распознавания", MessageBoxButtons.OK);
+        }
+        #endregion
     }
 }

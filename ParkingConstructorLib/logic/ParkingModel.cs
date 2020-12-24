@@ -8,6 +8,14 @@ using ParkingConstructorLib.services;
 
 namespace ParkingConstructorLib.logic
 {
+    public enum RoadDirections
+    {
+        Top = 0,
+        Bottom = 1,
+        Right = 2,
+        Left = 3
+    }
+
     [Serializable]
     public class ParkingModel<T> where T: class
     {
@@ -16,15 +24,15 @@ namespace ParkingConstructorLib.logic
         public int ColumnCount { get; private set; }
 
         public int RowCount { get; private set; }
-        
-        // [NonSerialized]
-        // private ParkingModelService modelService = new ParkingModelService(); 
+
+        public RoadDirections RoadDirection;
 
         public ParkingModel(int columnCount, int rowCount)
         {
             this.ColumnCount = columnCount;
             this.RowCount = rowCount; 
             parkingLot = new ParkingModelElement<T>[columnCount, rowCount];
+            RoadDirection = RoadDirections.Bottom;
         }
 
         public void SetElement(int columnIndex, int rowIndex, ParkingModelElement<T> element)
@@ -56,6 +64,8 @@ namespace ParkingConstructorLib.logic
             var isOneCashier = false;
 
             var isParkingSpaceExists = false;
+
+            // TODO: Проверка на корректную сторону
 
             for (var i = 0; i < ColumnCount; i++)
             {

@@ -125,7 +125,7 @@
     <Content Include="resources\input_elementp.png" />
     <Content Include="resources\in_element.png" />
     <Content Include="resources\road.png" />
-    <Content Include="resources\road_line.jpg" />
+    <Content Include="resources\road_line.png" />
     <Content Include="resources\space.png" />
     <Content Include="resources\stop.png" />
     <Content Include="resources\test.png" />
