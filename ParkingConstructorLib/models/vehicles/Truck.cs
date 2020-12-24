@@ -14,6 +14,7 @@ namespace ParkingConstructorLib.models.vehicles
             columnIndex = column;
             type = CarType.Truck;
             targetType = TargetType.Parking;
+            countErrors = 0;
         }
     }
 }

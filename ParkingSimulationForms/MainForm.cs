@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -27,6 +28,7 @@ namespace ParkingSimulationForms
         public MainForm()
         {
             InitializeComponent();
+
             MainFormVizualayzerController.setPictureBox(pictureBox2);
             MainFormVizualayzerController.CurrentSceneVisualization = sceneVisualization;
 
@@ -37,6 +39,8 @@ namespace ParkingSimulationForms
 
             MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
             MainFormStatisticsController.initTable(tableLayoutPanel3);
+
+            MainFormConstructorController.createAndSetTexturesBitmapArray(texturesImageList);
 
             elementsTablePanel.Enabled = false;
             saveButton.Enabled = false;
@@ -182,6 +186,7 @@ namespace ParkingSimulationForms
                 if (sceneConstructor.IsParkingModelCreate() && sceneConstructor.ParkingModel.IsParkingModelCorrect())
                 {
                     sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
+                    timer1.Start();
                 }
                 else
                 {
@@ -198,17 +203,32 @@ namespace ParkingSimulationForms
             }
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
             sceneVisualization.nextStep();
+            Bitmap image = sceneVisualization.getImage();
+
+            Size sz = image.Size;
+            Bitmap zoomed = (Bitmap)pictureBox2.Image;
+            if (zoomed != null) zoomed.Dispose();
+
+            zoomed = new Bitmap((int)(sz.Width * 20), (int)(sz.Height * 20));
+
+            using (Graphics g = Graphics.FromImage(zoomed))
+            {
+                g.InterpolationMode = InterpolationMode.NearestNeighbor;
+                g.DrawImage(image, new Rectangle(Point.Empty, zoomed.Size));
+            }
+            pictureBox2.Image = zoomed;
+
         }
 
-        private void button14_Click(object sender, EventArgs e)
+        private void button17_Click(object sender, EventArgs e)
         {
             sceneVisualization.createCar();
         }
 
-        private void button15_Click(object sender, EventArgs e)
+        private void button18_Click(object sender, EventArgs e)
         {
             sceneVisualization.createTruck();
         }

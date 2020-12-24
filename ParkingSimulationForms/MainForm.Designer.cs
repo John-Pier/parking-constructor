@@ -88,6 +88,8 @@ namespace ParkingSimulationForms
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button18 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -115,9 +117,8 @@ namespace ParkingSimulationForms
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.elementsImageList = new System.Windows.Forms.ImageList(this.components);
-            this.button9 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
+            this.texturesImageList = new System.Windows.Forms.ImageList(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.textBoxWithPlaceholder6 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
             this.textBoxWithPlaceholder7 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
             this.textBoxWithPlaceholder8 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
@@ -176,9 +177,6 @@ namespace ParkingSimulationForms
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(230)))), ((int)(((byte)(249)))));
-            this.tabPage1.Controls.Add(this.button15);
-            this.tabPage1.Controls.Add(this.button14);
-            this.tabPage1.Controls.Add(this.button9);
             this.tabPage1.Controls.Add(this.saveButton);
             this.tabPage1.Controls.Add(this.button8);
             this.tabPage1.Controls.Add(this.button7);
@@ -202,7 +200,7 @@ namespace ParkingSimulationForms
             this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(194)))), ((int)(((byte)(251)))));
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.saveButton.Location = new System.Drawing.Point(61, 382);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(332, 38);
             this.saveButton.TabIndex = 7;
@@ -215,7 +213,7 @@ namespace ParkingSimulationForms
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(194)))), ((int)(((byte)(251)))));
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button8.Location = new System.Drawing.Point(269, 336);
-            this.button8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(124, 38);
             this.button8.TabIndex = 6;
@@ -228,7 +226,7 @@ namespace ParkingSimulationForms
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(194)))), ((int)(((byte)(251)))));
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button7.Location = new System.Drawing.Point(61, 336);
-            this.button7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(124, 38);
             this.button7.TabIndex = 5;
@@ -248,7 +246,7 @@ namespace ParkingSimulationForms
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(36, 102);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(386, 226);
             this.panel1.TabIndex = 4;
@@ -258,7 +256,7 @@ namespace ParkingSimulationForms
             this.button6.BackColor = System.Drawing.Color.White;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button6.Location = new System.Drawing.Point(232, 165);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(124, 48);
             this.button6.TabIndex = 11;
@@ -271,7 +269,7 @@ namespace ParkingSimulationForms
             this.button5.BackColor = System.Drawing.Color.White;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button5.Location = new System.Drawing.Point(232, 110);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(124, 48);
             this.button5.TabIndex = 10;
@@ -284,7 +282,7 @@ namespace ParkingSimulationForms
             this.button4.BackColor = System.Drawing.Color.White;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button4.Location = new System.Drawing.Point(232, 54);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(124, 48);
             this.button4.TabIndex = 9;
@@ -297,7 +295,7 @@ namespace ParkingSimulationForms
             this.button3.BackColor = System.Drawing.Color.White;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button3.Location = new System.Drawing.Point(24, 165);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(124, 48);
             this.button3.TabIndex = 8;
@@ -310,7 +308,7 @@ namespace ParkingSimulationForms
             this.button2.BackColor = System.Drawing.Color.White;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button2.Location = new System.Drawing.Point(24, 110);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(124, 48);
             this.button2.TabIndex = 7;
@@ -323,7 +321,7 @@ namespace ParkingSimulationForms
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button1.Location = new System.Drawing.Point(24, 54);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(124, 48);
             this.button1.TabIndex = 6;
@@ -346,7 +344,7 @@ namespace ParkingSimulationForms
             // 
             this.counterVertical.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.counterVertical.Location = new System.Drawing.Point(365, 57);
-            this.counterVertical.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.counterVertical.Margin = new System.Windows.Forms.Padding(4);
             this.counterVertical.Maximum = new decimal(new int[] {
             8,
             0,
@@ -372,7 +370,7 @@ namespace ParkingSimulationForms
             // 
             this.counterHorizontal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.counterHorizontal.Location = new System.Drawing.Point(365, 22);
-            this.counterHorizontal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.counterHorizontal.Margin = new System.Windows.Forms.Padding(4);
             this.counterHorizontal.Maximum = new decimal(new int[] {
             8,
             0,
@@ -425,7 +423,7 @@ namespace ParkingSimulationForms
             this.panel9.Controls.Add(this.pictureBox1);
             this.panel9.Controls.Add(this.elementsTablePanel);
             this.panel9.Location = new System.Drawing.Point(531, 4);
-            this.panel9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel9.Margin = new System.Windows.Forms.Padding(4);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(636, 497);
             this.panel9.TabIndex = 0;
@@ -434,7 +432,7 @@ namespace ParkingSimulationForms
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.Aqua;
             this.pictureBox5.Location = new System.Drawing.Point(115, 452);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(441, 42);
             this.pictureBox5.TabIndex = 11;
@@ -444,7 +442,7 @@ namespace ParkingSimulationForms
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.Aqua;
             this.pictureBox4.Location = new System.Drawing.Point(63, 4);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(44, 490);
             this.pictureBox4.TabIndex = 8;
@@ -454,7 +452,7 @@ namespace ParkingSimulationForms
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Aqua;
             this.pictureBox3.Location = new System.Drawing.Point(115, 4);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(441, 42);
             this.pictureBox3.TabIndex = 10;
@@ -464,7 +462,7 @@ namespace ParkingSimulationForms
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Aqua;
             this.pictureBox1.Location = new System.Drawing.Point(564, 4);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(44, 490);
             this.pictureBox1.TabIndex = 0;
@@ -483,7 +481,7 @@ namespace ParkingSimulationForms
             this.elementsTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.elementsTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.elementsTablePanel.Location = new System.Drawing.Point(115, 55);
-            this.elementsTablePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.elementsTablePanel.Margin = new System.Windows.Forms.Padding(4);
             this.elementsTablePanel.Name = "elementsTablePanel";
             this.elementsTablePanel.RowCount = 8;
             this.elementsTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -526,7 +524,7 @@ namespace ParkingSimulationForms
             this.panel2.Controls.Add(this.panel7);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Location = new System.Drawing.Point(493, 7);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(473, 200);
             this.panel2.TabIndex = 4;
@@ -536,7 +534,7 @@ namespace ParkingSimulationForms
             this.radioButton6.AutoSize = true;
             this.radioButton6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radioButton6.Location = new System.Drawing.Point(33, 161);
-            this.radioButton6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton6.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton6.Name = "radioButton6";
             this.radioButton6.Size = new System.Drawing.Size(140, 22);
             this.radioButton6.TabIndex = 5;
@@ -549,7 +547,7 @@ namespace ParkingSimulationForms
             this.radioButton7.Checked = true;
             this.radioButton7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radioButton7.Location = new System.Drawing.Point(33, 130);
-            this.radioButton7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton7.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton7.Name = "radioButton7";
             this.radioButton7.Size = new System.Drawing.Size(120, 22);
             this.radioButton7.TabIndex = 4;
@@ -562,7 +560,7 @@ namespace ParkingSimulationForms
             this.radioButton8.AutoSize = true;
             this.radioButton8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radioButton8.Location = new System.Drawing.Point(33, 100);
-            this.radioButton8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton8.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton8.Name = "radioButton8";
             this.radioButton8.Size = new System.Drawing.Size(126, 22);
             this.radioButton8.TabIndex = 3;
@@ -576,7 +574,7 @@ namespace ParkingSimulationForms
             this.panel7.Controls.Add(this.radioButton9);
             this.panel7.Controls.Add(this.radioButton10);
             this.panel7.Location = new System.Drawing.Point(4, 34);
-            this.panel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel7.Margin = new System.Windows.Forms.Padding(4);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(463, 66);
             this.panel7.TabIndex = 3;
@@ -586,7 +584,7 @@ namespace ParkingSimulationForms
             this.radioButton9.AutoSize = true;
             this.radioButton9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radioButton9.Location = new System.Drawing.Point(4, 4);
-            this.radioButton9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton9.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton9.Name = "radioButton9";
             this.radioButton9.Size = new System.Drawing.Size(175, 22);
             this.radioButton9.TabIndex = 1;
@@ -600,7 +598,7 @@ namespace ParkingSimulationForms
             this.radioButton10.Checked = true;
             this.radioButton10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radioButton10.Location = new System.Drawing.Point(4, 34);
-            this.radioButton10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton10.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton10.Name = "radioButton10";
             this.radioButton10.Size = new System.Drawing.Size(107, 22);
             this.radioButton10.TabIndex = 2;
@@ -632,7 +630,7 @@ namespace ParkingSimulationForms
             this.panel5.Controls.Add(this.textBox4);
             this.panel5.Controls.Add(this.label9);
             this.panel5.Location = new System.Drawing.Point(492, 213);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(474, 200);
             this.panel5.TabIndex = 3;
@@ -663,7 +661,7 @@ namespace ParkingSimulationForms
             // 
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox5.Location = new System.Drawing.Point(76, 148);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(4);
             this.textBox5.MaxLength = 3;
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(64, 26);
@@ -709,7 +707,7 @@ namespace ParkingSimulationForms
             // 
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox4.Location = new System.Drawing.Point(64, 57);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(117, 26);
             this.textBox4.TabIndex = 7;
@@ -737,7 +735,7 @@ namespace ParkingSimulationForms
             this.panel4.Controls.Add(this.label7);
             this.panel4.Controls.Add(this.label6);
             this.panel4.Location = new System.Drawing.Point(11, 213);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(473, 200);
             this.panel4.TabIndex = 2;
@@ -746,7 +744,7 @@ namespace ParkingSimulationForms
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox3.Location = new System.Drawing.Point(299, 111);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(117, 26);
             this.textBox3.TabIndex = 5;
@@ -757,7 +755,7 @@ namespace ParkingSimulationForms
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox2.Location = new System.Drawing.Point(299, 60);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(117, 26);
             this.textBox2.TabIndex = 4;
@@ -812,7 +810,7 @@ namespace ParkingSimulationForms
             this.panel3.Controls.Add(this.panel6);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Location = new System.Drawing.Point(11, 7);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(473, 200);
             this.panel3.TabIndex = 1;
@@ -822,7 +820,7 @@ namespace ParkingSimulationForms
             this.radioButton5.AutoSize = true;
             this.radioButton5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radioButton5.Location = new System.Drawing.Point(33, 161);
-            this.radioButton5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton5.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(140, 22);
             this.radioButton5.TabIndex = 5;
@@ -835,7 +833,7 @@ namespace ParkingSimulationForms
             this.radioButton4.Checked = true;
             this.radioButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radioButton4.Location = new System.Drawing.Point(33, 130);
-            this.radioButton4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton4.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(120, 22);
             this.radioButton4.TabIndex = 4;
@@ -848,7 +846,7 @@ namespace ParkingSimulationForms
             this.radioButton3.AutoSize = true;
             this.radioButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radioButton3.Location = new System.Drawing.Point(33, 100);
-            this.radioButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton3.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(126, 22);
             this.radioButton3.TabIndex = 3;
@@ -862,7 +860,7 @@ namespace ParkingSimulationForms
             this.panel6.Controls.Add(this.radioButton1);
             this.panel6.Controls.Add(this.radioButton2);
             this.panel6.Location = new System.Drawing.Point(4, 34);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(463, 66);
             this.panel6.TabIndex = 3;
@@ -872,7 +870,7 @@ namespace ParkingSimulationForms
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radioButton1.Location = new System.Drawing.Point(4, 4);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(175, 22);
             this.radioButton1.TabIndex = 1;
@@ -886,7 +884,7 @@ namespace ParkingSimulationForms
             this.radioButton2.Checked = true;
             this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radioButton2.Location = new System.Drawing.Point(4, 34);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(107, 22);
             this.radioButton2.TabIndex = 2;
@@ -908,6 +906,8 @@ namespace ParkingSimulationForms
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(230)))), ((int)(((byte)(249)))));
+            this.tabPage3.Controls.Add(this.button18);
+            this.tabPage3.Controls.Add(this.button17);
             this.tabPage3.Controls.Add(this.panel8);
             this.tabPage3.Controls.Add(this.label15);
             this.tabPage3.Controls.Add(this.button12);
@@ -921,6 +921,26 @@ namespace ParkingSimulationForms
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = " Визуализатор ";
             // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(909, 199);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(226, 68);
+            this.button18.TabIndex = 17;
+            this.button18.Text = "Создать грузовик";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(909, 118);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(226, 65);
+            this.button17.TabIndex = 16;
+            this.button17.Text = "Создать легковушку";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.White;
@@ -929,7 +949,7 @@ namespace ParkingSimulationForms
             this.panel8.Controls.Add(this.label16);
             this.panel8.Controls.Add(this.hScrollBar1);
             this.panel8.Location = new System.Drawing.Point(489, 335);
-            this.panel8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel8.Margin = new System.Windows.Forms.Padding(4);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(457, 75);
             this.panel8.TabIndex = 14;
@@ -994,7 +1014,7 @@ namespace ParkingSimulationForms
             this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(194)))), ((int)(((byte)(251)))));
             this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button12.Location = new System.Drawing.Point(644, 223);
-            this.button12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button12.Margin = new System.Windows.Forms.Padding(4);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(149, 44);
             this.button12.TabIndex = 12;
@@ -1006,7 +1026,7 @@ namespace ParkingSimulationForms
             this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(194)))), ((int)(((byte)(251)))));
             this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button11.Location = new System.Drawing.Point(644, 139);
-            this.button11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button11.Margin = new System.Windows.Forms.Padding(4);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(149, 44);
             this.button11.TabIndex = 11;
@@ -1018,7 +1038,7 @@ namespace ParkingSimulationForms
             this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(194)))), ((int)(((byte)(251)))));
             this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button10.Location = new System.Drawing.Point(644, 55);
-            this.button10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button10.Margin = new System.Windows.Forms.Padding(4);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(149, 44);
             this.button10.TabIndex = 10;
@@ -1028,7 +1048,7 @@ namespace ParkingSimulationForms
             // pictureBox2
             // 
             this.pictureBox2.Location = new System.Drawing.Point(11, 16);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(427, 394);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1056,7 +1076,7 @@ namespace ParkingSimulationForms
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.Location = new System.Drawing.Point(11, 134);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -1073,7 +1093,7 @@ namespace ParkingSimulationForms
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 15);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1102,7 +1122,7 @@ namespace ParkingSimulationForms
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel3.Location = new System.Drawing.Point(11, 123);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 7;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
@@ -1119,7 +1139,7 @@ namespace ParkingSimulationForms
             // 
             this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePicker2.Location = new System.Drawing.Point(199, 63);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(280, 26);
             this.dateTimePicker2.TabIndex = 3;
@@ -1140,7 +1160,7 @@ namespace ParkingSimulationForms
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePicker1.Location = new System.Drawing.Point(199, 18);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(280, 26);
             this.dateTimePicker1.TabIndex = 1;
@@ -1178,7 +1198,7 @@ namespace ParkingSimulationForms
             this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(194)))), ((int)(((byte)(251)))));
             this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button13.Location = new System.Drawing.Point(436, 325);
-            this.button13.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button13.Margin = new System.Windows.Forms.Padding(5);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(141, 38);
             this.button13.TabIndex = 5;
@@ -1255,35 +1275,26 @@ namespace ParkingSimulationForms
             this.elementsImageList.Images.SetKeyName(6, "space.png");
             this.elementsImageList.Images.SetKeyName(7, "truck_space.png");
             // 
-            // button9
+            // texturesImageList
             // 
-            this.button9.Location = new System.Drawing.Point(3, 427);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(174, 71);
-            this.button9.TabIndex = 8;
-            this.button9.Text = "Следующий шаг";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.texturesImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("texturesImageList.ImageStream")));
+            this.texturesImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.texturesImageList.Images.SetKeyName(0, "enter.png");
+            this.texturesImageList.Images.SetKeyName(1, "exit.png");
+            this.texturesImageList.Images.SetKeyName(2, "cashier.png");
+            this.texturesImageList.Images.SetKeyName(3, "grass.png");
+            this.texturesImageList.Images.SetKeyName(4, "carParkingPlace.png");
+            this.texturesImageList.Images.SetKeyName(5, "truckParkiingPlace.png");
+            this.texturesImageList.Images.SetKeyName(6, "carHorizontal.png");
+            this.texturesImageList.Images.SetKeyName(7, "carVertical.png");
+            this.texturesImageList.Images.SetKeyName(8, "truckHorizontal.png");
+            this.texturesImageList.Images.SetKeyName(9, "truckVertical.png");
+            this.texturesImageList.Images.SetKeyName(10, "road.png");
             // 
-            // button14
+            // timer1
             // 
-            this.button14.Location = new System.Drawing.Point(183, 427);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(174, 71);
-            this.button14.TabIndex = 9;
-            this.button14.Text = "Создать легковушку";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(363, 427);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(151, 71);
-            this.button15.TabIndex = 10;
-            this.button15.Text = "Создать грузовик";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
+            this.timer1.Interval = 650;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // textBoxWithPlaceholder6
             // 
@@ -1591,9 +1602,10 @@ namespace ParkingSimulationForms
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.ImageList texturesImageList;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button button17;
     }
 }
 

@@ -17,6 +17,14 @@ namespace ParkingSimulationForms.views
 
         public static ParkingSceneConstructor<Image> CurrentSceneConstructor;
 
+        public static void createAndSetTexturesBitmapArray(ImageList texturesImageList)
+        {
+            Bitmap[] texturesBitmapArray = new Bitmap[11];
+            for(int i = 0; i<11; i++)
+                texturesBitmapArray[i] = new Bitmap(texturesImageList.Images[i]);
+            ParkingSceneVisualization<Image>.setTextures(texturesBitmapArray);
+        }
+
         public static void DrawTemplate(int horizontal, int vertical, ParkingModel<Image> model = null)
         {
             ElementsTablePanel.ColumnCount = horizontal;

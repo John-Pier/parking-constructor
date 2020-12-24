@@ -18,6 +18,8 @@ namespace ParkingConstructorLib.models.vehicles
         protected Coors nextStepCoors;
         protected int secondsOnParking;
         protected DateTime dateTimeStopping;
+        protected LastDirection lastDirection;
+        protected int countErrors;
         public List<ParkingModelElementType> GetAvailableElementTypesForMovement()
         {
             return new List<ParkingModelElementType>
@@ -28,10 +30,30 @@ namespace ParkingConstructorLib.models.vehicles
             };
         }
 
+        public void setCountErrors(int countErrors)
+        {
+            this.countErrors = countErrors;
+        }
+
+        public int getCountErrors()
+        {
+            return countErrors;
+        }
+
+        public LastDirection getLastDirection()
+        {
+            return lastDirection;
+        }
+
         public void drive()
         {
+            if (columnIndex == nextStepCoors.columnIndex)
+                lastDirection = LastDirection.Vertical;
+            if (rowIndex == nextStepCoors.rowIndex)
+                lastDirection = LastDirection.Horizontal;
             columnIndex = nextStepCoors.columnIndex;
             rowIndex = nextStepCoors.rowIndex;
+            countErrors = 0;
         }
 
         public DateTime getDateTimeStopping()
@@ -81,7 +103,7 @@ namespace ParkingConstructorLib.models.vehicles
 
         public enum CarType{
             Car,
-            Truck
+            Truck,
         };
 
         public enum TargetType
@@ -89,6 +111,12 @@ namespace ParkingConstructorLib.models.vehicles
             Parking,
             Cashier,
             Exit,
+        }
+
+        public enum LastDirection
+        {
+            Horizontal,
+            Vertical,
         }
 
         public TargetType getTargetType()
