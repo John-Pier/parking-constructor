@@ -963,7 +963,7 @@ namespace ParkingSimulationForms
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(18, 20);
             this.label18.TabIndex = 17;
-            this.label18.Text = "2";
+            this.label18.Text = "1";
             // 
             // label17
             // 
@@ -995,7 +995,7 @@ namespace ParkingSimulationForms
             this.hScrollBar1.Name = "hScrollBar1";
             this.hScrollBar1.Size = new System.Drawing.Size(365, 17);
             this.hScrollBar1.TabIndex = 0;
-            this.hScrollBar1.Value = 200;
+            this.hScrollBar1.Value = 100;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             // 
             // label15
@@ -1020,6 +1020,7 @@ namespace ParkingSimulationForms
             this.button12.TabIndex = 12;
             this.button12.Text = "Стоп";
             this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button11
             // 
@@ -1032,6 +1033,7 @@ namespace ParkingSimulationForms
             this.button11.TabIndex = 11;
             this.button11.Text = "Пауза";
             this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // button10
             // 
@@ -1044,6 +1046,7 @@ namespace ParkingSimulationForms
             this.button10.TabIndex = 10;
             this.button10.Text = "Старт";
             this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // pictureBox2
             // 
@@ -1293,7 +1296,7 @@ namespace ParkingSimulationForms
             // 
             // timer1
             // 
-            this.timer1.Interval = 650;
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // textBoxWithPlaceholder6

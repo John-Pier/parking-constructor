@@ -24,6 +24,7 @@ namespace ParkingSimulationForms
         private  ParkingSceneVisualization<Image> sceneVisualization = new ParkingSceneVisualization<Image>();
 
         private FormFilesService formFilesService = new FormFilesService();
+        private Bitmap standartImage = null;
 
         public MainForm()
         {
@@ -70,7 +71,7 @@ namespace ParkingSimulationForms
         //Визуализатор
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
-            MainFormVizualayzerController.changePercentValue(hScrollBar1, label18);
+            MainFormVizualayzerController.changePercentValue(hScrollBar1, label18, timer1);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -186,7 +187,22 @@ namespace ParkingSimulationForms
                 if (sceneConstructor.IsParkingModelCreate() && sceneConstructor.ParkingModel.IsParkingModelCorrect())
                 {
                     sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
-                    timer1.Start();
+                    sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
+                    sceneVisualization.nextStep(Convert.ToDouble(label18.Text));
+                    Bitmap image = sceneVisualization.getImage();
+
+                    Size sz = image.Size;
+                    Bitmap zoomed = (Bitmap)pictureBox2.Image;
+                    if (zoomed != null) zoomed.Dispose();
+
+                    zoomed = new Bitmap((int)(sz.Width * 20), (int)(sz.Height * 20));
+
+                    using (Graphics g = Graphics.FromImage(zoomed))
+                    {
+                        g.InterpolationMode = InterpolationMode.NearestNeighbor;
+                        g.DrawImage(image, new Rectangle(Point.Empty, zoomed.Size));
+                    }
+                    pictureBox2.Image = zoomed;
                 }
                 else
                 {
@@ -205,7 +221,7 @@ namespace ParkingSimulationForms
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            sceneVisualization.nextStep();
+            sceneVisualization.nextStep(Convert.ToDouble(label18.Text));
             Bitmap image = sceneVisualization.getImage();
 
             Size sz = image.Size;
@@ -231,6 +247,37 @@ namespace ParkingSimulationForms
         private void button18_Click(object sender, EventArgs e)
         {
             sceneVisualization.createTruck();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
+            sceneVisualization.nextStep(Convert.ToDouble(label18.Text));
+            Bitmap image = sceneVisualization.getImage();
+
+            Size sz = image.Size;
+            Bitmap zoomed = (Bitmap)pictureBox2.Image;
+            if (zoomed != null) zoomed.Dispose();
+
+            zoomed = new Bitmap((int)(sz.Width * 20), (int)(sz.Height * 20));
+
+            using (Graphics g = Graphics.FromImage(zoomed))
+            {
+                g.InterpolationMode = InterpolationMode.NearestNeighbor;
+                g.DrawImage(image, new Rectangle(Point.Empty, zoomed.Size));
+            }
+            pictureBox2.Image = zoomed;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
         }
     }
 }

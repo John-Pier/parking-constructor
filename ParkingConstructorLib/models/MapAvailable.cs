@@ -148,7 +148,7 @@ namespace ParkingConstructorLib.models
             return getWay(car, localMap);
         }
 
-        private CarVehicleModel[] nextSystemStep(int[,,] localMap, CarVehicleModel car, Coors[] way)
+        private CarVehicleModel[] nextSystemStep(int[,,] localMap, CarVehicleModel car, Coors[] way, double accelerate)
         {
             LinkedList<CarVehicleModel> removedCars = new LinkedList<CarVehicleModel>();
             bool stopEnding = false;
@@ -158,7 +158,7 @@ namespace ParkingConstructorLib.models
                     //Если машина на парковке
                     if (isCoorsEquals(car.getCoors(), car.getTarget()) && car.getTargetType() == CarVehicleModel.TargetType.Parking)
                     {
-                        if((DateTime.Now - car.getDateTimeStopping()).TotalMilliseconds > car.getSecondsOnParking() * 1000)
+                        if((DateTime.Now - car.getDateTimeStopping()).TotalMilliseconds > (car.getSecondsOnParking() * 1000)/accelerate)
                         {
                             stopEnding = true;
                             car.setTarget(cashierCoors);
@@ -420,7 +420,7 @@ namespace ParkingConstructorLib.models
             return false;
         }
 
-        public void nextStep()
+        public void nextStep(double accelerate)
         {
             int[,,] localMap = null;
             LinkedList<CarVehicleModel> removedCars = new LinkedList<CarVehicleModel>();
@@ -428,7 +428,7 @@ namespace ParkingConstructorLib.models
             {
                 localMap = initLocalMap(car);
                 Coors[] way = foundWay(localMap, car);
-                CarVehicleModel[] remCars = nextSystemStep(localMap, car, way);
+                CarVehicleModel[] remCars = nextSystemStep(localMap, car, way, accelerate);
                 for (int i = 0; i < remCars.Length; i++)
                     removedCars.AddLast(remCars[i]);
             }

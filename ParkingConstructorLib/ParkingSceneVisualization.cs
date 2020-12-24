@@ -29,9 +29,9 @@ namespace ParkingConstructorLib
             textures = texturesArr;
         }
 
-        public void nextStep()
+        public void nextStep(double accelerate)
         {
-            mapAvailable.nextStep();
+            mapAvailable.nextStep(accelerate);
         }
 
         public void createCar()
