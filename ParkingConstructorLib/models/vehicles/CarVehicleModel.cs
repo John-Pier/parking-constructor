@@ -13,8 +13,11 @@ namespace ParkingConstructorLib.models.vehicles
         protected int rowIndex;
         protected int columnIndex;
         protected CarType type;
+        protected TargetType targetType;
         protected Coors target;
         protected Coors nextStepCoors;
+        protected int secondsOnParking;
+        protected DateTime dateTimeStopping;
         public List<ParkingModelElementType> GetAvailableElementTypesForMovement()
         {
             return new List<ParkingModelElementType>
@@ -23,6 +26,32 @@ namespace ParkingConstructorLib.models.vehicles
                 ParkingModelElementType.ParkingSpace, 
                 ParkingModelElementType.Entry
             };
+        }
+
+        public void drive()
+        {
+            columnIndex = nextStepCoors.columnIndex;
+            rowIndex = nextStepCoors.rowIndex;
+        }
+
+        public DateTime getDateTimeStopping()
+        {
+            return dateTimeStopping;
+        }
+
+        public void setDateTimeStopping(DateTime dateTimeStopping)
+        {
+            this.dateTimeStopping = dateTimeStopping;
+        }
+
+        public void setSecondsOnParking(int seconds)
+        {
+            secondsOnParking = seconds;
+        }
+
+        public int getSecondsOnParking()
+        {
+            return secondsOnParking;
         }
 
         public Coors getCoors()
@@ -54,6 +83,23 @@ namespace ParkingConstructorLib.models.vehicles
             Car,
             Truck
         };
+
+        public enum TargetType
+        {
+            Parking,
+            Cashier,
+            Exit,
+        }
+
+        public TargetType getTargetType()
+        {
+            return targetType;
+        }
+
+        public void setTargetType(TargetType targetType)
+        {
+            this.targetType = targetType;
+        }
 
         public new string GetType()
         {

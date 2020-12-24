@@ -13,6 +13,7 @@ namespace ParkingConstructorLib.models.vehicles
             rowIndex = row;
             columnIndex = column;
             type = CarType.Truck;
+            targetType = TargetType.Parking;
         }
     }
 }

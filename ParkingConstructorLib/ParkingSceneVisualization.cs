@@ -21,19 +21,29 @@ namespace ParkingConstructorLib
         {
         }
 
+        public void nextStep()
+        {
+            mapAvailable.nextStep();
+        }
+
+        public void createCar()
+        {
+            CarVehicleModel car = CarVehicleModel.spawnCar(CarVehicleModel.CarType.Car);
+            car.setSecondsOnParking(5);
+            mapAvailable.addCar(car);
+        }
+
+        public void createTruck()
+        {
+            CarVehicleModel car = CarVehicleModel.spawnCar(CarVehicleModel.CarType.Truck);
+            car.setSecondsOnParking(5);
+            mapAvailable.addCar(car);
+        }
+
         public void SetParkingModel(ParkingModel<T> parkingModel)
         {
             this.parkingModel = parkingModel;
             mapAvailable = new MapAvailable<T>(this.parkingModel);
-            CarVehicleModel car = CarVehicleModel.spawnCar(CarVehicleModel.CarType.Car);
-            mapAvailable.addCar(car);
-            mapAvailable.nextStep();
-            //mapAvailable.printMap();
-            //car.setRowIndex(2);
-            //mapAvailable.reloadMap();
-            //mapAvailable.printMap();
-            //Console.WriteLine(car.GetType());
-            //Console.WriteLine(car2.GetType());
         }
     }
 }

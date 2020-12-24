@@ -197,5 +197,20 @@ namespace ParkingSimulationForms
                 }
             }
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            sceneVisualization.nextStep();
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            sceneVisualization.createCar();
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            sceneVisualization.createTruck();
+        }
     }
 }
