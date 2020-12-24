@@ -241,13 +241,13 @@ namespace ParkingSimulationForms
         private void button17_Click(object sender, EventArgs e)
         {
             if(sceneVisualization.isCanAddThisCar(CarVehicleModel.CarType.Car))
-                sceneVisualization.createCar();
+                sceneVisualization.createCar(5);
         }
 
         private void button18_Click(object sender, EventArgs e)
         {
             if(sceneVisualization.isCanAddThisCar(CarVehicleModel.CarType.Truck))
-                sceneVisualization.createTruck();
+                sceneVisualization.createTruck(10);
         }
 
         private void button12_Click(object sender, EventArgs e)
