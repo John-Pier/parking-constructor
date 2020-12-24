@@ -24,7 +24,6 @@ namespace ParkingSimulationForms
         private  ParkingSceneVisualization<Image> sceneVisualization = new ParkingSceneVisualization<Image>();
 
         private FormFilesService formFilesService = new FormFilesService();
-        private Bitmap standartImage = null;
 
         public MainForm()
         {
@@ -241,12 +240,14 @@ namespace ParkingSimulationForms
 
         private void button17_Click(object sender, EventArgs e)
         {
-            sceneVisualization.createCar();
+            if(sceneVisualization.isCanAddThisCar(CarVehicleModel.CarType.Car))
+                sceneVisualization.createCar();
         }
 
         private void button18_Click(object sender, EventArgs e)
         {
-            sceneVisualization.createTruck();
+            if(sceneVisualization.isCanAddThisCar(CarVehicleModel.CarType.Truck))
+                sceneVisualization.createTruck();
         }
 
         private void button12_Click(object sender, EventArgs e)

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ParkingConstructorLib.models.vehicles.CarVehicleModel;
 
 namespace ParkingConstructorLib.models
 {
@@ -418,6 +419,28 @@ namespace ParkingConstructorLib.models
             if (coors1.columnIndex == coors2.columnIndex && coors1.rowIndex == coors2.rowIndex)
                 return true;
             return false;
+        }
+
+        public bool isCanAddCar(CarType carType)
+        {
+            if(carType == CarType.Car)
+            {
+                foreach(CarParkingPlace placeForCar in carParkingPlaces)
+                {
+                    if (!placeForCar.isBusy)
+                        return true;
+                }
+                return false;
+            }
+            else
+            {
+                foreach(TruckParkingPlace placeForTruck in truckParkingPlaces)
+                {
+                    if (!placeForTruck.isBusy)
+                        return true;
+                }
+                return false;
+            }
         }
 
         public void nextStep(double accelerate)

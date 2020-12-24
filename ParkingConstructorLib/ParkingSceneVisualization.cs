@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ParkingConstructorLib.logic;
 using ParkingConstructorLib.models;
 using ParkingConstructorLib.models.vehicles;
+using static ParkingConstructorLib.models.vehicles.CarVehicleModel;
 
 namespace ParkingConstructorLib
 {
@@ -63,6 +64,11 @@ namespace ParkingConstructorLib
         public Bitmap getImage()
         {
             return image;
+        }
+
+        public bool isCanAddThisCar(CarType carType)
+        {
+            return mapAvailable.isCanAddCar(carType);
         }
     }
 }
