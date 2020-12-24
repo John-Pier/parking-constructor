@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using ParkingConstructorLib.logic;
 
 namespace ParkingSimulationForms.views
 {
@@ -26,6 +27,7 @@ namespace ParkingSimulationForms.views
                 label.Text = "?%";
         }
 
+        // TODO: Refactoring - delete from this
         public static void LockRBs(RadioButton rb1, RadioButton rb2, RadioButton rb3, TextBox tb1, TextBox tb2, TextBox tb3, TextBox tb4, TextBox tb5, TextBox tb6, bool isLock)
         {
             rb1.Enabled = isLock;
