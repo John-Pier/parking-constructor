@@ -1510,6 +1510,7 @@ namespace ParkingSimulationForms
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Система моделирования работы платной парковки";
             this.tabControl1.ResumeLayout(false);
