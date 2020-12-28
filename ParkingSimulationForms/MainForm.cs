@@ -24,6 +24,7 @@ namespace ParkingSimulationForms
         private readonly ParkingSceneConstructor<Image> sceneConstructor = new ParkingSceneConstructor<Image>();
         private readonly ParkingSceneVisualization<Image> sceneVisualization = new ParkingSceneVisualization<Image>();
         private readonly FormFilesService formFilesService = new FormFilesService();
+        private DateTime dateTimeModel;
 
         public SettingsModel SettingsModel = new SettingsModel();
 
@@ -203,6 +204,8 @@ namespace ParkingSimulationForms
             {
                 if (sceneConstructor.IsParkingModelCreate() && sceneConstructor.ParkingModel.IsParkingModelCorrect())
                 {
+                    dateTimeModel = DateTime.Now;
+                    label27.Text = dateTimeModel.ToString("dd.MM.yyyy HH:mm");
                     sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
                     sceneVisualization.nextStep(Convert.ToDouble(label18.Text));
                     Bitmap image = sceneVisualization.getImage();
@@ -316,6 +319,9 @@ namespace ParkingSimulationForms
             }
 
             pictureBox2.Image = zoomed;
+            //Модельное время?
+            dateTimeModel = dateTimeModel.AddMinutes(1);
+            label27.Text = dateTimeModel.ToString("dd.MM.yyyy HH:mm");
         }
 
         private void generationStreamTimer_Tick(object sender, EventArgs e)
@@ -487,6 +493,11 @@ namespace ParkingSimulationForms
         private void label10_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Directory.GetCurrentDirectory() + "\\Help\\help.html");
         }
     }
 }
