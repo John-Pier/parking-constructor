@@ -162,16 +162,21 @@ namespace ParkingSimulationForms
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            MainFormSettingsController.LockRBs(radioButton3, radioButton4, radioButton5, textBoxWithPlaceholder1,
-                textBoxWithPlaceholder2, textBoxWithPlaceholder3, textBoxWithPlaceholder4, textBoxWithPlaceholder5,
-                textBox1, !((RadioButton) sender).Checked);
+            LockElements(!((RadioButton) sender).Checked);
         }
 
         private void radioButton9_CheckedChanged(object sender, EventArgs e)
         {
-            MainFormSettingsController.LockRBs(radioButton6, radioButton7, radioButton8, textBoxWithPlaceholder6,
-                textBoxWithPlaceholder7, textBoxWithPlaceholder8, textBoxWithPlaceholder9, textBoxWithPlaceholder10,
-                textBoxWithPlaceholder11, !((RadioButton) sender).Checked);
+            var isLock = !((RadioButton) sender).Checked;
+            radioButton6.Enabled = isLock;
+            radioButton7.Enabled = isLock;
+            radioButton8.Enabled = isLock;
+            textBoxWithPlaceholder6.Enabled = isLock;
+            textBoxWithPlaceholder7.Enabled = isLock;
+            textBoxWithPlaceholder8.Enabled = isLock;
+            textBoxWithPlaceholder9.Enabled = isLock;
+            textBoxWithPlaceholder10.Enabled = isLock;
+            textBoxWithPlaceholder11.Enabled = !isLock;
         }
 
         private void OnLoadClick(object sender, EventArgs e)
@@ -204,25 +209,12 @@ namespace ParkingSimulationForms
             {
                 if (sceneConstructor.IsParkingModelCreate() && sceneConstructor.ParkingModel.IsParkingModelCorrect())
                 {
-                    dateTimeModel = DateTime.Now;
-                    label27.Text = dateTimeModel.ToString("dd.MM.yyyy HH:mm");
+                    InitModelTime();
+                    
                     sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
                     sceneVisualization.nextStep(Convert.ToDouble(label18.Text));
-                    Bitmap image = sceneVisualization.getImage();
-
-                    Size sz = image.Size;
-                    Bitmap zoomed = (Bitmap) pictureBox2.Image;
-                    if (zoomed != null) zoomed.Dispose();
-
-                    zoomed = new Bitmap((int) (sz.Width * 20), (int) (sz.Height * 20));
-
-                    using (Graphics g = Graphics.FromImage(zoomed))
-                    {
-                        g.InterpolationMode = InterpolationMode.NearestNeighbor;
-                        g.DrawImage(image, new Rectangle(Point.Empty, zoomed.Size));
-                    }
-
-                    pictureBox2.Image = zoomed;
+                    
+                    DrawImage();
                 }
                 else
                 {
@@ -262,7 +254,7 @@ namespace ParkingSimulationForms
 
         #region Timers logic
 
-        private void startGeneralTimerClick(object sender, EventArgs e)
+        public void StartGeneralTimerClick(object sender, EventArgs e)
         {
             //Set timers interval in ms
             generationStreamTimer.Interval = (int) (SettingsModel.GenerationStreamDistribution.GetRandNumber() * 1000);
@@ -272,56 +264,29 @@ namespace ParkingSimulationForms
             generationStreamTimer.Start();
         }
 
-        private void pauseGeneralTimerClick(object sender, EventArgs e)
+        private void PauseGeneralTimerClick(object sender, EventArgs e)
         {
             modelGeneralTimer.Stop();
             generationStreamTimer.Stop();
         }
 
-        private void stopGeneralTimerClick(object sender, EventArgs e)
+        private void StopGeneralTimerClick(object sender, EventArgs e)
         {
             modelGeneralTimer.Stop();
             generationStreamTimer.Stop();
             sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
             sceneVisualization.nextStep(Convert.ToDouble(label18.Text));
-            Bitmap image = sceneVisualization.getImage();
 
-            Size sz = image.Size;
-            Bitmap zoomed = (Bitmap) pictureBox2.Image;
-            if (zoomed != null) zoomed.Dispose();
-
-            zoomed = new Bitmap((int) (sz.Width * 20), (int) (sz.Height * 20));
-
-            using (Graphics g = Graphics.FromImage(zoomed))
-            {
-                g.InterpolationMode = InterpolationMode.NearestNeighbor;
-                g.DrawImage(image, new Rectangle(Point.Empty, zoomed.Size));
-            }
-
-            pictureBox2.Image = zoomed;
+            DrawImage();
         }
 
         private void modelGeneralTimer_Tick(object sender, EventArgs e)
         {
             sceneVisualization.nextStep(Convert.ToDouble(label18.Text));
-            Bitmap image = sceneVisualization.getImage();
-
-            Size sz = image.Size;
-            Bitmap zoomed = (Bitmap) pictureBox2.Image;
-            if (zoomed != null) zoomed.Dispose();
-
-            zoomed = new Bitmap((int) (sz.Width * 20), (int) (sz.Height * 20));
-
-            using (Graphics g = Graphics.FromImage(zoomed))
-            {
-                g.InterpolationMode = InterpolationMode.NearestNeighbor;
-                g.DrawImage(image, new Rectangle(Point.Empty, zoomed.Size));
-            }
-
-            pictureBox2.Image = zoomed;
-            //Модельное время?
-            dateTimeModel = dateTimeModel.AddMinutes(1);
-            label27.Text = dateTimeModel.ToString("dd.MM.yyyy HH:mm");
+            
+            DrawImage();
+            
+            SetModelTime();
         }
 
         private void generationStreamTimer_Tick(object sender, EventArgs e)
@@ -340,6 +305,34 @@ namespace ParkingSimulationForms
                     sceneVisualization.createTruck((int)(SettingsModel.ParkingTimeDistribution.GetRandNumber()));
                 }  
             }
+        }
+
+        private void DrawImage()
+        {
+            var image = sceneVisualization.getImage();
+            var imageSize = image.Size;
+            
+            pictureBox2.Image?.Dispose();
+            pictureBox2.Image = new Bitmap(imageSize.Width * 20, imageSize.Height * 20);
+
+            using (var g = Graphics.FromImage(pictureBox2.Image))
+            {
+                g.InterpolationMode = InterpolationMode.NearestNeighbor;
+                g.DrawImage(image, new Rectangle(Point.Empty, pictureBox2.Image.Size));
+            }
+
+        }
+
+        private void InitModelTime()
+        {
+            dateTimeModel = DateTime.Now;
+            label27.Text = dateTimeModel.ToString("dd.MM.yyyy HH:mm");
+        }
+        
+        private void SetModelTime()
+        {
+            dateTimeModel = dateTimeModel.AddMinutes(1);
+            label27.Text = dateTimeModel.ToString("dd.MM.yyyy HH:mm");
         }
 
         #endregion
@@ -498,6 +491,19 @@ namespace ParkingSimulationForms
         private void button13_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(Directory.GetCurrentDirectory() + "\\Help\\help.html");
+        }
+
+        private void LockElements(bool isLock)
+        {
+            radioButton3.Enabled = isLock;
+            radioButton4.Enabled = isLock;
+            radioButton5.Enabled = isLock;
+            textBoxWithPlaceholder1.Enabled = isLock;
+            textBoxWithPlaceholder2.Enabled = isLock;
+            textBoxWithPlaceholder3.Enabled = isLock;
+            textBoxWithPlaceholder4.Enabled = isLock;
+            textBoxWithPlaceholder5.Enabled = isLock;
+            textBox1.Enabled = !isLock;
         }
     }
 }
