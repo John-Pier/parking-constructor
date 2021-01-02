@@ -9,7 +9,7 @@ namespace ParkingConstructorLib.models
 {
     public class CarParkingPlace
     {
-        public CarVehicleModel car;
+        public AbstractVehicleModel Abstract;
         public bool isBusy;
         public Coors coors;
         public CarParkingPlace(Coors coors)
@@ -17,9 +17,9 @@ namespace ParkingConstructorLib.models
             this.coors = coors;
             isBusy = false;
         }
-        public void setCar(Car car)
+        public void setCar(CarVehicleModel carVehicleModel)
         {
-            this.car = car;
+            this.Abstract = carVehicleModel;
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using ParkingConstructorLib.logic;
 using ParkingConstructorLib.models;
 using ParkingConstructorLib.models.vehicles;
-using static ParkingConstructorLib.models.vehicles.CarVehicleModel;
+using static ParkingConstructorLib.models.vehicles.AbstractVehicleModel;
 
 namespace ParkingConstructorLib
 {
@@ -26,35 +26,35 @@ namespace ParkingConstructorLib
         {
         }
 
-        public static void setTextures(Bitmap[] texturesArr)
+        public static void SetTextures(Bitmap[] texturesArr)
         {
             textures = texturesArr;
         }
 
-        public void nextStep(double accelerate)
+        public void NextStep(double accelerate)
         {
             mapAvailable.nextStep(accelerate);
         }
 
-        public void createCar(int timeWaitOnParkingInSeconds)
+        public void CreateCar(int timeWaitOnParkingInSeconds)
         {
-            CarVehicleModel car = spawnCar(CarType.Car);
-            car.setSecondsOnParking(timeWaitOnParkingInSeconds);
-            mapAvailable.addCar(car);
+            var carVehicleModel = SpawnCar(CarType.Truck);
+            // var carVehicleModel = new CarVehicleModel(spawnRow, spawnCol);
+            carVehicleModel.SetSecondsOnParking(timeWaitOnParkingInSeconds);
+            mapAvailable.addCar(carVehicleModel);
         }
 
-        public void createTruck(int timeWaitOnParkingInSeconds)
+        public void CreateTruck(int timeWaitOnParkingInSeconds)
         {
-            CarVehicleModel car = spawnCar(CarType.Truck);
-            car.setSecondsOnParking(timeWaitOnParkingInSeconds);
-            mapAvailable.addCar(car);
+            AbstractVehicleModel @abstract = SpawnCar(CarType.Truck);
+            @abstract.SetSecondsOnParking(timeWaitOnParkingInSeconds);
+            mapAvailable.addCar(@abstract);
         }
 
         public void SetParkingModel(ParkingModel<T> parkingModel)
         {
             this.parkingModel = parkingModel;
             mapAvailable = new MapAvailable<T>(this.parkingModel, textures);
-
         }
 
         public void SetSettingsModel(SettingsModel model)
@@ -62,17 +62,17 @@ namespace ParkingConstructorLib
             settingsModel = model;
         }
 
-        public static void setImage(Bitmap imageMap)
+        public static void SetImage(Bitmap imageMap)
         {
             image = imageMap;
         }
 
-        public Bitmap getImage()
+        public Bitmap GetImage()
         {
             return image;
         }
 
-        public bool isCanAddThisCar(CarType carType)
+        public bool IsCanAddThisCar(CarType carType)
         {
             return mapAvailable.isCanAddCar(carType);
         }

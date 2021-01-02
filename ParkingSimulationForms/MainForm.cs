@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ParkingConstructorLib;
 using ParkingConstructorLib.logic;
@@ -24,9 +19,11 @@ namespace ParkingSimulationForms
         private readonly ParkingSceneConstructor<Image> sceneConstructor = new ParkingSceneConstructor<Image>();
         private readonly ParkingSceneVisualization<Image> sceneVisualization = new ParkingSceneVisualization<Image>();
         private readonly FormFilesService formFilesService = new FormFilesService();
+        private readonly MainFormConstructorController constructorController = new MainFormConstructorController();
+        
         private DateTime dateTimeModel;
 
-        public SettingsModel SettingsModel = new SettingsModel();
+        private readonly SettingsModel SettingsModel = new SettingsModel();
 
         private UniformDistribution generationStreamRandom;
 
@@ -37,15 +34,16 @@ namespace ParkingSimulationForms
             MainFormVizualayzerController.setPictureBox(pictureBox2);
             MainFormVizualayzerController.CurrentSceneVisualization = sceneVisualization;
 
-            MainFormConstructorController.ImageList = elementsImageList;
-            MainFormConstructorController.ElementsTablePanel = elementsTablePanel;
-            MainFormConstructorController.CurrentSceneConstructor = sceneConstructor;
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
+            constructorController.ImageList = elementsImageList;
+            constructorController.ElementsTablePanel = elementsTablePanel;
+            constructorController.CurrentSceneConstructor = sceneConstructor;
+            constructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
 
             MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
             MainFormStatisticsController.initTable(tableLayoutPanel3);
 
-            MainFormConstructorController.createAndSetTexturesBitmapArray(texturesImageList);
+            constructorController.ImageList = texturesImageList; // TODO: В конструктор
+            constructorController.CreateAndSetTexturesBitmapArray();
             InitSettingsForm();
 
             domainUpDown1.SelectedIndex = 0;
@@ -77,14 +75,18 @@ namespace ParkingSimulationForms
         //Конструктор
         private void counterHorizontal_ValueChanged(object sender, EventArgs e)
         {
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
-                (int) counterVertical.Value);
+            constructorController.DrawTemplate(
+                (int) counterHorizontal.Value,
+                (int) counterVertical.Value
+                );
         }
 
         private void counterVertical_ValueChanged(object sender, EventArgs e)
         {
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
-                (int) counterVertical.Value);
+            constructorController.DrawTemplate(
+                (int) counterHorizontal.Value,
+                (int) counterVertical.Value
+                );
         }
 
         //Визуализатор
@@ -96,48 +98,48 @@ namespace ParkingSimulationForms
         private void button1_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement =
+            constructorController.CurrentElement =
                 new GrassParkingElement(elementsImageList.Images[4]); // газон
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new ExitParkingElement(elementsImageList.Images[3]); // выезд
+            constructorController.CurrentElement = new ExitParkingElement(elementsImageList.Images[3]); // выезд
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement =
+            constructorController.CurrentElement =
                 new ParkingSpaceElement(elementsImageList.Images[5]); // парвокочное место Л
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement =
+            constructorController.CurrentElement =
                 new TruckParkingSpaceElement(elementsImageList.Images[7]); // парвокочное место Г
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement =
+            constructorController.CurrentElement =
                 new CashierParkingElement(elementsImageList.Images[1]); // касса
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new EntryParkingElement(elementsImageList.Images[2]); //вьезд
+            constructorController.CurrentElement = new EntryParkingElement(elementsImageList.Images[2]); //вьезд
         }
 
         private void button8_Click(object sender, EventArgs e) // Clear
         {
             SetEnableEditSceneSize(true);
-            MainFormConstructorController.CurrentElement = null;
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
+            constructorController.CurrentElement = null;
+            constructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
             sceneConstructor.ClearModel();
         }
 
@@ -189,7 +191,7 @@ namespace ParkingSimulationForms
             counterHorizontal.Value = sceneConstructor.ParkingModel.ColumnCount;
             counterVertical.Value = sceneConstructor.ParkingModel.RowCount;
 
-            MainFormConstructorController.DrawTemplate(
+            constructorController.DrawTemplate(
                 (int) counterHorizontal.Value,
                 (int) counterVertical.Value,
                 parkingModel
@@ -212,7 +214,7 @@ namespace ParkingSimulationForms
                     InitModelTime();
                     
                     sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
-                    sceneVisualization.nextStep(Convert.ToDouble(label18.Text));
+                    sceneVisualization.NextStep(Convert.ToDouble(label18.Text));
                     
                     DrawImage();
                 }
@@ -275,17 +277,15 @@ namespace ParkingSimulationForms
             modelGeneralTimer.Stop();
             generationStreamTimer.Stop();
             sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
-            sceneVisualization.nextStep(Convert.ToDouble(label18.Text));
+            sceneVisualization.NextStep(Convert.ToDouble(label18.Text));
 
             DrawImage();
         }
 
         private void modelGeneralTimer_Tick(object sender, EventArgs e)
         {
-            sceneVisualization.nextStep(Convert.ToDouble(label18.Text));
-            
+            sceneVisualization.NextStep(Convert.ToDouble(label18.Text));
             DrawImage();
-            
             SetModelTime();
         }
 
@@ -293,23 +293,23 @@ namespace ParkingSimulationForms
         {
             if (generationStreamRandom.GetRandNumber() > SettingsModel.PercentOfTrack)
             {
-                if (sceneVisualization.isCanAddThisCar(CarVehicleModel.CarType.Car))
+                if (sceneVisualization.IsCanAddThisCar(CarType.Car))
                 {
-                    sceneVisualization.createCar((int)(SettingsModel.ParkingTimeDistribution.GetRandNumber()));
+                    sceneVisualization.CreateCar((int)(SettingsModel.ParkingTimeDistribution.GetRandNumber()));
                 } 
             }
             else
             {
-                if (sceneVisualization.isCanAddThisCar(CarVehicleModel.CarType.Truck))
+                if (sceneVisualization.IsCanAddThisCar(CarType.Truck))
                 {
-                    sceneVisualization.createTruck((int)(SettingsModel.ParkingTimeDistribution.GetRandNumber()));
+                    sceneVisualization.CreateTruck((int)(SettingsModel.ParkingTimeDistribution.GetRandNumber()));
                 }  
             }
         }
 
         private void DrawImage()
         {
-            var image = sceneVisualization.getImage();
+            var image = sceneVisualization.GetImage();
             var imageSize = image.Size;
             
             pictureBox2.Image?.Dispose();
@@ -387,14 +387,14 @@ namespace ParkingSimulationForms
             textBox2.Text = SettingsModel.DayTimeRate.ToString();
             textBox5.Text = SettingsModel.PercentOfTrack.ToString();
             textBox3.Text = SettingsModel.NightTimeRate.ToString();
-            textBox4.Text = SettingsModel.EnteringProbability.ToString();
+            textBox4.Text = SettingsModel.EnteringProbability.ToString(CultureInfo.CurrentCulture);
             label14.Text = SettingsModel.PercentOfCar.ToString();
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
             MainFormSettingsController.calcualePercent(textBox5, label14);
-            if (int.TryParse(textBox5.Text, out int value))
+            if (int.TryParse(textBox5.Text, out var value))
             {
                 SettingsModel.SetPercentOfTrack(value);
             }
@@ -408,7 +408,7 @@ namespace ParkingSimulationForms
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(textBox2.Text, out int value))
+            if (int.TryParse(textBox2.Text, out var value))
             {
                 SettingsModel.SetDayTimeRate(value);
             }
@@ -422,7 +422,7 @@ namespace ParkingSimulationForms
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(textBox3.Text, out int value))
+            if (int.TryParse(textBox3.Text, out var value))
             {
                 SettingsModel.SetNightTimeRate(value);
             }
@@ -436,7 +436,7 @@ namespace ParkingSimulationForms
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            if (double.TryParse(textBox4.Text, out double value))
+            if (double.TryParse(textBox4.Text, out var value))
             {
                 SettingsModel.SetProbabilityOfEnteringToParking(value);
             }
@@ -450,7 +450,7 @@ namespace ParkingSimulationForms
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (double.TryParse(textBox1.Text, out double value))
+            if (double.TryParse(textBox1.Text, out var value))
             {
                 SettingsModel.SetGenerationStreamDistribution(new DeterminedDistribution(value));
             }
@@ -464,7 +464,7 @@ namespace ParkingSimulationForms
 
         private void textBoxWithPlaceholder11_Leave(object sender, EventArgs e)
         {
-            if (double.TryParse(textBoxWithPlaceholder11.Text, out double value))
+            if (double.TryParse(textBoxWithPlaceholder11.Text, out var value))
             {
                 SettingsModel.SetParkingTimeDistribution(new DeterminedDistribution(value));
             }
@@ -482,11 +482,6 @@ namespace ParkingSimulationForms
         }
 
         #endregion
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button13_Click(object sender, EventArgs e)
         {

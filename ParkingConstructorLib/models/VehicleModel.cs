@@ -6,10 +6,27 @@ using System.Threading.Tasks;
 
 namespace ParkingConstructorLib.models
 {
-    public interface VehicleModel
+    public enum CarType{
+        Car,
+        Truck
+    };
+    
+    
+    public enum TargetType
+    {
+        Parking,
+        Cashier,
+        Exit,
+    }
+
+    public enum LastDirection
+    {
+        Horizontal,
+        Vertical,
+    }
+    
+    public interface IVehicleModel
     {
         List<ParkingModelElementType> GetAvailableElementTypesForMovement();
-
-        int GetRequiredSize();
     }
 }

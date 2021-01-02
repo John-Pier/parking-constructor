@@ -56,11 +56,11 @@
     <Compile Include="models\parking-elements\RoadParkingElement.cs" />
     <Compile Include="models\parking-elements\ParkingSpaceElement.cs" />
     <Compile Include="models\TruckParkingPlace.cs" />
-    <Compile Include="models\vehicles\Car.cs" />
     <Compile Include="models\vehicles\CarVehicleModel.cs" />
+    <Compile Include="models\vehicles\AbstractVehicleModel.cs" />
     <Compile Include="models\VehicleModel.cs" />
     <Compile Include="models\ParkingModelElement.cs" />
-    <Compile Include="models\vehicles\Truck.cs" />
+    <Compile Include="models\vehicles\TruckVehicleModel.cs" />
     <Compile Include="ParkingSceneVisualization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ParkingSceneConstructor.cs" />

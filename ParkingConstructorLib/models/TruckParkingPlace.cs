@@ -9,7 +9,7 @@ namespace ParkingConstructorLib.models
 {
     public class TruckParkingPlace
     {
-        public CarVehicleModel car;
+        public AbstractVehicleModel Abstract;
         public bool isBusy;
         public Coors coors;
         public TruckParkingPlace(Coors coors)
@@ -19,7 +19,7 @@ namespace ParkingConstructorLib.models
         }
         public void setTruck(Truck truck)
         {
-            car = truck;
+            Abstract = truck;
         }
     }
 }

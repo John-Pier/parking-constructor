@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ParkingConstructorLib.models.vehicles
 {
-    public class Truck : CarVehicleModel
+    public class Truck : AbstractVehicleModel
     {
         public Truck(int row, int column)
         {
