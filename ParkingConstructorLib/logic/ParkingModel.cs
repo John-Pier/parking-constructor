@@ -121,5 +121,7 @@ namespace ParkingConstructorLib.logic
         {
             return (column == 0 || row == 0) || (column == ColumnCount - 1 || row == RowCount - 1);
         }
+        
+        //private 
     }
 }

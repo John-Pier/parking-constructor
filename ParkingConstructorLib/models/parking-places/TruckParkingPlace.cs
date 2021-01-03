@@ -12,11 +12,13 @@ namespace ParkingConstructorLib.models
         public AbstractVehicleModel Abstract;
         public bool isBusy;
         public Coors coors;
+        
         public TruckParkingPlace(Coors coors)
         {
             this.coors = coors;
             isBusy = false;
         }
+        
         public void setTruck(Truck truck)
         {
             Abstract = truck;

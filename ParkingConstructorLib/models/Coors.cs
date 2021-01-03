@@ -8,24 +8,24 @@ namespace ParkingConstructorLib.models
 {
     public class Coors : IComparable
     {
-        public int columnIndex;
-        public int rowIndex;
+        public int ColumnIndex;
+        public int RowIndex;
+        
         public Coors(int colIndex, int rowIndex)
         {
-            this.columnIndex = colIndex;
-            this.rowIndex = rowIndex;
-        }
-        private static int[,,] localMap;
-
-        public static void setLocalMap(int[,,] map)
-        {
-            localMap = map;
+            this.ColumnIndex = colIndex;
+            this.RowIndex = rowIndex;
         }
 
-        public int CompareTo(object o)
+        public override bool Equals(object obj)
         {
-            Coors c = o as Coors;
-            return localMap[columnIndex, rowIndex, 2] - localMap[c.columnIndex, c.rowIndex, 2];
+            var coors = (Coors) obj;
+            return coors != null && ColumnIndex == coors.ColumnIndex && RowIndex == coors.RowIndex;
+        }
+
+        public int CompareTo(object obj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

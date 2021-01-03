@@ -48,12 +48,12 @@ namespace ParkingConstructorLib.models.vehicles
 
         public void Drive()
         {
-            if (columnIndex == nextStepCoors.columnIndex)
+            if (columnIndex == nextStepCoors.ColumnIndex)
                 lastDirection = LastDirection.Vertical;
-            if (rowIndex == nextStepCoors.rowIndex)
+            if (rowIndex == nextStepCoors.RowIndex)
                 lastDirection = LastDirection.Horizontal;
-            columnIndex = nextStepCoors.columnIndex;
-            rowIndex = nextStepCoors.rowIndex;
+            columnIndex = nextStepCoors.ColumnIndex;
+            rowIndex = nextStepCoors.RowIndex;
             countErrors = 0;
         }
 
@@ -124,7 +124,7 @@ namespace ParkingConstructorLib.models.vehicles
             else return new Truck(spawnRow, spawnCol);
         }
 
-        public static void setSpawnPoint(int col, int row)
+        public static void SetSpawnPoint(int col, int row)
         {
             spawnCol = col;
             spawnRow = row;

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using ParkingConstructorLib.logic;
 using ParkingConstructorLib.models;
 using ParkingConstructorLib.models.vehicles;
-using static ParkingConstructorLib.models.vehicles.AbstractVehicleModel;
 
 namespace ParkingConstructorLib
 {
@@ -38,7 +32,7 @@ namespace ParkingConstructorLib
 
         public void CreateCar(int timeWaitOnParkingInSeconds)
         {
-            var carVehicleModel = SpawnCar(CarType.Truck);
+            var carVehicleModel = AbstractVehicleModel.SpawnCar(CarType.Car);
             // var carVehicleModel = new CarVehicleModel(spawnRow, spawnCol);
             carVehicleModel.SetSecondsOnParking(timeWaitOnParkingInSeconds);
             mapAvailable.addCar(carVehicleModel);
@@ -46,7 +40,7 @@ namespace ParkingConstructorLib
 
         public void CreateTruck(int timeWaitOnParkingInSeconds)
         {
-            AbstractVehicleModel @abstract = SpawnCar(CarType.Truck);
+            AbstractVehicleModel @abstract = AbstractVehicleModel.SpawnCar(CarType.Truck);
             @abstract.SetSecondsOnParking(timeWaitOnParkingInSeconds);
             mapAvailable.addCar(@abstract);
         }
@@ -74,7 +68,7 @@ namespace ParkingConstructorLib
 
         public bool IsCanAddThisCar(CarType carType)
         {
-            return mapAvailable.isCanAddCar(carType);
+            return mapAvailable.IsCanAddCar(carType);
         }
     }
 }
