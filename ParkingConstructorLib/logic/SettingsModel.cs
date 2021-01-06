@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ParkingConstructorLib.services;
 using ParkingConstructorLib.utils.distributions;
 
 namespace ParkingConstructorLib.logic
@@ -19,6 +20,8 @@ namespace ParkingConstructorLib.logic
         public int PercentOfCar { get; private set;}
         public double EnteringProbability { get; private set;}
 
+        public SettingModelService SettingService = new SettingModelService();
+        
         public SettingsModel()
         {
             DayTimeRate = 80;
@@ -46,12 +49,18 @@ namespace ParkingConstructorLib.logic
 
         public void SetDayTimeRate(int rate)
         {
-            DayTimeRate = rate;
+            if (SettingService.CheckDayTimeRate(rate))
+            {
+                DayTimeRate = rate;
+            }
         }
 
         public void SetNightTimeRate(int rate)
         {
-            NightTimeRate = rate;
+            if (SettingService.CheckNightTimeRate(rate))
+            {
+                NightTimeRate = rate;
+            }
         }
 
         public void SetProbabilityOfEnteringToParking(double probability)

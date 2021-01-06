@@ -295,80 +295,108 @@ namespace ParkingSimulationForms
             }
             else
             {
-                ShowUncorrectValueMessage();
+                ShowUncorrectedValueMessage();
             }
             InitSettingsForm();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(textBox2.Text, out int value))
+            if (int.TryParse(textBox2.Text, out int value) && SettingsModel.SettingService.CheckDayTimeRate(value))
             {
                 SettingsModel.SetDayTimeRate(value);
             }
             else
             {
-                ShowUncorrectValueMessage();
+                ShowUncorrectedValueMessage();
             }
             InitSettingsForm();
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(textBox3.Text, out int value))
+            if (int.TryParse(textBox3.Text, out int value) && SettingsModel.SettingService.CheckNightTimeRate(value))
             {
                 SettingsModel.SetNightTimeRate(value);
             }
             else
             {
-                ShowUncorrectValueMessage();
+                ShowUncorrectedValueMessage();
             }
             InitSettingsForm();
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            if (double.TryParse(textBox4.Text, out double value))
+            if (double.TryParse(textBox4.Text, out var value))
             {
                 SettingsModel.SetProbabilityOfEnteringToParking(value);
             }
             else
             {
-                ShowUncorrectValueMessage();
+                ShowUncorrectedValueMessage();
             }
             InitSettingsForm();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (double.TryParse(textBox1.Text, out double value))
+            if (double.TryParse(textBox1.Text, out var value) 
+                && SettingsModel.SettingService.CheckGenerationDeterminedDistributionValue(value))
             {
                 SettingsModel.SetGenerationStreamDistribution(new DeterminedDistribution(value));
             }
             else
             {
-                ShowUncorrectValueMessage();
+                ShowUncorrectedValueMessage();
             }
             InitSettingsForm();
         }
 
         private void textBoxWithPlaceholder11_Leave(object sender, EventArgs e)
         {
-            if (double.TryParse(textBoxWithPlaceholder11.Text, out double value))
+            if (double.TryParse(textBoxWithPlaceholder11.Text, out var value) 
+                && SettingsModel.SettingService.CheckParkingTimeDistributionValue(value))
             {
                 SettingsModel.SetParkingTimeDistribution(new DeterminedDistribution(value));
             }
             else
             {
-                ShowUncorrectValueMessage();
+                ShowUncorrectedValueMessage();
             }
             InitSettingsForm();
         }
-
-        private void ShowUncorrectValueMessage()
+        
+        private void RandomGenerationStreamCheckboxCheckedChanged(object sender, EventArgs e)
+        {
+            SettingsModel.SetGenerationStreamDistribution(null);
+        }
+        
+        private void ShowUncorrectedValueMessage()
         {
             MessageBox.Show("Введено некорректное значение!", "Ошибка распознавания", MessageBoxButtons.OK);
         }
+        
         #endregion
+
+        private void textBoxMin_TextChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked && 
+                double.TryParse(textBoxWithPlaceholder1.Text, out var value) &&
+                SettingsModel.SettingService.CheckGenerationUniformDistributionValue(value))
+            {
+                MainFormSettingsController.minGenerationValue = value;
+            }
+        }
+
+        private void textBoxMax_TextChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked && 
+                double.TryParse(textBoxWithPlaceholder1.Text, out var value) &&
+                SettingsModel.SettingService.CheckGenerationUniformDistributionValue(value))
+            {
+                MainFormSettingsController.maxGenerationValue = value;
+            }
+        }
     }
 }
