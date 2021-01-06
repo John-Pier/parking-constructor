@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ParkingConstructorLib.models.vehicles
 {
-    public class CarVehicleModel : AbstractVehicleModel
+    public class CarVehicleModel: AbstractVehicleModel
     {
         public CarVehicleModel(int row, int column)
         {
@@ -15,6 +15,13 @@ namespace ParkingConstructorLib.models.vehicles
             type = CarType.Car;
             targetType = TargetType.Parking;
             countErrors = 0;
+        }
+
+        public new List<ParkingModelElementType> GetAvailableElementTypesForMovement()
+        {
+            var resultList = base.GetAvailableElementTypesForMovement();
+            resultList.Add(ParkingModelElementType.ParkingSpace);
+            return resultList;
         }
     }
 }

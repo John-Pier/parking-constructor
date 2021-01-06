@@ -32,17 +32,18 @@ namespace ParkingConstructorLib
 
         public void CreateCar(int timeWaitOnParkingInSeconds)
         {
-            var carVehicleModel = AbstractVehicleModel.SpawnCar(CarType.Car);
-            // var carVehicleModel = new CarVehicleModel(spawnRow, spawnCol);
+            var carVehicleModel = new CarVehicleModel(mapAvailable.SpawnRow, mapAvailable.SpawnCol);
             carVehicleModel.SetSecondsOnParking(timeWaitOnParkingInSeconds);
+            
             mapAvailable.addCar(carVehicleModel);
         }
 
         public void CreateTruck(int timeWaitOnParkingInSeconds)
         {
-            AbstractVehicleModel @abstract = AbstractVehicleModel.SpawnCar(CarType.Truck);
-            @abstract.SetSecondsOnParking(timeWaitOnParkingInSeconds);
-            mapAvailable.addCar(@abstract);
+            var truckVehicleModel = new TruckVehicleModel(mapAvailable.SpawnRow, mapAvailable.SpawnCol);
+            truckVehicleModel.SetSecondsOnParking(timeWaitOnParkingInSeconds);
+            
+            mapAvailable.addCar(truckVehicleModel);
         }
 
         public void SetParkingModel(ParkingModel<T> parkingModel)
@@ -66,9 +67,9 @@ namespace ParkingConstructorLib
             return image;
         }
 
-        public bool IsCanAddThisCar(CarType carType)
+        public bool IsCanAddVehicle(CarType carType)
         {
-            return mapAvailable.IsCanAddCar(carType);
+            return mapAvailable.IsCanAddVehicle(carType);
         }
     }
 }

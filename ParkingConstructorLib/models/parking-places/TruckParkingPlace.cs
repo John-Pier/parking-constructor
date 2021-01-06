@@ -1,27 +1,16 @@
 ﻿using ParkingConstructorLib.models.vehicles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ParkingConstructorLib.models
 {
-    public class TruckParkingPlace
+    public class TruckParkingPlace: AbstractParkingPlace
     {
-        public AbstractVehicleModel Abstract;
-        public bool isBusy;
-        public Coors coors;
+        public TruckParkingPlace(Coors coors): base(coors) { }
         
-        public TruckParkingPlace(Coors coors)
-        {
-            this.coors = coors;
-            isBusy = false;
-        }
+        public TruckParkingPlace(int colIndex, int rowIndex): base(colIndex, rowIndex) { }
         
-        public void setTruck(Truck truck)
+        protected override bool IsRideableElement(AbstractVehicleModel vehicleModel)
         {
-            Abstract = truck;
+            return vehicleModel.GetAvailableElementTypesForMovement().Contains(ParkingModelElementType.TruckParkingSpace);
         }
     }
 }

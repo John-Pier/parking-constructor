@@ -12,11 +12,6 @@ namespace ParkingConstructorLib.models
         public abstract ParkingModelElementType GetElementType();
 
         public abstract T GetElementModel(); // Должна возвращать обьект с конретыми параметрами модели - изображение и тд.
-
-        public bool IsRideableElement(IVehicleModel vehicleModel)
-        {
-            return vehicleModel.GetAvailableElementTypesForMovement().Contains(GetElementType());
-        }
     }
 
     [Serializable]

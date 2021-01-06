@@ -8,8 +8,7 @@ namespace ParkingConstructorLib.models.vehicles
 {
     public abstract class AbstractVehicleModel: IVehicleModel
     {
-        private static int spawnRow;
-        private static int spawnCol;
+      
         protected int rowIndex;
         protected int columnIndex;
         protected CarType type;
@@ -25,8 +24,7 @@ namespace ParkingConstructorLib.models.vehicles
         {
             return new List<ParkingModelElementType>
             {
-                ParkingModelElementType.Road, 
-                ParkingModelElementType.ParkingSpace, 
+                ParkingModelElementType.Road,
                 ParkingModelElementType.Entry
             };
         }
@@ -115,19 +113,6 @@ namespace ParkingConstructorLib.models.vehicles
         public new string GetType()
         {
             return type.ToString();
-        }
-
-        //TODO: Убрать, это тут не должно быть, вообще такое писать не стоит
-        public static AbstractVehicleModel SpawnCar(CarType carType)
-        {
-            if (carType == CarType.Car) return new CarVehicleModel(spawnRow, spawnCol);
-            else return new Truck(spawnRow, spawnCol);
-        }
-
-        public static void SetSpawnPoint(int col, int row)
-        {
-            spawnCol = col;
-            spawnRow = row;
         }
 
         public int GetRowIndex()

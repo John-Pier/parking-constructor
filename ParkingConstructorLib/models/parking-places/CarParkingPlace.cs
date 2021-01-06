@@ -2,21 +2,15 @@
 
 namespace ParkingConstructorLib.models
 {
-    public class CarParkingPlace
+    public class CarParkingPlace: AbstractParkingPlace
     {
-        public AbstractVehicleModel Abstract;
-        public bool isBusy;
-        public Coors coors;
+        public CarParkingPlace(Coors coors): base(coors) { }
         
-        public CarParkingPlace(Coors coors)
-        {
-            this.coors = coors;
-            isBusy = false;
-        }
+        public CarParkingPlace(int colIndex, int rowIndex): base(colIndex, rowIndex) { }
         
-        public void setCar(CarVehicleModel carVehicleModel)
+        protected override bool IsRideableElement(AbstractVehicleModel vehicleModel)
         {
-            this.Abstract = carVehicleModel;
+            return vehicleModel.GetAvailableElementTypesForMovement().Contains(ParkingModelElementType.ParkingSpace);
         }
     }
 }
