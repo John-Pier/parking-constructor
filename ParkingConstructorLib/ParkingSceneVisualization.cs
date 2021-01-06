@@ -32,6 +32,7 @@ namespace ParkingConstructorLib
 
         public void CreateCar(int timeWaitOnParkingInSeconds)
         {
+            if(!IsCanAddVehicle(CarType.Car)) return;
             var carVehicleModel = new CarVehicleModel(mapAvailable.SpawnRow, mapAvailable.SpawnCol);
             carVehicleModel.SetSecondsOnParking(timeWaitOnParkingInSeconds);
             
@@ -40,6 +41,7 @@ namespace ParkingConstructorLib
 
         public void CreateTruck(int timeWaitOnParkingInSeconds)
         {
+            if(!IsCanAddVehicle(CarType.Truck)) return;
             var truckVehicleModel = new TruckVehicleModel(mapAvailable.SpawnRow, mapAvailable.SpawnCol);
             truckVehicleModel.SetSecondsOnParking(timeWaitOnParkingInSeconds);
             

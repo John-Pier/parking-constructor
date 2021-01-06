@@ -293,17 +293,11 @@ namespace ParkingSimulationForms
         {
             if (generationStreamRandom.GetRandNumber() > SettingsModel.PercentOfTrack)
             {
-                if (sceneVisualization.IsCanAddVehicle(CarType.Car))
-                {
-                    sceneVisualization.CreateCar((int)(SettingsModel.ParkingTimeDistribution.GetRandNumber()));
-                } 
+                sceneVisualization.CreateCar((int)SettingsModel.ParkingTimeDistribution.GetRandNumber());
             }
             else
             {
-                if (sceneVisualization.IsCanAddVehicle(CarType.Truck))
-                {
-                    sceneVisualization.CreateTruck((int)(SettingsModel.ParkingTimeDistribution.GetRandNumber()));
-                }  
+                sceneVisualization.CreateTruck((int)SettingsModel.ParkingTimeDistribution.GetRandNumber());
             }
         }
 

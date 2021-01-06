@@ -103,14 +103,14 @@ namespace ParkingConstructorLib.models
             foreach (AbstractVehicleModel car in cars)
                 map[car.GetColumnIndex(), car.GetRowIndex()] = false;
         }
-        public void addCar(AbstractVehicleModel @abstract)
+        public void addCar(AbstractVehicleModel vehicleModel)
         {
             bool isCarCreated = false;
-            if (@abstract.GetType().Equals("Car"))
+            if (vehicleModel.GetType().Equals("Car"))
                 foreach (CarParkingPlace placeC in carParkingPlaces)
                     if (!placeC.isBusy)
                     {
-                        @abstract.SetTarget(placeC.coors);
+                        vehicleModel.SetTarget(placeC.coors);
                         placeC.isBusy = true;
                         isCarCreated = true;
                         break;
@@ -120,12 +120,12 @@ namespace ParkingConstructorLib.models
                 foreach (TruckParkingPlace placeT in truckParkingPlaces)
                     if (!placeT.isBusy)
                     {
-                        @abstract.SetTarget(placeT.coors);
+                        vehicleModel.SetTarget(placeT.coors);
                         placeT.isBusy = true;
                         isCarCreated = true;
                         break;
                     }
-            if (isCarCreated) cars.AddLast(@abstract);
+            if (isCarCreated) cars.AddLast(vehicleModel);
             reloadMap();
             Draw();
         }
@@ -260,18 +260,18 @@ namespace ParkingConstructorLib.models
             return removedCars.ToArray();
         }
 
-        private void RunDijkstraAlgorithm(int[,,] localMap, AbstractVehicleModel @abstract)
+        private void RunDijkstraAlgorithm(int[,,] localMap, AbstractVehicleModel vehicleModel)
         {
             bool isFirstIteration = true;
             Coors coorsNowIteration = null;
             var allNeighbors = new LinkedList<Coors>();
-            localMap[@abstract.GetColumnIndex(), @abstract.GetRowIndex(), 2] = 0;
+            localMap[vehicleModel.GetColumnIndex(), vehicleModel.GetRowIndex(), 2] = 0;
             while (true)
             {
                 var isExit = true;
                 if (isFirstIteration)
                 {
-                    coorsNowIteration = new Coors(@abstract.GetColumnIndex(), @abstract.GetRowIndex());
+                    coorsNowIteration = new Coors(vehicleModel.GetColumnIndex(), vehicleModel.GetRowIndex());
                     isFirstIteration = false;
                     isExit = false;
                 }
@@ -378,13 +378,13 @@ namespace ParkingConstructorLib.models
             return coorsArr;
         }
 
-        private Coors[] GetWay(AbstractVehicleModel @abstract, int[,,] localMap)
+        private Coors[] GetWay(AbstractVehicleModel vehicleModel, int[,,] localMap)
         {
             LinkedList<Coors> coors = new LinkedList<Coors>();
-            int weight = localMap[@abstract.GetTarget().ColumnIndex, @abstract.GetTarget().RowIndex, 2];
+            int weight = localMap[vehicleModel.GetTarget().ColumnIndex, vehicleModel.GetTarget().RowIndex, 2];
             Coors[] neighboreCoors = null;
-            coors.AddLast(new Coors(@abstract.GetTarget().ColumnIndex, @abstract.GetTarget().RowIndex));
-            Coors mainCoors = new Coors(@abstract.GetTarget().ColumnIndex, @abstract.GetTarget().RowIndex);
+            coors.AddLast(new Coors(vehicleModel.GetTarget().ColumnIndex, vehicleModel.GetTarget().RowIndex));
+            Coors mainCoors = new Coors(vehicleModel.GetTarget().ColumnIndex, vehicleModel.GetTarget().RowIndex);
             while (weight != 0)
             {
                 neighboreCoors = GetNeighbors(mainCoors.ColumnIndex, mainCoors.RowIndex, localMap);
