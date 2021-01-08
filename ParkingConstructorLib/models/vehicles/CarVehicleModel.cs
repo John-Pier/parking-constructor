@@ -15,6 +15,7 @@ namespace ParkingConstructorLib.models.vehicles
             type = CarType.Car;
             targetType = TargetType.Parking;
             countErrors = 0;
+            priceForParking = 0m;
         }
 
         public new List<ParkingModelElementType> GetAvailableElementTypesForMovement()

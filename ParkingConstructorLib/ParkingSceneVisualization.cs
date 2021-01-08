@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using ParkingConstructorLib.logic;
 using ParkingConstructorLib.models;
 using ParkingConstructorLib.models.vehicles;
@@ -25,9 +27,9 @@ namespace ParkingConstructorLib
             textures = texturesArr;
         }
 
-        public void NextStep(double accelerate)
+        public void NextStep(double accelerate, DateTime modelTime)
         {
-            mapAvailable.nextStep(accelerate);
+            mapAvailable.nextStep(accelerate, modelTime);
         }
 
         public void CreateCar(int timeWaitOnParkingInSeconds)
@@ -72,6 +74,16 @@ namespace ParkingConstructorLib
         public bool IsCanAddVehicle(CarType carType)
         {
             return mapAvailable.IsCanAddVehicle(carType);
+        }
+
+        public LinkedList<AbstractVehicleModel> getVehicles()
+        {
+            return mapAvailable.getVehicles();
+        }
+
+        public LinkedList<AbstractParkingPlace> getParkingPlaces()
+        {
+            return mapAvailable.getParkingPlaces();
         }
     }
 }

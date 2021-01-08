@@ -17,7 +17,6 @@ namespace ParkingConstructorLib.models
         private LinkedList<AbstractParkingPlace> truckParkingPlaces;
         private Coors cashierCoors = null;
         private Coors exitCoors = null;
-        private Random rnd;
         private Bitmap drawMapOriginal;
         private Bitmap[] textures;
         
@@ -32,7 +31,6 @@ namespace ParkingConstructorLib.models
             cars = new LinkedList<AbstractVehicleModel>();
             carParkingPlaces = new LinkedList<AbstractParkingPlace>();
             truckParkingPlaces = new LinkedList<AbstractParkingPlace>();
-            rnd = new Random();
             reloadMap();
             for (int i = 0; i < model.ColumnCount; i++)
                 for (int j = 0; j < model.RowCount; j++)
@@ -113,6 +111,8 @@ namespace ParkingConstructorLib.models
                         vehicleModel.SetTarget(placeC.coors);
                         placeC.isBusy = true;
                         isCarCreated = true;
+                        vehicleModel.setParkingID(placeC.id);
+                        vehicleModel.isOnParkingPlace = false;
                         break;
                     }
                     else { }
@@ -123,6 +123,8 @@ namespace ParkingConstructorLib.models
                         vehicleModel.SetTarget(placeT.coors);
                         placeT.isBusy = true;
                         isCarCreated = true;
+                        vehicleModel.setParkingID(placeT.id);
+                        vehicleModel.isOnParkingPlace = false;
                         break;
                     }
             if (isCarCreated) cars.AddLast(vehicleModel);
@@ -152,7 +154,7 @@ namespace ParkingConstructorLib.models
             return GetWay(@abstract, localMap);
         }
 
-        private AbstractVehicleModel[] nextSystemStep(int[,,] localMap, AbstractVehicleModel vehicleModel, Coors[] way, double accelerate)
+        private AbstractVehicleModel[] nextSystemStep(int[,,] localMap, AbstractVehicleModel vehicleModel, Coors[] way, double accelerate, DateTime modelDateTime)
         {
             LinkedList<AbstractVehicleModel> removedCars = new LinkedList<AbstractVehicleModel>();
             bool stopEnding = false;
@@ -162,11 +164,12 @@ namespace ParkingConstructorLib.models
                     //Если машина на парковке
                     if (vehicleModel.GetCoors().Equals(vehicleModel.GetTarget()) && vehicleModel.GetTargetType() == TargetType.Parking)
                     {
-                        if ((DateTime.Now - vehicleModel.GetDateTimeStopping()).TotalMilliseconds > (vehicleModel.GetSecondsOnParking() * 1000) / accelerate)
+                        if ((modelDateTime-vehicleModel.GetDateTimeStopping()).TotalMinutes>=vehicleModel.GetSecondsOnParking())
                         {
                             stopEnding = true;
                             vehicleModel.SetTarget(cashierCoors);
                             vehicleModel.SetTargetType(TargetType.Cashier);
+                            vehicleModel.isOnParkingPlace = false;
                             if (vehicleModel.GetType() == "Car")
                             {
                                 foreach (CarParkingPlace cpp in carParkingPlaces)
@@ -191,21 +194,8 @@ namespace ParkingConstructorLib.models
                     //Если машина будет на парковке на следующем шаге
                     if (i == way.Length - 2 && vehicleModel.GetTargetType() == TargetType.Parking)
                     {
-                        vehicleModel.SetDateTimeStopping(DateTime.Now);
-                        if (vehicleModel.GetType() == "Car")
-                        {
-                            foreach (var carParkingPlace in carParkingPlaces.Where(carParkingPlace => carParkingPlace.coors.Equals(way[i + 1])))
-                            {
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            foreach (var place in truckParkingPlaces.Where(tpp => tpp.coors.Equals(way[i + 1])))
-                            {
-                                break;
-                            }
-                        }
+                        vehicleModel.SetDateTimeStopping(modelDateTime.AddMinutes(1));
+                        vehicleModel.isOnParkingPlace = true;
                     }
                     //Машина на кассе
                     if (cashierCoors.Equals(vehicleModel.GetCoors()))
@@ -230,12 +220,14 @@ namespace ParkingConstructorLib.models
                     {
                         int[,,] localMapTemp = initLocalMap(vehicleModel);
                         Coors[] wayTemp = foundWay(localMapTemp, vehicleModel);
-                        //Ничего не трогать туть, несмотря на предупреждение о недостижимом коде
+                       
                         for (int j = 0; j < wayTemp.Length; j++)
                         {
-                            if (vehicleModel.GetCoors().Equals(wayTemp[i]))
-                                vehicleModel.SetNextCoors(wayTemp[i + 1]);
-                            break;
+                            if (vehicleModel.GetCoors().Equals(wayTemp[j]))
+                            {
+                                vehicleModel.SetNextCoors(wayTemp[j + 1]);
+                                break;
+                            }
                         }
 
                     }
@@ -425,7 +417,7 @@ namespace ParkingConstructorLib.models
             return parkingPlaces != null && parkingPlaces.Any(placeForCar => !placeForCar.isBusy);
         }
 
-        public void nextStep(double accelerate)
+        public void nextStep(double accelerate, DateTime modelDateTime)
         {
             int[,,] localMap = null;
             LinkedList<AbstractVehicleModel> removedCars = new LinkedList<AbstractVehicleModel>();
@@ -433,7 +425,7 @@ namespace ParkingConstructorLib.models
             {
                 localMap = initLocalMap(car);
                 Coors[] way = foundWay(localMap, car);
-                AbstractVehicleModel[] remCars = nextSystemStep(localMap, car, way, accelerate);
+                AbstractVehicleModel[] remCars = nextSystemStep(localMap, car, way, accelerate, modelDateTime);
                 for (int i = 0; i < remCars.Length; i++)
                     removedCars.AddLast(remCars[i]);
             }
@@ -455,6 +447,21 @@ namespace ParkingConstructorLib.models
         {
             SpawnCol = col;
             SpawnRow = row;
+        }
+
+        public LinkedList<AbstractVehicleModel> getVehicles()
+        {
+            return cars;
+        }
+
+        public LinkedList<AbstractParkingPlace> getParkingPlaces()
+        {
+            LinkedList<AbstractParkingPlace> places = new LinkedList<AbstractParkingPlace>();
+            foreach (AbstractParkingPlace placeC in carParkingPlaces)
+                places.AddLast(placeC);
+            foreach (AbstractParkingPlace placeT in truckParkingPlaces)
+                places.AddLast(placeT);
+            return places;
         }
     }
 }

@@ -19,6 +19,29 @@ namespace ParkingConstructorLib.models.vehicles
         protected DateTime dateTimeStopping;
         protected LastDirection lastDirection;
         protected int countErrors;
+        protected int parkingID;
+        protected decimal priceForParking;
+        public bool isOnParkingPlace;
+
+        public void addPrice(decimal money)
+        {
+            priceForParking += money;
+        }
+
+        public decimal getPrice()
+        {
+            return priceForParking;
+        }
+
+        public void setParkingID(int parkingID)
+        {
+            this.parkingID = parkingID;
+        }
+
+        public int getParkingID()
+        {
+            return this.parkingID;
+        }
         
         public List<ParkingModelElementType> GetAvailableElementTypesForMovement()
         {
