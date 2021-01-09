@@ -66,6 +66,13 @@ namespace ParkingSimulationForms
                 SettingModelService.MinGenerationNormalDistributionDValue,
                 SettingModelService.MaxGenerationNormalDistributionDValue
             );
+
+            textBoxWithPlaceholder5.SetNumberChangeHandler(
+                SettingModelService.MinGenerationExponentialDistributionValue,
+                SettingModelService.MaxGenerationExponentialDistributionValue
+              );
+            
+            
         }
 
         private void InitRoadImages()
@@ -544,7 +551,6 @@ namespace ParkingSimulationForms
             || isMaxCorrect && !CheckGenerationUniformDistributionValues(min, max))
             {
                 textBoxWithPlaceholder1.BackColor = Color.Crimson;
-               
             }
         }
 

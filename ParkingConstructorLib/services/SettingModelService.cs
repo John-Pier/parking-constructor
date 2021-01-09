@@ -22,13 +22,27 @@
         public static readonly double MinGenerationNormalDistributionDValue = 1d/60d; // 1 s
         public static readonly double MaxGenerationNormalDistributionDValue = 10d; // 600 s
         
+        public static readonly double MinGenerationExponentialDistributionValue = 0.0002;
+        public static readonly double MaxGenerationExponentialDistributionValue = 0.1;
+        
         // Hours
         
         public static readonly double MinParkingTimeDeterminedDistributionValue = 1d/6d;
         public static readonly double MaxParkingTimeDeterminedDistributionValue = 60d;
         
-        public static readonly double MinParkingTimeUniformDistributionValue = 1d/6d; // 10 s
-        public static readonly double MaxParkingTimeUniformDistributionValue = 7200d; // 2 days
+        public static readonly double MinParkingTimeUniformDistributionValue = 1/6d; // 10 min
+        public static readonly double MaxParkingTimeUniformDistributionValue = 48d; // 2 days 
+
+        public static readonly double MinParkingTimeNormalDistributionMValue = 1d/6d; // 10 min
+        public static readonly double MaxParkingTimeNormalDistributionMValue = 48d; // 2 days
+        
+        public static readonly double MinParkingTimeNormalDistributionDValue = 1d/6d; // 10 min
+        public static readonly double MaxParkingTimeNormalDistributionDValue = 24d; // 1 day
+        
+        // 
+        
+        public static readonly double MinParkingTimeExponentialDistributionValue = 0.0002;
+        public static readonly double MaxParkingTimeExponentialDistributionValue = 0.1;
         
         public bool CheckDayTimeRate(int rate)
         {
@@ -46,16 +60,16 @@
                    value <= MaxGenerationDeterminedDistributionValue;
         }
         
-        public bool CheckParkingTimeDistributionValue(double value)
-        {
-            return value >= MinParkingTimeDeterminedDistributionValue &&
-                   value <= MaxParkingTimeDeterminedDistributionValue;
-        }
-
         public bool CheckGenerationUniformDistributionValue(double value)
         {
             return value >= MinGenerationUniformDistributionValue &&
                    value <= MaxGenerationUniformDistributionValue;
+        }
+        
+        public bool CheckParkingTimeDistributionValue(double value)
+        {
+            return value >= MinParkingTimeDeterminedDistributionValue &&
+                   value <= MaxParkingTimeDeterminedDistributionValue;
         }
     }
 }
