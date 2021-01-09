@@ -28,13 +28,16 @@ namespace ParkingSimulationForms
             MainFormConstructorController.ImageList = elementsImageList;
             MainFormConstructorController.ElementsTablePanel = elementsTablePanel;
             MainFormConstructorController.CurrentSceneConstructor = sceneConstructor;
-            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value, (int)counterVertical.Value);
+            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
 
             MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
             MainFormStatisticsController.initTable(tableLayoutPanel3);
 
             InitSettingsForm();
 
+            radioButton1.Checked = true;
+            radioButton9.Checked = true;
+            
             domainUpDown1.SelectedIndex = 0;
 
             SetUpRoadImages(RoadDirections.Top);
@@ -74,14 +77,14 @@ namespace ParkingSimulationForms
         //Конструктор
         private void counterHorizontal_ValueChanged(object sender, EventArgs e)
         {
-            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value,
-                (int)counterVertical.Value);
+            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
+                (int) counterVertical.Value);
         }
 
         private void counterVertical_ValueChanged(object sender, EventArgs e)
         {
-            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value,
-                (int)counterVertical.Value);
+            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
+                (int) counterVertical.Value);
         }
 
         //Визуализатор
@@ -93,7 +96,8 @@ namespace ParkingSimulationForms
         private void button1_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new GrassParkingElement(elementsImageList.Images[4]); // газон
+            MainFormConstructorController.CurrentElement =
+                new GrassParkingElement(elementsImageList.Images[4]); // газон
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -133,7 +137,7 @@ namespace ParkingSimulationForms
         {
             SetEnableEditSceneSize(true);
             MainFormConstructorController.CurrentElement = null;
-            MainFormConstructorController.DrawTemplate((int)counterHorizontal.Value, (int)counterVertical.Value);
+            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
             sceneConstructor.ClearModel();
         }
 
@@ -141,7 +145,8 @@ namespace ParkingSimulationForms
         {
             if (!sceneConstructor.IsParkingModelCreate())
             {
-                sceneConstructor.CreateParkingModel((int)counterHorizontal.Value, (int)counterVertical.Value, (RoadDirections)domainUpDown1.SelectedIndex);
+                sceneConstructor.CreateParkingModel((int) counterHorizontal.Value, (int) counterVertical.Value,
+                    (RoadDirections) domainUpDown1.SelectedIndex);
             }
 
             SetEnableEditSceneSize(false);
@@ -157,16 +162,36 @@ namespace ParkingSimulationForms
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
+            if (double.TryParse(textBox1.Text, out var value)
+                && SettingsModel.SettingService.CheckGenerationDeterminedDistributionValue(value))
+            {
+                SettingsModel.SetGenerationStreamDistribution(new DeterminedDistribution(value));
+            }
+            else
+            {
+                SettingsModel.SetGenerationStreamDistribution(null);
+            }
+
             MainFormSettingsController.LockRBs(radioButton3, radioButton4, radioButton5, textBoxWithPlaceholder1,
                 textBoxWithPlaceholder2, textBoxWithPlaceholder3, textBoxWithPlaceholder4, textBoxWithPlaceholder5,
-                textBox1, !((RadioButton)sender).Checked);
+                textBox1, !((RadioButton) sender).Checked);
         }
 
         private void radioButton9_CheckedChanged(object sender, EventArgs e)
         {
+            if (double.TryParse(textBoxWithPlaceholder11.Text, out var value)
+                && SettingsModel.SettingService.CheckParkingTimeDistributionValue(value))
+            {
+                SettingsModel.SetParkingTimeDistribution(new DeterminedDistribution(value));
+            }
+            else
+            {
+                SettingsModel.SetParkingTimeDistribution(null);
+            }
+            
             MainFormSettingsController.LockRBs(radioButton6, radioButton7, radioButton8, textBoxWithPlaceholder6,
                 textBoxWithPlaceholder7, textBoxWithPlaceholder8, textBoxWithPlaceholder9, textBoxWithPlaceholder10,
-                textBoxWithPlaceholder11, !((RadioButton)sender).Checked);
+                textBoxWithPlaceholder11, !((RadioButton) sender).Checked);
         }
 
         private void OnLoadClick(object sender, EventArgs e)
@@ -180,8 +205,8 @@ namespace ParkingSimulationForms
             counterVertical.Value = sceneConstructor.ParkingModel.RowCount;
 
             MainFormConstructorController.DrawTemplate(
-                (int)counterHorizontal.Value,
-                (int)counterVertical.Value,
+                (int) counterHorizontal.Value,
+                (int) counterVertical.Value,
                 parkingModel
             );
 
@@ -212,6 +237,7 @@ namespace ParkingSimulationForms
                     {
                         tabControl1.SelectedIndex = 0;
                     }
+
                     return;
                 }
 
@@ -222,14 +248,15 @@ namespace ParkingSimulationForms
                 else
                 {
                     var result = MessageBox.Show(
-                       "Вы не можете запустить визуализатор, потому что текущие настройки не валидны или не заданы.\nХотите вернуться ?",
-                       "Настройки не валидны",
-                       MessageBoxButtons.YesNo
-                   );
+                        "Вы не можете запустить визуализатор, потому что текущие настройки не валидны или не заданы.\nХотите вернуться ?",
+                        "Настройки не валидны",
+                        MessageBoxButtons.YesNo
+                    );
                     if (result == DialogResult.Yes)
                     {
                         tabControl1.SelectedIndex = 1;
                     }
+
                     return;
                 }
             }
@@ -237,8 +264,8 @@ namespace ParkingSimulationForms
 
         private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
         {
-            var dropdown = (DomainUpDown)sender;
-            var direction = (RoadDirections)dropdown.SelectedIndex;
+            var dropdown = (DomainUpDown) sender;
+            var direction = (RoadDirections) dropdown.SelectedIndex;
             SetUpRoadImages(direction);
             if (sceneConstructor.IsParkingModelCreate())
             {
@@ -277,7 +304,7 @@ namespace ParkingSimulationForms
             }
         }
 
-        #region Settings Form 
+        #region Settings Form
 
         //Настройки
         private void InitSettingsForm()
@@ -300,6 +327,7 @@ namespace ParkingSimulationForms
             {
                 ShowUncorrectedValueMessage();
             }
+
             InitSettingsForm();
         }
 
@@ -313,6 +341,7 @@ namespace ParkingSimulationForms
             {
                 ShowUncorrectedValueMessage();
             }
+
             InitSettingsForm();
         }
 
@@ -326,6 +355,7 @@ namespace ParkingSimulationForms
             {
                 ShowUncorrectedValueMessage();
             }
+
             InitSettingsForm();
         }
 
@@ -339,12 +369,13 @@ namespace ParkingSimulationForms
             {
                 ShowUncorrectedValueMessage();
             }
+
             InitSettingsForm();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (double.TryParse(textBox1.Text, out var value) 
+            if (double.TryParse(textBox1.Text, out var value)
                 && SettingsModel.SettingService.CheckGenerationDeterminedDistributionValue(value))
             {
                 SettingsModel.SetGenerationStreamDistribution(new DeterminedDistribution(value));
@@ -353,12 +384,13 @@ namespace ParkingSimulationForms
             {
                 ShowUncorrectedValueMessage();
             }
+
             InitSettingsForm();
         }
 
         private void textBoxWithPlaceholder11_Leave(object sender, EventArgs e)
         {
-            if (double.TryParse(textBoxWithPlaceholder11.Text, out var value) 
+            if (double.TryParse(textBoxWithPlaceholder11.Text, out var value)
                 && SettingsModel.SettingService.CheckParkingTimeDistributionValue(value))
             {
                 SettingsModel.SetParkingTimeDistribution(new DeterminedDistribution(value));
@@ -367,40 +399,59 @@ namespace ParkingSimulationForms
             {
                 ShowUncorrectedValueMessage();
             }
+
             InitSettingsForm();
         }
-        
+
         private void RandomGenerationStreamCheckboxCheckedChanged(object sender, EventArgs e)
         {
             SettingsModel.SetGenerationStreamDistribution(null);
         }
-        
+
         private void ShowUncorrectedValueMessage()
         {
             MessageBox.Show("Введено некорректное значение!", "Ошибка распознавания", MessageBoxButtons.OK);
         }
-        
-        #endregion
+
 
         private void textBoxMin_TextChanged(object sender, EventArgs e)
         {
-            if (radioButton3.Checked && 
-                double.TryParse(textBoxWithPlaceholder1.Text, out var min) &&
-                double.TryParse(textBoxWithPlaceholder2.Text, out var max) && 
+            if (!radioButton3.Checked) return;
+            var isMinCorrect = double.TryParse(textBoxWithPlaceholder1.Text, out var min);
+            var isMaxCorrect = double.TryParse(textBoxWithPlaceholder2.Text, out var max);
+            if (isMinCorrect &&
+                isMaxCorrect &&
                 CheckGenerationUniformDistributionValues(min, max))
             {
+                textBoxWithPlaceholder1.BackColor = Color.White;
                 SettingsModel.SetGenerationStreamDistribution(new UniformDistribution(min, max));
+            }
+
+            if (!isMinCorrect || !SettingsModel.SettingService.CheckGenerationUniformDistributionValue(min)
+            || isMaxCorrect && !CheckGenerationUniformDistributionValues(min, max))
+            {
+                textBoxWithPlaceholder1.BackColor = Color.Crimson;
+               
             }
         }
 
         private void textBoxMax_TextChanged(object sender, EventArgs e)
         {
-            if (radioButton3.Checked && 
-                double.TryParse(textBoxWithPlaceholder1.Text, out var min) &&
-                double.TryParse(textBoxWithPlaceholder2.Text, out var max) && 
+            if(!radioButton3.Checked) return;
+            var isMinCorrect = double.TryParse(textBoxWithPlaceholder1.Text, out var min);
+            var isMaxCorrect = double.TryParse(textBoxWithPlaceholder2.Text, out var max);
+            if (isMinCorrect &&
+                isMaxCorrect &&
                 CheckGenerationUniformDistributionValues(min, max))
             {
+                textBoxWithPlaceholder2.BackColor = Color.White;
                 SettingsModel.SetGenerationStreamDistribution(new UniformDistribution(min, max));
+            }
+            
+            if(!isMaxCorrect || !SettingsModel.SettingService.CheckGenerationUniformDistributionValue(max)
+            || isMinCorrect && !CheckGenerationUniformDistributionValues(min, max))
+            {
+                textBoxWithPlaceholder2.BackColor = Color.Crimson;
             }
         }
 
@@ -411,6 +462,88 @@ namespace ParkingSimulationForms
                    SettingsModel.SettingService.CheckGenerationUniformDistributionValue(maxValue);
         }
         
+        private void textBoxWithPlaceholder3_TextChanged(object sender, EventArgs e)
+        {
+            if(!radioButton4.Checked) return;
+            if (textBoxWithPlaceholder3.IsCorrect)
+            {
+                textBoxWithPlaceholder3.BackColor = Color.White;
+                if (!textBoxWithPlaceholder4.IsCorrect) return;
+                textBoxWithPlaceholder4.BackColor = Color.White;
+                SettingsModel.SetGenerationStreamDistribution(
+                    new NormalDistribution(textBoxWithPlaceholder3.CurrentValue, textBoxWithPlaceholder4.CurrentValue)
+                );
+            }
+            else
+            {
+                textBoxWithPlaceholder3.BackColor = Color.Crimson;
+            }
+        }
+
+        private void textBoxWithPlaceholder4_TextChanged(object sender, EventArgs e)
+        {
+            if(!radioButton4.Checked) return;
+            if (textBoxWithPlaceholder4.IsCorrect)
+            {
+                textBoxWithPlaceholder4.BackColor = Color.White;
+                if (!textBoxWithPlaceholder3.IsCorrect) return;
+                textBoxWithPlaceholder3.BackColor = Color.White;
+                SettingsModel.SetGenerationStreamDistribution(
+                    new NormalDistribution(textBoxWithPlaceholder3.CurrentValue,
+                        textBoxWithPlaceholder4.CurrentValue)
+                );
+            }
+            else
+            {
+                textBoxWithPlaceholder4.BackColor = Color.Crimson;
+            }
+        }
         
+        #endregion
+
+        private void radioButton5Normal_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton5.Checked && textBoxWithPlaceholder5.IsCorrect)
+            {
+                SettingsModel.SetGenerationStreamDistribution(
+                    new ExponentialDistribution(textBoxWithPlaceholder5.CurrentValue)
+                );
+            }
+            else
+            {
+                SettingsModel.SetGenerationStreamDistribution(null);
+            }
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton4.Checked && textBoxWithPlaceholder3.IsCorrect && textBoxWithPlaceholder4.IsCorrect)
+            {
+                SettingsModel.SetGenerationStreamDistribution(
+                    new NormalDistribution(textBoxWithPlaceholder3.CurrentValue,
+                        textBoxWithPlaceholder4.CurrentValue)
+                );
+            }
+            else
+            {
+                SettingsModel.SetGenerationStreamDistribution(null);
+            }
+        }
+
+        private void textBoxWithPlaceholder5_TextChanged(object sender, EventArgs e)
+        {
+            if(!radioButton5.Checked) return;
+            if (textBoxWithPlaceholder5.IsCorrect)
+            {
+                textBoxWithPlaceholder4.BackColor = Color.White;
+                SettingsModel.SetGenerationStreamDistribution(
+                    new ExponentialDistribution(textBoxWithPlaceholder5.CurrentValue)
+                );
+            }
+            else
+            {
+                textBoxWithPlaceholder5.BackColor = Color.Crimson;
+            }
+        }
     }
 }

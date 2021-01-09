@@ -136,13 +136,13 @@ namespace ParkingSimulationForms
             this.panel11.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.counterVertical)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.counterHorizontal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.counterVertical)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.counterHorizontal)).BeginInit();
             this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureRoadBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureRoadBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureRoadBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureRoadBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureRoadBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureRoadBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureRoadBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureRoadBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -152,7 +152,7 @@ namespace ParkingSimulationForms
             this.panel6.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox2)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -167,7 +167,7 @@ namespace ParkingSimulationForms
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
@@ -178,7 +178,7 @@ namespace ParkingSimulationForms
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(230)))), ((int)(((byte)(249)))));
+            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (218)))), ((int) (((byte) (230)))), ((int) (((byte) (249)))));
             this.tabPage1.Controls.Add(this.panel11);
             this.tabPage1.Controls.Add(this.panel10);
             this.tabPage1.Controls.Add(this.panel1);
@@ -187,7 +187,7 @@ namespace ParkingSimulationForms
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.panel9);
-            this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tabPage1.Name = "tabPage1";
@@ -198,7 +198,7 @@ namespace ParkingSimulationForms
             // 
             // panel11
             // 
-            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (224)))), ((int) (((byte) (224)))), ((int) (((byte) (224)))));
             this.panel11.Controls.Add(this.label26);
             this.panel11.Controls.Add(this.domainUpDown1);
             this.panel11.Location = new System.Drawing.Point(11, 330);
@@ -210,7 +210,7 @@ namespace ParkingSimulationForms
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label26.Location = new System.Drawing.Point(4, 4);
             this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label26.Name = "label26";
@@ -245,8 +245,8 @@ namespace ParkingSimulationForms
             // 
             // saveButton
             // 
-            this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(194)))), ((int)(((byte)(251)))));
-            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (172)))), ((int) (((byte) (194)))), ((int) (((byte) (251)))));
+            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.saveButton.Location = new System.Drawing.Point(15, 74);
             this.saveButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton.Name = "saveButton";
@@ -258,8 +258,8 @@ namespace ParkingSimulationForms
             // 
             // button7
             // 
-            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(194)))), ((int)(((byte)(251)))));
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button7.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (172)))), ((int) (((byte) (194)))), ((int) (((byte) (251)))));
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button7.Location = new System.Drawing.Point(371, 74);
             this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
@@ -271,8 +271,8 @@ namespace ParkingSimulationForms
             // 
             // button8
             // 
-            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(194)))), ((int)(((byte)(251)))));
-            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button8.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (172)))), ((int) (((byte) (194)))), ((int) (((byte) (251)))));
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button8.Location = new System.Drawing.Point(371, 15);
             this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
@@ -284,7 +284,7 @@ namespace ParkingSimulationForms
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (230)))), ((int) (((byte) (230)))), ((int) (((byte) (230)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.button6);
             this.panel1.Controls.Add(this.button5);
@@ -302,7 +302,7 @@ namespace ParkingSimulationForms
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.White;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button6.Location = new System.Drawing.Point(232, 165);
             this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
@@ -315,7 +315,7 @@ namespace ParkingSimulationForms
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.White;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button5.Location = new System.Drawing.Point(232, 110);
             this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
@@ -328,7 +328,7 @@ namespace ParkingSimulationForms
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.White;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button4.Location = new System.Drawing.Point(232, 54);
             this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
@@ -341,7 +341,7 @@ namespace ParkingSimulationForms
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button3.Location = new System.Drawing.Point(24, 165);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
@@ -354,7 +354,7 @@ namespace ParkingSimulationForms
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button2.Location = new System.Drawing.Point(24, 110);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
@@ -367,7 +367,7 @@ namespace ParkingSimulationForms
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button1.Location = new System.Drawing.Point(24, 54);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
@@ -380,91 +380,67 @@ namespace ParkingSimulationForms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label3.Location = new System.Drawing.Point(101, 20);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(134, 16);
+            this.label3.Size = new System.Drawing.Size(133, 16);
             this.label3.TabIndex = 5;
             this.label3.Text = "Шаблоны объектов";
             // 
             // counterVertical
             // 
-            this.counterVertical.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.counterVertical.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.counterVertical.Location = new System.Drawing.Point(365, 57);
             this.counterVertical.Margin = new System.Windows.Forms.Padding(4);
-            this.counterVertical.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.counterVertical.Minimum = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
+            this.counterVertical.Maximum = new decimal(new int[] {8, 0, 0, 0});
+            this.counterVertical.Minimum = new decimal(new int[] {4, 0, 0, 0});
             this.counterVertical.Name = "counterVertical";
             this.counterVertical.Size = new System.Drawing.Size(76, 22);
             this.counterVertical.TabIndex = 3;
             this.counterVertical.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.counterVertical.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
+            this.counterVertical.Value = new decimal(new int[] {8, 0, 0, 0});
             this.counterVertical.ValueChanged += new System.EventHandler(this.counterVertical_ValueChanged);
             // 
             // counterHorizontal
             // 
-            this.counterHorizontal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.counterHorizontal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.counterHorizontal.Location = new System.Drawing.Point(365, 22);
             this.counterHorizontal.Margin = new System.Windows.Forms.Padding(4);
-            this.counterHorizontal.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.counterHorizontal.Minimum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
+            this.counterHorizontal.Maximum = new decimal(new int[] {8, 0, 0, 0});
+            this.counterHorizontal.Minimum = new decimal(new int[] {3, 0, 0, 0});
             this.counterHorizontal.Name = "counterHorizontal";
             this.counterHorizontal.Size = new System.Drawing.Size(76, 22);
             this.counterHorizontal.TabIndex = 2;
             this.counterHorizontal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.counterHorizontal.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
+            this.counterHorizontal.Value = new decimal(new int[] {8, 0, 0, 0});
             this.counterHorizontal.ValueChanged += new System.EventHandler(this.counterHorizontal_ValueChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label2.Location = new System.Drawing.Point(32, 59);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(229, 16);
+            this.label2.Size = new System.Drawing.Size(228, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "Количество клеток по вертикали:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label1.Location = new System.Drawing.Point(32, 25);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(244, 16);
+            this.label1.Size = new System.Drawing.Size(243, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Количество клеток по горизонтали:";
             // 
             // panel9
             // 
-            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (192)))), ((int) (((byte) (255)))), ((int) (((byte) (192)))));
             this.panel9.Controls.Add(this.pictureRoadBox4);
             this.panel9.Controls.Add(this.pictureRoadBox3);
             this.panel9.Controls.Add(this.pictureRoadBox2);
@@ -546,7 +522,7 @@ namespace ParkingSimulationForms
             // 
             // tabPage2
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(230)))), ((int)(((byte)(249)))));
+            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (218)))), ((int) (((byte) (230)))), ((int) (((byte) (249)))));
             this.tabPage2.Controls.Add(this.panel2);
             this.tabPage2.Controls.Add(this.panel5);
             this.tabPage2.Controls.Add(this.panel4);
@@ -560,7 +536,7 @@ namespace ParkingSimulationForms
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (230)))), ((int) (((byte) (230)))), ((int) (((byte) (230)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.textBoxWithPlaceholder6);
             this.panel2.Controls.Add(this.textBoxWithPlaceholder7);
@@ -580,7 +556,7 @@ namespace ParkingSimulationForms
             // 
             // textBoxWithPlaceholder6
             // 
-            this.textBoxWithPlaceholder6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxWithPlaceholder6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder6.ForeColor = System.Drawing.Color.Gray;
             this.textBoxWithPlaceholder6.Location = new System.Drawing.Point(262, 161);
             this.textBoxWithPlaceholder6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -593,7 +569,7 @@ namespace ParkingSimulationForms
             // 
             // textBoxWithPlaceholder7
             // 
-            this.textBoxWithPlaceholder7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxWithPlaceholder7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder7.ForeColor = System.Drawing.Color.Gray;
             this.textBoxWithPlaceholder7.Location = new System.Drawing.Point(374, 129);
             this.textBoxWithPlaceholder7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -606,7 +582,7 @@ namespace ParkingSimulationForms
             // 
             // textBoxWithPlaceholder8
             // 
-            this.textBoxWithPlaceholder8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxWithPlaceholder8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder8.ForeColor = System.Drawing.Color.Gray;
             this.textBoxWithPlaceholder8.Location = new System.Drawing.Point(262, 130);
             this.textBoxWithPlaceholder8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -619,7 +595,7 @@ namespace ParkingSimulationForms
             // 
             // textBoxWithPlaceholder9
             // 
-            this.textBoxWithPlaceholder9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxWithPlaceholder9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder9.ForeColor = System.Drawing.Color.Gray;
             this.textBoxWithPlaceholder9.Location = new System.Drawing.Point(262, 99);
             this.textBoxWithPlaceholder9.Margin = new System.Windows.Forms.Padding(5);
@@ -632,7 +608,7 @@ namespace ParkingSimulationForms
             // 
             // textBoxWithPlaceholder10
             // 
-            this.textBoxWithPlaceholder10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxWithPlaceholder10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder10.ForeColor = System.Drawing.Color.Gray;
             this.textBoxWithPlaceholder10.Location = new System.Drawing.Point(374, 99);
             this.textBoxWithPlaceholder10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -646,7 +622,7 @@ namespace ParkingSimulationForms
             // radioButton6
             // 
             this.radioButton6.AutoSize = true;
-            this.radioButton6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButton6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.radioButton6.Location = new System.Drawing.Point(33, 161);
             this.radioButton6.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton6.Name = "radioButton6";
@@ -658,21 +634,19 @@ namespace ParkingSimulationForms
             // radioButton7
             // 
             this.radioButton7.AutoSize = true;
-            this.radioButton7.Checked = true;
-            this.radioButton7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButton7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.radioButton7.Location = new System.Drawing.Point(33, 130);
             this.radioButton7.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton7.Name = "radioButton7";
             this.radioButton7.Size = new System.Drawing.Size(101, 19);
             this.radioButton7.TabIndex = 4;
-            this.radioButton7.TabStop = true;
             this.radioButton7.Text = "Нормальный";
             this.radioButton7.UseVisualStyleBackColor = true;
             // 
             // radioButton8
             // 
             this.radioButton8.AutoSize = true;
-            this.radioButton8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButton8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.radioButton8.Location = new System.Drawing.Point(33, 100);
             this.radioButton8.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton8.Name = "radioButton8";
@@ -683,7 +657,7 @@ namespace ParkingSimulationForms
             // 
             // panel7
             // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (230)))), ((int) (((byte) (230)))), ((int) (((byte) (230)))));
             this.panel7.Controls.Add(this.textBoxWithPlaceholder11);
             this.panel7.Controls.Add(this.radioButton9);
             this.panel7.Controls.Add(this.radioButton10);
@@ -696,7 +670,7 @@ namespace ParkingSimulationForms
             // textBoxWithPlaceholder11
             // 
             this.textBoxWithPlaceholder11.Enabled = false;
-            this.textBoxWithPlaceholder11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxWithPlaceholder11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder11.ForeColor = System.Drawing.Color.Gray;
             this.textBoxWithPlaceholder11.Location = new System.Drawing.Point(258, 5);
             this.textBoxWithPlaceholder11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -711,12 +685,14 @@ namespace ParkingSimulationForms
             // radioButton9
             // 
             this.radioButton9.AutoSize = true;
-            this.radioButton9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButton9.Checked = true;
+            this.radioButton9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.radioButton9.Location = new System.Drawing.Point(4, 4);
             this.radioButton9.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton9.Name = "radioButton9";
             this.radioButton9.Size = new System.Drawing.Size(150, 19);
             this.radioButton9.TabIndex = 1;
+            this.radioButton9.TabStop = true;
             this.radioButton9.Text = "Детерминированный";
             this.radioButton9.UseVisualStyleBackColor = true;
             this.radioButton9.CheckedChanged += new System.EventHandler(this.radioButton9_CheckedChanged);
@@ -724,31 +700,29 @@ namespace ParkingSimulationForms
             // radioButton10
             // 
             this.radioButton10.AutoSize = true;
-            this.radioButton10.Checked = true;
-            this.radioButton10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButton10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.radioButton10.Location = new System.Drawing.Point(4, 34);
             this.radioButton10.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton10.Name = "radioButton10";
             this.radioButton10.Size = new System.Drawing.Size(88, 19);
             this.radioButton10.TabIndex = 2;
-            this.radioButton10.TabStop = true;
             this.radioButton10.Text = "Случайный";
             this.radioButton10.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label5.Location = new System.Drawing.Point(100, 11);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(261, 16);
+            this.label5.Size = new System.Drawing.Size(260, 16);
             this.label5.TabIndex = 0;
             this.label5.Text = "Настройка времени стоянки (мин)";
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (230)))), ((int) (((byte) (230)))), ((int) (((byte) (230)))));
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.label14);
             this.panel5.Controls.Add(this.label13);
@@ -767,28 +741,28 @@ namespace ParkingSimulationForms
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label14.Location = new System.Drawing.Point(321, 140);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(34, 16);
+            this.label14.Size = new System.Drawing.Size(33, 16);
             this.label14.TabIndex = 13;
             this.label14.Text = "50%";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label13.Location = new System.Drawing.Point(99, 143);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(20, 16);
+            this.label13.Size = new System.Drawing.Size(19, 16);
             this.label13.TabIndex = 12;
             this.label13.Text = "%";
             // 
             // textBox5
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBox5.Location = new System.Drawing.Point(28, 140);
             this.textBox5.Margin = new System.Windows.Forms.Padding(4);
             this.textBox5.MaxLength = 3;
@@ -802,39 +776,39 @@ namespace ParkingSimulationForms
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label12.Location = new System.Drawing.Point(321, 120);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(93, 16);
+            this.label12.Size = new System.Drawing.Size(92, 16);
             this.label12.TabIndex = 10;
             this.label12.Text = "Легковых ТС:";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label11.Location = new System.Drawing.Point(25, 120);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(94, 16);
+            this.label11.Size = new System.Drawing.Size(93, 16);
             this.label11.TabIndex = 9;
             this.label11.Text = "Грузовых ТС:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label10.Location = new System.Drawing.Point(25, 88);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 16);
+            this.label10.Size = new System.Drawing.Size(71, 16);
             this.label10.TabIndex = 8;
             this.label10.Text = "Процент";
             // 
             // textBox4
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBox4.Location = new System.Drawing.Point(24, 37);
             this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Name = "textBox4";
@@ -847,17 +821,17 @@ namespace ParkingSimulationForms
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label9.Location = new System.Drawing.Point(21, 17);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(281, 16);
+            this.label9.Size = new System.Drawing.Size(280, 16);
             this.label9.TabIndex = 6;
             this.label9.Text = "Вероятность заезда ТС на парковку";
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (230)))), ((int) (((byte) (230)))), ((int) (((byte) (230)))));
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.textBox3);
             this.panel4.Controls.Add(this.textBox2);
@@ -872,7 +846,7 @@ namespace ParkingSimulationForms
             // 
             // textBox3
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBox3.Location = new System.Drawing.Point(367, 108);
             this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
@@ -884,7 +858,7 @@ namespace ParkingSimulationForms
             // 
             // textBox2
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBox2.Location = new System.Drawing.Point(367, 58);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
@@ -897,39 +871,39 @@ namespace ParkingSimulationForms
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label8.Location = new System.Drawing.Point(21, 108);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(150, 16);
+            this.label8.Size = new System.Drawing.Size(149, 16);
             this.label8.TabIndex = 3;
             this.label8.Text = "Ночной тариф (руб/ч)";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label7.Location = new System.Drawing.Point(21, 64);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(157, 16);
+            this.label7.Size = new System.Drawing.Size(156, 16);
             this.label7.TabIndex = 2;
             this.label7.Text = "Дневной тариф (руб/ч)";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label6.Location = new System.Drawing.Point(141, 17);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(148, 16);
+            this.label6.Size = new System.Drawing.Size(147, 16);
             this.label6.TabIndex = 1;
             this.label6.Text = "Настройка тарифа";
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (230)))), ((int) (((byte) (230)))), ((int) (((byte) (230)))));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.textBoxWithPlaceholder5);
             this.panel3.Controls.Add(this.textBoxWithPlaceholder4);
@@ -949,7 +923,7 @@ namespace ParkingSimulationForms
             // 
             // textBoxWithPlaceholder5
             // 
-            this.textBoxWithPlaceholder5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxWithPlaceholder5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder5.ForeColor = System.Drawing.Color.Gray;
             this.textBoxWithPlaceholder5.Location = new System.Drawing.Point(266, 161);
             this.textBoxWithPlaceholder5.Margin = new System.Windows.Forms.Padding(5);
@@ -959,10 +933,11 @@ namespace ParkingSimulationForms
             this.textBoxWithPlaceholder5.TabIndex = 12;
             this.textBoxWithPlaceholder5.Text = "lambda";
             this.textBoxWithPlaceholder5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxWithPlaceholder5.Leave += new System.EventHandler(this.textBoxWithPlaceholder5_TextChanged);
             // 
             // textBoxWithPlaceholder4
             // 
-            this.textBoxWithPlaceholder4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxWithPlaceholder4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder4.ForeColor = System.Drawing.Color.Gray;
             this.textBoxWithPlaceholder4.Location = new System.Drawing.Point(367, 129);
             this.textBoxWithPlaceholder4.Margin = new System.Windows.Forms.Padding(5);
@@ -972,10 +947,11 @@ namespace ParkingSimulationForms
             this.textBoxWithPlaceholder4.TabIndex = 11;
             this.textBoxWithPlaceholder4.Text = "D";
             this.textBoxWithPlaceholder4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxWithPlaceholder4.Leave += new System.EventHandler(this.textBoxWithPlaceholder4_TextChanged);
             // 
             // textBoxWithPlaceholder3
             // 
-            this.textBoxWithPlaceholder3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxWithPlaceholder3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder3.ForeColor = System.Drawing.Color.Gray;
             this.textBoxWithPlaceholder3.Location = new System.Drawing.Point(266, 130);
             this.textBoxWithPlaceholder3.Margin = new System.Windows.Forms.Padding(5);
@@ -985,10 +961,11 @@ namespace ParkingSimulationForms
             this.textBoxWithPlaceholder3.TabIndex = 10;
             this.textBoxWithPlaceholder3.Text = "M";
             this.textBoxWithPlaceholder3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxWithPlaceholder3.Leave += new System.EventHandler(this.textBoxWithPlaceholder3_TextChanged);
             // 
             // textBoxWithPlaceholder1
             // 
-            this.textBoxWithPlaceholder1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxWithPlaceholder1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder1.ForeColor = System.Drawing.Color.Gray;
             this.textBoxWithPlaceholder1.Location = new System.Drawing.Point(266, 99);
             this.textBoxWithPlaceholder1.Margin = new System.Windows.Forms.Padding(5);
@@ -998,11 +975,11 @@ namespace ParkingSimulationForms
             this.textBoxWithPlaceholder1.TabIndex = 9;
             this.textBoxWithPlaceholder1.Text = "min";
             this.textBoxWithPlaceholder1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxWithPlaceholder1.TextChanged += new System.EventHandler(this.textBoxMin_TextChanged);
+            this.textBoxWithPlaceholder1.Leave += new System.EventHandler(this.textBoxMin_TextChanged);
             // 
             // textBoxWithPlaceholder2
             // 
-            this.textBoxWithPlaceholder2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxWithPlaceholder2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder2.ForeColor = System.Drawing.Color.Gray;
             this.textBoxWithPlaceholder2.Location = new System.Drawing.Point(367, 99);
             this.textBoxWithPlaceholder2.Margin = new System.Windows.Forms.Padding(5);
@@ -1012,12 +989,12 @@ namespace ParkingSimulationForms
             this.textBoxWithPlaceholder2.TabIndex = 8;
             this.textBoxWithPlaceholder2.Text = "max";
             this.textBoxWithPlaceholder2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxWithPlaceholder2.TextChanged += new System.EventHandler(this.textBoxMax_TextChanged);
+            this.textBoxWithPlaceholder2.Leave += new System.EventHandler(this.textBoxMax_TextChanged);
             // 
             // radioButton5
             // 
             this.radioButton5.AutoSize = true;
-            this.radioButton5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButton5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.radioButton5.Location = new System.Drawing.Point(33, 161);
             this.radioButton5.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton5.Name = "radioButton5";
@@ -1025,25 +1002,25 @@ namespace ParkingSimulationForms
             this.radioButton5.TabIndex = 5;
             this.radioButton5.Text = "Показательный";
             this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButton5.CheckedChanged += new System.EventHandler(this.radioButton5Normal_CheckedChanged);
             // 
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Checked = true;
-            this.radioButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.radioButton4.Location = new System.Drawing.Point(33, 130);
             this.radioButton4.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(101, 19);
             this.radioButton4.TabIndex = 4;
-            this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Нормальный";
             this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.radioButton3.Location = new System.Drawing.Point(33, 100);
             this.radioButton3.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton3.Name = "radioButton3";
@@ -1054,7 +1031,7 @@ namespace ParkingSimulationForms
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (230)))), ((int) (((byte) (230)))), ((int) (((byte) (230)))));
             this.panel6.Controls.Add(this.textBox1);
             this.panel6.Controls.Add(this.radioButton1);
             this.panel6.Controls.Add(this.radioButton2);
@@ -1066,8 +1043,9 @@ namespace ParkingSimulationForms
             // 
             // textBox1
             // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
             this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBox1.ForeColor = System.Drawing.Color.Gray;
             this.textBox1.Location = new System.Drawing.Point(262, 5);
             this.textBox1.Margin = new System.Windows.Forms.Padding(5);
@@ -1082,12 +1060,14 @@ namespace ParkingSimulationForms
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButton1.Checked = true;
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.radioButton1.Location = new System.Drawing.Point(4, 4);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(150, 19);
             this.radioButton1.TabIndex = 1;
+            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Детерминированный";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
@@ -1095,14 +1075,12 @@ namespace ParkingSimulationForms
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Checked = true;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.radioButton2.Location = new System.Drawing.Point(4, 34);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(88, 19);
             this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Случайный";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.RandomGenerationStreamCheckboxCheckedChanged);
@@ -1110,17 +1088,17 @@ namespace ParkingSimulationForms
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label4.Location = new System.Drawing.Point(100, 11);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(269, 16);
+            this.label4.Size = new System.Drawing.Size(268, 16);
             this.label4.TabIndex = 0;
             this.label4.Text = "Настройка генерации потока (мин)";
             // 
             // tabPage3
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(230)))), ((int)(((byte)(249)))));
+            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (218)))), ((int) (((byte) (230)))), ((int) (((byte) (249)))));
             this.tabPage3.Controls.Add(this.panel8);
             this.tabPage3.Controls.Add(this.label15);
             this.tabPage3.Controls.Add(this.button12);
@@ -1150,33 +1128,33 @@ namespace ParkingSimulationForms
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label18.Location = new System.Drawing.Point(225, 46);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(15, 16);
+            this.label18.Size = new System.Drawing.Size(14, 16);
             this.label18.TabIndex = 17;
             this.label18.Text = "2";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label17.Location = new System.Drawing.Point(416, 18);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(15, 16);
+            this.label17.Size = new System.Drawing.Size(14, 16);
             this.label17.TabIndex = 16;
             this.label17.Text = "3";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label16.Location = new System.Drawing.Point(23, 18);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(15, 16);
+            this.label16.Size = new System.Drawing.Size(14, 16);
             this.label16.TabIndex = 15;
             this.label16.Text = "1";
             // 
@@ -1194,18 +1172,18 @@ namespace ParkingSimulationForms
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label15.Location = new System.Drawing.Point(565, 299);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(220, 16);
+            this.label15.Size = new System.Drawing.Size(219, 16);
             this.label15.TabIndex = 13;
             this.label15.Text = "Ускорение модельного времени";
             // 
             // button12
             // 
-            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(194)))), ((int)(((byte)(251)))));
-            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button12.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (172)))), ((int) (((byte) (194)))), ((int) (((byte) (251)))));
+            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button12.Location = new System.Drawing.Point(644, 223);
             this.button12.Margin = new System.Windows.Forms.Padding(4);
             this.button12.Name = "button12";
@@ -1216,8 +1194,8 @@ namespace ParkingSimulationForms
             // 
             // button11
             // 
-            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(194)))), ((int)(((byte)(251)))));
-            this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button11.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (172)))), ((int) (((byte) (194)))), ((int) (((byte) (251)))));
+            this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button11.Location = new System.Drawing.Point(644, 139);
             this.button11.Margin = new System.Windows.Forms.Padding(4);
             this.button11.Name = "button11";
@@ -1228,8 +1206,8 @@ namespace ParkingSimulationForms
             // 
             // button10
             // 
-            this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(194)))), ((int)(((byte)(251)))));
-            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button10.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (172)))), ((int) (((byte) (194)))), ((int) (((byte) (251)))));
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button10.Location = new System.Drawing.Point(644, 55);
             this.button10.Margin = new System.Windows.Forms.Padding(4);
             this.button10.Name = "button10";
@@ -1250,7 +1228,7 @@ namespace ParkingSimulationForms
             // 
             // tabPage4
             // 
-            this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(230)))), ((int)(((byte)(249)))));
+            this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (218)))), ((int) (((byte) (230)))), ((int) (((byte) (249)))));
             this.tabPage4.Controls.Add(this.tableLayoutPanel2);
             this.tabPage4.Controls.Add(this.tableLayoutPanel1);
             this.tabPage4.Location = new System.Drawing.Point(4, 26);
@@ -1295,7 +1273,7 @@ namespace ParkingSimulationForms
             // 
             // tabPage5
             // 
-            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(230)))), ((int)(((byte)(249)))));
+            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (218)))), ((int) (((byte) (230)))), ((int) (((byte) (249)))));
             this.tabPage5.Controls.Add(this.tableLayoutPanel3);
             this.tabPage5.Controls.Add(this.dateTimePicker2);
             this.tabPage5.Controls.Add(this.label20);
@@ -1330,7 +1308,7 @@ namespace ParkingSimulationForms
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.dateTimePicker2.Location = new System.Drawing.Point(199, 63);
             this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker2.Name = "dateTimePicker2";
@@ -1341,7 +1319,7 @@ namespace ParkingSimulationForms
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label20.Location = new System.Drawing.Point(31, 63);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
@@ -1351,7 +1329,7 @@ namespace ParkingSimulationForms
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.dateTimePicker1.Location = new System.Drawing.Point(199, 18);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
@@ -1362,7 +1340,7 @@ namespace ParkingSimulationForms
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label19.Location = new System.Drawing.Point(31, 18);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
@@ -1372,7 +1350,7 @@ namespace ParkingSimulationForms
             // 
             // tabPage6
             // 
-            this.tabPage6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(230)))), ((int)(((byte)(249)))));
+            this.tabPage6.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (218)))), ((int) (((byte) (230)))), ((int) (((byte) (249)))));
             this.tabPage6.Controls.Add(this.button13);
             this.tabPage6.Controls.Add(this.label25);
             this.tabPage6.Controls.Add(this.label24);
@@ -1388,8 +1366,8 @@ namespace ParkingSimulationForms
             // 
             // button13
             // 
-            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(194)))), ((int)(((byte)(251)))));
-            this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button13.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (172)))), ((int) (((byte) (194)))), ((int) (((byte) (251)))));
+            this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.button13.Location = new System.Drawing.Point(436, 325);
             this.button13.Margin = new System.Windows.Forms.Padding(5);
             this.button13.Name = "button13";
@@ -1400,7 +1378,7 @@ namespace ParkingSimulationForms
             // 
             // label25
             // 
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label25.Location = new System.Drawing.Point(476, 277);
             this.label25.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label25.Name = "label25";
@@ -1411,7 +1389,7 @@ namespace ParkingSimulationForms
             // 
             // label24
             // 
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label24.Location = new System.Drawing.Point(443, 207);
             this.label24.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label24.Name = "label24";
@@ -1422,7 +1400,7 @@ namespace ParkingSimulationForms
             // 
             // label23
             // 
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label23.Location = new System.Drawing.Point(261, 156);
             this.label23.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label23.Name = "label23";
@@ -1433,31 +1411,30 @@ namespace ParkingSimulationForms
             // 
             // label22
             // 
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label22.Location = new System.Drawing.Point(187, 75);
             this.label22.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(631, 47);
             this.label22.TabIndex = 1;
-            this.label22.Text = "Курсовой проект по дисциплине \"Программная инженерия\"\r\nпо теме \"Система моделиров" +
-    "ания работы платной парковки\"";
+            this.label22.Text = "Курсовой проект по дисциплине \"Программная инженерия\"\r\nпо теме \"Система моделиров" + "ания работы платной парковки\"";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.label21.Location = new System.Drawing.Point(261, 33);
             this.label21.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(382, 16);
+            this.label21.Size = new System.Drawing.Size(381, 16);
             this.label21.TabIndex = 0;
             this.label21.Text = "Самарский университет, факультет информатики";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // elementsImageList
             // 
-            this.elementsImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("elementsImageList.ImageStream")));
+            this.elementsImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer) (resources.GetObject("elementsImageList.ImageStream")));
             this.elementsImageList.TransparentColor = System.Drawing.Color.Transparent;
             this.elementsImageList.Images.SetKeyName(0, "test.png");
             this.elementsImageList.Images.SetKeyName(1, "cashier_element.png");
@@ -1488,13 +1465,13 @@ namespace ParkingSimulationForms
             this.panel10.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.counterVertical)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.counterHorizontal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.counterVertical)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.counterHorizontal)).EndInit();
             this.panel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureRoadBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureRoadBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureRoadBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureRoadBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureRoadBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureRoadBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureRoadBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureRoadBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -1512,14 +1489,13 @@ namespace ParkingSimulationForms
             this.tabPage3.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.pictureBox2)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
         #endregion

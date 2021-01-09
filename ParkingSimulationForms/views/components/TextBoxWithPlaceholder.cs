@@ -9,6 +9,7 @@ namespace ParkingSimulationForms.views.components
         public double maxValue;
         public bool IsCheckCorrect = false;
         public bool IsCorrect;
+        public double CurrentValue;
         
         System.Drawing.Color DefaultColor;
         private string _placeHolderText;
@@ -108,10 +109,15 @@ namespace ParkingSimulationForms.views.components
 
             TextChanged += (sender, args) =>
             {
+                var isParse = double.TryParse(Text, out var value);
                 IsCorrect = IsCheckCorrect &&
-                            double.TryParse(Text, out var value) &&
+                            isParse &&
                             value >= this.minValue &&
                             value <= this.maxValue;
+                if (IsCorrect)
+                {
+                    CurrentValue = value;
+                }
             };
         }
     }
