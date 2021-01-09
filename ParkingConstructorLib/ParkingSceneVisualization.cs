@@ -4,6 +4,7 @@ using System.Drawing;
 using ParkingConstructorLib.logic;
 using ParkingConstructorLib.models;
 using ParkingConstructorLib.models.vehicles;
+using ParkingConstructorLib.services;
 
 namespace ParkingConstructorLib
 {
@@ -13,9 +14,10 @@ namespace ParkingConstructorLib
     public class ParkingSceneVisualization<T> where T: class
     {
         private ParkingModel<T> parkingModel;
-        private MapAvailable<T> mapAvailable;
+        private DynamicMap<T> dynamicMap;
         private static Bitmap[] textures;
-        private static Bitmap image;
+        private DrawerService<T> drawer;//Отрисовщик
+        private MovementService<T> movement;//Передвижения
 
         public ParkingSceneVisualization()
         {
@@ -28,56 +30,72 @@ namespace ParkingConstructorLib
 
         public void NextStep(DateTime modelTime)
         {
-            mapAvailable.nextStep(modelTime);
+            int[,,] localMap;
+            LinkedList<AbstractVehicleModel> removedCars = new LinkedList<AbstractVehicleModel>();
+            LinkedList<AbstractVehicleModel> cars = dynamicMap.getVehicles();
+            foreach (AbstractVehicleModel car in cars)
+            {
+                localMap = dynamicMap.CreateAndInitLocalMap();
+                Coors[] way = movement.foundWay(localMap, car);
+                AbstractVehicleModel[] remCars = movement.nextSystemStep(localMap, car, way, modelTime);
+                for (int i = 0; i < remCars.Length; i++)
+                    removedCars.AddLast(remCars[i]);
+            }
+            try
+            {
+                foreach (AbstractVehicleModel carTemp in removedCars)
+                    cars.Remove(carTemp);
+            }
+            catch (Exception) { }
+            drawer.Draw(cars);
         }
 
         public void CreateCar(int timeWaitOnParkingInSeconds)
         {
             if(!IsCanAddVehicle(CarType.Car)) return;
-            var carVehicleModel = new CarVehicleModel(mapAvailable.SpawnRow, mapAvailable.SpawnCol);
+            var carVehicleModel = new CarVehicleModel(dynamicMap.SpawnRow, dynamicMap.SpawnCol);
             carVehicleModel.SetSecondsOnParking(timeWaitOnParkingInSeconds);
             
-            mapAvailable.addCar(carVehicleModel);
+            dynamicMap.addCar(carVehicleModel);
+            drawer.Draw(dynamicMap.getVehicles());
         }
 
         public void CreateTruck(int timeWaitOnParkingInSeconds)
         {
             if(!IsCanAddVehicle(CarType.Truck)) return;
-            var truckVehicleModel = new TruckVehicleModel(mapAvailable.SpawnRow, mapAvailable.SpawnCol);
+            var truckVehicleModel = new TruckVehicleModel(dynamicMap.SpawnRow, dynamicMap.SpawnCol);
             truckVehicleModel.SetSecondsOnParking(timeWaitOnParkingInSeconds);
             
-            mapAvailable.addCar(truckVehicleModel);
+            dynamicMap.addCar(truckVehicleModel);
+            drawer.Draw(dynamicMap.getVehicles());
         }
 
         public void SetParkingModel(ParkingModel<T> parkingModel)
         {
             this.parkingModel = parkingModel;
-            mapAvailable = new MapAvailable<T>(this.parkingModel, textures);
-        }
-
-        public static void SetImage(Bitmap imageMap)
-        {
-            image = imageMap;
+            dynamicMap = new DynamicMap<T>(this.parkingModel);
+            movement = new MovementService<T>(this.parkingModel, dynamicMap);
+            drawer = new DrawerService<T>(this.parkingModel, textures);
         }
 
         public Bitmap GetImage()
         {
-            return image;
+            return drawer.getImage();
         }
 
         public bool IsCanAddVehicle(CarType carType)
         {
-            return mapAvailable.IsCanAddVehicle(carType);
+            return dynamicMap.IsCanAddVehicle(carType);
         }
 
         public LinkedList<AbstractVehicleModel> getVehicles()
         {
-            return mapAvailable.getVehicles();
+            return dynamicMap.getVehicles();
         }
 
         public LinkedList<AbstractParkingPlace> getParkingPlaces()
         {
-            return mapAvailable.getParkingPlaces();
+            return dynamicMap.getParkingPlaces();
         }
     }
 }

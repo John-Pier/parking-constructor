@@ -286,12 +286,7 @@ namespace ParkingSimulationForms
         {
             sceneVisualization.NextStep(dateTimeModel);
             MainFormInformationController.updateInformation(sceneVisualization, dateTimeModel, SettingsModel);
-            DrawImage();
-            SetModelTime();
-        }
-
-        private void generationStreamTimer_Tick(object sender, EventArgs e)
-        {
+            //Код таймера генератора потока должен срабатывать раз в секунду
             if (generationStreamRandom.GetRandNumber() > SettingsModel.PercentOfTrack)
             {
                 sceneVisualization.CreateCar((int)SettingsModel.ParkingTimeDistribution.GetRandNumber());
@@ -300,6 +295,23 @@ namespace ParkingSimulationForms
             {
                 sceneVisualization.CreateTruck((int)SettingsModel.ParkingTimeDistribution.GetRandNumber());
             }
+            //
+            DrawImage();
+            SetModelTime();
+        }
+
+        private void generationStreamTimer_Tick(object sender, EventArgs e)
+        {
+            /*
+            if (generationStreamRandom.GetRandNumber() > SettingsModel.PercentOfTrack)
+            {
+                sceneVisualization.CreateCar((int)SettingsModel.ParkingTimeDistribution.GetRandNumber());
+            }
+            else
+            {
+                sceneVisualization.CreateTruck((int)SettingsModel.ParkingTimeDistribution.GetRandNumber());
+            }
+            */
         }
 
         private void DrawImage()
