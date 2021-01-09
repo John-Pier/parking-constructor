@@ -214,7 +214,7 @@ namespace ParkingSimulationForms
                     InitModelTime();
                     
                     sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
-                    sceneVisualization.NextStep(Convert.ToDouble(label18.Text), dateTimeModel);
+                    sceneVisualization.NextStep(dateTimeModel);
                     
                     DrawImage();
                 }
@@ -235,7 +235,7 @@ namespace ParkingSimulationForms
 
                 if (SettingsModel.IsModelValid())
                 {
-                    sceneVisualization.SetSettingsModel(SettingsModel);
+                    //sceneVisualization.SetSettingsModel(SettingsModel);
                 }
                 else
                 {
@@ -277,14 +277,14 @@ namespace ParkingSimulationForms
             modelGeneralTimer.Stop();
             generationStreamTimer.Stop();
             sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
-            sceneVisualization.NextStep(Convert.ToDouble(label18.Text), dateTimeModel);
+            sceneVisualization.NextStep(dateTimeModel);
 
             DrawImage();
         }
 
         private void modelGeneralTimer_Tick(object sender, EventArgs e)
         {
-            sceneVisualization.NextStep(Convert.ToDouble(label18.Text), dateTimeModel);
+            sceneVisualization.NextStep(dateTimeModel);
             MainFormInformationController.updateInformation(sceneVisualization, dateTimeModel, SettingsModel);
             DrawImage();
             SetModelTime();

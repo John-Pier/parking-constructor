@@ -13,7 +13,6 @@ namespace ParkingConstructorLib
     public class ParkingSceneVisualization<T> where T: class
     {
         private ParkingModel<T> parkingModel;
-        private SettingsModel settingsModel;
         private MapAvailable<T> mapAvailable;
         private static Bitmap[] textures;
         private static Bitmap image;
@@ -27,9 +26,9 @@ namespace ParkingConstructorLib
             textures = texturesArr;
         }
 
-        public void NextStep(double accelerate, DateTime modelTime)
+        public void NextStep(DateTime modelTime)
         {
-            mapAvailable.nextStep(accelerate, modelTime);
+            mapAvailable.nextStep(modelTime);
         }
 
         public void CreateCar(int timeWaitOnParkingInSeconds)
@@ -54,11 +53,6 @@ namespace ParkingConstructorLib
         {
             this.parkingModel = parkingModel;
             mapAvailable = new MapAvailable<T>(this.parkingModel, textures);
-        }
-
-        public void SetSettingsModel(SettingsModel model)
-        {
-            settingsModel = model;
         }
 
         public static void SetImage(Bitmap imageMap)

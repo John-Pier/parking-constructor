@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
-
 namespace ParkingConstructorLib.models
 {
     public class MapAvailable<T> where T : class
@@ -21,7 +20,7 @@ namespace ParkingConstructorLib.models
         private Bitmap[] textures;
         
         public int SpawnRow;
-        public  int SpawnCol;
+        public int SpawnCol;
 
         public MapAvailable(ParkingModel<T> model, Bitmap[] textures)
         {
@@ -32,6 +31,7 @@ namespace ParkingConstructorLib.models
             carParkingPlaces = new LinkedList<AbstractParkingPlace>();
             truckParkingPlaces = new LinkedList<AbstractParkingPlace>();
             reloadMap();
+            const int textureSize = 10;
             for (int i = 0; i < model.ColumnCount; i++)
                 for (int j = 0; j < model.RowCount; j++)
                 {
@@ -47,48 +47,64 @@ namespace ParkingConstructorLib.models
                     if (model.GetElement(i, j).GetElementType() == ParkingModelElementType.Exit)
                         exitCoors = new Coors(i, j);
                 }
-            drawMapOriginal = new Bitmap(model.ColumnCount * 10, model.RowCount * 10);
+            drawMapOriginal = new Bitmap(model.ColumnCount * textureSize, model.RowCount * textureSize);
             for (int i = 0; i < model.ColumnCount; i++)
                 for (int j = 0; j < model.RowCount; j++)
-                    for (int k = 0; k < 10; k++)
-                        for (int l = 0; l < 10; l++)
+                    for (int k = 0; k < textureSize; k++)
+                        for (int l = 0; l < textureSize; l++)
                         {
-                            if (model.GetElement(i, j) != null && model.GetElement(i, j).GetElementType() == ParkingModelElementType.Entry)
-                                drawMapOriginal.SetPixel(i * 10 + k, j * 10 + l, textures[0].GetPixel(k, l));
-                            if (model.GetElement(i, j) != null && model.GetElement(i, j).GetElementType() == ParkingModelElementType.Exit)
-                                drawMapOriginal.SetPixel(i * 10 + k, j * 10 + l, textures[1].GetPixel(k, l));
-                            if (model.GetElement(i, j) != null && model.GetElement(i, j).GetElementType() == ParkingModelElementType.Cashier)
-                                drawMapOriginal.SetPixel(i * 10 + k, j * 10 + l, textures[2].GetPixel(k, l));
-                            if (model.GetElement(i, j) != null && model.GetElement(i, j).GetElementType() == ParkingModelElementType.ParkingSpace)
-                                drawMapOriginal.SetPixel(i * 10 + k, j * 10 + l, textures[4].GetPixel(k, l));
-                            if (model.GetElement(i, j) != null && model.GetElement(i, j).GetElementType() == ParkingModelElementType.TruckParkingSpace)
-                                drawMapOriginal.SetPixel(i * 10 + k, j * 10 + l, textures[5].GetPixel(k, l));
-                            if (model.GetElement(i, j) != null && model.GetElement(i, j).GetElementType() == ParkingModelElementType.Grass)
-                                drawMapOriginal.SetPixel(i * 10 + k, j * 10 + l, textures[3].GetPixel(k, l));
                             if (model.GetElement(i, j) == null || model.GetElement(i, j).GetElementType() == ParkingModelElementType.Road)
-                                drawMapOriginal.SetPixel(i * 10 + k, j * 10 + l, textures[10].GetPixel(k, l));
+                            {
+                                drawMapOriginal.SetPixel(i * textureSize + k, j * textureSize + l, textures[10].GetPixel(k, l));
+                                continue;
+                            }
+                            int textureIndex = -1;
+                            switch(model.GetElement(i, j).GetElementType())
+                            {
+                                case ParkingModelElementType.Entry:
+                                    textureIndex = 0;
+                                    break;
+                                case ParkingModelElementType.Exit:
+                                    textureIndex = 1;
+                                    break;
+                                case ParkingModelElementType.Cashier:
+                                    textureIndex = 2;
+                                    break;
+                                case ParkingModelElementType.ParkingSpace:
+                                    textureIndex = 4;
+                                    break;
+                                case ParkingModelElementType.TruckParkingSpace:
+                                    textureIndex = 5;
+                                    break;
+                                case ParkingModelElementType.Grass:
+                                    textureIndex = 3;
+                                    break;
+                            }
+                            if(textureIndex != -1)
+                                drawMapOriginal.SetPixel(i * textureSize + k, j * textureSize + l, textures[textureIndex].GetPixel(k, l));
                         }
             ParkingSceneVisualization<Image>.SetImage(drawMapOriginal);
         }
         public void Draw()
         {
+            const int textureSize = 10;
             Bitmap result = (Bitmap)drawMapOriginal.Clone();
             foreach (AbstractVehicleModel car in cars)
             {
                 for (int i = 0; i < model.ColumnCount; i++)
                     for (int j = 0; j < model.RowCount; j++)
                         if (car.GetCoors().Equals(new Coors(i, j)))
-                            for (int k = 0; k < 10; k++)
-                                for (int l = 0; l < 10; l++)
+                            for (int k = 0; k < textureSize; k++)
+                                for (int l = 0; l < textureSize; l++)
                                 {
                                     if (car.GetType() == "Car" && car.GetLastDirection() == LastDirection.Horizontal && textures[6].GetPixel(k, l).A > 100)
-                                        result.SetPixel(i * 10 + k, j * 10 + l, textures[6].GetPixel(k, l));
+                                        result.SetPixel(i * textureSize + k, j * textureSize + l, textures[6].GetPixel(k, l));
                                     if (car.GetType() == "Car" && car.GetLastDirection() == LastDirection.Vertical && textures[7].GetPixel(k, l).A > 100)
-                                        result.SetPixel(i * 10 + k, j * 10 + l, textures[7].GetPixel(k, l));
+                                        result.SetPixel(i * textureSize + k, j * textureSize + l, textures[7].GetPixel(k, l));
                                     if (car.GetType() == "Truck" && car.GetLastDirection() == LastDirection.Horizontal && textures[8].GetPixel(k, l).A > 100)
-                                        result.SetPixel(i * 10 + k, j * 10 + l, textures[8].GetPixel(k, l));
+                                        result.SetPixel(i * textureSize + k, j * textureSize + l, textures[8].GetPixel(k, l));
                                     if (car.GetType() == "Truck" && car.GetLastDirection() == LastDirection.Vertical && textures[9].GetPixel(k, l).A > 100)
-                                        result.SetPixel(i * 10 + k, j * 10 + l, textures[9].GetPixel(k, l));
+                                        result.SetPixel(i * textureSize + k, j * textureSize + l, textures[9].GetPixel(k, l));
                                 }
             }
             ParkingSceneVisualization<Image>.SetImage(result);
@@ -132,7 +148,7 @@ namespace ParkingConstructorLib.models
             Draw();
         }
 
-        private int[,,] initLocalMap(AbstractVehicleModel @abstract)
+        private int[,,] CreateAndInitLocalMap(AbstractVehicleModel @abstract)
         {
             int[,,] localMap = new int[model.ColumnCount, model.RowCount, 3];
             for (int i = 0; i < model.ColumnCount; i++)
@@ -154,7 +170,7 @@ namespace ParkingConstructorLib.models
             return GetWay(@abstract, localMap);
         }
 
-        private AbstractVehicleModel[] nextSystemStep(int[,,] localMap, AbstractVehicleModel vehicleModel, Coors[] way, double accelerate, DateTime modelDateTime)
+        private AbstractVehicleModel[] nextSystemStep(int[,,] localMap, AbstractVehicleModel vehicleModel, Coors[] way, DateTime modelDateTime)
         {
             LinkedList<AbstractVehicleModel> removedCars = new LinkedList<AbstractVehicleModel>();
             bool stopEnding = false;
@@ -218,7 +234,7 @@ namespace ParkingConstructorLib.models
                              && i == way.Length - 1 
                              && (stopEnding || vehicleModel.GetCoors().Equals(cashierCoors)))
                     {
-                        int[,,] localMapTemp = initLocalMap(vehicleModel);
+                        int[,,] localMapTemp = CreateAndInitLocalMap(vehicleModel);
                         Coors[] wayTemp = foundWay(localMapTemp, vehicleModel);
                        
                         for (int j = 0; j < wayTemp.Length; j++)
@@ -417,15 +433,15 @@ namespace ParkingConstructorLib.models
             return parkingPlaces != null && parkingPlaces.Any(placeForCar => !placeForCar.isBusy);
         }
 
-        public void nextStep(double accelerate, DateTime modelDateTime)
+        public void nextStep(DateTime modelDateTime)
         {
             int[,,] localMap = null;
             LinkedList<AbstractVehicleModel> removedCars = new LinkedList<AbstractVehicleModel>();
             foreach (AbstractVehicleModel car in cars)
             {
-                localMap = initLocalMap(car);
+                localMap = CreateAndInitLocalMap(car);
                 Coors[] way = foundWay(localMap, car);
-                AbstractVehicleModel[] remCars = nextSystemStep(localMap, car, way, accelerate, modelDateTime);
+                AbstractVehicleModel[] remCars = nextSystemStep(localMap, car, way, modelDateTime);
                 for (int i = 0; i < remCars.Length; i++)
                     removedCars.AddLast(remCars[i]);
             }

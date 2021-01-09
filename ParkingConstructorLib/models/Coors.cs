@@ -11,9 +11,9 @@ namespace ParkingConstructorLib.models
         public int ColumnIndex;
         public int RowIndex;
         
-        public Coors(int colIndex, int rowIndex)
+        public Coors(int columnIndex, int rowIndex)
         {
-            this.ColumnIndex = colIndex;
+            this.ColumnIndex = columnIndex;
             this.RowIndex = rowIndex;
         }
 
