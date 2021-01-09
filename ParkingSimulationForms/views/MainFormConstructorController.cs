@@ -7,17 +7,25 @@ using ParkingConstructorLib.models;
 
 namespace ParkingSimulationForms.views
 {
-    public static class MainFormConstructorController
+    public class MainFormConstructorController
     {
-        public static ParkingModelElement<Image> CurrentElement;
+        public ParkingModelElement<Image> CurrentElement;
 
-        public static ImageList ImageList;
+        public ImageList ImageList;
 
-        public static TableLayoutPanel ElementsTablePanel;
+        public TableLayoutPanel ElementsTablePanel;
 
-        public static ParkingSceneConstructor<Image> CurrentSceneConstructor;
+        public ParkingSceneConstructor<Image> CurrentSceneConstructor;
 
-        public static void DrawTemplate(int horizontal, int vertical, ParkingModel<Image> model = null)
+        public void CreateAndSetTexturesBitmapArray()
+        {
+            var texturesBitmapArray = new Bitmap[11];
+            for(var i = 0; i<11; i++)
+                texturesBitmapArray[i] = new Bitmap(ImageList.Images[i]);
+            ParkingSceneVisualization<Image>.SetTextures(texturesBitmapArray);
+        }
+
+        public void DrawTemplate(int horizontal, int vertical, ParkingModel<Image> model = null)
         {
             ElementsTablePanel.ColumnCount = horizontal;
             ElementsTablePanel.RowCount = vertical;
@@ -48,8 +56,8 @@ namespace ParkingSimulationForms.views
                     Margin = Padding.Empty,
                 };
 
-                int column = i % horizontal;
-                int row = i / horizontal;
+                var column = i % horizontal;
+                var row = i / horizontal;
 
                 if (model?.GetElement(column, row) != null)
                 {
@@ -58,7 +66,7 @@ namespace ParkingSimulationForms.views
                         .GetElementModel();
                 }
 
-                pictureBox.Click += (object sender, EventArgs e) =>
+                pictureBox.Click += (sender, e) =>
                 {
                     var picture = ((PictureBox) sender);
                     if (picture.Image != null)
