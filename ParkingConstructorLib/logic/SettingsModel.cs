@@ -20,7 +20,7 @@ namespace ParkingConstructorLib.logic
         public int PercentOfCar { get; private set;}
         public double EnteringProbability { get; private set;}
 
-        public SettingModelService SettingService = new SettingModelService();
+        public readonly SettingModelService SettingService = new SettingModelService();
         
         public SettingsModel()
         {

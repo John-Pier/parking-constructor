@@ -2,24 +2,33 @@
 {
     public class SettingModelService
     {
-        public const int MinDayTimeRate = 1;
-        public const int MaxDayTimeRate = 500;
+        public static readonly int MinDayTimeRate = 1;
+        public static readonly int MaxDayTimeRate = 500;
 
-        public const int MinNightTimeRate = 1;
-        public const int MaxNightTimeRate = 500;
+        public static readonly int MinNightTimeRate = 1;
+        public static readonly int MaxNightTimeRate = 500;
 
+        // Minutes
         
-        public const double MinGenerationDeterminedDistributionValue = 1d/6d; // 10 s
-        public const double MaxGenerationDeterminedDistributionValue = 60d; // 3600 s
+        public static readonly double MinGenerationDeterminedDistributionValue = 1d/6d; // 10 s
+        public static readonly double MaxGenerationDeterminedDistributionValue = 60d; // 3600 s
         
-        public const double MinGenerationUniformDistributionValue = 1d/6d; // 10 s
-        public const double MaxGenerationUniformDistributionValue = 60d; // 3600 s
+        public static readonly double MinGenerationUniformDistributionValue = 1d/6d; // 10 s
+        public static readonly double MaxGenerationUniformDistributionValue = 120d; // 2 h
         
-        public const double MinParkingTimeDeterminedDistributionValue = 1d/6d;
-        public const double MaxParkingTimeDeterminedDistributionValue = 60d;
+        public static readonly double MinGenerationNormalDistributionMValue = 1d/6d; // 10 s
+        public static readonly double MaxGenerationNormalDistributionMValue = 120d; // 2 h
         
-        public const double MinParkingTimeUniformDistributionValue = 1d/6d; // 10 s
-        public const double MaxParkingTimeUniformDistributionValue = 7200d; // 2 days
+        public static readonly double MinGenerationNormalDistributionDValue = 1d/60d; // 1 s
+        public static readonly double MaxGenerationNormalDistributionDValue = 10d; // 600 s
+        
+        // Hours
+        
+        public static readonly double MinParkingTimeDeterminedDistributionValue = 1d/6d;
+        public static readonly double MaxParkingTimeDeterminedDistributionValue = 60d;
+        
+        public static readonly double MinParkingTimeUniformDistributionValue = 1d/6d; // 10 s
+        public static readonly double MaxParkingTimeUniformDistributionValue = 7200d; // 2 days
         
         public bool CheckDayTimeRate(int rate)
         {

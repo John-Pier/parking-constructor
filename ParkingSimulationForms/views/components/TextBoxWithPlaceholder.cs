@@ -5,25 +5,21 @@ namespace ParkingSimulationForms.views.components
     public class TextBoxWithPlaceholder : System.Windows.Forms.TextBox
     {
 
+        public double minValue;
+        public double maxValue;
+        public bool IsCheckCorrect = false;
+        public bool IsCorrect;
+        
         System.Drawing.Color DefaultColor;
         private string _placeHolderText;
-        public string PlaceHolderText {
-            get
-            {
-                return _placeHolderText;
-            }
-            set {
-                setNewPlaceholder(value);
-                _placeHolderText = value;
-            }
-        }
 
-        private void setNewPlaceholder(string placeholder)
+        public string PlaceHolderText
         {
-            if (this.ForeColor == System.Drawing.Color.Gray || String.IsNullOrEmpty(this.Text))
+            get { return _placeHolderText; }
+            set
             {
-                this.ForeColor = System.Drawing.Color.Gray;
-                this.Text = placeholder;
+                SetNewPlaceholder(value);
+                _placeHolderText = value;
             }
         }
 
@@ -35,7 +31,7 @@ namespace ParkingSimulationForms.views.components
 
             this.GotFocus += (object sender, EventArgs e) =>
             {
-                if(this.Text == PlaceHolderText)
+                if (this.Text == PlaceHolderText)
                 {
                     this.Text = String.Empty;
                     this.ForeColor = DefaultColor;
@@ -43,7 +39,8 @@ namespace ParkingSimulationForms.views.components
             };
 
             // add event handling when focus is lost
-            this.LostFocus += (Object sender, EventArgs e) => {
+            this.LostFocus += (Object sender, EventArgs e) =>
+            {
                 if (String.IsNullOrEmpty(this.Text) || this.Text == PlaceHolderText)
                 {
                     this.ForeColor = System.Drawing.Color.Gray;
@@ -55,6 +52,7 @@ namespace ParkingSimulationForms.views.components
                 }
             };
         }
+
         public TextBoxWithPlaceholder(string placeholdertext)
         {
             // get default color of text
@@ -70,7 +68,8 @@ namespace ParkingSimulationForms.views.components
             };
 
             // add event handling when focus is lost
-            this.LostFocus += (Object sender, EventArgs e) => {
+            this.LostFocus += (Object sender, EventArgs e) =>
+            {
                 if (String.IsNullOrEmpty(this.Text) || this.Text == PlaceHolderText)
                 {
                     this.ForeColor = System.Drawing.Color.Gray;
@@ -90,6 +89,30 @@ namespace ParkingSimulationForms.views.components
                 PlaceHolderText = placeholdertext;
                 this.Text = placeholdertext;
             }
+        }
+        
+        private void SetNewPlaceholder(string placeholder)
+        {
+            if (this.ForeColor == System.Drawing.Color.Gray || String.IsNullOrEmpty(this.Text))
+            {
+                this.ForeColor = System.Drawing.Color.Gray;
+                this.Text = placeholder;
+            }
+        }
+
+        public void SetNumberChangeHandler(double minValue, double maxValue)
+        {
+            this.minValue = minValue;
+            this.maxValue = maxValue;
+            IsCheckCorrect = true;
+
+            TextChanged += (sender, args) =>
+            {
+                IsCorrect = IsCheckCorrect &&
+                            double.TryParse(Text, out var value) &&
+                            value >= this.minValue &&
+                            value <= this.maxValue;
+            };
         }
     }
 }

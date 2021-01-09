@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ParkingConstructorLib;
 using ParkingConstructorLib.logic;
 using ParkingConstructorLib.models;
-using ParkingConstructorLib.models.vehicles;
+using ParkingConstructorLib.services;
 using ParkingConstructorLib.utils.distributions;
 using ParkingSimulationForms.views;
 using ParkingSimulationForms.views.services;
@@ -49,6 +42,16 @@ namespace ParkingSimulationForms
 
             elementsTablePanel.Enabled = false;
             saveButton.Enabled = false;
+
+
+            textBoxWithPlaceholder3.SetNumberChangeHandler(
+                SettingModelService.MinGenerationNormalDistributionMValue,
+                SettingModelService.MaxGenerationNormalDistributionMValue
+            );
+            textBoxWithPlaceholder4.SetNumberChangeHandler(
+                SettingModelService.MinGenerationNormalDistributionDValue,
+                SettingModelService.MaxGenerationNormalDistributionDValue
+            );
         }
 
         private void InitRoadImages()
@@ -382,21 +385,32 @@ namespace ParkingSimulationForms
         private void textBoxMin_TextChanged(object sender, EventArgs e)
         {
             if (radioButton3.Checked && 
-                double.TryParse(textBoxWithPlaceholder1.Text, out var value) &&
-                SettingsModel.SettingService.CheckGenerationUniformDistributionValue(value))
+                double.TryParse(textBoxWithPlaceholder1.Text, out var min) &&
+                double.TryParse(textBoxWithPlaceholder2.Text, out var max) && 
+                CheckGenerationUniformDistributionValues(min, max))
             {
-                MainFormSettingsController.minGenerationValue = value;
+                SettingsModel.SetGenerationStreamDistribution(new UniformDistribution(min, max));
             }
         }
 
         private void textBoxMax_TextChanged(object sender, EventArgs e)
         {
             if (radioButton3.Checked && 
-                double.TryParse(textBoxWithPlaceholder1.Text, out var value) &&
-                SettingsModel.SettingService.CheckGenerationUniformDistributionValue(value))
+                double.TryParse(textBoxWithPlaceholder1.Text, out var min) &&
+                double.TryParse(textBoxWithPlaceholder2.Text, out var max) && 
+                CheckGenerationUniformDistributionValues(min, max))
             {
-                MainFormSettingsController.maxGenerationValue = value;
+                SettingsModel.SetGenerationStreamDistribution(new UniformDistribution(min, max));
             }
         }
+
+        private bool CheckGenerationUniformDistributionValues(double minValue, double maxValue)
+        {
+            return minValue < maxValue &&
+                   SettingsModel.SettingService.CheckGenerationUniformDistributionValue(minValue) &&
+                   SettingsModel.SettingService.CheckGenerationUniformDistributionValue(maxValue);
+        }
+        
+        
     }
 }
