@@ -1,27 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ParkingConstructorLib.models.vehicles
 {
-    public class CarVehicleModel: AbstractVehicleModel
+    public class TruckVehicleModel : AbstractVehicleModel
     {
-        public CarVehicleModel(int row, int column)
+        public TruckVehicleModel(int row, int column)
         {
             rowIndex = row;
             columnIndex = column;
-            type = CarType.Car;
+            type = CarType.Truck;
             targetType = TargetType.Parking;
             countErrors = 0;
             priceForParking = 0m;
         }
-
+        
         public new List<ParkingModelElementType> GetAvailableElementTypesForMovement()
         {
             var resultList = base.GetAvailableElementTypesForMovement();
-            resultList.Add(ParkingModelElementType.ParkingSpace);
+            resultList.Add(ParkingModelElementType.TruckParkingSpace);
             return resultList;
         }
     }

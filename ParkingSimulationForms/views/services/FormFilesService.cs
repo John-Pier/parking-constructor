@@ -26,7 +26,8 @@ namespace ParkingSimulationForms.views.services
             {
                 FileName = "my-parking-model",
                 DefaultExt = FileExtension,
-                Filter = ' ' + FileExtension + '|' + '*' + FileExtension
+                Filter = ' ' + FileExtension + '|' + '*' + FileExtension,
+                InitialDirectory = Directory.GetCurrentDirectory()
             };
 
             if (saveFileDialog.ShowDialog() != DialogResult.OK)
@@ -58,7 +59,8 @@ namespace ParkingSimulationForms.views.services
             var fileDialog = new OpenFileDialog
             {
                 DefaultExt = FileExtension,
-                Filter = ' ' + FileExtension + '|' + '*' + FileExtension
+                Filter = ' ' + FileExtension + '|' + '*' + FileExtension,
+                InitialDirectory = Directory.GetCurrentDirectory()
             };
 
             if (fileDialog.ShowDialog() != DialogResult.OK)
