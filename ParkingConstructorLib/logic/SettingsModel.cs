@@ -76,5 +76,15 @@ namespace ParkingConstructorLib.logic
                 PercentOfCar = 100 - PercentOfTrack;
             }
         }
+
+        public int getDayTimeRate()
+        {
+            return DayTimeRate;
+        }
+
+        public int getNightTime()
+        {
+            return NightTimeRate;
+        }
     }
 }

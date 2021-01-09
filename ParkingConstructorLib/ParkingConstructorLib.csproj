@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="logic\ParkingModel.cs" />
+    <Compile Include="models\Coors.cs" />
+    <Compile Include="models\DynamicMap.cs" />
     <Compile Include="logic\SettingsModel.cs" />
     <Compile Include="models\parking-elements\CashierParkingElement.cs" />
     <Compile Include="models\parking-elements\EntryParkingElement.cs" />
@@ -52,12 +54,19 @@
     <Compile Include="models\parking-elements\TruckParkingSpaceElement.cs" />
     <Compile Include="models\parking-elements\RoadParkingElement.cs" />
     <Compile Include="models\parking-elements\ParkingSpaceElement.cs" />
+    <Compile Include="models\parking-places\AbstractParkingPlace.cs" />
+    <Compile Include="models\parking-places\CarParkingPlace.cs" />
+    <Compile Include="models\parking-places\TruckParkingPlace.cs" />
     <Compile Include="models\vehicles\CarVehicleModel.cs" />
+    <Compile Include="models\vehicles\AbstractVehicleModel.cs" />
     <Compile Include="models\VehicleModel.cs" />
     <Compile Include="models\ParkingModelElement.cs" />
+    <Compile Include="models\vehicles\TruckVehicleModel.cs" />
     <Compile Include="ParkingSceneVisualization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ParkingSceneConstructor.cs" />
+    <Compile Include="services\DrawerService.cs" />
+    <Compile Include="services\MovementService.cs" />
     <Compile Include="services\ParkingModelService.cs" />
     <Compile Include="services\SettingModelService.cs" />
     <Compile Include="utils\distributions\DeterminedDistribution.cs" />
@@ -67,6 +76,5 @@
     <Compile Include="utils\distributions\NormalDistribution.cs" />
     <Compile Include="utils\distributions\UniformDistribution.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

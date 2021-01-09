@@ -11,24 +11,17 @@ namespace ParkingSimulationForms.views
         private static PictureBox pb;
         private static double accelerate;
 
-        public static void changePercentValue(HScrollBar sb, Label label)
+        public static void changePercentValue(HScrollBar sb, Label label, Timer timer1)
         {
             accelerate = sb.Value;
             accelerate /= 100;
             label.Text = accelerate.ToString();
+            timer1.Interval = (int)(1000 / accelerate);
         }
-        public static double getAccelerate()
-        {
-            return accelerate;
-        }
+        
         public static void setPictureBox(PictureBox pbx)
         {
             pb = pbx;
-        }
-        public static void setPicture(Bitmap bm)
-        {
-            pb.Image = bm;
-            pb.Refresh();
         }
     }
 }

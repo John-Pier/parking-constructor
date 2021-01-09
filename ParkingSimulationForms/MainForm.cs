@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using ParkingConstructorLib;
 using ParkingConstructorLib.logic;
@@ -16,23 +19,31 @@ namespace ParkingSimulationForms
         private readonly ParkingSceneConstructor<Image> sceneConstructor = new ParkingSceneConstructor<Image>();
         private readonly ParkingSceneVisualization<Image> sceneVisualization = new ParkingSceneVisualization<Image>();
         private readonly FormFilesService formFilesService = new FormFilesService();
+        private readonly MainFormConstructorController constructorController = new MainFormConstructorController();
+        
+        private DateTime dateTimeModel;
 
-        public SettingsModel SettingsModel = new SettingsModel();
+        private readonly SettingsModel SettingsModel = new SettingsModel();
+
+        private UniformDistribution generationStreamRandom;
 
         public MainForm()
         {
             InitializeComponent();
+
             MainFormVizualayzerController.setPictureBox(pictureBox2);
             MainFormVizualayzerController.CurrentSceneVisualization = sceneVisualization;
 
-            MainFormConstructorController.ImageList = elementsImageList;
-            MainFormConstructorController.ElementsTablePanel = elementsTablePanel;
-            MainFormConstructorController.CurrentSceneConstructor = sceneConstructor;
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
+            constructorController.ImageList = elementsImageList;
+            constructorController.ElementsTablePanel = elementsTablePanel;
+            constructorController.CurrentSceneConstructor = sceneConstructor;
+            constructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
 
             MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
             MainFormStatisticsController.initTable(tableLayoutPanel3);
 
+            constructorController.ImageList = texturesImageList; // TODO: В конструктор
+            constructorController.CreateAndSetTexturesBitmapArray();
             InitSettingsForm();
 
             radioButton1.Checked = true;
@@ -77,67 +88,71 @@ namespace ParkingSimulationForms
         //Конструктор
         private void counterHorizontal_ValueChanged(object sender, EventArgs e)
         {
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
-                (int) counterVertical.Value);
+            constructorController.DrawTemplate(
+                (int) counterHorizontal.Value,
+                (int) counterVertical.Value
+                );
         }
 
         private void counterVertical_ValueChanged(object sender, EventArgs e)
         {
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value,
-                (int) counterVertical.Value);
+            constructorController.DrawTemplate(
+                (int) counterHorizontal.Value,
+                (int) counterVertical.Value
+                );
         }
 
         //Визуализатор
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
-            MainFormVizualayzerController.changePercentValue(hScrollBar1, label18);
+            MainFormVizualayzerController.changePercentValue(hScrollBar1, label18, modelGeneralTimer);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement =
+            constructorController.CurrentElement =
                 new GrassParkingElement(elementsImageList.Images[4]); // газон
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new ExitParkingElement(elementsImageList.Images[3]); // выезд
+            constructorController.CurrentElement = new ExitParkingElement(elementsImageList.Images[3]); // выезд
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement =
+            constructorController.CurrentElement =
                 new ParkingSpaceElement(elementsImageList.Images[5]); // парвокочное место Л
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement =
+            constructorController.CurrentElement =
                 new TruckParkingSpaceElement(elementsImageList.Images[7]); // парвокочное место Г
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement =
+            constructorController.CurrentElement =
                 new CashierParkingElement(elementsImageList.Images[1]); // касса
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            MainFormConstructorController.CurrentElement = new EntryParkingElement(elementsImageList.Images[2]); //вьезд
+            constructorController.CurrentElement = new EntryParkingElement(elementsImageList.Images[2]); //вьезд
         }
 
         private void button8_Click(object sender, EventArgs e) // Clear
         {
             SetEnableEditSceneSize(true);
-            MainFormConstructorController.CurrentElement = null;
-            MainFormConstructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
+            constructorController.CurrentElement = null;
+            constructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
             sceneConstructor.ClearModel();
         }
 
@@ -171,10 +186,7 @@ namespace ParkingSimulationForms
             {
                 SettingsModel.SetGenerationStreamDistribution(null);
             }
-
-            MainFormSettingsController.LockRBs(radioButton3, radioButton4, radioButton5, textBoxWithPlaceholder1,
-                textBoxWithPlaceholder2, textBoxWithPlaceholder3, textBoxWithPlaceholder4, textBoxWithPlaceholder5,
-                textBox1, !((RadioButton) sender).Checked);
+            LockElements(!((RadioButton) sender).Checked);
         }
 
         private void radioButton9_CheckedChanged(object sender, EventArgs e)
@@ -189,9 +201,16 @@ namespace ParkingSimulationForms
                 SettingsModel.SetParkingTimeDistribution(null);
             }
             
-            MainFormSettingsController.LockRBs(radioButton6, radioButton7, radioButton8, textBoxWithPlaceholder6,
-                textBoxWithPlaceholder7, textBoxWithPlaceholder8, textBoxWithPlaceholder9, textBoxWithPlaceholder10,
-                textBoxWithPlaceholder11, !((RadioButton) sender).Checked);
+            var isLock = !((RadioButton) sender).Checked;
+            radioButton6.Enabled = isLock;
+            radioButton7.Enabled = isLock;
+            radioButton8.Enabled = isLock;
+            textBoxWithPlaceholder6.Enabled = isLock;
+            textBoxWithPlaceholder7.Enabled = isLock;
+            textBoxWithPlaceholder8.Enabled = isLock;
+            textBoxWithPlaceholder9.Enabled = isLock;
+            textBoxWithPlaceholder10.Enabled = isLock;
+            textBoxWithPlaceholder11.Enabled = !isLock;
         }
 
         private void OnLoadClick(object sender, EventArgs e)
@@ -204,7 +223,7 @@ namespace ParkingSimulationForms
             counterHorizontal.Value = sceneConstructor.ParkingModel.ColumnCount;
             counterVertical.Value = sceneConstructor.ParkingModel.RowCount;
 
-            MainFormConstructorController.DrawTemplate(
+            constructorController.DrawTemplate(
                 (int) counterHorizontal.Value,
                 (int) counterVertical.Value,
                 parkingModel
@@ -224,7 +243,12 @@ namespace ParkingSimulationForms
             {
                 if (sceneConstructor.IsParkingModelCreate() && sceneConstructor.ParkingModel.IsParkingModelCorrect())
                 {
+                    InitModelTime();
+                    
                     sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
+                    sceneVisualization.NextStep(dateTimeModel);
+                    
+                    DrawImage();
                 }
                 else
                 {
@@ -243,7 +267,7 @@ namespace ParkingSimulationForms
 
                 if (SettingsModel.IsModelValid())
                 {
-                    // TODO: Добавит логику в sceneVisualization
+                    //sceneVisualization.SetSettingsModel(SettingsModel);
                 }
                 else
                 {
@@ -261,6 +285,96 @@ namespace ParkingSimulationForms
                 }
             }
         }
+
+        #region Timers logic
+
+        public void StartGeneralTimerClick(object sender, EventArgs e)
+        {
+            //Set timers interval in ms
+            generationStreamTimer.Interval = (int) (SettingsModel.GenerationStreamDistribution.GetRandNumber() * 1000);
+            generationStreamRandom = new UniformDistribution(0d, 100d);
+
+            modelGeneralTimer.Start();
+            generationStreamTimer.Start();
+        }
+
+        private void PauseGeneralTimerClick(object sender, EventArgs e)
+        {
+            modelGeneralTimer.Stop();
+            generationStreamTimer.Stop();
+        }
+
+        private void StopGeneralTimerClick(object sender, EventArgs e)
+        {
+            modelGeneralTimer.Stop();
+            generationStreamTimer.Stop();
+            sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
+            sceneVisualization.NextStep(dateTimeModel);
+
+            DrawImage();
+        }
+
+        private void modelGeneralTimer_Tick(object sender, EventArgs e)
+        {
+            sceneVisualization.NextStep(dateTimeModel);
+            MainFormInformationController.updateInformation(sceneVisualization, dateTimeModel, SettingsModel);
+            //Код таймера генератора потока должен срабатывать раз в секунду
+            if (generationStreamRandom.GetRandNumber() > SettingsModel.PercentOfTrack)
+            {
+                sceneVisualization.CreateCar((int)SettingsModel.ParkingTimeDistribution.GetRandNumber());
+            }
+            else
+            {
+                sceneVisualization.CreateTruck((int)SettingsModel.ParkingTimeDistribution.GetRandNumber());
+            }
+            //
+            DrawImage();
+            SetModelTime();
+        }
+
+        private void generationStreamTimer_Tick(object sender, EventArgs e)
+        {
+            /*
+            if (generationStreamRandom.GetRandNumber() > SettingsModel.PercentOfTrack)
+            {
+                sceneVisualization.CreateCar((int)SettingsModel.ParkingTimeDistribution.GetRandNumber());
+            }
+            else
+            {
+                sceneVisualization.CreateTruck((int)SettingsModel.ParkingTimeDistribution.GetRandNumber());
+            }
+            */
+        }
+
+        private void DrawImage()
+        {
+            var image = sceneVisualization.GetImage();
+            var imageSize = image.Size;
+            
+            pictureBox2.Image?.Dispose();
+            pictureBox2.Image = new Bitmap(imageSize.Width * 20, imageSize.Height * 20);
+
+            using (var g = Graphics.FromImage(pictureBox2.Image))
+            {
+                g.InterpolationMode = InterpolationMode.NearestNeighbor;
+                g.DrawImage(image, new Rectangle(Point.Empty, pictureBox2.Image.Size));
+            }
+
+        }
+
+        private void InitModelTime()
+        {
+            dateTimeModel = DateTime.Now;
+            label27.Text = dateTimeModel.ToString("dd.MM.yyyy HH:mm");
+        }
+        
+        private void SetModelTime()
+        {
+            dateTimeModel = dateTimeModel.AddMinutes(1);
+            label27.Text = dateTimeModel.ToString("dd.MM.yyyy HH:mm");
+        }
+
+        #endregion
 
         private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
         {
@@ -312,14 +426,14 @@ namespace ParkingSimulationForms
             textBox2.Text = SettingsModel.DayTimeRate.ToString();
             textBox5.Text = SettingsModel.PercentOfTrack.ToString();
             textBox3.Text = SettingsModel.NightTimeRate.ToString();
-            textBox4.Text = SettingsModel.EnteringProbability.ToString();
+            textBox4.Text = SettingsModel.EnteringProbability.ToString(CultureInfo.CurrentCulture);
             label14.Text = SettingsModel.PercentOfCar.ToString();
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
             MainFormSettingsController.calcualePercent(textBox5, label14);
-            if (int.TryParse(textBox5.Text, out int value))
+            if (int.TryParse(textBox5.Text, out var value))
             {
                 SettingsModel.SetPercentOfTrack(value);
             }
@@ -333,7 +447,7 @@ namespace ParkingSimulationForms
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(textBox2.Text, out int value) && SettingsModel.SettingService.CheckDayTimeRate(value))
+            if (int.TryParse(textBox2.Text, out var value) && SettingsModel.SettingService.CheckDayTimeRate(value))
             {
                 SettingsModel.SetDayTimeRate(value);
             }
@@ -347,7 +461,7 @@ namespace ParkingSimulationForms
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(textBox3.Text, out int value) && SettingsModel.SettingService.CheckNightTimeRate(value))
+            if (int.TryParse(textBox3.Text, out var value) && SettingsModel.SettingService.CheckNightTimeRate(value))
             {
                 SettingsModel.SetNightTimeRate(value);
             }
@@ -412,7 +526,6 @@ namespace ParkingSimulationForms
         {
             MessageBox.Show("Введено некорректное значение!", "Ошибка распознавания", MessageBoxButtons.OK);
         }
-
 
         private void textBoxMin_TextChanged(object sender, EventArgs e)
         {
@@ -499,8 +612,6 @@ namespace ParkingSimulationForms
             }
         }
         
-        #endregion
-
         private void radioButton5Normal_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton5.Checked && textBoxWithPlaceholder5.IsCorrect)
@@ -544,6 +655,26 @@ namespace ParkingSimulationForms
             {
                 textBoxWithPlaceholder5.BackColor = Color.Crimson;
             }
+        }
+        
+        #endregion
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Directory.GetCurrentDirectory() + "\\Help\\help.html");
+        }
+
+        private void LockElements(bool isLock)
+        {
+            radioButton3.Enabled = isLock;
+            radioButton4.Enabled = isLock;
+            radioButton5.Enabled = isLock;
+            textBoxWithPlaceholder1.Enabled = isLock;
+            textBoxWithPlaceholder2.Enabled = isLock;
+            textBoxWithPlaceholder3.Enabled = isLock;
+            textBoxWithPlaceholder4.Enabled = isLock;
+            textBoxWithPlaceholder5.Enabled = isLock;
+            textBox1.Enabled = !isLock;
         }
     }
 }
