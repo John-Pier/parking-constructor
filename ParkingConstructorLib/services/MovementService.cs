@@ -103,9 +103,8 @@ namespace ParkingConstructorLib.services
             while (weight != 0)
             {
                 neighboreCoors = GetNeighbors(mainCoors.ColumnIndex, mainCoors.RowIndex, localMap);
-                for (var index = 0; index < neighboreCoors.Length; index++)
+                foreach (var coorsTemp in neighboreCoors)
                 {
-                    Coors coorsTemp = neighboreCoors[index];
                     if (localMap[mainCoors.ColumnIndex, mainCoors.RowIndex, 2] ==
                         localMap[coorsTemp.ColumnIndex, coorsTemp.RowIndex, 2] +
                         localMap[mainCoors.ColumnIndex, mainCoors.RowIndex, 0])
@@ -202,13 +201,10 @@ namespace ParkingConstructorLib.services
                             vehicleModel.isOnParkingPlace = false;
                             if (vehicleModel.GetType() == "Car")
                             {
-                                foreach (CarParkingPlace cpp in carParkingPlaces)
+                                foreach (var cpp in carParkingPlaces.Where(cpp => cpp.coors.Equals(vehicleModel.GetCoors())))
                                 {
-                                    if (cpp.coors.Equals(vehicleModel.GetCoors()))
-                                    {
-                                        cpp.isBusy = false;
-                                        break;
-                                    }
+                                    cpp.isBusy = false;
+                                    break;
                                 }
                             }
                             else

@@ -39,8 +39,7 @@
         public static readonly double MinParkingTimeNormalDistributionDValue = 1d/6d; // 10 min
         public static readonly double MaxParkingTimeNormalDistributionDValue = 24d; // 1 day
         
-        // 
-        
+        // Unused
         public static readonly double MinParkingTimeExponentialDistributionValue = 0.0002;
         public static readonly double MaxParkingTimeExponentialDistributionValue = 0.1;
         
