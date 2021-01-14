@@ -5,6 +5,7 @@ using ParkingConstructorLib.logic;
 using ParkingConstructorLib.models;
 using ParkingConstructorLib.models.vehicles;
 using ParkingConstructorLib.services;
+using ParkingConstructorLib.utils.distributions;
 
 namespace ParkingConstructorLib
 {
@@ -16,12 +17,10 @@ namespace ParkingConstructorLib
         private ParkingModel<T> parkingModel;
         private DynamicMap<T> dynamicMap;
         private static Bitmap[] textures;
-        private DrawerService<T> drawer;//Отрисовщик
-        private MovementService<T> movement;//Передвижения
-
-        public ParkingSceneVisualization()
-        {
-        }
+        private DrawerService<T> drawer; //Отрисовщик
+        private MovementService<T> movement; //Передвижения
+        private SettingsModel settingsModel;
+        private UniformDistribution generationStreamRandom = new UniformDistribution(0d, 100d);
 
         public static void SetTextures(Bitmap[] texturesArr)
         {
@@ -38,35 +37,37 @@ namespace ParkingConstructorLib
                 localMap = dynamicMap.CreateAndInitLocalMap();
                 Coors[] way = movement.foundWay(localMap, car);
                 AbstractVehicleModel[] remCars = movement.nextSystemStep(localMap, car, way, modelTime);
-                for (int i = 0; i < remCars.Length; i++)
-                    removedCars.AddLast(remCars[i]);
+                foreach (var vehicle in remCars)
+                    removedCars.AddLast(vehicle);
             }
             try
             {
-                foreach (AbstractVehicleModel carTemp in removedCars)
+                foreach (var carTemp in removedCars)
                     cars.Remove(carTemp);
             }
             catch (Exception) { }
             drawer.Draw(cars);
         }
 
-        public void CreateCar(int timeWaitOnParkingInSeconds)
+        public void CreateVehicle()
         {
-            if(!IsCanAddVehicle(CarType.Car)) return;
-            var carVehicleModel = new CarVehicleModel(dynamicMap.SpawnRow, dynamicMap.SpawnCol);
-            carVehicleModel.SetSecondsOnParking(timeWaitOnParkingInSeconds);
+            var parkingTimeInMinutes = (int)settingsModel.ParkingTimeDistribution.GetRandNumber() * 60;
+            AbstractVehicleModel vehicleModel;
             
-            dynamicMap.addCar(carVehicleModel);
-            drawer.Draw(dynamicMap.getVehicles());
-        }
-
-        public void CreateTruck(int timeWaitOnParkingInSeconds)
-        {
-            if(!IsCanAddVehicle(CarType.Truck)) return;
-            var truckVehicleModel = new TruckVehicleModel(dynamicMap.SpawnRow, dynamicMap.SpawnCol);
-            truckVehicleModel.SetSecondsOnParking(timeWaitOnParkingInSeconds);
-            
-            dynamicMap.addCar(truckVehicleModel);
+            //TODO: Добавить учет процента заезда машин на парковку
+            if (generationStreamRandom.GetRandNumber() > settingsModel.PercentOfTrack)
+            {
+                if(!IsCanAddVehicle(CarType.Car)) return;
+                vehicleModel = new CarVehicleModel(dynamicMap.SpawnRow, dynamicMap.SpawnCol);
+                dynamicMap.AddCar(vehicleModel);
+            }
+            else
+            {
+                if(!IsCanAddVehicle(CarType.Truck)) return;
+                vehicleModel = new TruckVehicleModel(dynamicMap.SpawnRow, dynamicMap.SpawnCol);
+                dynamicMap.AddTruck(vehicleModel);
+            }
+            vehicleModel.SetSecondsOnParking(parkingTimeInMinutes);
             drawer.Draw(dynamicMap.getVehicles());
         }
 
@@ -96,6 +97,16 @@ namespace ParkingConstructorLib
         public LinkedList<AbstractParkingPlace> getParkingPlaces()
         {
             return dynamicMap.getParkingPlaces();
+        }
+
+        public void SetSettingsModel(SettingsModel settingsModel)
+        {
+            this.settingsModel = settingsModel;
+        }
+
+        public bool IsSettingsModelSet()
+        {
+            return this.settingsModel != null;
         }
     }
 }

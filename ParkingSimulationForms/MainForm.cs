@@ -21,16 +21,8 @@ namespace ParkingSimulationForms
         private readonly ParkingSceneVisualization<Image> sceneVisualization = new ParkingSceneVisualization<Image>();
         private readonly FormFilesService formFilesService = new FormFilesService();
         private readonly MainFormConstructorController constructorController = new MainFormConstructorController();
-
         private DateTime dateTimeModel;
-
         private readonly SettingsModel SettingsModel = new SettingsModel();
-
-        private UniformDistribution generationStreamRandom;
-
-        private int generationStreamDistributionFactor = 6;
-        private int parkingTimeDistributionFactor = 6;
-        
         
         public MainForm()
         {
@@ -62,9 +54,11 @@ namespace ParkingSimulationForms
             elementsTablePanel.Enabled = false;
             saveButton.Enabled = false;
 
-            SettingsModel.SetGenerationStreamDistribution(new NormalDistribution(2,1));
-            SettingsModel.SetParkingTimeDistribution(new UniformDistribution(1,10));
+            InitFormFields();
+        }
 
+        private void InitFormFields()
+        {
             textBoxWithPlaceholder3.SetNumberChangeHandler(
                 SettingModelService.MinGenerationNormalDistributionMValue,
                 SettingModelService.MaxGenerationNormalDistributionMValue
@@ -97,7 +91,7 @@ namespace ParkingSimulationForms
                 SettingModelService.MaxParkingTimeNormalDistributionDValue
             );
         }
-
+        
         private void InitRoadImages()
         {
             pictureRoadBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -211,8 +205,8 @@ namespace ParkingSimulationForms
             radioButton3.Checked = !radioButton1.Checked;
             radioButton4.Checked = !radioButton1.Checked;
             radioButton5.Checked = !radioButton1.Checked;
-            
-            if(!radioButton1.Checked) return;
+
+            if (!radioButton1.Checked) return;
             if (double.TryParse(textBox1.Text, out var value)
                 && SettingsModel.SettingService.CheckGenerationDeterminedDistributionValue(value))
             {
@@ -230,7 +224,7 @@ namespace ParkingSimulationForms
             radioButton8.Checked = !radioButton9.Checked;
             radioButton7.Checked = !radioButton9.Checked;
 
-            if(!radioButton9.Checked) return;
+            if (!radioButton9.Checked) return;
             if (double.TryParse(textBoxWithPlaceholder11.Text, out var value)
                 && SettingsModel.SettingService.CheckParkingTimeDistributionValue(value))
             {
@@ -296,10 +290,12 @@ namespace ParkingSimulationForms
 
                 if (SettingsModel.IsModelValid())
                 {
-                    //sceneVisualization.SetSettingsModel(SettingsModel);
+                    sceneVisualization.SetSettingsModel(SettingsModel);
                 }
                 else
                 {
+                    sceneVisualization.SetSettingsModel(null);
+
                     var result = MessageBox.Show(
                         "Вы не можете запустить визуализатор, потому что текущие настройки не валидны или не заданы.\nХотите вернуться ?",
                         "Настройки не валидны",
@@ -309,8 +305,6 @@ namespace ParkingSimulationForms
                     {
                         tabControl1.SelectedIndex = 1;
                     }
-
-                    return;
                 }
             }
         }
@@ -319,11 +313,13 @@ namespace ParkingSimulationForms
 
         private void StartGeneralTimerClick(object sender, EventArgs e)
         {
+            if (!sceneVisualization.IsSettingsModelSet()) return;
+
             modelGeneralTimer.Stop();
             generationStreamTimer.Stop();
-            
+
             generationStreamTimer.Interval = (int) (SettingsModel.GenerationStreamDistribution.GetRandNumber() * 1000);
-            generationStreamRandom = new UniformDistribution(0d, 100d);
+
 
             modelGeneralTimer.Start();
             generationStreamTimer.Start();
@@ -356,21 +352,12 @@ namespace ParkingSimulationForms
 
         private void generationStreamTimer_Tick(object sender, EventArgs e)
         {
-            var generalInterval = SettingsModel.GenerationStreamDistribution.GetRandNumber();
-            var parkingTimeInMinutes = SettingsModel.ParkingTimeDistribution.GetRandNumber() * 60;
-           
-            //Добавить процент заезда машин на парковку
-            if (generationStreamRandom.GetRandNumber() > SettingsModel.PercentOfTrack)
-            {
-                sceneVisualization.CreateCar((int)parkingTimeInMinutes * 60);
-            }
-            else
-            {
-                sceneVisualization.CreateTruck((int)parkingTimeInMinutes);
-            }
-            generationStreamTimer.Interval = (int)generalInterval;
+            sceneVisualization.CreateVehicle();
+            
+            var generalInterval = (int) SettingsModel.GenerationStreamDistribution.GetRandNumber();
+            generationStreamTimer.Interval = generalInterval;
             generationStreamTimer.Start();
-       }
+        }
 
         private void DrawImage()
         {
@@ -565,8 +552,8 @@ namespace ParkingSimulationForms
                 SettingsModel.SetGenerationStreamDistribution(new UniformDistribution(min, max));
             }
 
-            if (!isMinCorrect || 
-                !SettingsModel.SettingService.CheckGenerationUniformDistributionValue(min) || 
+            if (!isMinCorrect ||
+                !SettingsModel.SettingService.CheckGenerationUniformDistributionValue(min) ||
                 isMaxCorrect && !CheckGenerationUniformDistributionValues(min, max))
             {
                 SettingsModel.SetGenerationStreamDistribution(null);
@@ -587,8 +574,8 @@ namespace ParkingSimulationForms
                 SettingsModel.SetGenerationStreamDistribution(new UniformDistribution(min, max));
             }
 
-            if (!isMaxCorrect || 
-                !SettingsModel.SettingService.CheckGenerationUniformDistributionValue(max) || 
+            if (!isMaxCorrect ||
+                !SettingsModel.SettingService.CheckGenerationUniformDistributionValue(max) ||
                 isMinCorrect && !CheckGenerationUniformDistributionValues(min, max))
             {
                 SettingsModel.SetGenerationStreamDistribution(null);
@@ -645,12 +632,12 @@ namespace ParkingSimulationForms
         private void radioButton5Normal_CheckedChanged(object sender, EventArgs e)
         {
             radioButton2.Checked = radioButton5.Checked;
-            
+
             // radioButton1.Checked = !radioButton5.Checked;
             // radioButton4.Checked = !radioButton5.Checked;
             // radioButton3.Checked = !radioButton5.Checked;
-            
-            if(!radioButton5.Checked) return;
+
+            if (!radioButton5.Checked) return;
             SettingsModel.SetGenerationStreamDistribution(
                 textBoxWithPlaceholder5.IsCorrect
                     ? new ExponentialDistribution(textBoxWithPlaceholder5.CurrentValue)
@@ -661,30 +648,30 @@ namespace ParkingSimulationForms
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
             radioButton2.Checked = radioButton4.Checked;
- 
+
             // radioButton1.Checked = !radioButton4.Checked;
             // radioButton3.Checked = !radioButton4.Checked;
             // radioButton5.Checked = !radioButton4.Checked;
-            
-            if(!radioButton4.Checked) return;
-            
+
+            if (!radioButton4.Checked) return;
+
             SettingsModel.SetGenerationStreamDistribution(
-                textBoxWithPlaceholder3.IsCorrect && textBoxWithPlaceholder4.IsCorrect ? 
-                new NormalDistribution(textBoxWithPlaceholder3.CurrentValue,
-                    textBoxWithPlaceholder4.CurrentValue)
-                : null
+                textBoxWithPlaceholder3.IsCorrect && textBoxWithPlaceholder4.IsCorrect
+                    ? new NormalDistribution(textBoxWithPlaceholder3.CurrentValue,
+                        textBoxWithPlaceholder4.CurrentValue)
+                    : null
             );
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
             radioButton2.Checked = radioButton3.Checked;
-            
+
             // radioButton1.Checked = !radioButton3.Checked;
             // radioButton4.Checked = !radioButton3.Checked;
             // radioButton5.Checked = !radioButton3.Checked;
 
-            if(!radioButton3.Checked) return;
+            if (!radioButton3.Checked) return;
             var isMinCorrect = double.TryParse(textBoxWithPlaceholder1.Text, out var min);
             var isMaxCorrect = double.TryParse(textBoxWithPlaceholder2.Text, out var max);
             if (isMinCorrect &&
@@ -698,7 +685,7 @@ namespace ParkingSimulationForms
                 SettingsModel.SetGenerationStreamDistribution(null);
             }
         }
-        
+
         private void textBoxWithPlaceholder5_TextChanged(object sender, EventArgs e)
         {
             if (!radioButton5.Checked) return;
@@ -718,12 +705,12 @@ namespace ParkingSimulationForms
         private void radioButton8Uniform_CheckedChanged(object sender, EventArgs e)
         {
             radioButton10.Checked = radioButton8.Checked;
-            
+
             // radioButton9.Checked = !radioButton8.Checked;
             // radioButton7.Checked = !radioButton8.Checked;
             // radioButton6.Checked = !radioButton8.Checked;
-            
-            if(!radioButton8.Checked) return;
+
+            if (!radioButton8.Checked) return;
             if (checkCorrectDistributionValues(textBoxWithPlaceholder9, textBoxWithPlaceholder10))
             {
                 SettingsModel.SetParkingTimeDistribution(
@@ -739,11 +726,11 @@ namespace ParkingSimulationForms
         private void radioButton7Normal_CheckedChanged(object sender, EventArgs e)
         {
             radioButton10.Checked = radioButton7.Checked;
-            
+
             // radioButton9.Checked = !radioButton7.Checked;
             // radioButton8.Checked = !radioButton7.Checked;
-            
-            if(!radioButton7.Checked) return;
+
+            if (!radioButton7.Checked) return;
             if (checkCorrectDistributionValues(textBoxWithPlaceholder8, textBoxWithPlaceholder7))
             {
                 SettingsModel.SetParkingTimeDistribution(
@@ -753,7 +740,7 @@ namespace ParkingSimulationForms
             else
             {
                 SettingsModel.SetGenerationStreamDistribution(null);
-            } 
+            }
         }
 
         private void textBoxWithPlaceholder9MinUniform_TextChanged(object sender, EventArgs e)
