@@ -68,6 +68,7 @@
     <Compile Include="services\DrawerService.cs" />
     <Compile Include="services\MovementService.cs" />
     <Compile Include="services\ParkingModelService.cs" />
+    <Compile Include="services\SettingModelService.cs" />
     <Compile Include="utils\distributions\DeterminedDistribution.cs" />
     <Compile Include="utils\distributions\ExponentialDistribution.cs" />
     <Compile Include="utils\distributions\IDistributionLaw.cs" />
