@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using ParkingConstructorLib;
 using ParkingConstructorLib.logic;
@@ -29,6 +28,10 @@ namespace ParkingSimulationForms
 
         private UniformDistribution generationStreamRandom;
 
+        private int generationStreamDistributionFactor = 6;
+        private int parkingTimeDistributionFactor = 6;
+        
+        
         public MainForm()
         {
             InitializeComponent();
@@ -59,6 +62,8 @@ namespace ParkingSimulationForms
             elementsTablePanel.Enabled = false;
             saveButton.Enabled = false;
 
+            SettingsModel.SetGenerationStreamDistribution(new NormalDistribution(2,1));
+            SettingsModel.SetParkingTimeDistribution(new UniformDistribution(1,10));
 
             textBoxWithPlaceholder3.SetNumberChangeHandler(
                 SettingModelService.MinGenerationNormalDistributionMValue,
@@ -314,12 +319,15 @@ namespace ParkingSimulationForms
 
         public void StartGeneralTimerClick(object sender, EventArgs e)
         {
+            StopGeneralTimerClick(null, null);
+            
             //Set timers interval in ms
             generationStreamTimer.Interval = (int) (SettingsModel.GenerationStreamDistribution.GetRandNumber() * 1000);
             generationStreamRandom = new UniformDistribution(0d, 100d);
 
             modelGeneralTimer.Start();
             generationStreamTimer.Start();
+            generationStreamTimer.Enabled = true;
         }
 
         private void PauseGeneralTimerClick(object sender, EventArgs e)
@@ -342,34 +350,30 @@ namespace ParkingSimulationForms
         {
             sceneVisualization.NextStep(dateTimeModel);
             MainFormInformationController.updateInformation(sceneVisualization, dateTimeModel, SettingsModel);
-            //Код таймера генератора потока должен срабатывать раз в секунду
-            if (generationStreamRandom.GetRandNumber() > SettingsModel.PercentOfTrack)
-            {
-                sceneVisualization.CreateCar((int) SettingsModel.ParkingTimeDistribution.GetRandNumber());
-            }
-            else
-            {
-                sceneVisualization.CreateTruck((int) SettingsModel.ParkingTimeDistribution.GetRandNumber());
-            }
-
-            //
             DrawImage();
             SetModelTime();
         }
 
         private void generationStreamTimer_Tick(object sender, EventArgs e)
         {
-            /*
+            var value = SettingsModel.GenerationStreamDistribution.GetRandNumber();
+            var number = SettingsModel.ParkingTimeDistribution.GetRandNumber() * 60;
+           
             if (generationStreamRandom.GetRandNumber() > SettingsModel.PercentOfTrack)
             {
-                sceneVisualization.CreateCar((int)SettingsModel.ParkingTimeDistribution.GetRandNumber());
+                button10.Text = value.ToString();
+                button11.Text = number.ToString();
+                sceneVisualization.CreateCar((int)number * 60);
             }
             else
             {
-                sceneVisualization.CreateTruck((int)SettingsModel.ParkingTimeDistribution.GetRandNumber());
+                button10.Text = value.ToString();
+                button11.Text = number.ToString();
+                sceneVisualization.CreateTruck((int)number);
             }
-            */
-        }
+            generationStreamTimer.Interval = (int) (value);
+            generationStreamTimer.Start();
+       }
 
         private void DrawImage()
         {
@@ -690,7 +694,6 @@ namespace ParkingSimulationForms
                 isMaxCorrect &&
                 CheckGenerationUniformDistributionValues(min, max))
             {
-                textBoxWithPlaceholder1.BackColor = Color.White;
                 SettingsModel.SetGenerationStreamDistribution(new UniformDistribution(min, max));
             }
             else

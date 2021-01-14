@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ParkingConstructorLib.services;
+﻿using ParkingConstructorLib.services;
 using ParkingConstructorLib.utils.distributions;
 
 namespace ParkingConstructorLib.logic
@@ -12,8 +7,6 @@ namespace ParkingConstructorLib.logic
     {
         public IDistributionLaw GenerationStreamDistribution  {get; private set;}
         public IDistributionLaw ParkingTimeDistribution {get; private set;}
-
-        // TODO: Добавить ограничения на параметры
         public int DayTimeRate { get; private set;}
         public int NightTimeRate { get; private set;}
         public int PercentOfTrack { get; private set;}
@@ -75,16 +68,6 @@ namespace ParkingConstructorLib.logic
                 PercentOfTrack = percents;
                 PercentOfCar = 100 - PercentOfTrack;
             }
-        }
-
-        public int getDayTimeRate()
-        {
-            return DayTimeRate;
-        }
-
-        public int getNightTime()
-        {
-            return NightTimeRate;
         }
     }
 }

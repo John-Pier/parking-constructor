@@ -10,13 +10,13 @@
 
         // Minutes
         
-        public static readonly double MinGenerationDeterminedDistributionValue = 1d/6d; // 10 s
+        public static readonly double MinGenerationDeterminedDistributionValue = 1d/2d; // 30 s
         public static readonly double MaxGenerationDeterminedDistributionValue = 60d; // 3600 s
         
-        public static readonly double MinGenerationUniformDistributionValue = 1d/6d; // 10 s
+        public static readonly double MinGenerationUniformDistributionValue = 1d/2d; // 30 s
         public static readonly double MaxGenerationUniformDistributionValue = 120d; // 2 h
         
-        public static readonly double MinGenerationNormalDistributionMValue = 1d/6d; // 10 s
+        public static readonly double MinGenerationNormalDistributionMValue = 1d/2d; // 30 s
         public static readonly double MaxGenerationNormalDistributionMValue = 120d; // 2 h
         
         public static readonly double MinGenerationNormalDistributionDValue = 1d/60d; // 1 s
@@ -27,8 +27,8 @@
         
         // Hours
         
-        public static readonly double MinParkingTimeDeterminedDistributionValue = 1d/6d;
-        public static readonly double MaxParkingTimeDeterminedDistributionValue = 60d;
+        public static readonly double MinParkingTimeDeterminedDistributionValue = 1d/6d; // 10 min
+        public static readonly double MaxParkingTimeDeterminedDistributionValue = 48d; // 2 days 
         
         public static readonly double MinParkingTimeUniformDistributionValue = 1/6d; // 10 min
         public static readonly double MaxParkingTimeUniformDistributionValue = 48d; // 2 days 
