@@ -1,4 +1,5 @@
-﻿using ParkingSimulationForms.views.components;
+﻿using System;
+using ParkingSimulationForms.views.components;
 
 namespace ParkingSimulationForms
 {
@@ -61,6 +62,8 @@ namespace ParkingSimulationForms
             this.elementsTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.textBoxWithPlaceholder12 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
+            this.radioButton9 = new System.Windows.Forms.RadioButton();
             this.textBoxWithPlaceholder6 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
             this.textBoxWithPlaceholder7 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
             this.textBoxWithPlaceholder8 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
@@ -69,10 +72,6 @@ namespace ParkingSimulationForms
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton7 = new System.Windows.Forms.RadioButton();
             this.radioButton8 = new System.Windows.Forms.RadioButton();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.textBoxWithPlaceholder11 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
-            this.radioButton9 = new System.Windows.Forms.RadioButton();
-            this.radioButton10 = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
@@ -90,7 +89,9 @@ namespace ParkingSimulationForms
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.textBox1 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
             this.textBoxWithPlaceholder5 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.textBoxWithPlaceholder4 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
             this.textBoxWithPlaceholder3 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
             this.textBoxWithPlaceholder1 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
@@ -98,10 +99,6 @@ namespace ParkingSimulationForms
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.textBox1 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label27 = new System.Windows.Forms.Label();
@@ -130,6 +127,7 @@ namespace ParkingSimulationForms
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.radioButton10 = new System.Windows.Forms.RadioButton();
             this.elementsImageList = new System.Windows.Forms.ImageList(this.components);
             this.texturesImageList = new System.Windows.Forms.ImageList(this.components);
             this.modelGeneralTimer = new System.Windows.Forms.Timer(this.components);
@@ -149,11 +147,9 @@ namespace ParkingSimulationForms
             ((System.ComponentModel.ISupportInitialize) (this.pictureRoadBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel7.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox2)).BeginInit();
@@ -517,6 +513,8 @@ namespace ParkingSimulationForms
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (230)))), ((int) (((byte) (230)))), ((int) (((byte) (230)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.textBoxWithPlaceholder12);
+            this.panel2.Controls.Add(this.radioButton9);
             this.panel2.Controls.Add(this.textBoxWithPlaceholder6);
             this.panel2.Controls.Add(this.textBoxWithPlaceholder7);
             this.panel2.Controls.Add(this.textBoxWithPlaceholder8);
@@ -525,19 +523,45 @@ namespace ParkingSimulationForms
             this.panel2.Controls.Add(this.radioButton6);
             this.panel2.Controls.Add(this.radioButton7);
             this.panel2.Controls.Add(this.radioButton8);
-            this.panel2.Controls.Add(this.panel7);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Location = new System.Drawing.Point(395, 6);
+            this.panel2.Location = new System.Drawing.Point(440, 6);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(355, 163);
+            this.panel2.Size = new System.Drawing.Size(427, 193);
             this.panel2.TabIndex = 4;
+            // 
+            // textBoxWithPlaceholder12
+            // 
+            this.textBoxWithPlaceholder12.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxWithPlaceholder12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.textBoxWithPlaceholder12.ForeColor = System.Drawing.Color.Gray;
+            this.textBoxWithPlaceholder12.Location = new System.Drawing.Point(198, 39);
+            this.textBoxWithPlaceholder12.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxWithPlaceholder12.Name = "textBoxWithPlaceholder12";
+            this.textBoxWithPlaceholder12.PlaceHolderText = "t";
+            this.textBoxWithPlaceholder12.Size = new System.Drawing.Size(68, 21);
+            this.textBoxWithPlaceholder12.TabIndex = 14;
+            this.textBoxWithPlaceholder12.Text = "t";
+            this.textBoxWithPlaceholder12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxWithPlaceholder12.Leave += new System.EventHandler(this.textBoxWithPlaceholder12_Leave);
+            // 
+            // radioButton9
+            // 
+            this.radioButton9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.radioButton9.Location = new System.Drawing.Point(25, 40);
+            this.radioButton9.Name = "radioButton9";
+            this.radioButton9.Size = new System.Drawing.Size(153, 24);
+            this.radioButton9.TabIndex = 13;
+            this.radioButton9.TabStop = true;
+            this.radioButton9.Text = "Детерминированный";
+            this.radioButton9.UseVisualStyleBackColor = true;
+            this.radioButton9.CheckedChanged += new System.EventHandler(this.radioButton9_CheckedChanged);
             // 
             // textBoxWithPlaceholder6
             // 
             this.textBoxWithPlaceholder6.Enabled = false;
             this.textBoxWithPlaceholder6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder6.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder6.Location = new System.Drawing.Point(198, 136);
+            this.textBoxWithPlaceholder6.Location = new System.Drawing.Point(198, 120);
             this.textBoxWithPlaceholder6.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxWithPlaceholder6.Name = "textBoxWithPlaceholder6";
             this.textBoxWithPlaceholder6.PlaceHolderText = "lambda";
@@ -552,7 +576,7 @@ namespace ParkingSimulationForms
             // 
             this.textBoxWithPlaceholder7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder7.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder7.Location = new System.Drawing.Point(282, 107);
+            this.textBoxWithPlaceholder7.Location = new System.Drawing.Point(272, 95);
             this.textBoxWithPlaceholder7.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxWithPlaceholder7.Name = "textBoxWithPlaceholder7";
             this.textBoxWithPlaceholder7.PlaceHolderText = "D";
@@ -560,13 +584,13 @@ namespace ParkingSimulationForms
             this.textBoxWithPlaceholder7.TabIndex = 11;
             this.textBoxWithPlaceholder7.Text = "D";
             this.textBoxWithPlaceholder7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxWithPlaceholder7.Leave += new System.EventHandler(this.textBoxWithPlaceholder7MaxNormal_TextChanged);
+            this.textBoxWithPlaceholder7.Leave += new System.EventHandler(this.textBoxWithPlaceholder7DNormal_TextChanged);
             // 
             // textBoxWithPlaceholder8
             // 
             this.textBoxWithPlaceholder8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder8.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder8.Location = new System.Drawing.Point(198, 108);
+            this.textBoxWithPlaceholder8.Location = new System.Drawing.Point(198, 95);
             this.textBoxWithPlaceholder8.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxWithPlaceholder8.Name = "textBoxWithPlaceholder8";
             this.textBoxWithPlaceholder8.PlaceHolderText = "M";
@@ -574,13 +598,13 @@ namespace ParkingSimulationForms
             this.textBoxWithPlaceholder8.TabIndex = 10;
             this.textBoxWithPlaceholder8.Text = "M";
             this.textBoxWithPlaceholder8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxWithPlaceholder8.Leave += new System.EventHandler(this.textBoxWithPlaceholder8MinNormal_TextChanged);
+            this.textBoxWithPlaceholder8.Leave += new System.EventHandler(this.textBoxWithPlaceholder8MNormal_TextChanged);
             // 
             // textBoxWithPlaceholder9
             // 
             this.textBoxWithPlaceholder9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder9.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder9.Location = new System.Drawing.Point(198, 83);
+            this.textBoxWithPlaceholder9.Location = new System.Drawing.Point(198, 68);
             this.textBoxWithPlaceholder9.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxWithPlaceholder9.Name = "textBoxWithPlaceholder9";
             this.textBoxWithPlaceholder9.PlaceHolderText = "min";
@@ -594,7 +618,7 @@ namespace ParkingSimulationForms
             // 
             this.textBoxWithPlaceholder10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder10.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder10.Location = new System.Drawing.Point(282, 83);
+            this.textBoxWithPlaceholder10.Location = new System.Drawing.Point(272, 68);
             this.textBoxWithPlaceholder10.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxWithPlaceholder10.Name = "textBoxWithPlaceholder10";
             this.textBoxWithPlaceholder10.PlaceHolderText = "max";
@@ -609,7 +633,7 @@ namespace ParkingSimulationForms
             this.radioButton6.AutoSize = true;
             this.radioButton6.Enabled = false;
             this.radioButton6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.radioButton6.Location = new System.Drawing.Point(25, 131);
+            this.radioButton6.Location = new System.Drawing.Point(25, 122);
             this.radioButton6.Name = "radioButton6";
             this.radioButton6.Size = new System.Drawing.Size(118, 19);
             this.radioButton6.TabIndex = 5;
@@ -621,7 +645,7 @@ namespace ParkingSimulationForms
             // 
             this.radioButton7.AutoSize = true;
             this.radioButton7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.radioButton7.Location = new System.Drawing.Point(25, 106);
+            this.radioButton7.Location = new System.Drawing.Point(25, 96);
             this.radioButton7.Name = "radioButton7";
             this.radioButton7.Size = new System.Drawing.Size(101, 19);
             this.radioButton7.TabIndex = 4;
@@ -633,64 +657,13 @@ namespace ParkingSimulationForms
             // 
             this.radioButton8.AutoSize = true;
             this.radioButton8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.radioButton8.Location = new System.Drawing.Point(25, 81);
+            this.radioButton8.Location = new System.Drawing.Point(25, 70);
             this.radioButton8.Name = "radioButton8";
             this.radioButton8.Size = new System.Drawing.Size(107, 19);
             this.radioButton8.TabIndex = 3;
             this.radioButton8.Text = "Равномерный";
             this.radioButton8.UseVisualStyleBackColor = true;
             this.radioButton8.CheckedChanged += new System.EventHandler(this.radioButton8Uniform_CheckedChanged);
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (230)))), ((int) (((byte) (230)))), ((int) (((byte) (230)))));
-            this.panel7.Controls.Add(this.textBoxWithPlaceholder11);
-            this.panel7.Controls.Add(this.radioButton9);
-            this.panel7.Controls.Add(this.radioButton10);
-            this.panel7.Location = new System.Drawing.Point(7, 28);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(342, 54);
-            this.panel7.TabIndex = 3;
-            // 
-            // textBoxWithPlaceholder11
-            // 
-            this.textBoxWithPlaceholder11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.textBoxWithPlaceholder11.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder11.Location = new System.Drawing.Point(195, 4);
-            this.textBoxWithPlaceholder11.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxWithPlaceholder11.Name = "textBoxWithPlaceholder11";
-            this.textBoxWithPlaceholder11.PlaceHolderText = "t";
-            this.textBoxWithPlaceholder11.Size = new System.Drawing.Size(68, 21);
-            this.textBoxWithPlaceholder11.TabIndex = 3;
-            this.textBoxWithPlaceholder11.Text = "t";
-            this.textBoxWithPlaceholder11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxWithPlaceholder11.Leave += new System.EventHandler(this.textBoxWithPlaceholder11_Leave);
-            // 
-            // radioButton9
-            // 
-            this.radioButton9.AutoSize = true;
-            this.radioButton9.Checked = true;
-            this.radioButton9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.radioButton9.Location = new System.Drawing.Point(3, 3);
-            this.radioButton9.Name = "radioButton9";
-            this.radioButton9.Size = new System.Drawing.Size(150, 19);
-            this.radioButton9.TabIndex = 1;
-            this.radioButton9.TabStop = true;
-            this.radioButton9.Text = "Детерминированный";
-            this.radioButton9.UseVisualStyleBackColor = true;
-            this.radioButton9.CheckedChanged += new System.EventHandler(this.radioButton9_CheckedChanged);
-            // 
-            // radioButton10
-            // 
-            this.radioButton10.AutoSize = true;
-            this.radioButton10.Enabled = false;
-            this.radioButton10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.radioButton10.Location = new System.Drawing.Point(3, 28);
-            this.radioButton10.Name = "radioButton10";
-            this.radioButton10.Size = new System.Drawing.Size(88, 19);
-            this.radioButton10.TabIndex = 2;
-            this.radioButton10.Text = "Случайный";
-            this.radioButton10.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -714,9 +687,9 @@ namespace ParkingSimulationForms
             this.panel5.Controls.Add(this.label10);
             this.panel5.Controls.Add(this.textBox4);
             this.panel5.Controls.Add(this.label9);
-            this.panel5.Location = new System.Drawing.Point(395, 207);
+            this.panel5.Location = new System.Drawing.Point(440, 220);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(356, 163);
+            this.panel5.Size = new System.Drawing.Size(427, 182);
             this.panel5.TabIndex = 3;
             // 
             // label14
@@ -784,7 +757,7 @@ namespace ParkingSimulationForms
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.textBox4.Location = new System.Drawing.Point(8, 33);
+            this.textBox4.Location = new System.Drawing.Point(7, 43);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(64, 22);
             this.textBox4.TabIndex = 7;
@@ -796,7 +769,7 @@ namespace ParkingSimulationForms
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.label9.Location = new System.Drawing.Point(4, 14);
+            this.label9.Location = new System.Drawing.Point(3, 14);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(280, 16);
             this.label9.TabIndex = 6;
@@ -811,9 +784,9 @@ namespace ParkingSimulationForms
             this.panel4.Controls.Add(this.label8);
             this.panel4.Controls.Add(this.label7);
             this.panel4.Controls.Add(this.label6);
-            this.panel4.Location = new System.Drawing.Point(8, 207);
+            this.panel4.Location = new System.Drawing.Point(8, 220);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(355, 163);
+            this.panel4.Size = new System.Drawing.Size(412, 182);
             this.panel4.TabIndex = 2;
             // 
             // textBox3
@@ -872,7 +845,9 @@ namespace ParkingSimulationForms
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (230)))), ((int) (((byte) (230)))), ((int) (((byte) (230)))));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.textBox1);
             this.panel3.Controls.Add(this.textBoxWithPlaceholder5);
+            this.panel3.Controls.Add(this.radioButton1);
             this.panel3.Controls.Add(this.textBoxWithPlaceholder4);
             this.panel3.Controls.Add(this.textBoxWithPlaceholder3);
             this.panel3.Controls.Add(this.textBoxWithPlaceholder1);
@@ -880,12 +855,26 @@ namespace ParkingSimulationForms
             this.panel3.Controls.Add(this.radioButton5);
             this.panel3.Controls.Add(this.radioButton4);
             this.panel3.Controls.Add(this.radioButton3);
-            this.panel3.Controls.Add(this.panel6);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Location = new System.Drawing.Point(8, 6);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(355, 163);
+            this.panel3.Size = new System.Drawing.Size(412, 193);
             this.panel3.TabIndex = 1;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.textBox1.ForeColor = System.Drawing.Color.Gray;
+            this.textBox1.Location = new System.Drawing.Point(200, 53);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.PlaceHolderText = "t";
+            this.textBox1.Size = new System.Drawing.Size(68, 21);
+            this.textBox1.TabIndex = 3;
+            this.textBox1.Text = "t";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBoxWithPlaceholder5
             // 
@@ -900,6 +889,18 @@ namespace ParkingSimulationForms
             this.textBoxWithPlaceholder5.Text = "lambda";
             this.textBoxWithPlaceholder5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBoxWithPlaceholder5.Leave += new System.EventHandler(this.textBoxWithPlaceholder5_TextChanged);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.radioButton1.Location = new System.Drawing.Point(25, 53);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(150, 19);
+            this.radioButton1.TabIndex = 1;
+            this.radioButton1.Text = "Детерминированный";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // textBoxWithPlaceholder4
             // 
@@ -992,57 +993,6 @@ namespace ParkingSimulationForms
             this.radioButton3.Text = "Равномерный";
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (230)))), ((int) (((byte) (230)))), ((int) (((byte) (230)))));
-            this.panel6.Controls.Add(this.textBox1);
-            this.panel6.Controls.Add(this.radioButton1);
-            this.panel6.Controls.Add(this.radioButton2);
-            this.panel6.Location = new System.Drawing.Point(9, 28);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(339, 54);
-            this.panel6.TabIndex = 3;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.textBox1.ForeColor = System.Drawing.Color.Gray;
-            this.textBox1.Location = new System.Drawing.Point(197, 4);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PlaceHolderText = "t";
-            this.textBox1.Size = new System.Drawing.Size(68, 21);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "t";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox1.Leave += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.radioButton1.Location = new System.Drawing.Point(3, 3);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(150, 19);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.Text = "Детерминированный";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Enabled = false;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.radioButton2.Location = new System.Drawing.Point(3, 28);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(88, 19);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.Text = "Случайный";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.RandomGenerationStreamCheckboxCheckedChanged);
             // 
             // label4
             // 
@@ -1479,6 +1429,18 @@ namespace ParkingSimulationForms
             this.label21.Text = "Самарский университет, факультет информатики";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // radioButton10
+            // 
+            this.radioButton10.AutoSize = true;
+            this.radioButton10.Enabled = false;
+            this.radioButton10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
+            this.radioButton10.Location = new System.Drawing.Point(3, 28);
+            this.radioButton10.Name = "radioButton10";
+            this.radioButton10.Size = new System.Drawing.Size(88, 19);
+            this.radioButton10.TabIndex = 2;
+            this.radioButton10.Text = "Случайный";
+            this.radioButton10.UseVisualStyleBackColor = true;
+            // 
             // elementsImageList
             // 
             this.elementsImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer) (resources.GetObject("elementsImageList.ImageStream")));
@@ -1549,16 +1511,12 @@ namespace ParkingSimulationForms
             this.tabPage2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.panel8.ResumeLayout(false);
@@ -1570,6 +1528,10 @@ namespace ParkingSimulationForms
             this.tabPage6.PerformLayout();
             this.ResumeLayout(false);
         }
+
+        private ParkingSimulationForms.views.components.TextBoxWithPlaceholder textBoxWithPlaceholder12;
+
+        private System.Windows.Forms.RadioButton radioButton9;
 
         #endregion
 
@@ -1597,9 +1559,7 @@ namespace ParkingSimulationForms
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton5;
@@ -1619,9 +1579,6 @@ namespace ParkingSimulationForms
         private System.Windows.Forms.RadioButton radioButton6;
         private System.Windows.Forms.RadioButton radioButton7;
         private System.Windows.Forms.RadioButton radioButton8;
-        private System.Windows.Forms.Panel panel7;
-        private TextBoxWithPlaceholder textBoxWithPlaceholder11;
-        private System.Windows.Forms.RadioButton radioButton9;
         private System.Windows.Forms.RadioButton radioButton10;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox3;

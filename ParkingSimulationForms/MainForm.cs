@@ -201,14 +201,9 @@ namespace ParkingSimulationForms
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            radioButton2.Checked = !radioButton1.Checked;
-            radioButton3.Checked = !radioButton1.Checked;
-            radioButton4.Checked = !radioButton1.Checked;
-            radioButton5.Checked = !radioButton1.Checked;
-
             if (!radioButton1.Checked) return;
-            if (double.TryParse(textBox1.Text, out var value)
-                && SettingsModel.SettingService.CheckGenerationDeterminedDistributionValue(value))
+            if (double.TryParse(textBox1.Text, out var value) && 
+                SettingsModel.SettingService.CheckGenerationDeterminedDistributionValue(value))
             {
                 SettingsModel.SetGenerationStreamDistribution(new DeterminedDistribution(value));
             }
@@ -220,13 +215,9 @@ namespace ParkingSimulationForms
 
         private void radioButton9_CheckedChanged(object sender, EventArgs e)
         {
-            radioButton10.Checked = !radioButton9.Checked;
-            radioButton8.Checked = !radioButton9.Checked;
-            radioButton7.Checked = !radioButton9.Checked;
-
             if (!radioButton9.Checked) return;
-            if (double.TryParse(textBoxWithPlaceholder11.Text, out var value)
-                && SettingsModel.SettingService.CheckParkingTimeDistributionValue(value))
+            if (double.TryParse(textBoxWithPlaceholder12.Text, out var value) && 
+                SettingsModel.SettingService.CheckParkingTimeDistributionValue(value))
             {
                 SettingsModel.SetParkingTimeDistribution(new DeterminedDistribution(value));
             }
@@ -354,7 +345,7 @@ namespace ParkingSimulationForms
         {
             sceneVisualization.CreateVehicle();
             
-            var generalInterval = (int) SettingsModel.GenerationStreamDistribution.GetRandNumber();
+            var generalInterval = (int) (SettingsModel.GenerationStreamDistribution.GetRandNumber() * 1000);
             generationStreamTimer.Interval = generalInterval;
             generationStreamTimer.Start();
         }
@@ -501,37 +492,36 @@ namespace ParkingSimulationForms
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (double.TryParse(textBox1.Text, out var value)
-                && SettingsModel.SettingService.CheckGenerationDeterminedDistributionValue(value))
+            if(!radioButton1.Checked) return;
+            
+            if (double.TryParse(textBox1.Text, out var value) && 
+                SettingsModel.SettingService.CheckGenerationDeterminedDistributionValue(value))
             {
+                textBox1.BackColor = Color.White;
                 SettingsModel.SetGenerationStreamDistribution(new DeterminedDistribution(value));
             }
             else
             {
-                ShowUncorrectedValueMessage();
+                SettingsModel.SetGenerationStreamDistribution(null);
+                textBox1.BackColor = Color.Crimson;
             }
-
-            InitSettingsForm();
         }
 
-        private void textBoxWithPlaceholder11_Leave(object sender, EventArgs e)
+        private void textBoxWithPlaceholder12_Leave(object sender, EventArgs e)
         {
-            if (double.TryParse(textBoxWithPlaceholder11.Text, out var value)
-                && SettingsModel.SettingService.CheckParkingTimeDistributionValue(value))
+            if(!radioButton9.Checked) return;
+        
+            if (double.TryParse(textBoxWithPlaceholder12.Text, out var value) && 
+                SettingsModel.SettingService.CheckParkingTimeDistributionValue(value))
             {
+                textBoxWithPlaceholder12.BackColor = Color.White;
                 SettingsModel.SetParkingTimeDistribution(new DeterminedDistribution(value));
             }
             else
             {
-                ShowUncorrectedValueMessage();
+                SettingsModel.SetParkingTimeDistribution(null);
+                textBoxWithPlaceholder12.BackColor = Color.Crimson;
             }
-
-            InitSettingsForm();
-        }
-
-        private void RandomGenerationStreamCheckboxCheckedChanged(object sender, EventArgs e)
-        {
-            //SettingsModel.SetGenerationStreamDistribution(null);
         }
 
         private void ShowUncorrectedValueMessage()
@@ -542,12 +532,14 @@ namespace ParkingSimulationForms
         private void textBoxMin_TextChanged(object sender, EventArgs e)
         {
             if (!radioButton3.Checked) return;
+            
             var isMinCorrect = double.TryParse(textBoxWithPlaceholder1.Text, out var min);
             var isMaxCorrect = double.TryParse(textBoxWithPlaceholder2.Text, out var max);
             if (isMinCorrect &&
                 isMaxCorrect &&
                 CheckGenerationUniformDistributionValues(min, max))
             {
+                textBoxWithPlaceholder2.BackColor = Color.White;
                 textBoxWithPlaceholder1.BackColor = Color.White;
                 SettingsModel.SetGenerationStreamDistribution(new UniformDistribution(min, max));
             }
@@ -564,6 +556,7 @@ namespace ParkingSimulationForms
         private void textBoxMax_TextChanged(object sender, EventArgs e)
         {
             if (!radioButton3.Checked) return;
+            
             var isMinCorrect = double.TryParse(textBoxWithPlaceholder1.Text, out var min);
             var isMaxCorrect = double.TryParse(textBoxWithPlaceholder2.Text, out var max);
             if (isMinCorrect &&
@@ -571,6 +564,7 @@ namespace ParkingSimulationForms
                 CheckGenerationUniformDistributionValues(min, max))
             {
                 textBoxWithPlaceholder2.BackColor = Color.White;
+                textBoxWithPlaceholder1.BackColor = Color.White;
                 SettingsModel.SetGenerationStreamDistribution(new UniformDistribution(min, max));
             }
 
@@ -593,6 +587,7 @@ namespace ParkingSimulationForms
         private void textBoxWithPlaceholder3_TextChanged(object sender, EventArgs e)
         {
             if (!radioButton4.Checked) return;
+            
             if (textBoxWithPlaceholder3.IsCorrect)
             {
                 textBoxWithPlaceholder3.BackColor = Color.White;
@@ -631,12 +626,6 @@ namespace ParkingSimulationForms
 
         private void radioButton5Normal_CheckedChanged(object sender, EventArgs e)
         {
-            radioButton2.Checked = radioButton5.Checked;
-
-            // radioButton1.Checked = !radioButton5.Checked;
-            // radioButton4.Checked = !radioButton5.Checked;
-            // radioButton3.Checked = !radioButton5.Checked;
-
             if (!radioButton5.Checked) return;
             SettingsModel.SetGenerationStreamDistribution(
                 textBoxWithPlaceholder5.IsCorrect
@@ -647,12 +636,6 @@ namespace ParkingSimulationForms
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
-            radioButton2.Checked = radioButton4.Checked;
-
-            // radioButton1.Checked = !radioButton4.Checked;
-            // radioButton3.Checked = !radioButton4.Checked;
-            // radioButton5.Checked = !radioButton4.Checked;
-
             if (!radioButton4.Checked) return;
 
             SettingsModel.SetGenerationStreamDistribution(
@@ -665,13 +648,8 @@ namespace ParkingSimulationForms
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            radioButton2.Checked = radioButton3.Checked;
-
-            // radioButton1.Checked = !radioButton3.Checked;
-            // radioButton4.Checked = !radioButton3.Checked;
-            // radioButton5.Checked = !radioButton3.Checked;
-
             if (!radioButton3.Checked) return;
+            
             var isMinCorrect = double.TryParse(textBoxWithPlaceholder1.Text, out var min);
             var isMaxCorrect = double.TryParse(textBoxWithPlaceholder2.Text, out var max);
             if (isMinCorrect &&
@@ -689,6 +667,7 @@ namespace ParkingSimulationForms
         private void textBoxWithPlaceholder5_TextChanged(object sender, EventArgs e)
         {
             if (!radioButton5.Checked) return;
+            
             if (textBoxWithPlaceholder5.IsCorrect)
             {
                 textBoxWithPlaceholder5.BackColor = Color.White;
@@ -698,49 +677,30 @@ namespace ParkingSimulationForms
             }
             else
             {
+                SettingsModel.SetGenerationStreamDistribution(null);
                 textBoxWithPlaceholder5.BackColor = Color.Crimson;
             }
         }
 
         private void radioButton8Uniform_CheckedChanged(object sender, EventArgs e)
         {
-            radioButton10.Checked = radioButton8.Checked;
-
-            // radioButton9.Checked = !radioButton8.Checked;
-            // radioButton7.Checked = !radioButton8.Checked;
-            // radioButton6.Checked = !radioButton8.Checked;
-
             if (!radioButton8.Checked) return;
-            if (checkCorrectDistributionValues(textBoxWithPlaceholder9, textBoxWithPlaceholder10))
-            {
-                SettingsModel.SetParkingTimeDistribution(
-                    new UniformDistribution(textBoxWithPlaceholder9.CurrentValue, textBoxWithPlaceholder10.CurrentValue)
-                );
-            }
-            else
-            {
-                SettingsModel.SetGenerationStreamDistribution(null);
-            }
+            SettingsModel.SetParkingTimeDistribution(
+                checkCorrectDistributionValues(textBoxWithPlaceholder9, textBoxWithPlaceholder10)
+                    ? new UniformDistribution(textBoxWithPlaceholder9.CurrentValue,
+                        textBoxWithPlaceholder10.CurrentValue)
+                    : null
+            );
         }
 
         private void radioButton7Normal_CheckedChanged(object sender, EventArgs e)
         {
-            radioButton10.Checked = radioButton7.Checked;
-
-            // radioButton9.Checked = !radioButton7.Checked;
-            // radioButton8.Checked = !radioButton7.Checked;
-
             if (!radioButton7.Checked) return;
-            if (checkCorrectDistributionValues(textBoxWithPlaceholder8, textBoxWithPlaceholder7))
-            {
-                SettingsModel.SetParkingTimeDistribution(
-                    new NormalDistribution(textBoxWithPlaceholder8.CurrentValue, textBoxWithPlaceholder7.CurrentValue)
-                );
-            }
-            else
-            {
-                SettingsModel.SetGenerationStreamDistribution(null);
-            }
+            SettingsModel.SetParkingTimeDistribution(
+                checkCorrectDistributionValues(textBoxWithPlaceholder8, textBoxWithPlaceholder7)
+                    ? new NormalDistribution(textBoxWithPlaceholder8.CurrentValue, textBoxWithPlaceholder7.CurrentValue)
+                    : null
+            );
         }
 
         private void textBoxWithPlaceholder9MinUniform_TextChanged(object sender, EventArgs e)
@@ -749,11 +709,7 @@ namespace ParkingSimulationForms
             if (textBoxWithPlaceholder9.IsCorrect)
             {
                 textBoxWithPlaceholder9.BackColor = Color.White;
-                if (!checkCorrectDistributionValues(textBoxWithPlaceholder9, textBoxWithPlaceholder10))
-                {
-                    return;
-                }
-
+                if (!checkCorrectDistributionValues(textBoxWithPlaceholder9, textBoxWithPlaceholder10)) return;
                 textBoxWithPlaceholder10.BackColor = Color.White;
                 SettingsModel.SetParkingTimeDistribution(
                     new UniformDistribution(
@@ -791,7 +747,7 @@ namespace ParkingSimulationForms
             }
         }
 
-        private void textBoxWithPlaceholder8MinNormal_TextChanged(object sender, EventArgs e)
+        private void textBoxWithPlaceholder8MNormal_TextChanged(object sender, EventArgs e)
         {
             if (!radioButton7.Checked) return;
             if (textBoxWithPlaceholder8.IsCorrect)
@@ -813,7 +769,7 @@ namespace ParkingSimulationForms
             }
         }
 
-        private void textBoxWithPlaceholder7MaxNormal_TextChanged(object sender, EventArgs e)
+        private void textBoxWithPlaceholder7DNormal_TextChanged(object sender, EventArgs e)
         {
             if (!radioButton7.Checked) return;
             if (textBoxWithPlaceholder7.IsCorrect)

@@ -51,7 +51,7 @@ namespace ParkingConstructorLib
 
         public void CreateVehicle()
         {
-            var parkingTimeInMinutes = (int)settingsModel.ParkingTimeDistribution.GetRandNumber() * 60;
+            var parkingTimeInMinutes = (int)(settingsModel.ParkingTimeDistribution.GetRandNumber() * 60);
             AbstractVehicleModel vehicleModel;
             
             //TODO: Добавить учет процента заезда машин на парковку
