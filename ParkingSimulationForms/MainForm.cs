@@ -317,11 +317,11 @@ namespace ParkingSimulationForms
 
         #region Timers logic
 
-        public void StartGeneralTimerClick(object sender, EventArgs e)
+        private void StartGeneralTimerClick(object sender, EventArgs e)
         {
-            StopGeneralTimerClick(null, null);
+            modelGeneralTimer.Stop();
+            generationStreamTimer.Stop();
             
-            //Set timers interval in ms
             generationStreamTimer.Interval = (int) (SettingsModel.GenerationStreamDistribution.GetRandNumber() * 1000);
             generationStreamRandom = new UniformDistribution(0d, 100d);
 
@@ -356,22 +356,19 @@ namespace ParkingSimulationForms
 
         private void generationStreamTimer_Tick(object sender, EventArgs e)
         {
-            var value = SettingsModel.GenerationStreamDistribution.GetRandNumber();
-            var number = SettingsModel.ParkingTimeDistribution.GetRandNumber() * 60;
+            var generalInterval = SettingsModel.GenerationStreamDistribution.GetRandNumber();
+            var parkingTimeInMinutes = SettingsModel.ParkingTimeDistribution.GetRandNumber() * 60;
            
+            //Добавить процент заезда машин на парковку
             if (generationStreamRandom.GetRandNumber() > SettingsModel.PercentOfTrack)
             {
-                button10.Text = value.ToString();
-                button11.Text = number.ToString();
-                sceneVisualization.CreateCar((int)number * 60);
+                sceneVisualization.CreateCar((int)parkingTimeInMinutes * 60);
             }
             else
             {
-                button10.Text = value.ToString();
-                button11.Text = number.ToString();
-                sceneVisualization.CreateTruck((int)number);
+                sceneVisualization.CreateTruck((int)parkingTimeInMinutes);
             }
-            generationStreamTimer.Interval = (int) (value);
+            generationStreamTimer.Interval = (int)generalInterval;
             generationStreamTimer.Start();
        }
 
