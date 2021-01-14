@@ -14,9 +14,9 @@ namespace ParkingConstructorLib.models
         private LinkedList<AbstractVehicleModel> cars;
         private LinkedList<AbstractParkingPlace> carParkingPlaces;
         private LinkedList<AbstractParkingPlace> truckParkingPlaces;
-        public Coors cashierCoors = null;
-        public Coors exitCoors = null;
-        
+        public Coors cashierCoors;
+        public Coors exitCoors;
+
         public int SpawnRow;
         public int SpawnCol;
 
@@ -29,60 +29,61 @@ namespace ParkingConstructorLib.models
             truckParkingPlaces = new LinkedList<AbstractParkingPlace>();
             reloadMap();
 
-           for (int i = 0; i < model.ColumnCount; i++)
-               for (int j = 0; j < model.RowCount; j++)
-               {
-                   if (model.GetElement(i, j) == null) continue;
-                   if (model.GetElement(i, j).GetElementType() == ParkingModelElementType.Entry)
-                       SetSpawnPoint(i, j);
-                   if (model.GetElement(i, j).GetElementType() == ParkingModelElementType.ParkingSpace)
-                       carParkingPlaces.AddLast(new CarParkingPlace(i, j));
-                   if (model.GetElement(i, j).GetElementType() == ParkingModelElementType.TruckParkingSpace)
-                       truckParkingPlaces.AddLast(new TruckParkingPlace(new Coors(i, j)));
-                   if (model.GetElement(i, j).GetElementType() == ParkingModelElementType.Cashier)
-                       cashierCoors = new Coors(i, j);
-                   if (model.GetElement(i, j).GetElementType() == ParkingModelElementType.Exit)
-                       exitCoors = new Coors(i, j);
-               }
+            for (int i = 0; i < model.ColumnCount; i++)
+            {
+                for (int j = 0; j < model.RowCount; j++)
+                {
+                    if (model.GetElement(i, j) == null) continue;
+                    if (model.GetElement(i, j).GetElementType() == ParkingModelElementType.Entry)
+                        SetSpawnPoint(i, j);
+                    if (model.GetElement(i, j).GetElementType() == ParkingModelElementType.ParkingSpace)
+                        carParkingPlaces.AddLast(new CarParkingPlace(i, j));
+                    if (model.GetElement(i, j).GetElementType() == ParkingModelElementType.TruckParkingSpace)
+                        truckParkingPlaces.AddLast(new TruckParkingPlace(new Coors(i, j)));
+                    if (model.GetElement(i, j).GetElementType() == ParkingModelElementType.Cashier)
+                        cashierCoors = new Coors(i, j);
+                    if (model.GetElement(i, j).GetElementType() == ParkingModelElementType.Exit)
+                        exitCoors = new Coors(i, j);
+                }
+            }
         }
 
         public void reloadMap()
         {
             for (int i = 0; i < model.ColumnCount; i++)
+            {
                 for (int j = 0; j < model.RowCount; j++)
-                    map[i, j] = model.GetElement(i, j) == null ? true : false;
+                    map[i, j] = model.GetElement(i, j) == null;
+            }
             foreach (AbstractVehicleModel car in cars)
                 map[car.GetColumnIndex(), car.GetRowIndex()] = false;
         }
-        public void addCar(AbstractVehicleModel vehicleModel)
+
+        public void AddTruck(AbstractVehicleModel vehicleModel)
         {
-            bool isCarCreated = false;
-            if (vehicleModel.GetType().Equals("Car"))
-                foreach (CarParkingPlace placeC in carParkingPlaces)
-                    if (!placeC.isBusy)
-                    {
-                        vehicleModel.SetTarget(placeC.coors);
-                        placeC.isBusy = true;
-                        isCarCreated = true;
-                        vehicleModel.setParkingID(placeC.id);
-                        vehicleModel.isOnParkingPlace = false;
-                        break;
-                    }
-                    else { }
-            else
-                foreach (TruckParkingPlace placeT in truckParkingPlaces)
-                    if (!placeT.isBusy)
-                    {
-                        vehicleModel.SetTarget(placeT.coors);
-                        placeT.isBusy = true;
-                        isCarCreated = true;
-                        vehicleModel.setParkingID(placeT.id);
-                        vehicleModel.isOnParkingPlace = false;
-                        break;
-                    }
-            if (isCarCreated) cars.AddLast(vehicleModel);
+            AddVehicle(vehicleModel, truckParkingPlaces);
+        }
+
+        public void AddCar(AbstractVehicleModel vehicleModel)
+        {
+            AddVehicle(vehicleModel, carParkingPlaces);
+        }
+
+        private void AddVehicle(AbstractVehicleModel vehicleModel, LinkedList<AbstractParkingPlace> parkingPlaces)
+        {
+            var palace = parkingPlaces.First(value => !value.isBusy);
+            if (palace != null)
+            {
+                vehicleModel.SetTarget(palace.coors);
+                palace.isBusy = true;
+                vehicleModel.setParkingID(palace.id);
+                vehicleModel.isOnParkingPlace = false;
+                cars.AddLast(vehicleModel);
+            }
+
             reloadMap();
         }
+
         public int[,,] CreateAndInitLocalMap()
         {
             int[,,] localMap = new int[model.ColumnCount, model.RowCount, 3];
@@ -116,7 +117,7 @@ namespace ParkingConstructorLib.models
 
             return parkingPlaces != null && parkingPlaces.Any(placeForCar => !placeForCar.isBusy);
         }
-        
+
         private void SetSpawnPoint(int col, int row)
         {
             SpawnCol = col;
