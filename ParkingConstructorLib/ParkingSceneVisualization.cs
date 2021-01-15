@@ -47,14 +47,7 @@ namespace ParkingConstructorLib
                     cars.Remove(carTemp);
             }
             catch (Exception) { }
-
-            LinkedList<AbstractParkingPlace> places = dynamicMap.getParkingPlaces();
-            int counter = 0;
-            foreach (AbstractParkingPlace place in places)
-                if (!place.isBusy)
-                    counter++;
-            statisticModel.ParkingPlaces = counter;
-
+            
             drawer.Draw(cars);
         }
 

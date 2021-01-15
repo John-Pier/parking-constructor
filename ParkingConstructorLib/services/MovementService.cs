@@ -26,10 +26,10 @@ namespace ParkingConstructorLib.services
             this.dynamicMap = dynamicMap;
         }
 
-        public Coors[] foundWay(int[,,] localMap, AbstractVehicleModel @abstract)
+        public Coors[] foundWay(int[,,] localMap, AbstractVehicleModel vehicleModel)
         {
-            RunDijkstraAlgorithm(localMap, @abstract);
-            return GetWay(@abstract, localMap);
+            RunDijkstraAlgorithm(localMap, vehicleModel);
+            return GetWay(vehicleModel, localMap);
         }
 
         private void RunDijkstraAlgorithm(int[,,] localMap, AbstractVehicleModel vehicleModel)
@@ -206,9 +206,9 @@ namespace ParkingConstructorLib.services
                             vehicleModel.isOnParkingPlace = false;
                             if (vehicleModel.GetType() == "Car")
                             {
-                                foreach (var cpp in carParkingPlaces.Where(cpp => cpp.coors.Equals(vehicleModel.GetCoors())))
+                                foreach (var carParkingPlace in carParkingPlaces.Where(cpp => cpp.coors.Equals(vehicleModel.GetCoors())))
                                 {
-                                    cpp.isBusy = false;
+                                    carParkingPlace.isBusy = false;
                                     break;
                                 }
                             }
