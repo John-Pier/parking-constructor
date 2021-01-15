@@ -803,7 +803,7 @@ namespace ParkingSimulationForms
 
         private void button13_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(Directory.GetCurrentDirectory() + "\\Help\\help.html");
+            System.Diagnostics.Process.Start(Directory.GetCurrentDirectory() + "\\resources\\help\\help.html"); // ParkingSimulationForms/resources/help/help.html \\resources\\help\\help.html
         }
     }
 }
