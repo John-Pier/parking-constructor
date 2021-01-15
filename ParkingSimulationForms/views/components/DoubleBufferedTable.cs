@@ -1,9 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace ParkingSimulationForms.views.components
 {
-    public class DoubleBufferedTable : System.Windows.Forms.TableLayoutPanel
+    public class DoubleBufferedTable : TableLayoutPanel
     {
         public DoubleBufferedTable()
         {

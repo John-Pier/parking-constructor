@@ -23,6 +23,7 @@ namespace ParkingSimulationForms
         private readonly MainFormConstructorController constructorController = new MainFormConstructorController();
         private DateTime dateTimeModel;
         private readonly SettingsModel SettingsModel = new SettingsModel();
+        private readonly StatisticModel statisticModel = new StatisticModel();
         private bool isFirstOpenTabVizualization = true;
         
         public MainForm()
@@ -37,9 +38,8 @@ namespace ParkingSimulationForms
             constructorController.CurrentSceneConstructor = sceneConstructor;
             constructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
 
-            MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
-            MainFormStatisticsController.initTable(tableLayoutPanel3);
-
+            sceneVisualization.SetStatisticModel(statisticModel);
+            
             constructorController.ImageList = texturesImageList; // TODO: В конструктор
             constructorController.CreateAndSetTexturesBitmapArray();
             InitSettingsForm();

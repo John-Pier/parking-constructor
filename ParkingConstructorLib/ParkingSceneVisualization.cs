@@ -20,6 +20,7 @@ namespace ParkingConstructorLib
         private DrawerService<T> drawer; //Отрисовщик
         private MovementService<T> movement; //Передвижения
         private SettingsModel settingsModel;
+        private StatisticModel statisticModel;
         private UniformDistribution generationStreamRandom = new UniformDistribution(0d, 100d);
 
         public static void SetTextures(Bitmap[] texturesArr)
@@ -77,6 +78,11 @@ namespace ParkingConstructorLib
             dynamicMap = new DynamicMap<T>(this.parkingModel);
             movement = new MovementService<T>(this.parkingModel, dynamicMap);
             drawer = new DrawerService<T>(this.parkingModel, textures);
+        }
+
+        public void SetStatisticModel(StatisticModel statisticModel)
+        {
+            this.statisticModel = statisticModel;
         }
 
         public Bitmap GetImage()
