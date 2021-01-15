@@ -307,8 +307,12 @@ namespace ParkingSimulationForms
 
         private void StartGeneralTimerClick(object sender, EventArgs e)
         {
+            SetStatistic(true);
             if (!sceneVisualization.IsSettingsModelSet()) return;
-
+            
+            statisticModel.ClearStatistic();
+            statisticModel.StartDateTime = dateTimeModel;
+            
             modelGeneralTimer.Stop();
             generationStreamTimer.Stop();
 
@@ -322,12 +326,18 @@ namespace ParkingSimulationForms
 
         private void PauseGeneralTimerClick(object sender, EventArgs e)
         {
+            statisticModel.EndDateTime = dateTimeModel;
+            SetStatistic(false);
+
             modelGeneralTimer.Stop();
             generationStreamTimer.Stop();
         }
 
         private void StopGeneralTimerClick(object sender, EventArgs e)
         {
+            statisticModel.EndDateTime = dateTimeModel;
+            SetStatistic(false);
+            
             modelGeneralTimer.Stop();
             generationStreamTimer.Stop();
             sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
@@ -807,6 +817,20 @@ namespace ParkingSimulationForms
         private void button13_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(Directory.GetCurrentDirectory() + "\\resources\\help\\help.html"); // ParkingSimulationForms/resources/help/help.html \\resources\\help\\help.html
+        }
+
+        private void SetStatistic(Boolean isInit)
+        {
+            statisticModel.CalculateStatistic();
+            
+            dateTimePicker1.Value = isInit ? DateTime.Now : statisticModel.StartDateTime;
+            dateTimePicker2.Value = isInit ? DateTime.Now : statisticModel.EndDateTime;
+
+            label34.Text = isInit ? "-" : statisticModel.AverageNumberOfOccupiedPlaces.ToString();
+            label35.Text = isInit ? "-" : statisticModel.AveragePercentageOfOccupiedPlaces.ToString();
+            label36.Text = isInit ? "0" : statisticModel.FinalScope.ToString();
+            label37.Text = isInit ? "-" : statisticModel.AverageIncomePerDay.ToString();
+            label38.Text = isInit ? "-" : statisticModel.AverageIncomePerNight.ToString();
         }
     }
 }

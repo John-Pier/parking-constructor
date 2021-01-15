@@ -16,6 +16,15 @@ namespace ParkingConstructorLib.logic
         /// Содержит общее чисто доступных парковочных мест на карте
         /// </summary>
         public int ParkingPlaces;
+
+
+        private double dayDateTimeScope = 0;
+        private double nightDateTimeScope = 0;
+
+        public StatisticModel()
+        {
+            ClearStatistic();
+        }
         
         /// <summary>
         /// Вызывается в момент, когда машина на паркомате
@@ -25,6 +34,14 @@ namespace ParkingConstructorLib.logic
         public void AddToFinalScope(double vehicleScope, DateTime currentDateTime)
         {
             FinalScope += vehicleScope;
+            if (currentDateTime.Hour < 21 && currentDateTime.Hour >= 6)
+            {
+                dayDateTimeScope += vehicleScope;
+            }
+            else
+            {
+                nightDateTimeScope += vehicleScope;
+            }
         }
 
         /// <summary>
@@ -32,7 +49,7 @@ namespace ParkingConstructorLib.logic
         /// </summary>
         public void TakeParkingPlace()
         {
-
+            
         }
         
         /// <summary>
@@ -46,7 +63,30 @@ namespace ParkingConstructorLib.logic
 
         public void ClearStatistic()
         {
-            
+            StartDateTime = EndDateTime = DateTime.Now;
+            AverageNumberOfOccupiedPlaces = 0;
+            AveragePercentageOfOccupiedPlaces = 0;
+            AverageIncomePerDay = 0;
+            AverageIncomePerNight = 0;
+            FinalScope = 0;
+            ParkingPlaces = 0;
+            dayDateTimeScope = 0;
+            nightDateTimeScope = 0;
+        }
+
+        public void CalculateStatistic()
+        {
+            CalculateAverageIncome();
+        }
+        
+        private void CalculateAverageIncome()
+        {
+            if (StartDateTime != EndDateTime)
+            {
+                var days = (EndDateTime - StartDateTime).Days;
+                AverageIncomePerDay = dayDateTimeScope / days;
+                AverageIncomePerNight = nightDateTimeScope / days;
+            }
         }
     }
 }
