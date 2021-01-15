@@ -104,6 +104,16 @@ namespace ParkingConstructorLib.services
                         for (int j = 0; j < textureSize; j++)
                             originalImage.SetPixel(i, j, textures[11].GetPixel(i % textureSize, j));
                     break;
+                case RoadDirections.Left:
+                    for (int j = 0; j < model.RowCount * textureSize; j++)
+                        for (int i = 0; i < textureSize; i++)
+                            originalImage.SetPixel(i, j, textures[11].GetPixel(j % textureSize, i));
+                    break;
+                case RoadDirections.Right:
+                    for (int j = 0; j < model.RowCount * textureSize; j++)
+                        for (int i = 0; i < textureSize; i++)
+                            originalImage.SetPixel((model.ColumnCount * textureSize) + i, j, textures[11].GetPixel(j % textureSize, i));
+                    break;
             }
         }
 
@@ -119,14 +129,32 @@ namespace ParkingConstructorLib.services
                             for (int k = 0; k < textureSize; k++)
                                 for (int l = 0; l < textureSize; l++)
                                 {
+                                    int i_new = 0;
+                                    int j_new = 0;
+                                    switch (model.RoadDirection)
+                                    {
+                                        case RoadDirections.Bottom:
+                                        case RoadDirections.Right:
+                                            i_new = i;
+                                            j_new = j;
+                                            break;
+                                        case RoadDirections.Top:
+                                            i_new = i;
+                                            j_new = j + 1;
+                                            break;
+                                        case RoadDirections.Left:
+                                            i_new = i + 1;
+                                            j_new = j;
+                                            break;
+                                    }
                                     if (car.GetType() == "Car" && car.GetLastDirection() == LastDirection.Horizontal && textures[6].GetPixel(k, l).A > 100)
-                                        result.SetPixel(i * textureSize + k, j * textureSize + l, textures[6].GetPixel(k, l));
+                                        result.SetPixel(i_new * textureSize + k, j_new * textureSize + l, textures[6].GetPixel(k, l));
                                     if (car.GetType() == "Car" && car.GetLastDirection() == LastDirection.Vertical && textures[7].GetPixel(k, l).A > 100)
-                                        result.SetPixel(i * textureSize + k, j * textureSize + l, textures[7].GetPixel(k, l));
+                                        result.SetPixel(i_new * textureSize + k, j_new * textureSize + l, textures[7].GetPixel(k, l));
                                     if (car.GetType() == "Truck" && car.GetLastDirection() == LastDirection.Horizontal && textures[8].GetPixel(k, l).A > 100)
-                                        result.SetPixel(i * textureSize + k, j * textureSize + l, textures[8].GetPixel(k, l));
+                                        result.SetPixel(i_new * textureSize + k, j_new * textureSize + l, textures[8].GetPixel(k, l));
                                     if (car.GetType() == "Truck" && car.GetLastDirection() == LastDirection.Vertical && textures[9].GetPixel(k, l).A > 100)
-                                        result.SetPixel(i * textureSize + k, j * textureSize + l, textures[9].GetPixel(k, l));
+                                        result.SetPixel(i_new * textureSize + k, j_new * textureSize + l, textures[9].GetPixel(k, l));
                                 }
             }
             imageNow = result;

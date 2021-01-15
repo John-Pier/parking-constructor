@@ -261,8 +261,6 @@ namespace ParkingSimulationForms
                 {
                     InitModelTime();
 
-                    MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
-
                     sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
                     sceneVisualization.NextStep(dateTimeModel);
 
