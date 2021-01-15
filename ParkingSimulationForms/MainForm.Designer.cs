@@ -1478,6 +1478,7 @@ namespace ParkingSimulationForms
             this.texturesImageList.Images.SetKeyName(8, "truckHorizontal.png");
             this.texturesImageList.Images.SetKeyName(9, "truckVertical.png");
             this.texturesImageList.Images.SetKeyName(10, "road.png");
+            this.texturesImageList.Images.SetKeyName(11, "roadmain.png");
             // 
             // modelGeneralTimer
             // 

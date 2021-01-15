@@ -23,6 +23,7 @@ namespace ParkingSimulationForms
         private readonly MainFormConstructorController constructorController = new MainFormConstructorController();
         private DateTime dateTimeModel;
         private readonly SettingsModel SettingsModel = new SettingsModel();
+        private bool isFirstOpenTabVizualization = true;
         
         public MainForm()
         {
