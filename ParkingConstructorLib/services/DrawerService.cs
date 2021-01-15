@@ -99,6 +99,11 @@ namespace ParkingConstructorLib.services
                         for(int j = 0; j<textureSize; j++)
                             originalImage.SetPixel(i, (model.RowCount * textureSize) + j, textures[11].GetPixel(i%textureSize, j));
                     break;
+                case RoadDirections.Top:
+                    for (int i = 0; i < model.ColumnCount * textureSize; i++)
+                        for (int j = 0; j < textureSize; j++)
+                            originalImage.SetPixel(i, j, textures[11].GetPixel(i % textureSize, j));
+                    break;
             }
         }
 
