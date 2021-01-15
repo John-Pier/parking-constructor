@@ -36,9 +36,6 @@ namespace ParkingSimulationForms
             constructorController.CurrentSceneConstructor = sceneConstructor;
             constructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
 
-            MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
-            MainFormStatisticsController.initTable(tableLayoutPanel3);
-
             constructorController.ImageList = texturesImageList; // TODO: В конструктор
             constructorController.CreateAndSetTexturesBitmapArray();
             InitSettingsForm();

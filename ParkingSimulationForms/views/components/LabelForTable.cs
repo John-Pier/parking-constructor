@@ -2,7 +2,7 @@
 
 namespace ParkingSimulationForms.views.components
 {
-    public class LabelForTable : System.Windows.Forms.Label
+    public class LabelForTable : Label
     {
         private static int realID = 999;
         public LabelForTable()
