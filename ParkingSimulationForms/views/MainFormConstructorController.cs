@@ -19,8 +19,8 @@ namespace ParkingSimulationForms.views
 
         public void CreateAndSetTexturesBitmapArray()
         {
-            var texturesBitmapArray = new Bitmap[11];
-            for(var i = 0; i<11; i++)
+            var texturesBitmapArray = new Bitmap[12];
+            for(var i = 0; i<12; i++)
                 texturesBitmapArray[i] = new Bitmap(ImageList.Images[i]);
             ParkingSceneVisualization<Image>.SetTextures(texturesBitmapArray);
         }

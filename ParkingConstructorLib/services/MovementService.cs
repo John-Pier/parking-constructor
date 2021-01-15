@@ -183,7 +183,7 @@ namespace ParkingConstructorLib.services
             return coorsArr;
         }
 
-        public AbstractVehicleModel[] nextSystemStep(int[,,] localMap, AbstractVehicleModel vehicleModel, Coors[] way, DateTime modelDateTime)
+        public AbstractVehicleModel[] nextSystemStep(int[,,] localMap, AbstractVehicleModel vehicleModel, Coors[] way, DateTime modelDateTime, StatisticModel stats)
         {
             LinkedList<AbstractVehicleModel> removedCars = new LinkedList<AbstractVehicleModel>();
             bool stopEnding = false;
@@ -193,6 +193,11 @@ namespace ParkingConstructorLib.services
                     //Если машина на парковке
                     if (vehicleModel.GetCoors().Equals(vehicleModel.GetTarget()) && vehicleModel.GetTargetType() == TargetType.Parking)
                     {
+                        if (!vehicleModel.checkedOnStatisticStopOnPlace)
+                        {
+                            vehicleModel.checkedOnStatisticStopOnPlace = true;
+                            stats.TakeParkingPlace();
+                        }
                         if ((modelDateTime - vehicleModel.GetDateTimeStopping()).TotalMinutes >= vehicleModel.GetSecondsOnParking())
                         {
                             stopEnding = true;
@@ -228,13 +233,13 @@ namespace ParkingConstructorLib.services
                     {
                         vehicleModel.SetTarget(dynamicMap.exitCoors);
                         vehicleModel.SetTargetType(TargetType.Exit);
-                        //Логика, когда машина на кассе
-                        //
+                        stats.AddToFinalScope(Convert.ToDouble(vehicleModel.getPrice()), modelDateTime);
                     }
                     //Машина на выезде
                     if (dynamicMap.exitCoors.Equals(vehicleModel.GetCoors()))
                     {
                         removedCars.AddLast(vehicleModel);
+                        stats.FreeParkingPlace();
                     }
                     if (vehicleModel.GetCoors().Equals(way[i]) && i != way.Length - 1)
                     {

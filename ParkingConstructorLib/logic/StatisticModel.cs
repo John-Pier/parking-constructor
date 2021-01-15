@@ -32,7 +32,7 @@ namespace ParkingConstructorLib.logic
         /// </summary>
         public void TakeParkingPlace()
         {
-            
+
         }
         
         /// <summary>
