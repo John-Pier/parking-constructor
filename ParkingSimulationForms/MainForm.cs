@@ -256,6 +256,7 @@ namespace ParkingSimulationForms
         {
             if (tabControl1.SelectedIndex == 2)
             {
+                MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
                 if (sceneConstructor.IsParkingModelCreate() && sceneConstructor.ParkingModel.IsParkingModelCorrect())
                 {
                     InitModelTime();
