@@ -24,6 +24,7 @@ namespace ParkingSimulationForms
         private DateTime dateTimeModel;
         private readonly SettingsModel SettingsModel = new SettingsModel();
         private readonly StatisticModel statisticModel = new StatisticModel();
+        private bool isFirstOpenTabVizualization = true;
         
         public MainForm()
         {
