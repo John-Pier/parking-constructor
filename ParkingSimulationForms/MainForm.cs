@@ -23,6 +23,7 @@ namespace ParkingSimulationForms
         private readonly MainFormConstructorController constructorController = new MainFormConstructorController();
         private DateTime dateTimeModel;
         private readonly SettingsModel SettingsModel = new SettingsModel();
+        private readonly StatisticModel statisticModel = new StatisticModel();
         
         public MainForm()
         {
@@ -36,6 +37,8 @@ namespace ParkingSimulationForms
             constructorController.CurrentSceneConstructor = sceneConstructor;
             constructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
 
+            sceneVisualization.SetStatisticModel(statisticModel);
+            
             constructorController.ImageList = texturesImageList; // TODO: В конструктор
             constructorController.CreateAndSetTexturesBitmapArray();
             InitSettingsForm();
