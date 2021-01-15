@@ -22,6 +22,7 @@ namespace ParkingConstructorLib.models.vehicles
         protected int parkingID;
         protected decimal priceForParking;
         public bool isOnParkingPlace;
+        public bool checkedOnStatisticStopOnPlace;
 
         public void addPrice(decimal money)
         {
