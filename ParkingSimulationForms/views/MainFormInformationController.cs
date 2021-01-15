@@ -12,25 +12,31 @@ namespace ParkingSimulationForms.views
 {
     public static class MainFormInformationController
     {
-        private static TableLayoutPanel infoTable;
-        public static void initTable(TableLayoutPanel tlp, TableLayoutPanel infoTablePar)
+        private static DoubleBufferedTable infoTable;
+        public static void initTable(TableLayoutPanel tlp, DoubleBufferedTable infoTablePar)
         {
-            LabelForTable label1 = new LabelForTable("№ парковочного места", true);
-            LabelForTable label2 = new LabelForTable("время приезда", true);
-            LabelForTable label3 = new LabelForTable("время стоянки", true);
-            LabelForTable label4 = new LabelForTable("сумма (руб)", true);
+            LabelForTable label1 = new LabelForTable("№ парковочного места", true, false);
+            LabelForTable label2 = new LabelForTable("время приезда", true, false);
+            LabelForTable label3 = new LabelForTable("время стоянки", true, false);
+            LabelForTable label4 = new LabelForTable("сумма (руб)", true, false);
             tlp.Controls.Add(label1, 0, 0);
             tlp.Controls.Add(label2, 1, 0);
             tlp.Controls.Add(label3, 2, 0);
             tlp.Controls.Add(label4, 3, 0);
+            label1.enableBorder();
+            label2.enableBorder();
+            label3.enableBorder();
+            label4.enableBorder();
             infoTable = infoTablePar;
         }
         private static void addRow(string number, string timeComing, string timeParking, string price)
         {
-            infoTable.Controls.Add(new LabelForTable(number, false));
-            infoTable.Controls.Add(new LabelForTable(timeComing, false));
-            infoTable.Controls.Add(new LabelForTable(timeParking, false));
-            infoTable.Controls.Add(new LabelForTable(price, false));
+            LabelForTable[] labels = new LabelForTable[4];
+            labels[0] = new LabelForTable(number, false, true);
+            labels[1] = new LabelForTable(timeComing, false, true);
+            labels[2] = new LabelForTable(timeParking, false, true);
+            labels[3] = new LabelForTable(price, false, true);
+            infoTable.Controls.AddRange(labels);
             infoTable.RowCount++;
             TableLayoutRowStyleCollection styles = infoTable.RowStyles;
             foreach (RowStyle style in styles)
@@ -38,6 +44,10 @@ namespace ParkingSimulationForms.views
                 style.SizeType = SizeType.Absolute;
                 style.Height = 30;
             }
+            labels[0].enableBorder();
+            labels[1].enableBorder();
+            labels[2].enableBorder();
+            labels[3].enableBorder();
         }
         public static void updateInformation(ParkingSceneVisualization<Image> psv, DateTime dateTimeModel, SettingsModel settings)
         {

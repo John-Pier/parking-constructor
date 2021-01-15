@@ -60,6 +60,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="views\components\DoubleBufferedTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="views\components\LabelForTable.cs">
       <SubType>Component</SubType>
     </Compile>
