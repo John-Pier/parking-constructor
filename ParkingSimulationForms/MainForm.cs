@@ -495,7 +495,7 @@ namespace ParkingSimulationForms
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            if (double.TryParse(textBox4.Text, out var value))
+            if (double.TryParse(textBox4.Text, out var value) && value > 0 && value <= 1)
             {
                 SettingsModel.SetProbabilityOfEnteringToParking(value);
             }
