@@ -106,18 +106,18 @@ namespace ParkingSimulationForms
         private void InitRoadImages()
         {
             pictureRoadBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureRoadBox1.Image = elementsImageList.Images[8];
+            pictureRoadBox1.Image = elementsImageList.Images[0];
             pictureRoadBox1.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
             pictureRoadBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureRoadBox2.Image = elementsImageList.Images[8];
+            pictureRoadBox2.Image = elementsImageList.Images[0];
 
             pictureRoadBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureRoadBox3.Image = elementsImageList.Images[8];
+            pictureRoadBox3.Image = elementsImageList.Images[0];
             pictureRoadBox3.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
             pictureRoadBox4.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureRoadBox4.Image = elementsImageList.Images[8];
+            pictureRoadBox4.Image = elementsImageList.Images[0];
         }
 
         //Конструктор
@@ -149,40 +149,40 @@ namespace ParkingSimulationForms
         {
             SetUpConstructorAndLockSize();
             constructorController.CurrentElement =
-                new GrassParkingElement(elementsImageList.Images[4]); // газон
+                new GrassParkingElement(elementsImageList.Images[5]); // газон
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            constructorController.CurrentElement = new ExitParkingElement(elementsImageList.Images[3]); // выезд
+            constructorController.CurrentElement = new ExitParkingElement(elementsImageList.Images[1]); // выезд
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
             constructorController.CurrentElement =
-                new ParkingSpaceElement(elementsImageList.Images[5]); // парвокочное место Л
+                new ParkingSpaceElement(elementsImageList.Images[3]); // парвокочное место Л
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
             constructorController.CurrentElement =
-                new TruckParkingSpaceElement(elementsImageList.Images[7]); // парвокочное место Г
+                new TruckParkingSpaceElement(elementsImageList.Images[4]); // парвокочное место Г
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
             constructorController.CurrentElement =
-                new CashierParkingElement(elementsImageList.Images[1]); // касса
+                new CashierParkingElement(elementsImageList.Images[6]); // касса
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            constructorController.CurrentElement = new EntryParkingElement(elementsImageList.Images[2]); //вьезд
+            constructorController.CurrentElement = new EntryParkingElement(elementsImageList.Images[1]); //вьезд
         }
 
         private void button8_Click(object sender, EventArgs e) // Clear
