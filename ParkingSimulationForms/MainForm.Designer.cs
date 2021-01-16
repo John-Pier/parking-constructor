@@ -63,7 +63,13 @@ namespace ParkingSimulationForms
             this.elementsTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.textBoxWithPlaceholder12 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
             this.radioButton9 = new System.Windows.Forms.RadioButton();
+            this.textBoxWithPlaceholder6 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
+            this.textBoxWithPlaceholder7 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
+            this.textBoxWithPlaceholder8 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
+            this.textBoxWithPlaceholder9 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
+            this.textBoxWithPlaceholder10 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton7 = new System.Windows.Forms.RadioButton();
             this.radioButton8 = new System.Windows.Forms.RadioButton();
@@ -84,7 +90,13 @@ namespace ParkingSimulationForms
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.textBox1 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
+            this.textBoxWithPlaceholder5 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.textBoxWithPlaceholder4 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
+            this.textBoxWithPlaceholder3 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
+            this.textBoxWithPlaceholder1 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
+            this.textBoxWithPlaceholder2 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
             this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
@@ -102,6 +114,7 @@ namespace ParkingSimulationForms
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel2 = new ParkingSimulationForms.views.components.DoubleBufferedTable();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label38 = new System.Windows.Forms.Label();
@@ -131,19 +144,6 @@ namespace ParkingSimulationForms
             this.modelGeneralTimer = new System.Windows.Forms.Timer(this.components);
             this.generationStreamTimer = new System.Windows.Forms.Timer(this.components);
             this.parkingTimer = new System.Windows.Forms.Timer(this.components);
-            this.textBoxWithPlaceholder12 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
-            this.textBoxWithPlaceholder6 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
-            this.textBoxWithPlaceholder7 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
-            this.textBoxWithPlaceholder8 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
-            this.textBoxWithPlaceholder9 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
-            this.textBoxWithPlaceholder10 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
-            this.textBox1 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
-            this.textBoxWithPlaceholder5 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
-            this.textBoxWithPlaceholder4 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
-            this.textBoxWithPlaceholder3 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
-            this.textBoxWithPlaceholder1 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
-            this.textBoxWithPlaceholder2 = new ParkingSimulationForms.views.components.TextBoxWithPlaceholder();
-            this.tableLayoutPanel2 = new ParkingSimulationForms.views.components.DoubleBufferedTable();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel11.SuspendLayout();
@@ -581,11 +581,11 @@ namespace ParkingSimulationForms
             this.textBoxWithPlaceholder12.BackColor = System.Drawing.SystemColors.Window;
             this.textBoxWithPlaceholder12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder12.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder12.Location = new System.Drawing.Point(198, 39);
-            this.textBoxWithPlaceholder12.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxWithPlaceholder12.Location = new System.Drawing.Point(194, 42);
+            this.textBoxWithPlaceholder12.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxWithPlaceholder12.Name = "textBoxWithPlaceholder12";
             this.textBoxWithPlaceholder12.PlaceHolderText = "t";
-            this.textBoxWithPlaceholder12.Size = new System.Drawing.Size(68, 21);
+            this.textBoxWithPlaceholder12.Size = new System.Drawing.Size(89, 21);
             this.textBoxWithPlaceholder12.TabIndex = 14;
             this.textBoxWithPlaceholder12.Text = "t";
             this.textBoxWithPlaceholder12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -608,12 +608,12 @@ namespace ParkingSimulationForms
             this.textBoxWithPlaceholder6.Enabled = false;
             this.textBoxWithPlaceholder6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder6.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder6.Location = new System.Drawing.Point(198, 120);
-            this.textBoxWithPlaceholder6.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxWithPlaceholder6.Location = new System.Drawing.Point(198, 126);
+            this.textBoxWithPlaceholder6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxWithPlaceholder6.Name = "textBoxWithPlaceholder6";
             this.textBoxWithPlaceholder6.PlaceHolderText = "lambda";
             this.textBoxWithPlaceholder6.ReadOnly = true;
-            this.textBoxWithPlaceholder6.Size = new System.Drawing.Size(68, 21);
+            this.textBoxWithPlaceholder6.Size = new System.Drawing.Size(89, 21);
             this.textBoxWithPlaceholder6.TabIndex = 12;
             this.textBoxWithPlaceholder6.Text = "lambda";
             this.textBoxWithPlaceholder6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -623,11 +623,11 @@ namespace ParkingSimulationForms
             // 
             this.textBoxWithPlaceholder7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder7.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder7.Location = new System.Drawing.Point(272, 95);
-            this.textBoxWithPlaceholder7.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxWithPlaceholder7.Location = new System.Drawing.Point(293, 101);
+            this.textBoxWithPlaceholder7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxWithPlaceholder7.Name = "textBoxWithPlaceholder7";
             this.textBoxWithPlaceholder7.PlaceHolderText = "D";
-            this.textBoxWithPlaceholder7.Size = new System.Drawing.Size(68, 21);
+            this.textBoxWithPlaceholder7.Size = new System.Drawing.Size(89, 21);
             this.textBoxWithPlaceholder7.TabIndex = 11;
             this.textBoxWithPlaceholder7.Text = "D";
             this.textBoxWithPlaceholder7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -637,11 +637,11 @@ namespace ParkingSimulationForms
             // 
             this.textBoxWithPlaceholder8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder8.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder8.Location = new System.Drawing.Point(198, 95);
-            this.textBoxWithPlaceholder8.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxWithPlaceholder8.Location = new System.Drawing.Point(194, 101);
+            this.textBoxWithPlaceholder8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxWithPlaceholder8.Name = "textBoxWithPlaceholder8";
             this.textBoxWithPlaceholder8.PlaceHolderText = "M";
-            this.textBoxWithPlaceholder8.Size = new System.Drawing.Size(68, 21);
+            this.textBoxWithPlaceholder8.Size = new System.Drawing.Size(89, 21);
             this.textBoxWithPlaceholder8.TabIndex = 10;
             this.textBoxWithPlaceholder8.Text = "M";
             this.textBoxWithPlaceholder8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -651,11 +651,11 @@ namespace ParkingSimulationForms
             // 
             this.textBoxWithPlaceholder9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder9.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder9.Location = new System.Drawing.Point(198, 68);
-            this.textBoxWithPlaceholder9.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxWithPlaceholder9.Location = new System.Drawing.Point(194, 73);
+            this.textBoxWithPlaceholder9.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxWithPlaceholder9.Name = "textBoxWithPlaceholder9";
             this.textBoxWithPlaceholder9.PlaceHolderText = "min";
-            this.textBoxWithPlaceholder9.Size = new System.Drawing.Size(68, 21);
+            this.textBoxWithPlaceholder9.Size = new System.Drawing.Size(89, 21);
             this.textBoxWithPlaceholder9.TabIndex = 9;
             this.textBoxWithPlaceholder9.Text = "min";
             this.textBoxWithPlaceholder9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -665,11 +665,11 @@ namespace ParkingSimulationForms
             // 
             this.textBoxWithPlaceholder10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder10.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder10.Location = new System.Drawing.Point(272, 68);
-            this.textBoxWithPlaceholder10.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxWithPlaceholder10.Location = new System.Drawing.Point(293, 74);
+            this.textBoxWithPlaceholder10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxWithPlaceholder10.Name = "textBoxWithPlaceholder10";
             this.textBoxWithPlaceholder10.PlaceHolderText = "max";
-            this.textBoxWithPlaceholder10.Size = new System.Drawing.Size(68, 21);
+            this.textBoxWithPlaceholder10.Size = new System.Drawing.Size(89, 21);
             this.textBoxWithPlaceholder10.TabIndex = 8;
             this.textBoxWithPlaceholder10.Text = "max";
             this.textBoxWithPlaceholder10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -913,11 +913,11 @@ namespace ParkingSimulationForms
             this.textBox1.BackColor = System.Drawing.SystemColors.Window;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBox1.ForeColor = System.Drawing.Color.Gray;
-            this.textBox1.Location = new System.Drawing.Point(200, 53);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Location = new System.Drawing.Point(196, 54);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(5);
             this.textBox1.Name = "textBox1";
             this.textBox1.PlaceHolderText = "t";
-            this.textBox1.Size = new System.Drawing.Size(68, 21);
+            this.textBox1.Size = new System.Drawing.Size(89, 21);
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = "t";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -927,11 +927,11 @@ namespace ParkingSimulationForms
             // 
             this.textBoxWithPlaceholder5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder5.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder5.Location = new System.Drawing.Point(200, 136);
-            this.textBoxWithPlaceholder5.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxWithPlaceholder5.Location = new System.Drawing.Point(196, 132);
+            this.textBoxWithPlaceholder5.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxWithPlaceholder5.Name = "textBoxWithPlaceholder5";
             this.textBoxWithPlaceholder5.PlaceHolderText = "lambda";
-            this.textBoxWithPlaceholder5.Size = new System.Drawing.Size(68, 21);
+            this.textBoxWithPlaceholder5.Size = new System.Drawing.Size(89, 21);
             this.textBoxWithPlaceholder5.TabIndex = 12;
             this.textBoxWithPlaceholder5.Text = "lambda";
             this.textBoxWithPlaceholder5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -953,11 +953,11 @@ namespace ParkingSimulationForms
             // 
             this.textBoxWithPlaceholder4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder4.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder4.Location = new System.Drawing.Point(276, 106);
-            this.textBoxWithPlaceholder4.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxWithPlaceholder4.Location = new System.Drawing.Point(297, 107);
+            this.textBoxWithPlaceholder4.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxWithPlaceholder4.Name = "textBoxWithPlaceholder4";
             this.textBoxWithPlaceholder4.PlaceHolderText = "D";
-            this.textBoxWithPlaceholder4.Size = new System.Drawing.Size(73, 21);
+            this.textBoxWithPlaceholder4.Size = new System.Drawing.Size(96, 21);
             this.textBoxWithPlaceholder4.TabIndex = 11;
             this.textBoxWithPlaceholder4.Text = "D";
             this.textBoxWithPlaceholder4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -967,11 +967,11 @@ namespace ParkingSimulationForms
             // 
             this.textBoxWithPlaceholder3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder3.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder3.Location = new System.Drawing.Point(200, 107);
-            this.textBoxWithPlaceholder3.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxWithPlaceholder3.Location = new System.Drawing.Point(196, 105);
+            this.textBoxWithPlaceholder3.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxWithPlaceholder3.Name = "textBoxWithPlaceholder3";
             this.textBoxWithPlaceholder3.PlaceHolderText = "M";
-            this.textBoxWithPlaceholder3.Size = new System.Drawing.Size(68, 21);
+            this.textBoxWithPlaceholder3.Size = new System.Drawing.Size(89, 21);
             this.textBoxWithPlaceholder3.TabIndex = 10;
             this.textBoxWithPlaceholder3.Text = "M";
             this.textBoxWithPlaceholder3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -981,11 +981,11 @@ namespace ParkingSimulationForms
             // 
             this.textBoxWithPlaceholder1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder1.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder1.Location = new System.Drawing.Point(200, 82);
-            this.textBoxWithPlaceholder1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxWithPlaceholder1.Location = new System.Drawing.Point(196, 81);
+            this.textBoxWithPlaceholder1.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxWithPlaceholder1.Name = "textBoxWithPlaceholder1";
             this.textBoxWithPlaceholder1.PlaceHolderText = "min";
-            this.textBoxWithPlaceholder1.Size = new System.Drawing.Size(68, 21);
+            this.textBoxWithPlaceholder1.Size = new System.Drawing.Size(89, 21);
             this.textBoxWithPlaceholder1.TabIndex = 9;
             this.textBoxWithPlaceholder1.Text = "min";
             this.textBoxWithPlaceholder1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -995,11 +995,11 @@ namespace ParkingSimulationForms
             // 
             this.textBoxWithPlaceholder2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
             this.textBoxWithPlaceholder2.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder2.Location = new System.Drawing.Point(276, 82);
-            this.textBoxWithPlaceholder2.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxWithPlaceholder2.Location = new System.Drawing.Point(297, 80);
+            this.textBoxWithPlaceholder2.Margin = new System.Windows.Forms.Padding(5);
             this.textBoxWithPlaceholder2.Name = "textBoxWithPlaceholder2";
             this.textBoxWithPlaceholder2.PlaceHolderText = "max";
-            this.textBoxWithPlaceholder2.Size = new System.Drawing.Size(73, 21);
+            this.textBoxWithPlaceholder2.Size = new System.Drawing.Size(96, 21);
             this.textBoxWithPlaceholder2.TabIndex = 8;
             this.textBoxWithPlaceholder2.Text = "max";
             this.textBoxWithPlaceholder2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1163,7 +1163,6 @@ namespace ParkingSimulationForms
             // 
             this.button12.BackColor = System.Drawing.Color.Transparent;
             this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.button12.Image = ((System.Drawing.Image) (resources.GetObject("button12.Image")));
             this.button12.Location = new System.Drawing.Point(449, 350);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(56, 52);
@@ -1175,7 +1174,6 @@ namespace ParkingSimulationForms
             // 
             this.button11.BackColor = System.Drawing.Color.Transparent;
             this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.button11.Image = ((System.Drawing.Image) (resources.GetObject("button11.Image")));
             this.button11.Location = new System.Drawing.Point(388, 350);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(55, 52);
@@ -1187,7 +1185,6 @@ namespace ParkingSimulationForms
             // 
             this.button10.BackColor = System.Drawing.Color.Transparent;
             this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.button10.Image = ((System.Drawing.Image) (resources.GetObject("button10.Image")));
             this.button10.Location = new System.Drawing.Point(322, 350);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(60, 54);
@@ -1213,7 +1210,8 @@ namespace ParkingSimulationForms
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(334, 89);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(335, 89);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 11;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
@@ -1232,7 +1230,23 @@ namespace ParkingSimulationForms
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(540, 245);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(535, 244);
             this.tableLayoutPanel2.TabIndex = 16;
             // 
             // tabPage5
@@ -1536,210 +1550,6 @@ namespace ParkingSimulationForms
             // 
             this.generationStreamTimer.Interval = 1000;
             this.generationStreamTimer.Tick += new System.EventHandler(this.generationStreamTimer_Tick);
-            // 
-            // textBoxWithPlaceholder12
-            // 
-            this.textBoxWithPlaceholder12.BackColor = System.Drawing.SystemColors.Window;
-            this.textBoxWithPlaceholder12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxWithPlaceholder12.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder12.Location = new System.Drawing.Point(264, 48);
-            this.textBoxWithPlaceholder12.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxWithPlaceholder12.Name = "textBoxWithPlaceholder12";
-            this.textBoxWithPlaceholder12.PlaceHolderText = "t";
-            this.textBoxWithPlaceholder12.Size = new System.Drawing.Size(89, 24);
-            this.textBoxWithPlaceholder12.TabIndex = 14;
-            this.textBoxWithPlaceholder12.Text = "t";
-            this.textBoxWithPlaceholder12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxWithPlaceholder12.Leave += new System.EventHandler(this.textBoxWithPlaceholder12_Leave);
-            // 
-            // textBoxWithPlaceholder6
-            // 
-            this.textBoxWithPlaceholder6.Enabled = false;
-            this.textBoxWithPlaceholder6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxWithPlaceholder6.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder6.Location = new System.Drawing.Point(264, 148);
-            this.textBoxWithPlaceholder6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxWithPlaceholder6.Name = "textBoxWithPlaceholder6";
-            this.textBoxWithPlaceholder6.PlaceHolderText = "lambda";
-            this.textBoxWithPlaceholder6.ReadOnly = true;
-            this.textBoxWithPlaceholder6.Size = new System.Drawing.Size(89, 24);
-            this.textBoxWithPlaceholder6.TabIndex = 12;
-            this.textBoxWithPlaceholder6.Text = "lambda";
-            this.textBoxWithPlaceholder6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxWithPlaceholder6.Visible = false;
-            // 
-            // textBoxWithPlaceholder7
-            // 
-            this.textBoxWithPlaceholder7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxWithPlaceholder7.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder7.Location = new System.Drawing.Point(363, 117);
-            this.textBoxWithPlaceholder7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxWithPlaceholder7.Name = "textBoxWithPlaceholder7";
-            this.textBoxWithPlaceholder7.PlaceHolderText = "D";
-            this.textBoxWithPlaceholder7.Size = new System.Drawing.Size(89, 24);
-            this.textBoxWithPlaceholder7.TabIndex = 11;
-            this.textBoxWithPlaceholder7.Text = "D";
-            this.textBoxWithPlaceholder7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxWithPlaceholder7.Leave += new System.EventHandler(this.textBoxWithPlaceholder7DNormal_TextChanged);
-            // 
-            // textBoxWithPlaceholder8
-            // 
-            this.textBoxWithPlaceholder8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxWithPlaceholder8.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder8.Location = new System.Drawing.Point(264, 117);
-            this.textBoxWithPlaceholder8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxWithPlaceholder8.Name = "textBoxWithPlaceholder8";
-            this.textBoxWithPlaceholder8.PlaceHolderText = "M";
-            this.textBoxWithPlaceholder8.Size = new System.Drawing.Size(89, 24);
-            this.textBoxWithPlaceholder8.TabIndex = 10;
-            this.textBoxWithPlaceholder8.Text = "M";
-            this.textBoxWithPlaceholder8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxWithPlaceholder8.Leave += new System.EventHandler(this.textBoxWithPlaceholder8MNormal_TextChanged);
-            // 
-            // textBoxWithPlaceholder9
-            // 
-            this.textBoxWithPlaceholder9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxWithPlaceholder9.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder9.Location = new System.Drawing.Point(264, 84);
-            this.textBoxWithPlaceholder9.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxWithPlaceholder9.Name = "textBoxWithPlaceholder9";
-            this.textBoxWithPlaceholder9.PlaceHolderText = "min";
-            this.textBoxWithPlaceholder9.Size = new System.Drawing.Size(89, 24);
-            this.textBoxWithPlaceholder9.TabIndex = 9;
-            this.textBoxWithPlaceholder9.Text = "min";
-            this.textBoxWithPlaceholder9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxWithPlaceholder9.Leave += new System.EventHandler(this.textBoxWithPlaceholder9MinUniform_TextChanged);
-            // 
-            // textBoxWithPlaceholder10
-            // 
-            this.textBoxWithPlaceholder10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxWithPlaceholder10.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder10.Location = new System.Drawing.Point(363, 84);
-            this.textBoxWithPlaceholder10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxWithPlaceholder10.Name = "textBoxWithPlaceholder10";
-            this.textBoxWithPlaceholder10.PlaceHolderText = "max";
-            this.textBoxWithPlaceholder10.Size = new System.Drawing.Size(89, 24);
-            this.textBoxWithPlaceholder10.TabIndex = 8;
-            this.textBoxWithPlaceholder10.Text = "max";
-            this.textBoxWithPlaceholder10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxWithPlaceholder10.Leave += new System.EventHandler(this.textBoxWithPlaceholder10MaxUniform_TextChanged);
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.ForeColor = System.Drawing.Color.Gray;
-            this.textBox1.Location = new System.Drawing.Point(267, 65);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PlaceHolderText = "t";
-            this.textBox1.Size = new System.Drawing.Size(89, 24);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "t";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox1.Leave += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // textBoxWithPlaceholder5
-            // 
-            this.textBoxWithPlaceholder5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxWithPlaceholder5.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder5.Location = new System.Drawing.Point(267, 167);
-            this.textBoxWithPlaceholder5.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxWithPlaceholder5.Name = "textBoxWithPlaceholder5";
-            this.textBoxWithPlaceholder5.PlaceHolderText = "lambda";
-            this.textBoxWithPlaceholder5.Size = new System.Drawing.Size(89, 24);
-            this.textBoxWithPlaceholder5.TabIndex = 12;
-            this.textBoxWithPlaceholder5.Text = "lambda";
-            this.textBoxWithPlaceholder5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxWithPlaceholder5.Leave += new System.EventHandler(this.textBoxWithPlaceholder5_TextChanged);
-            // 
-            // textBoxWithPlaceholder4
-            // 
-            this.textBoxWithPlaceholder4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxWithPlaceholder4.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder4.Location = new System.Drawing.Point(368, 130);
-            this.textBoxWithPlaceholder4.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxWithPlaceholder4.Name = "textBoxWithPlaceholder4";
-            this.textBoxWithPlaceholder4.PlaceHolderText = "D";
-            this.textBoxWithPlaceholder4.Size = new System.Drawing.Size(96, 24);
-            this.textBoxWithPlaceholder4.TabIndex = 11;
-            this.textBoxWithPlaceholder4.Text = "D";
-            this.textBoxWithPlaceholder4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxWithPlaceholder4.Leave += new System.EventHandler(this.textBoxWithPlaceholder4_TextChanged);
-            // 
-            // textBoxWithPlaceholder3
-            // 
-            this.textBoxWithPlaceholder3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxWithPlaceholder3.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder3.Location = new System.Drawing.Point(267, 132);
-            this.textBoxWithPlaceholder3.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxWithPlaceholder3.Name = "textBoxWithPlaceholder3";
-            this.textBoxWithPlaceholder3.PlaceHolderText = "M";
-            this.textBoxWithPlaceholder3.Size = new System.Drawing.Size(89, 24);
-            this.textBoxWithPlaceholder3.TabIndex = 10;
-            this.textBoxWithPlaceholder3.Text = "M";
-            this.textBoxWithPlaceholder3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxWithPlaceholder3.Leave += new System.EventHandler(this.textBoxWithPlaceholder3_TextChanged);
-            // 
-            // textBoxWithPlaceholder1
-            // 
-            this.textBoxWithPlaceholder1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxWithPlaceholder1.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder1.Location = new System.Drawing.Point(267, 101);
-            this.textBoxWithPlaceholder1.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxWithPlaceholder1.Name = "textBoxWithPlaceholder1";
-            this.textBoxWithPlaceholder1.PlaceHolderText = "min";
-            this.textBoxWithPlaceholder1.Size = new System.Drawing.Size(89, 24);
-            this.textBoxWithPlaceholder1.TabIndex = 9;
-            this.textBoxWithPlaceholder1.Text = "min";
-            this.textBoxWithPlaceholder1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxWithPlaceholder1.Leave += new System.EventHandler(this.textBoxMin_TextChanged);
-            // 
-            // textBoxWithPlaceholder2
-            // 
-            this.textBoxWithPlaceholder2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxWithPlaceholder2.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxWithPlaceholder2.Location = new System.Drawing.Point(368, 101);
-            this.textBoxWithPlaceholder2.Margin = new System.Windows.Forms.Padding(5);
-            this.textBoxWithPlaceholder2.Name = "textBoxWithPlaceholder2";
-            this.textBoxWithPlaceholder2.PlaceHolderText = "max";
-            this.textBoxWithPlaceholder2.Size = new System.Drawing.Size(96, 24);
-            this.textBoxWithPlaceholder2.TabIndex = 8;
-            this.textBoxWithPlaceholder2.Text = "max";
-            this.textBoxWithPlaceholder2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxWithPlaceholder2.Leave += new System.EventHandler(this.textBoxMax_TextChanged);
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.AutoScroll = true;
-            this.tableLayoutPanel2.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel2.ColumnCount = 4;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(445, 110);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 11;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(720, 302);
-            this.tableLayoutPanel2.TabIndex = 16;
             // 
             // MainForm
             // 
