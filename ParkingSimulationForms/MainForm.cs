@@ -31,7 +31,7 @@ namespace ParkingSimulationForms
         private DateTime dateTimeModel;
         private readonly SettingsModel settingsModel = new SettingsModel();
         private readonly StatisticModel statisticModel = new StatisticModel();
-        private bool isFirstOpenTabVizualization = true;
+        private bool isReloadVizualayzer = true;
         private double accelerate = 1;
 
         private TimerStatus currentStatus = TimerStatus.Stopped;
@@ -150,12 +150,16 @@ namespace ParkingSimulationForms
             SetUpConstructorAndLockSize();
             constructorController.CurrentElement =
                 new GrassParkingElement(elementsImageList.Images[5]); // газон
+            isReloadVizualayzer = true;
+            sceneVisualization.freeLastId();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
             constructorController.CurrentElement = new ExitParkingElement(elementsImageList.Images[1]); // выезд
+            isReloadVizualayzer = true;
+            sceneVisualization.freeLastId();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -163,6 +167,8 @@ namespace ParkingSimulationForms
             SetUpConstructorAndLockSize();
             constructorController.CurrentElement =
                 new ParkingSpaceElement(elementsImageList.Images[3]); // парвокочное место Л
+            isReloadVizualayzer = true;
+            sceneVisualization.freeLastId();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -170,6 +176,8 @@ namespace ParkingSimulationForms
             SetUpConstructorAndLockSize();
             constructorController.CurrentElement =
                 new TruckParkingSpaceElement(elementsImageList.Images[4]); // парвокочное место Г
+            isReloadVizualayzer = true;
+            sceneVisualization.freeLastId();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -177,12 +185,16 @@ namespace ParkingSimulationForms
             SetUpConstructorAndLockSize();
             constructorController.CurrentElement =
                 new CashierParkingElement(elementsImageList.Images[6]); // касса
+            isReloadVizualayzer = true;
+            sceneVisualization.freeLastId();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
             constructorController.CurrentElement = new EntryParkingElement(elementsImageList.Images[1]); //вьезд
+            isReloadVizualayzer = true;
+            sceneVisualization.freeLastId();
         }
 
         private void button8_Click(object sender, EventArgs e) // Clear
@@ -191,6 +203,8 @@ namespace ParkingSimulationForms
             constructorController.CurrentElement = null;
             constructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
             sceneConstructor.ClearModel();
+            isReloadVizualayzer = true;
+            sceneVisualization.freeLastId();
         }
 
         private void SetUpConstructorAndLockSize()
@@ -267,8 +281,9 @@ namespace ParkingSimulationForms
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 2)
+            if (tabControl1.SelectedIndex == 2 && isReloadVizualayzer)
             {
+                isReloadVizualayzer = false;
                 MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
                 if (sceneConstructor.IsParkingModelCreate() && sceneConstructor.ParkingModel.IsParkingModelCorrect())
                 {
@@ -356,7 +371,7 @@ namespace ParkingSimulationForms
 
         private void StopGeneralTimerClick(object sender, EventArgs e)
         {
-            if (!sceneVisualization.IsSettingsModelSet() || !sceneConstructor.IsParkingModelCreate() || currentStatus != TimerStatus.Started) return;
+            if (!sceneVisualization.IsSettingsModelSet() || !sceneConstructor.IsParkingModelCreate() || currentStatus == TimerStatus.Stopped) return;
             statisticModel.EndDateTime = dateTimeModel;
             SetStatistic(false);
             
@@ -365,6 +380,7 @@ namespace ParkingSimulationForms
             sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
             sceneVisualization.NextStep(dateTimeModel);
             sceneVisualization.Stop();
+            MainFormInformationController.ClearTable();
             DrawImage();
             
             currentStatus = TimerStatus.Stopped;

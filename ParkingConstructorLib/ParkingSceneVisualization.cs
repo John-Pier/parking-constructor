@@ -119,10 +119,16 @@ namespace ParkingConstructorLib
             return settingsModel != null && settingsModel.GenerationStreamDistribution != null && settingsModel.ParkingTimeDistribution != null;
         }
 
+        public void freeLastId()
+        {
+            AbstractParkingPlace.FreeLastId();
+        }
+
         public void Stop()
         {
             roadManager.Stop();
             drawer.Stop();
+            freeLastId();
             dynamicMap = new DynamicMap<T>(this.parkingModel);
             movement = new MovementService<T>(this.parkingModel, dynamicMap);
             drawer = new DrawerService<T>(this.parkingModel, textures);
