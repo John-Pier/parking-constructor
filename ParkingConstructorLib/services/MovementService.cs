@@ -196,7 +196,7 @@ namespace ParkingConstructorLib.services
                         if (!vehicleModel.checkedOnStatisticStopOnPlace)
                         {
                             vehicleModel.checkedOnStatisticStopOnPlace = true;
-                            stats.TakeParkingPlace();
+                            //stats.TakeParkingPlace();
                         }
                         if ((modelDateTime - vehicleModel.GetDateTimeStopping()).TotalMinutes >= vehicleModel.GetSecondsOnParking())
                         {
@@ -239,7 +239,7 @@ namespace ParkingConstructorLib.services
                     if (dynamicMap.exitCoors.Equals(vehicleModel.GetCoors()))
                     {
                         removedCars.AddLast(vehicleModel);
-                        stats.FreeParkingPlace();
+                        //stats.FreeParkingPlace();
                     }
                     if (vehicleModel.GetCoors().Equals(way[i]) && i != way.Length - 1)
                     {

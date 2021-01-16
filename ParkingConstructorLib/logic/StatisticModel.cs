@@ -16,12 +16,13 @@ namespace ParkingConstructorLib.logic
         /// Содержит общее чисто парковочных мест на карте
         /// </summary>
         public int ParkingPlaces;
-
-        private int countOfFreeParkingPlaces = 0;
-        private int countOfSumFreeParkingPlaces = 0;
+        
+        private int countOfSumBusyParkingPlaces = 0;
         private int countOfSetParkingPlaces = 0;
         private double dayDateTimeScope = 0;
         private double nightDateTimeScope = 0;
+        
+        private const int SkipSetParkingPlacesCount = 10;
 
         public StatisticModel()
         {
@@ -49,20 +50,13 @@ namespace ParkingConstructorLib.logic
         /// <summary>
         /// Вызывается когда машина заняла парковочное место (когда заехала или непосредственно встала)
         /// </summary>
-        public void TakeParkingPlace()
+        public void SetBusyParkingPlaces(int busyCount)
         {
-            countOfSetParkingPlaces += 1;
-            countOfFreeParkingPlaces = ParkingPlaces - countOfFreeParkingPlaces - 1;
-            countOfSumFreeParkingPlaces += countOfFreeParkingPlaces;
-        }
-        
-        /// <summary>
-        /// Вызывается когда машина покидает парковочное место
-        /// (не важно в какой момент, например после выезда с парковки или ее оплаты)
-        /// </summary>
-        public void FreeParkingPlace()
-        {
-            countOfFreeParkingPlaces -= 1;
+            countOfSetParkingPlaces++;
+            if (countOfSetParkingPlaces > SkipSetParkingPlacesCount)
+            {
+                countOfSumBusyParkingPlaces += busyCount;
+            }
         }
 
         public void ClearStatistic()
@@ -77,8 +71,7 @@ namespace ParkingConstructorLib.logic
             dayDateTimeScope = 0;
             nightDateTimeScope = 0;
             countOfSetParkingPlaces = 0;
-            countOfFreeParkingPlaces = 0;
-            countOfSumFreeParkingPlaces = 0;
+            countOfSumBusyParkingPlaces = 0;
         }
 
         public void CalculateStatistic()
@@ -89,11 +82,50 @@ namespace ParkingConstructorLib.logic
         
         private void CalculateAverageIncome()
         {
-            if (StartDateTime != EndDateTime)
+            if (StartDateTime == EndDateTime) return;
+            
+            var hours = (EndDateTime - StartDateTime).TotalHours;
+            var dayHours = 0d;
+            var nigthHours = 0d;
+            var dateTime = StartDateTime.AddHours(0);
+            
+            while (hours > 0)
             {
-                var days = (EndDateTime - StartDateTime).TotalDays;
-                AverageIncomePerDay = dayDateTimeScope / days;
-                AverageIncomePerNight = nightDateTimeScope / days;
+                if (dateTime.Hour < 21 && dateTime.Hour >= 6)
+                {
+                    if (hours > 0 && hours < 1)
+                    {
+                        dayHours += hours;
+                    }
+                    else
+                    {
+                        dayHours++;
+                    }
+                }
+                else
+                {
+                    if (hours > 0 && hours < 1)
+                    {
+                        nigthHours += hours;
+                    }
+                    else
+                    {
+                        nigthHours++;
+                    }
+                   
+                }
+                dateTime = dateTime.AddHours(1);
+                hours--;
+            }
+
+            if (dayDateTimeScope != 0 && dayHours > 0.1)
+            {
+                AverageIncomePerDay = dayDateTimeScope / (dayHours / 15d);
+            }
+
+            if (nightDateTimeScope != 0 && nigthHours > 0.1)
+            {
+                AverageIncomePerNight = nightDateTimeScope / (nigthHours / 9d);
             }
         }
 
@@ -101,7 +133,7 @@ namespace ParkingConstructorLib.logic
         {
             if (ParkingPlaces != 0 && countOfSetParkingPlaces != 0)
             {
-                AverageNumberOfOccupiedPlaces = ParkingPlaces - (countOfSumFreeParkingPlaces / countOfSetParkingPlaces);
+                AverageNumberOfOccupiedPlaces = countOfSumBusyParkingPlaces / (double)(countOfSetParkingPlaces - SkipSetParkingPlacesCount);
                 AveragePercentageOfOccupiedPlaces = AverageNumberOfOccupiedPlaces / ParkingPlaces * 100;
             }
         }
