@@ -26,6 +26,7 @@ namespace ParkingSimulationForms
         private readonly StatisticModel statisticModel = new StatisticModel();
         private bool isFirstOpenTabVizualization = true;
         private double accelerate = 1;
+
         
         public MainForm()
         {
@@ -344,7 +345,7 @@ namespace ParkingSimulationForms
             generationStreamTimer.Stop();
             sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
             sceneVisualization.NextStep(dateTimeModel);
-
+            sceneVisualization.Stop();
             DrawImage();
         }
 
