@@ -310,7 +310,7 @@ namespace ParkingSimulationForms
         private void StartGeneralTimerClick(object sender, EventArgs e)
         {
             SetStatistic(true);
-            if (!sceneVisualization.IsSettingsModelSet()) return;
+            if (!sceneVisualization.IsSettingsModelSet() || !sceneConstructor.IsParkingModelCreate()) return;
             
             statisticModel.ClearStatistic();
             statisticModel.StartDateTime = dateTimeModel;
@@ -328,6 +328,7 @@ namespace ParkingSimulationForms
 
         private void PauseGeneralTimerClick(object sender, EventArgs e)
         {
+            if (!sceneVisualization.IsSettingsModelSet() || !sceneConstructor.IsParkingModelCreate()) return;
             statisticModel.EndDateTime = dateTimeModel;
             SetStatistic(false);
 
@@ -337,6 +338,7 @@ namespace ParkingSimulationForms
 
         private void StopGeneralTimerClick(object sender, EventArgs e)
         {
+            if (!sceneVisualization.IsSettingsModelSet() || !sceneConstructor.IsParkingModelCreate()) return;
             statisticModel.EndDateTime = dateTimeModel;
             SetStatistic(false);
             
