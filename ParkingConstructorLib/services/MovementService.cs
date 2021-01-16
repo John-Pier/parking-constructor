@@ -245,8 +245,6 @@ namespace ParkingConstructorLib.services
                     if (dynamicMap.exitCoors.Equals(vehicleModel.GetCoors()) && roadManager.isCanExit())
                     {
                         removedCars.AddLast(vehicleModel);
-
-                        stats.FreeParkingPlace();
                         CarType carType;
                         carType = vehicleModel.GetType().Equals("Car") ? CarType.Car : CarType.Truck;
                         roadManager.CreateNewVehicle(carType, true);
