@@ -7,6 +7,7 @@ namespace ParkingConstructorLib.models
         Truck
     };
     
+    //Цель, к которой пытается следовать транспорт
     public enum TargetType
     {
         Parking,
@@ -14,12 +15,14 @@ namespace ParkingConstructorLib.models
         Exit,
     }
 
+    //Последнее перемещение было вертикальным или горизонтальным (для выбора нужной текстуры)
     public enum LastDirection
     {
         Horizontal,
         Vertical,
     }
     
+    //Получить доступные для проезда элементы
     public interface IVehicleModel
     {
         List<ParkingModelElementType> GetAvailableElementTypesForMovement();

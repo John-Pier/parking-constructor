@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace ParkingConstructorLib.services
 {
+    //Класс, управляющий передвижениями по парковке
     public class MovementService<T> where T : class
     {
-        private ParkingModel<T> model;
-        private LinkedList<AbstractParkingPlace> carParkingPlaces;
-        private LinkedList<AbstractParkingPlace> truckParkingPlaces;
-        private LinkedList<AbstractVehicleModel> cars;
-        private DynamicMap<T> dynamicMap;
-        private ManagerVehiclesOnRoad<T> roadManager;
+        private ParkingModel<T> model; //модель парковки
+        private LinkedList<AbstractParkingPlace> carParkingPlaces; //парковочные места легковушек
+        private LinkedList<AbstractParkingPlace> truckParkingPlaces; //парковочные места грузовиков
+        private LinkedList<AbstractVehicleModel> cars; //все автомобили
+        private DynamicMap<T> dynamicMap; //динамическая карта
+        private ManagerVehiclesOnRoad<T> roadManager; //объект класса, управляющий движением на прилегающей дороге
 
         public MovementService(ParkingModel<T> model, DynamicMap<T> dynamicMap)
         {
@@ -33,12 +34,14 @@ namespace ParkingConstructorLib.services
             this.roadManager = roadManager;
         }
 
+        //Метод возвращает маршрут (массив координат) от автомобиля до цели, к которой он движется
         public Coors[] foundWay(int[,,] localMap, AbstractVehicleModel vehicleModel)
         {
             RunDijkstraAlgorithm(localMap, vehicleModel);
             return GetWay(vehicleModel, localMap);
         }
 
+        //Алгоритм дейкстры для расчёта весов до цели
         private void RunDijkstraAlgorithm(int[,,] localMap, AbstractVehicleModel vehicleModel)
         {
             bool isFirstIteration = true;
@@ -100,6 +103,7 @@ namespace ParkingConstructorLib.services
             return (a, b) => localMap[a.ColumnIndex, a.RowIndex, 2] - localMap[b.ColumnIndex, b.RowIndex, 2];
         }
 
+        //Получить маршрут по подсчётанным алгоритмом Дейкстры весам
         private Coors[] GetWay(AbstractVehicleModel vehicleModel, int[,,] localMap)
         {
             LinkedList<Coors> coors = new LinkedList<Coors>();
@@ -128,6 +132,7 @@ namespace ParkingConstructorLib.services
             return returnCoors;
         }
 
+        //Получить соседей клетки
         private Coors[] GetNeighbors(int indexCol, int indexRow, int[,,] localMap)
         {
             var coors = new LinkedList<Coors>();
@@ -190,6 +195,7 @@ namespace ParkingConstructorLib.services
             return coorsArr;
         }
 
+        //Следующий шаг системы
         public AbstractVehicleModel[] nextSystemStep(int[,,] localMap, AbstractVehicleModel vehicleModel, Coors[] way, DateTime modelDateTime, StatisticModel stats)
         {
             LinkedList<AbstractVehicleModel> removedCars = new LinkedList<AbstractVehicleModel>();

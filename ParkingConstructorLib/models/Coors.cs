@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ParkingConstructorLib.models
 {
-    public class Coors : IComparable
+    public class Coors : IComparable //Класс координат
     {
         public int ColumnIndex;
         public int RowIndex;

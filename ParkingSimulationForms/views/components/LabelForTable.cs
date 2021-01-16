@@ -2,6 +2,7 @@
 
 namespace ParkingSimulationForms.views.components
 {
+    //Умный элемент текста для таблиц
     public class LabelForTable : Label
     {
         private static int realID = 999;

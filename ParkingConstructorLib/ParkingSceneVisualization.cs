@@ -13,16 +13,17 @@ namespace ParkingConstructorLib
     /// <summary>
     /// Визуализатор парковки
     /// </summary>
+    //Класс визуализации
     public class ParkingSceneVisualization<T> where T: class
     {
-        private ParkingModel<T> parkingModel;
-        private DynamicMap<T> dynamicMap;
-        private static Bitmap[] textures;
+        private ParkingModel<T> parkingModel; //Модель парковки
+        private DynamicMap<T> dynamicMap; //динамическая карта
+        private static Bitmap[] textures; //Текстуры
         private DrawerService<T> drawer; //Отрисовщик
         private MovementService<T> movement; //Передвижения
-        private ManagerVehiclesOnRoad<T> roadManager; //Управление движением на дороге
-        private SettingsModel settingsModel;
-        private StatisticModel statisticModel;
+        private ManagerVehiclesOnRoad<T> roadManager; //Управление движением на прилегающей дороге
+        private SettingsModel settingsModel; //Настройки
+        private StatisticModel statisticModel; //Объект статистики
         private UniformDistribution generationStreamRandom = new UniformDistribution(0d, 100d);
 
         public static void SetTextures(Bitmap[] texturesArr)
@@ -30,6 +31,7 @@ namespace ParkingConstructorLib
             textures = texturesArr;
         }
 
+        //Следующая итерация
         public void NextStep(DateTime modelTime)
         {
             int[,,] localMap;
@@ -60,6 +62,7 @@ namespace ParkingConstructorLib
 
         }
 
+        //Создать новый транспорт
         public void CreateVehicle()
         {
             if (generationStreamRandom.GetRandNumber() > settingsModel.PercentOfTrack)
@@ -81,21 +84,25 @@ namespace ParkingConstructorLib
             this.statisticModel = statisticModel;
         }
 
+        //Получить текущий кадр
         public Bitmap GetImage()
         {
             return drawer.getImage();
         }
 
+        //Можно ли добавить автомобиль на парковку
         public bool IsCanAddVehicle(CarType carType)
         {
             return dynamicMap.IsCanAddVehicle(carType);
         }
 
+        //Получить все автомобили на парковке
         public LinkedList<AbstractVehicleModel> getVehicles()
         {
             return dynamicMap.getVehicles();
         }
 
+        //Получить все парковочные места
         public List<AbstractParkingPlace> getParkingPlaces()
         {
             return dynamicMap.getParkingPlaces();
@@ -119,6 +126,7 @@ namespace ParkingConstructorLib
             return settingsModel != null && settingsModel.GenerationStreamDistribution != null && settingsModel.ParkingTimeDistribution != null;
         }
 
+        //Сбросить счётчик ID парковочных мест для новой инициализации 
         public void freeLastId()
         {
             AbstractParkingPlace.FreeLastId();

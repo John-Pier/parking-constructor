@@ -9,6 +9,7 @@ using ParkingConstructorLib.utils.distributions;
 
 namespace ParkingConstructorLib.logic
 {
+    //Расположение дороги
     public enum RoadDirections
     {
         Top = 0,
@@ -20,15 +21,15 @@ namespace ParkingConstructorLib.logic
     [Serializable]
     public class ParkingModel<T> where T: class
     {
-        private ParkingModelElement<T>[,] parkingLot;
+        private ParkingModelElement<T>[,] parkingLot;//Элементы парковки
 
-        public int ColumnCount { get; private set; }
+        public int ColumnCount { get; private set; }//Количество столбцов модели
 
-        public int RowCount { get; private set; }
+        public int RowCount { get; private set; }//Количество строк модели
 
-        public RoadDirections RoadDirection;
+        public RoadDirections RoadDirection;//Расположение дороги
 
-        public ParkingModel(int columnCount, int rowCount)
+        public ParkingModel(int columnCount, int rowCount)//Конструктор
         {
             this.ColumnCount = columnCount;
             this.RowCount = rowCount; 
@@ -36,6 +37,7 @@ namespace ParkingConstructorLib.logic
             RoadDirection = RoadDirections.Bottom;
         }
 
+        //Установить элемент
         public void SetElement(int columnIndex, int rowIndex, ParkingModelElement<T> element)
         {
             try
@@ -48,11 +50,13 @@ namespace ParkingConstructorLib.logic
             }
         }
 
+        //Получить элемент
         public ParkingModelElement<T> GetElement(int columnIndex, int rowIndex)
         {
             return parkingLot[columnIndex, rowIndex];
         }
 
+        //Проверка на корректность модели
         public bool IsParkingModelCorrect()
         {
             var isEntryExists = false;
@@ -104,6 +108,7 @@ namespace ParkingConstructorLib.logic
                    isParkingSpaceExists; // TODO: можно возвращать обьект с указанием того, что именно не корректно (если вдруг понадобится)
         }
 
+        //Очистить модель
         public void Clear()
         {
             Clear(ColumnCount, RowCount);
@@ -116,11 +121,13 @@ namespace ParkingConstructorLib.logic
             parkingLot = new ParkingModelElement<T>[columnCount, rowCount];
         }
 
+        //Проверка на граничный элемент
         private bool IsBorderElement(int column, int row)
         {
             return (column == 0 || row == 0) || (column == ColumnCount - 1 || row == RowCount - 1);
         }
 
+        //Проверка на корректность граничного элемента
         private bool IsCorrectBorderElement(int column, int row)
         {
             bool correct;

@@ -2,6 +2,7 @@
 
 namespace ParkingSimulationForms.views.components
 {
+    //Текстовое поле с подсказкой о вводе
     public class TextBoxWithPlaceholder : System.Windows.Forms.TextBox
     {
 

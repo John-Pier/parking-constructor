@@ -2,6 +2,7 @@
 
 namespace ParkingSimulationForms.views.components
 {
+    //Таблица с двойной буферизацией
     public class DoubleBufferedTable : TableLayoutPanel
     {
         public DoubleBufferedTable()
