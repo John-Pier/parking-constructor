@@ -254,8 +254,9 @@ namespace ParkingSimulationForms
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 2)
+            if (tabControl1.SelectedIndex == 2 && isFirstOpenTabVizualization)
             {
+                isFirstOpenTabVizualization = false;
                 MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
                 if (sceneConstructor.IsParkingModelCreate() && sceneConstructor.ParkingModel.IsParkingModelCorrect())
                 {
@@ -331,7 +332,7 @@ namespace ParkingSimulationForms
             generationStreamTimer.Stop();
             sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
             sceneVisualization.NextStep(dateTimeModel);
-
+            sceneVisualization.Stop();
             DrawImage();
         }
 

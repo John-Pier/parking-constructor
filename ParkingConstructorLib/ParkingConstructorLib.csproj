@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,6 +61,7 @@
     <Compile Include="models\parking-places\AbstractParkingPlace.cs" />
     <Compile Include="models\parking-places\CarParkingPlace.cs" />
     <Compile Include="models\parking-places\TruckParkingPlace.cs" />
+    <Compile Include="models\vehicles\VehicleOnRoad.cs" />
     <Compile Include="models\vehicles\CarVehicleModel.cs" />
     <Compile Include="models\vehicles\AbstractVehicleModel.cs" />
     <Compile Include="models\VehicleModel.cs" />
@@ -67,6 +71,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ParkingSceneConstructor.cs" />
     <Compile Include="services\DrawerService.cs" />
+    <Compile Include="services\ManagerVehiclesOnRoad.cs" />
     <Compile Include="services\MovementService.cs" />
     <Compile Include="services\ParkingModelService.cs" />
     <Compile Include="services\SettingModelService.cs" />

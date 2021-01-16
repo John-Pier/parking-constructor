@@ -33,15 +33,12 @@ namespace ParkingConstructorLib.services
             switch (model.RoadDirection)
             {
                 case RoadDirections.Bottom:
+                case RoadDirections.Right:
                     i_drawing_delta = 0;
                     j_drawing_delta = 0;
                     break;
                 case RoadDirections.Left:
                     i_drawing_delta = 1;
-                    j_drawing_delta = 0;
-                    break;
-                case RoadDirections.Right:
-                    i_drawing_delta = 0;
                     j_drawing_delta = 0;
                     break;
                 case RoadDirections.Top:
@@ -117,7 +114,7 @@ namespace ParkingConstructorLib.services
             }
         }
 
-        public void Draw(LinkedList<AbstractVehicleModel> cars)
+        public void Draw(LinkedList<AbstractVehicleModel> cars, ManagerVehiclesOnRoad<T> roadManager)
         {
             const int textureSize = 10;
             Bitmap result = (Bitmap)originalImage.Clone();
@@ -157,12 +154,126 @@ namespace ParkingConstructorLib.services
                                         result.SetPixel(i_new * textureSize + k, j_new * textureSize + l, textures[9].GetPixel(k, l));
                                 }
             }
+            //Отрисовка машин на дороге
+            if(roadManager != null)
+            {
+                Bitmap textureCar = null;
+                Bitmap textureTruck = null;
+                if (model.RoadDirection == RoadDirections.Bottom || model.RoadDirection == RoadDirections.Top)
+                {
+                    textureCar = textures[6];
+                    textureTruck = textures[8];
+                }
+                else
+                {
+                    textureCar = textures[7];
+                    textureTruck = textures[9];
+                }
+                LinkedList<VehicleOnRoad> vehiclesOnRoad = roadManager.GetVehicleOnRoads();
+                
+                foreach (VehicleOnRoad veh in vehiclesOnRoad)
+                {
+                    try
+                    {
+                        if (model.RoadDirection == RoadDirections.Top)
+                        {
+                            if (veh.carType == CarType.Car)
+                                for (int i = 0; i < textureSize; i++)
+                                    for (int j = 0; j < textureSize; j++)
+                                        if (textureCar.GetPixel(i, j).A > 100)
+                                            if (!veh.isExited)
+                                                result.SetPixel((veh.position * textureSize) + i, j, textureCar.GetPixel(i, j));
+                                            else
+                                                result.SetPixel((veh.position * textureSize) + j, i, textureCar.GetPixel(i, j));
+
+
+                            if (veh.carType == CarType.Truck)
+                                for (int i = 0; i < textureSize; i++)
+                                    for (int j = 0; j < textureSize; j++)
+                                        if (textureTruck.GetPixel(i, j).A > 100)
+                                            if (!veh.isExited)
+                                                result.SetPixel((veh.position * textureSize) + i, j, textureTruck.GetPixel(i, j));
+                                            else
+                                                result.SetPixel((veh.position * textureSize) + j, i, textureTruck.GetPixel(i, j));
+
+                        }
+                        if (model.RoadDirection == RoadDirections.Bottom)
+                        {
+                            if (veh.carType == CarType.Car)
+                                for (int i = 0; i < textureSize; i++)
+                                    for (int j = 0; j < textureSize; j++)
+                                        if (textureCar.GetPixel(i, j).A > 100)
+                                            if (!veh.isExited)
+                                                result.SetPixel((veh.position * textureSize) + i, model.RowCount * textureSize + j, textureCar.GetPixel(i, j));
+                                            else
+                                                result.SetPixel((veh.position * textureSize) + j, model.RowCount * textureSize + i, textureCar.GetPixel(i, j));
+                            if (veh.carType == CarType.Truck)
+                                for (int i = 0; i < textureSize; i++)
+                                    for (int j = 0; j < textureSize; j++)
+                                        if (textureTruck.GetPixel(i, j).A > 100)
+                                            if (!veh.isExited)
+                                                result.SetPixel((veh.position * textureSize) + i, model.RowCount * textureSize + j, textureTruck.GetPixel(i, j));
+                                            else
+                                                result.SetPixel((veh.position * textureSize) + j, model.RowCount * textureSize + i, textureTruck.GetPixel(i, j));
+                        }
+                        if (model.RoadDirection == RoadDirections.Left)
+                        {
+                            if (veh.carType == CarType.Car)
+                                for (int i = 0; i < textureSize; i++)
+                                    for (int j = 0; j < textureSize; j++)
+                                        if (textureCar.GetPixel(i, j).A > 100)
+                                            if (!veh.isExited)
+                                                result.SetPixel(i, veh.position * textureSize + j, textureCar.GetPixel(i, j));
+                                            else
+                                                result.SetPixel(j, veh.position * textureSize + i, textureCar.GetPixel(i, j));
+                            if (veh.carType == CarType.Truck)
+                                for (int i = 0; i < textureSize; i++)
+                                    for (int j = 0; j < textureSize; j++)
+                                        if (textureTruck.GetPixel(i, j).A > 100)
+                                            if (!veh.isExited)
+                                                result.SetPixel(i, veh.position * textureSize + j, textureTruck.GetPixel(i, j));
+                                            else
+                                                result.SetPixel(j, veh.position * textureSize + i, textureTruck.GetPixel(i, j));
+                        }
+                        if (model.RoadDirection == RoadDirections.Right)
+                        {
+                            if (veh.carType == CarType.Car)
+                                for (int i = 0; i < textureSize; i++)
+                                    for (int j = 0; j < textureSize; j++)
+                                        if (textureCar.GetPixel(i, j).A > 100)
+                                            if (!veh.isExited)
+                                                result.SetPixel(model.ColumnCount * textureSize + i, veh.position * textureSize + j, textureCar.GetPixel(i, j));
+                                            else
+                                                result.SetPixel(model.ColumnCount * textureSize + j, veh.position * textureSize + i, textureCar.GetPixel(i, j));
+                            if (veh.carType == CarType.Truck)
+                                for (int i = 0; i < textureSize; i++)
+                                    for (int j = 0; j < textureSize; j++)
+                                        if (textureTruck.GetPixel(i, j).A > 100)
+                                            if (!veh.isExited)
+                                                result.SetPixel(model.ColumnCount * textureSize + i, veh.position * textureSize + j, textureTruck.GetPixel(i, j));
+                                            else
+                                                result.SetPixel(model.ColumnCount * textureSize + j, veh.position * textureSize + i, textureTruck.GetPixel(i, j));
+                        }
+                        if (veh.isExited)
+                            veh.isExited = false;
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            }
             imageNow = result;
         }
 
         public Bitmap getImage()
         {
             return imageNow;
+        }
+
+        public void Stop()
+        {
+            imageNow = originalImage;
         }
     }
 }
