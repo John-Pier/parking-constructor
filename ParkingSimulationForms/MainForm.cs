@@ -285,7 +285,7 @@ namespace ParkingSimulationForms
                 {
                     var result = MessageBox.Show(
                         "Вы не можете запустить визуализатор, потому что текущая модель парковки не соответствует необходимым требованиям.\nХотите вернуться ?",
-                        "Модель не корректна",
+                        "Модель некорректна",
                         MessageBoxButtons.YesNo
                     );
                     if (result == DialogResult.Yes)
@@ -859,7 +859,7 @@ namespace ParkingSimulationForms
             dateTimePicker2.Value = isInit ? DateTime.Now : statisticModel.EndDateTime;
 
             label34.Text = isInit ? "-" : Math.Round(statisticModel.AverageNumberOfOccupiedPlaces, 3).ToString();
-            label35.Text = isInit ? "-" : Math.Round(statisticModel.AveragePercentageOfOccupiedPlaces, 3).ToString();
+            label35.Text = isInit ? "-" : Math.Round(statisticModel.AveragePercentageOfOccupiedPlaces, 3) + "%";
             label36.Text = isInit ? "0" : ((int)statisticModel.FinalScope).ToString();
             label37.Text = isInit ? "-" : ((int)statisticModel.AverageIncomePerDay).ToString();
             label38.Text = isInit ? "-" : ((int)statisticModel.AverageIncomePerNight).ToString();
