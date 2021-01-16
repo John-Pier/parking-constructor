@@ -364,7 +364,7 @@ namespace ParkingSimulationForms
             generationStreamTimer.Stop();
             sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
             sceneVisualization.NextStep(dateTimeModel);
-
+            sceneVisualization.Stop();
             DrawImage();
             
             currentStatus = TimerStatus.Stopped;

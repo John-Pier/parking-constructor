@@ -16,6 +16,7 @@ namespace ParkingConstructorLib.services
         private LinkedList<AbstractParkingPlace> truckParkingPlaces;
         private LinkedList<AbstractVehicleModel> cars;
         private DynamicMap<T> dynamicMap;
+        private ManagerVehiclesOnRoad<T> roadManager;
 
         public MovementService(ParkingModel<T> model, DynamicMap<T> dynamicMap)
         {
@@ -24,6 +25,12 @@ namespace ParkingConstructorLib.services
             this.truckParkingPlaces = dynamicMap.getTruckParkingPlaces();
             this.cars = dynamicMap.getVehicles();
             this.dynamicMap = dynamicMap;
+        }
+
+
+        public void setRoadManager(ManagerVehiclesOnRoad<T> roadManager)
+        {
+            this.roadManager = roadManager;
         }
 
         public Coors[] foundWay(int[,,] localMap, AbstractVehicleModel vehicleModel)
@@ -235,9 +242,14 @@ namespace ParkingConstructorLib.services
                         stats.AddToFinalScope(Convert.ToDouble(vehicleModel.getPrice()), modelDateTime);
                     }
                     //Машина на выезде
-                    if (dynamicMap.exitCoors.Equals(vehicleModel.GetCoors()))
+                    if (dynamicMap.exitCoors.Equals(vehicleModel.GetCoors()) && roadManager.isCanExit())
                     {
                         removedCars.AddLast(vehicleModel);
+
+                        stats.FreeParkingPlace();
+                        CarType carType;
+                        carType = vehicleModel.GetType().Equals("Car") ? CarType.Car : CarType.Truck;
+                        roadManager.CreateNewVehicle(carType, true);
                     }
                     if (vehicleModel.GetCoors().Equals(way[i]) && i != way.Length - 1)
                     {
