@@ -50,18 +50,10 @@ namespace ParkingConstructorLib
             }
             catch (Exception) { }
 
-
-            LinkedList<AbstractParkingPlace> places = dynamicMap.getParkingPlaces();
-            int counter = 0;
-            foreach (AbstractParkingPlace place in places)
-                if (!place.isBusy)
-                    counter++;
-            statisticModel.ParkingPlaces = counter;
-            //
             if(roadManager != null)
                 roadManager.NextStep();
-            //
-            drawer.Draw(cars, roadManager);
+            
+            drawer.Draw(vehicles, roadManager);
 
             
             statisticModel.SetBusyParkingPlaces(dynamicMap.getParkingPlaces().Count(place => place.isBusy));
