@@ -26,10 +26,10 @@ namespace ParkingConstructorLib.services
             this.dynamicMap = dynamicMap;
         }
 
-        public Coors[] foundWay(int[,,] localMap, AbstractVehicleModel @abstract)
+        public Coors[] foundWay(int[,,] localMap, AbstractVehicleModel vehicleModel)
         {
-            RunDijkstraAlgorithm(localMap, @abstract);
-            return GetWay(@abstract, localMap);
+            RunDijkstraAlgorithm(localMap, vehicleModel);
+            return GetWay(vehicleModel, localMap);
         }
 
         private void RunDijkstraAlgorithm(int[,,] localMap, AbstractVehicleModel vehicleModel)
@@ -183,7 +183,7 @@ namespace ParkingConstructorLib.services
             return coorsArr;
         }
 
-        public AbstractVehicleModel[] nextSystemStep(int[,,] localMap, AbstractVehicleModel vehicleModel, Coors[] way, DateTime modelDateTime)
+        public AbstractVehicleModel[] nextSystemStep(int[,,] localMap, AbstractVehicleModel vehicleModel, Coors[] way, DateTime modelDateTime, StatisticModel stats)
         {
             LinkedList<AbstractVehicleModel> removedCars = new LinkedList<AbstractVehicleModel>();
             bool stopEnding = false;
@@ -193,6 +193,10 @@ namespace ParkingConstructorLib.services
                     //Если машина на парковке
                     if (vehicleModel.GetCoors().Equals(vehicleModel.GetTarget()) && vehicleModel.GetTargetType() == TargetType.Parking)
                     {
+                        if (!vehicleModel.checkedOnStatisticStopOnPlace)
+                        {
+                            vehicleModel.checkedOnStatisticStopOnPlace = true;
+                        }
                         if ((modelDateTime - vehicleModel.GetDateTimeStopping()).TotalMinutes >= vehicleModel.GetSecondsOnParking())
                         {
                             stopEnding = true;
@@ -201,9 +205,9 @@ namespace ParkingConstructorLib.services
                             vehicleModel.isOnParkingPlace = false;
                             if (vehicleModel.GetType() == "Car")
                             {
-                                foreach (var cpp in carParkingPlaces.Where(cpp => cpp.coors.Equals(vehicleModel.GetCoors())))
+                                foreach (var carParkingPlace in carParkingPlaces.Where(cpp => cpp.coors.Equals(vehicleModel.GetCoors())))
                                 {
-                                    cpp.isBusy = false;
+                                    carParkingPlace.isBusy = false;
                                     break;
                                 }
                             }
@@ -228,8 +232,7 @@ namespace ParkingConstructorLib.services
                     {
                         vehicleModel.SetTarget(dynamicMap.exitCoors);
                         vehicleModel.SetTargetType(TargetType.Exit);
-                        //Логика, когда машина на кассе
-                        //
+                        stats.AddToFinalScope(Convert.ToDouble(vehicleModel.getPrice()), modelDateTime);
                     }
                     //Машина на выезде
                     if (dynamicMap.exitCoors.Equals(vehicleModel.GetCoors()))

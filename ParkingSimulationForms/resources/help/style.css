@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+
+html, body {
+  margin: 0;
+	font-family: 'Roboto', sans-serif;
+  color: #425b76;
+}
+
+h1, h2, h3, .form-title {
+  color: #2d3e50;
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+p, ul, ol, table {
+  line-height: 1.7;
+}
+
+img {
+  border-radius: 5px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  border: 1px solid #dfe3eb;
+  background-color: #f5f8fa;
+  padding: 10px 5px;
+}
+
+td {
+  border: 1px solid #dfe3eb;
+  padding: 5px;
+}
+
+textarea {
+  height: 80px;
+  padding: 10px;
+}
+
+img {
+  width: 800px;
+}
+
+.nav, .footer {
+  background-color: #2d3e50;
+  color: #ffffff;
+}
+
+.nav ul {
+  display: inline-block;
+  margin: 0;
+}
+
+.nav li {
+  display: inline-block;
+  padding: 20px 10px;
+  list-style-type: none;
+}
+
+.nav a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.content {
+  margin-left: 200px;
+  width: 800px;
+}
+
+.form-title {
+  margin-bottom: 7px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+a {
+  font-size: 18px;
+}
+
+.back {
+  display: block;
+  margin-bottom: 100px;
+  font-size: 18px;
+}

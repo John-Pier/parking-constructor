@@ -12,6 +12,7 @@ namespace ParkingConstructorLib.models.vehicles
             targetType = TargetType.Parking;
             countErrors = 0;
             priceForParking = 0m;
+            checkedOnStatisticStopOnPlace = false;
         }
         
         public new List<ParkingModelElementType> GetAvailableElementTypesForMovement()

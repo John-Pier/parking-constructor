@@ -120,4 +120,7 @@
   <data name="road" xml:space="preserve">
     <value>resources/road_line.jpg</value>
   </data>
+  <data name="help" xml:space="preserve">
+    <value>ParkingSimulationForms/resources/help</value>
+  </data>
 </root>

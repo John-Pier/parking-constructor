@@ -21,7 +21,35 @@ namespace ParkingConstructorLib.services
             this.model = model;
             this.textures = textures;
             const int textureSize = 10;
-            originalImage = new Bitmap(model.ColumnCount * textureSize, model.RowCount * textureSize);
+            originalImage = null;
+            if(model.RoadDirection == RoadDirections.Bottom || model.RoadDirection == RoadDirections.Top)
+                originalImage = new Bitmap(model.ColumnCount * textureSize, (model.RowCount+1) * textureSize);
+            else
+                originalImage = new Bitmap((model.ColumnCount + 1) * textureSize, model.RowCount * textureSize);
+
+            int i_drawing_delta = 0;
+            int j_drawing_delta = 0;
+
+            switch (model.RoadDirection)
+            {
+                case RoadDirections.Bottom:
+                    i_drawing_delta = 0;
+                    j_drawing_delta = 0;
+                    break;
+                case RoadDirections.Left:
+                    i_drawing_delta = 1;
+                    j_drawing_delta = 0;
+                    break;
+                case RoadDirections.Right:
+                    i_drawing_delta = 0;
+                    j_drawing_delta = 0;
+                    break;
+                case RoadDirections.Top:
+                    i_drawing_delta = 0;
+                    j_drawing_delta = 1;
+                    break;
+            }
+
             for (int i = 0; i < model.ColumnCount; i++)
                 for (int j = 0; j < model.RowCount; j++)
                     for (int k = 0; k < textureSize; k++)
@@ -29,7 +57,7 @@ namespace ParkingConstructorLib.services
                         {
                             if (model.GetElement(i, j) == null || model.GetElement(i, j).GetElementType() == ParkingModelElementType.Road)
                             {
-                                originalImage.SetPixel(i * textureSize + k, j * textureSize + l, textures[10].GetPixel(k, l));
+                                originalImage.SetPixel((i+i_drawing_delta) * textureSize + k, (j+j_drawing_delta) * textureSize + l, textures[10].GetPixel(k, l));
                                 continue;
                             }
                             int textureIndex = -1;
@@ -55,9 +83,28 @@ namespace ParkingConstructorLib.services
                                     break;
                             }
                             if (textureIndex != -1)
-                                originalImage.SetPixel(i * textureSize + k, j * textureSize + l, textures[textureIndex].GetPixel(k, l));
+                                originalImage.SetPixel((i+i_drawing_delta) * textureSize + k, (j+j_drawing_delta) * textureSize + l, textures[textureIndex].GetPixel(k, l));
                         }
+            DrawRoad(model.RoadDirection);
             imageNow = (Bitmap)originalImage.Clone();
+        }
+
+        private void DrawRoad(RoadDirections dir)
+        {
+            int textureSize = 10;
+            switch (dir)
+            {
+                case RoadDirections.Bottom:
+                    for(int i = 0; i<model.ColumnCount*textureSize; i++)
+                        for(int j = 0; j<textureSize; j++)
+                            originalImage.SetPixel(i, (model.RowCount * textureSize) + j, textures[11].GetPixel(i%textureSize, j));
+                    break;
+                case RoadDirections.Top:
+                    for (int i = 0; i < model.ColumnCount * textureSize; i++)
+                        for (int j = 0; j < textureSize; j++)
+                            originalImage.SetPixel(i, j, textures[11].GetPixel(i % textureSize, j));
+                    break;
+            }
         }
 
         public void Draw(LinkedList<AbstractVehicleModel> cars)

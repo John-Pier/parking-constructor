@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using ParkingConstructorLib.logic;
 using ParkingConstructorLib.models;
 using ParkingConstructorLib.models.vehicles;
@@ -20,6 +21,7 @@ namespace ParkingConstructorLib
         private DrawerService<T> drawer; //Отрисовщик
         private MovementService<T> movement; //Передвижения
         private SettingsModel settingsModel;
+        private StatisticModel statisticModel;
         private UniformDistribution generationStreamRandom = new UniformDistribution(0d, 100d);
 
         public static void SetTextures(Bitmap[] texturesArr)
@@ -31,22 +33,25 @@ namespace ParkingConstructorLib
         {
             int[,,] localMap;
             LinkedList<AbstractVehicleModel> removedCars = new LinkedList<AbstractVehicleModel>();
-            LinkedList<AbstractVehicleModel> cars = dynamicMap.getVehicles();
-            foreach (AbstractVehicleModel car in cars)
+            LinkedList<AbstractVehicleModel> vehicles = dynamicMap.getVehicles();
+            foreach (AbstractVehicleModel vehicleModel in vehicles)
             {
                 localMap = dynamicMap.CreateAndInitLocalMap();
-                Coors[] way = movement.foundWay(localMap, car);
-                AbstractVehicleModel[] remCars = movement.nextSystemStep(localMap, car, way, modelTime);
+                Coors[] way = movement.foundWay(localMap, vehicleModel);
+                AbstractVehicleModel[] remCars = movement.nextSystemStep(localMap, vehicleModel, way, modelTime, statisticModel);
                 foreach (var vehicle in remCars)
                     removedCars.AddLast(vehicle);
             }
             try
             {
                 foreach (var carTemp in removedCars)
-                    cars.Remove(carTemp);
+                    vehicles.Remove(carTemp);
             }
             catch (Exception) { }
-            drawer.Draw(cars);
+            
+            statisticModel.SetBusyParkingPlaces(dynamicMap.getParkingPlaces().Count(place => place.isBusy));
+            
+            drawer.Draw(vehicles);
         }
 
         public void CreateVehicle()
@@ -79,6 +84,11 @@ namespace ParkingConstructorLib
             drawer = new DrawerService<T>(this.parkingModel, textures);
         }
 
+        public void SetStatisticModel(StatisticModel statisticModel)
+        {
+            this.statisticModel = statisticModel;
+        }
+
         public Bitmap GetImage()
         {
             return drawer.getImage();
@@ -94,7 +104,7 @@ namespace ParkingConstructorLib
             return dynamicMap.getVehicles();
         }
 
-        public LinkedList<AbstractParkingPlace> getParkingPlaces()
+        public List<AbstractParkingPlace> getParkingPlaces()
         {
             return dynamicMap.getParkingPlaces();
         }

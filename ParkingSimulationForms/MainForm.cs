@@ -23,6 +23,9 @@ namespace ParkingSimulationForms
         private readonly MainFormConstructorController constructorController = new MainFormConstructorController();
         private DateTime dateTimeModel;
         private readonly SettingsModel SettingsModel = new SettingsModel();
+        private readonly StatisticModel statisticModel = new StatisticModel();
+        private bool isFirstOpenTabVizualization = true;
+        private double accelerate = 1;
         
         public MainForm()
         {
@@ -36,9 +39,8 @@ namespace ParkingSimulationForms
             constructorController.CurrentSceneConstructor = sceneConstructor;
             constructorController.DrawTemplate((int) counterHorizontal.Value, (int) counterVertical.Value);
 
-            MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
-            MainFormStatisticsController.initTable(tableLayoutPanel3);
-
+            sceneVisualization.SetStatisticModel(statisticModel);
+            
             constructorController.ImageList = texturesImageList; // TODO: В конструктор
             constructorController.CreateAndSetTexturesBitmapArray();
             InitSettingsForm();
@@ -129,7 +131,9 @@ namespace ParkingSimulationForms
         //Визуализатор
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
-            MainFormVizualayzerController.changePercentValue(hScrollBar1, label18, modelGeneralTimer);
+            accelerate = MainFormVizualayzerController.changePercentValue(hScrollBar1);
+            label18.Text = accelerate.ToString();
+            modelGeneralTimer.Interval = (int)(1000 / accelerate);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -234,6 +238,7 @@ namespace ParkingSimulationForms
             if (parkingModel == null) return;
 
             sceneConstructor.SetParkingModel(parkingModel);
+            SetUpRoadImages(parkingModel.RoadDirection);
             counterHorizontal.Value = sceneConstructor.ParkingModel.ColumnCount;
             counterVertical.Value = sceneConstructor.ParkingModel.RowCount;
 
@@ -255,10 +260,10 @@ namespace ParkingSimulationForms
         {
             if (tabControl1.SelectedIndex == 2)
             {
+                MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
                 if (sceneConstructor.IsParkingModelCreate() && sceneConstructor.ParkingModel.IsParkingModelCorrect())
                 {
                     InitModelTime();
-
                     sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
                     sceneVisualization.NextStep(dateTimeModel);
 
@@ -304,14 +309,18 @@ namespace ParkingSimulationForms
 
         private void StartGeneralTimerClick(object sender, EventArgs e)
         {
+            SetStatistic(true);
             if (!sceneVisualization.IsSettingsModelSet()) return;
+            
+            statisticModel.ClearStatistic();
+            statisticModel.StartDateTime = dateTimeModel;
+            statisticModel.ParkingPlaces = sceneVisualization.getParkingPlaces().Count;
 
             modelGeneralTimer.Stop();
             generationStreamTimer.Stop();
 
-            generationStreamTimer.Interval = (int) (SettingsModel.GenerationStreamDistribution.GetRandNumber() * 1000);
-
-
+            generationStreamTimer.Interval = (int) (SettingsModel.GenerationStreamDistribution.GetRandNumber() * 1000 / accelerate);
+            
             modelGeneralTimer.Start();
             generationStreamTimer.Start();
             generationStreamTimer.Enabled = true;
@@ -319,12 +328,18 @@ namespace ParkingSimulationForms
 
         private void PauseGeneralTimerClick(object sender, EventArgs e)
         {
+            statisticModel.EndDateTime = dateTimeModel;
+            SetStatistic(false);
+
             modelGeneralTimer.Stop();
             generationStreamTimer.Stop();
         }
 
         private void StopGeneralTimerClick(object sender, EventArgs e)
         {
+            statisticModel.EndDateTime = dateTimeModel;
+            SetStatistic(false);
+            
             modelGeneralTimer.Stop();
             generationStreamTimer.Stop();
             sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
@@ -345,7 +360,7 @@ namespace ParkingSimulationForms
         {
             sceneVisualization.CreateVehicle();
             
-            var generalInterval = (int) (SettingsModel.GenerationStreamDistribution.GetRandNumber() * 1000);
+            var generalInterval = (int) (SettingsModel.GenerationStreamDistribution.GetRandNumber() * 1000 / accelerate);
             generationStreamTimer.Interval = generalInterval;
             generationStreamTimer.Start();
         }
@@ -803,7 +818,29 @@ namespace ParkingSimulationForms
 
         private void button13_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(Directory.GetCurrentDirectory() + "\\Help\\help.html");
+            try
+            {
+                System.Diagnostics.Process.Start(Directory.GetCurrentDirectory() + "\\resources\\help\\help.html");
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                MessageBox.Show("При попытке открыть справку возникла ошибка. Подробнее: \r\n" + exception, "Ошибка открытия справки", MessageBoxButtons.OK);
+            }
+        }
+
+        private void SetStatistic(bool isInit)
+        {
+            statisticModel.CalculateStatistic();
+            
+            dateTimePicker1.Value = isInit ? DateTime.Now : statisticModel.StartDateTime;
+            dateTimePicker2.Value = isInit ? DateTime.Now : statisticModel.EndDateTime;
+
+            label34.Text = isInit ? "-" : Math.Round(statisticModel.AverageNumberOfOccupiedPlaces, 3).ToString();
+            label35.Text = isInit ? "-" : Math.Round(statisticModel.AveragePercentageOfOccupiedPlaces, 3).ToString();
+            label36.Text = isInit ? "0" : ((int)statisticModel.FinalScope).ToString();
+            label37.Text = isInit ? "-" : ((int)statisticModel.AverageIncomePerDay).ToString();
+            label38.Text = isInit ? "-" : ((int)statisticModel.AverageIncomePerNight).ToString();
         }
     }
 }
