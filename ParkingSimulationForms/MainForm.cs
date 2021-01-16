@@ -29,7 +29,7 @@ namespace ParkingSimulationForms
         private readonly FormFilesService formFilesService = new FormFilesService();
         private readonly MainFormConstructorController constructorController = new MainFormConstructorController();
         private DateTime dateTimeModel;
-        private readonly SettingsModel SettingsModel = new SettingsModel();
+        private readonly SettingsModel settingsModel = new SettingsModel();
         private readonly StatisticModel statisticModel = new StatisticModel();
         private bool isFirstOpenTabVizualization = true;
         private double accelerate = 1;
@@ -216,13 +216,13 @@ namespace ParkingSimulationForms
         {
             if (!radioButton1.Checked) return;
             if (double.TryParse(textBox1.Text, out var value) && 
-                SettingsModel.SettingService.CheckGenerationDeterminedDistributionValue(value))
+                settingsModel.SettingService.CheckGenerationDeterminedDistributionValue(value))
             {
-                SettingsModel.SetGenerationStreamDistribution(new DeterminedDistribution(value));
+                settingsModel.SetGenerationStreamDistribution(new DeterminedDistribution(value));
             }
             else
             {
-                SettingsModel.SetGenerationStreamDistribution(null);
+                settingsModel.SetGenerationStreamDistribution(null);
             }
         }
 
@@ -230,13 +230,13 @@ namespace ParkingSimulationForms
         {
             if (!radioButton9.Checked) return;
             if (double.TryParse(textBoxWithPlaceholder12.Text, out var value) && 
-                SettingsModel.SettingService.CheckParkingTimeDistributionValue(value))
+                settingsModel.SettingService.CheckParkingTimeDistributionValue(value))
             {
-                SettingsModel.SetParkingTimeDistribution(new DeterminedDistribution(value));
+                settingsModel.SetParkingTimeDistribution(new DeterminedDistribution(value));
             }
             else
             {
-                SettingsModel.SetParkingTimeDistribution(null);
+                settingsModel.SetParkingTimeDistribution(null);
             }
         }
 
@@ -296,9 +296,9 @@ namespace ParkingSimulationForms
                     return;
                 }
 
-                if (SettingsModel.IsModelValid())
+                if (settingsModel.IsModelValid())
                 {
-                    sceneVisualization.SetSettingsModel(SettingsModel);
+                    sceneVisualization.SetSettingsModel(settingsModel);
                 }
                 else
                 {
@@ -333,7 +333,7 @@ namespace ParkingSimulationForms
             modelGeneralTimer.Stop();
             generationStreamTimer.Stop();
 
-            generationStreamTimer.Interval = (int) (SettingsModel.GenerationStreamDistribution.GetRandNumber() * 1000 / accelerate);
+            generationStreamTimer.Interval = (int) (settingsModel.GenerationStreamDistribution.GetRandNumber() * 1000 / accelerate);
             
             modelGeneralTimer.Start();
             generationStreamTimer.Start();
@@ -373,7 +373,7 @@ namespace ParkingSimulationForms
         private void modelGeneralTimer_Tick(object sender, EventArgs e)
         {
             sceneVisualization.NextStep(dateTimeModel);
-            MainFormInformationController.updateInformation(sceneVisualization, dateTimeModel, SettingsModel);
+            MainFormInformationController.updateInformation(sceneVisualization, dateTimeModel, settingsModel);
             DrawImage();
             SetModelTime();
         }
@@ -382,7 +382,7 @@ namespace ParkingSimulationForms
         {
             sceneVisualization.CreateVehicle();
             
-            var generalInterval = (int) (SettingsModel.GenerationStreamDistribution.GetRandNumber() * 1000 / accelerate);
+            var generalInterval = (int) (settingsModel.GenerationStreamDistribution.GetRandNumber() * 1000 / accelerate);
             generationStreamTimer.Interval = generalInterval;
             generationStreamTimer.Start();
         }
@@ -463,11 +463,11 @@ namespace ParkingSimulationForms
         //Настройки
         private void InitSettingsForm()
         {
-            textBox2.Text = SettingsModel.DayTimeRate.ToString();
-            textBox5.Text = SettingsModel.PercentOfTrack.ToString();
-            textBox3.Text = SettingsModel.NightTimeRate.ToString();
-            textBox4.Text = SettingsModel.EnteringProbability.ToString(CultureInfo.CurrentCulture);
-            label14.Text = SettingsModel.PercentOfCar.ToString();
+            textBox2.Text = settingsModel.DayTimeRate.ToString();
+            textBox5.Text = settingsModel.PercentOfTrack.ToString();
+            textBox3.Text = settingsModel.NightTimeRate.ToString();
+            textBox4.Text = settingsModel.EnteringProbability.ToString(CultureInfo.CurrentCulture);
+            label14.Text = settingsModel.PercentOfCar.ToString();
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -475,7 +475,7 @@ namespace ParkingSimulationForms
             MainFormSettingsController.calcualePercent(textBox5, label14);
             if (int.TryParse(textBox5.Text, out var value))
             {
-                SettingsModel.SetPercentOfTrack(value);
+                settingsModel.SetPercentOfTrack(value);
             }
             else
             {
@@ -487,9 +487,9 @@ namespace ParkingSimulationForms
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(textBox2.Text, out var value) && SettingsModel.SettingService.CheckDayTimeRate(value))
+            if (int.TryParse(textBox2.Text, out var value) && settingsModel.SettingService.CheckDayTimeRate(value))
             {
-                SettingsModel.SetDayTimeRate(value);
+                settingsModel.SetDayTimeRate(value);
             }
             else
             {
@@ -501,9 +501,9 @@ namespace ParkingSimulationForms
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(textBox3.Text, out var value) && SettingsModel.SettingService.CheckNightTimeRate(value))
+            if (int.TryParse(textBox3.Text, out var value) && settingsModel.SettingService.CheckNightTimeRate(value))
             {
-                SettingsModel.SetNightTimeRate(value);
+                settingsModel.SetNightTimeRate(value);
             }
             else
             {
@@ -517,7 +517,7 @@ namespace ParkingSimulationForms
         {
             if (double.TryParse(textBox4.Text, out var value) && value > 0 && value <= 1)
             {
-                SettingsModel.SetProbabilityOfEnteringToParking(value);
+                settingsModel.SetProbabilityOfEnteringToParking(value);
             }
             else
             {
@@ -532,14 +532,14 @@ namespace ParkingSimulationForms
             if(!radioButton1.Checked) return;
             
             if (double.TryParse(textBox1.Text, out var value) && 
-                SettingsModel.SettingService.CheckGenerationDeterminedDistributionValue(value))
+                settingsModel.SettingService.CheckGenerationDeterminedDistributionValue(value))
             {
                 textBox1.BackColor = Color.White;
-                SettingsModel.SetGenerationStreamDistribution(new DeterminedDistribution(value));
+                settingsModel.SetGenerationStreamDistribution(new DeterminedDistribution(value));
             }
             else
             {
-                SettingsModel.SetGenerationStreamDistribution(null);
+                settingsModel.SetGenerationStreamDistribution(null);
                 textBox1.BackColor = Color.Crimson;
             }
         }
@@ -549,14 +549,14 @@ namespace ParkingSimulationForms
             if(!radioButton9.Checked) return;
         
             if (double.TryParse(textBoxWithPlaceholder12.Text, out var value) && 
-                SettingsModel.SettingService.CheckParkingTimeDistributionValue(value))
+                settingsModel.SettingService.CheckParkingTimeDistributionValue(value))
             {
                 textBoxWithPlaceholder12.BackColor = Color.White;
-                SettingsModel.SetParkingTimeDistribution(new DeterminedDistribution(value));
+                settingsModel.SetParkingTimeDistribution(new DeterminedDistribution(value));
             }
             else
             {
-                SettingsModel.SetParkingTimeDistribution(null);
+                settingsModel.SetParkingTimeDistribution(null);
                 textBoxWithPlaceholder12.BackColor = Color.Crimson;
             }
         }
@@ -578,14 +578,14 @@ namespace ParkingSimulationForms
             {
                 textBoxWithPlaceholder2.BackColor = Color.White;
                 textBoxWithPlaceholder1.BackColor = Color.White;
-                SettingsModel.SetGenerationStreamDistribution(new UniformDistribution(min, max));
+                settingsModel.SetGenerationStreamDistribution(new UniformDistribution(min, max));
             }
 
             if (!isMinCorrect ||
-                !SettingsModel.SettingService.CheckGenerationUniformDistributionValue(min) ||
+                !settingsModel.SettingService.CheckGenerationUniformDistributionValue(min) ||
                 isMaxCorrect && !CheckGenerationUniformDistributionValues(min, max))
             {
-                SettingsModel.SetGenerationStreamDistribution(null);
+                settingsModel.SetGenerationStreamDistribution(null);
                 textBoxWithPlaceholder1.BackColor = Color.Crimson;
             }
         }
@@ -602,14 +602,14 @@ namespace ParkingSimulationForms
             {
                 textBoxWithPlaceholder2.BackColor = Color.White;
                 textBoxWithPlaceholder1.BackColor = Color.White;
-                SettingsModel.SetGenerationStreamDistribution(new UniformDistribution(min, max));
+                settingsModel.SetGenerationStreamDistribution(new UniformDistribution(min, max));
             }
 
             if (!isMaxCorrect ||
-                !SettingsModel.SettingService.CheckGenerationUniformDistributionValue(max) ||
+                !settingsModel.SettingService.CheckGenerationUniformDistributionValue(max) ||
                 isMinCorrect && !CheckGenerationUniformDistributionValues(min, max))
             {
-                SettingsModel.SetGenerationStreamDistribution(null);
+                settingsModel.SetGenerationStreamDistribution(null);
                 textBoxWithPlaceholder2.BackColor = Color.Crimson;
             }
         }
@@ -617,8 +617,8 @@ namespace ParkingSimulationForms
         private bool CheckGenerationUniformDistributionValues(double minValue, double maxValue)
         {
             return minValue < maxValue &&
-                   SettingsModel.SettingService.CheckGenerationUniformDistributionValue(minValue) &&
-                   SettingsModel.SettingService.CheckGenerationUniformDistributionValue(maxValue);
+                   settingsModel.SettingService.CheckGenerationUniformDistributionValue(minValue) &&
+                   settingsModel.SettingService.CheckGenerationUniformDistributionValue(maxValue);
         }
 
         private void textBoxWithPlaceholder3_TextChanged(object sender, EventArgs e)
@@ -630,13 +630,13 @@ namespace ParkingSimulationForms
                 textBoxWithPlaceholder3.BackColor = Color.White;
                 if (!textBoxWithPlaceholder4.IsCorrect) return;
                 textBoxWithPlaceholder4.BackColor = Color.White;
-                SettingsModel.SetGenerationStreamDistribution(
+                settingsModel.SetGenerationStreamDistribution(
                     new NormalDistribution(textBoxWithPlaceholder3.CurrentValue, textBoxWithPlaceholder4.CurrentValue)
                 );
             }
             else
             {
-                SettingsModel.SetGenerationStreamDistribution(null);
+                settingsModel.SetGenerationStreamDistribution(null);
                 textBoxWithPlaceholder3.BackColor = Color.Crimson;
             }
         }
@@ -649,14 +649,14 @@ namespace ParkingSimulationForms
                 textBoxWithPlaceholder4.BackColor = Color.White;
                 if (!textBoxWithPlaceholder3.IsCorrect) return;
                 textBoxWithPlaceholder3.BackColor = Color.White;
-                SettingsModel.SetGenerationStreamDistribution(
+                settingsModel.SetGenerationStreamDistribution(
                     new NormalDistribution(textBoxWithPlaceholder3.CurrentValue,
                         textBoxWithPlaceholder4.CurrentValue)
                 );
             }
             else
             {
-                SettingsModel.SetGenerationStreamDistribution(null);
+                settingsModel.SetGenerationStreamDistribution(null);
                 textBoxWithPlaceholder4.BackColor = Color.Crimson;
             }
         }
@@ -664,7 +664,7 @@ namespace ParkingSimulationForms
         private void radioButton5Normal_CheckedChanged(object sender, EventArgs e)
         {
             if (!radioButton5.Checked) return;
-            SettingsModel.SetGenerationStreamDistribution(
+            settingsModel.SetGenerationStreamDistribution(
                 textBoxWithPlaceholder5.IsCorrect
                     ? new ExponentialDistribution(textBoxWithPlaceholder5.CurrentValue)
                     : null
@@ -675,7 +675,7 @@ namespace ParkingSimulationForms
         {
             if (!radioButton4.Checked) return;
 
-            SettingsModel.SetGenerationStreamDistribution(
+            settingsModel.SetGenerationStreamDistribution(
                 textBoxWithPlaceholder3.IsCorrect && textBoxWithPlaceholder4.IsCorrect
                     ? new NormalDistribution(textBoxWithPlaceholder3.CurrentValue,
                         textBoxWithPlaceholder4.CurrentValue)
@@ -693,11 +693,11 @@ namespace ParkingSimulationForms
                 isMaxCorrect &&
                 CheckGenerationUniformDistributionValues(min, max))
             {
-                SettingsModel.SetGenerationStreamDistribution(new UniformDistribution(min, max));
+                settingsModel.SetGenerationStreamDistribution(new UniformDistribution(min, max));
             }
             else
             {
-                SettingsModel.SetGenerationStreamDistribution(null);
+                settingsModel.SetGenerationStreamDistribution(null);
             }
         }
 
@@ -708,13 +708,13 @@ namespace ParkingSimulationForms
             if (textBoxWithPlaceholder5.IsCorrect)
             {
                 textBoxWithPlaceholder5.BackColor = Color.White;
-                SettingsModel.SetGenerationStreamDistribution(
+                settingsModel.SetGenerationStreamDistribution(
                     new ExponentialDistribution(textBoxWithPlaceholder5.CurrentValue)
                 );
             }
             else
             {
-                SettingsModel.SetGenerationStreamDistribution(null);
+                settingsModel.SetGenerationStreamDistribution(null);
                 textBoxWithPlaceholder5.BackColor = Color.Crimson;
             }
         }
@@ -722,7 +722,7 @@ namespace ParkingSimulationForms
         private void radioButton8Uniform_CheckedChanged(object sender, EventArgs e)
         {
             if (!radioButton8.Checked) return;
-            SettingsModel.SetParkingTimeDistribution(
+            settingsModel.SetParkingTimeDistribution(
                 checkCorrectDistributionValues(textBoxWithPlaceholder9, textBoxWithPlaceholder10)
                     ? new UniformDistribution(textBoxWithPlaceholder9.CurrentValue,
                         textBoxWithPlaceholder10.CurrentValue)
@@ -733,7 +733,7 @@ namespace ParkingSimulationForms
         private void radioButton7Normal_CheckedChanged(object sender, EventArgs e)
         {
             if (!radioButton7.Checked) return;
-            SettingsModel.SetParkingTimeDistribution(
+            settingsModel.SetParkingTimeDistribution(
                 checkCorrectDistributionValues(textBoxWithPlaceholder8, textBoxWithPlaceholder7)
                     ? new NormalDistribution(textBoxWithPlaceholder8.CurrentValue, textBoxWithPlaceholder7.CurrentValue)
                     : null
@@ -748,7 +748,7 @@ namespace ParkingSimulationForms
                 textBoxWithPlaceholder9.BackColor = Color.White;
                 if (!checkCorrectDistributionValues(textBoxWithPlaceholder9, textBoxWithPlaceholder10)) return;
                 textBoxWithPlaceholder10.BackColor = Color.White;
-                SettingsModel.SetParkingTimeDistribution(
+                settingsModel.SetParkingTimeDistribution(
                     new UniformDistribution(
                         textBoxWithPlaceholder9.CurrentValue,
                         textBoxWithPlaceholder10.CurrentValue
@@ -757,7 +757,7 @@ namespace ParkingSimulationForms
             }
             else
             {
-                SettingsModel.SetParkingTimeDistribution(null);
+                settingsModel.SetParkingTimeDistribution(null);
                 textBoxWithPlaceholder9.BackColor = Color.Crimson;
             }
         }
@@ -770,7 +770,7 @@ namespace ParkingSimulationForms
                 textBoxWithPlaceholder10.BackColor = Color.White;
                 if (!checkCorrectDistributionValues(textBoxWithPlaceholder9, textBoxWithPlaceholder10)) return;
                 textBoxWithPlaceholder9.BackColor = Color.White;
-                SettingsModel.SetParkingTimeDistribution(
+                settingsModel.SetParkingTimeDistribution(
                     new UniformDistribution(
                         textBoxWithPlaceholder9.CurrentValue,
                         textBoxWithPlaceholder10.CurrentValue
@@ -779,7 +779,7 @@ namespace ParkingSimulationForms
             }
             else
             {
-                SettingsModel.SetParkingTimeDistribution(null);
+                settingsModel.SetParkingTimeDistribution(null);
                 textBoxWithPlaceholder10.BackColor = Color.Crimson;
             }
         }
@@ -792,7 +792,7 @@ namespace ParkingSimulationForms
                 textBoxWithPlaceholder8.BackColor = Color.White;
                 if (!textBoxWithPlaceholder7.IsCorrect) return;
                 textBoxWithPlaceholder7.BackColor = Color.White;
-                SettingsModel.SetParkingTimeDistribution(
+                settingsModel.SetParkingTimeDistribution(
                     new NormalDistribution(
                         textBoxWithPlaceholder8.CurrentValue,
                         textBoxWithPlaceholder7.CurrentValue
@@ -801,7 +801,7 @@ namespace ParkingSimulationForms
             }
             else
             {
-                SettingsModel.SetParkingTimeDistribution(null);
+                settingsModel.SetParkingTimeDistribution(null);
                 textBoxWithPlaceholder8.BackColor = Color.Crimson;
             }
         }
@@ -814,7 +814,7 @@ namespace ParkingSimulationForms
                 textBoxWithPlaceholder7.BackColor = Color.White;
                 if (!textBoxWithPlaceholder8.IsCorrect) return;
                 textBoxWithPlaceholder8.BackColor = Color.White;
-                SettingsModel.SetParkingTimeDistribution(
+                settingsModel.SetParkingTimeDistribution(
                     new NormalDistribution(
                         textBoxWithPlaceholder8.CurrentValue,
                         textBoxWithPlaceholder7.CurrentValue
@@ -823,7 +823,7 @@ namespace ParkingSimulationForms
             }
             else
             {
-                SettingsModel.SetParkingTimeDistribution(null);
+                settingsModel.SetParkingTimeDistribution(null);
                 textBoxWithPlaceholder7.BackColor = Color.Crimson;
             }
         }
