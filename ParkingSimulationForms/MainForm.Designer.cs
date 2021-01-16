@@ -102,6 +102,9 @@ namespace ParkingSimulationForms
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -110,9 +113,6 @@ namespace ParkingSimulationForms
             this.label16 = new System.Windows.Forms.Label();
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.label15 = new System.Windows.Forms.Label();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel2 = new ParkingSimulationForms.views.components.DoubleBufferedTable();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -1054,13 +1054,13 @@ namespace ParkingSimulationForms
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (218)))), ((int) (((byte) (230)))), ((int) (((byte) (249)))));
+            this.tabPage3.Controls.Add(this.button11);
+            this.tabPage3.Controls.Add(this.button10);
+            this.tabPage3.Controls.Add(this.button9);
             this.tabPage3.Controls.Add(this.label27);
             this.tabPage3.Controls.Add(this.tableLayoutPanel1);
             this.tabPage3.Controls.Add(this.panel8);
             this.tabPage3.Controls.Add(this.label15);
-            this.tabPage3.Controls.Add(this.button12);
-            this.tabPage3.Controls.Add(this.button11);
-            this.tabPage3.Controls.Add(this.button10);
             this.tabPage3.Controls.Add(this.pictureBox2);
             this.tabPage3.Controls.Add(this.tableLayoutPanel2);
             this.tabPage3.Location = new System.Drawing.Point(4, 26);
@@ -1069,6 +1069,57 @@ namespace ParkingSimulationForms
             this.tabPage3.Size = new System.Drawing.Size(879, 410);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = " Визуализатор ";
+            // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.Color.Transparent;
+            this.button11.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("button11.BackgroundImage")));
+            this.button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button11.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button11.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (192)))), ((int) (((byte) (255)))), ((int) (((byte) (192)))));
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button11.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (192)))), ((int) (((byte) (255)))), ((int) (((byte) (192)))));
+            this.button11.ImageKey = "stop.png";
+            this.button11.Location = new System.Drawing.Point(383, 351);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(59, 52);
+            this.button11.TabIndex = 23;
+            this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.StartGeneralTimerClick);
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.Transparent;
+            this.button10.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("button10.BackgroundImage")));
+            this.button10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (255)))), ((int) (((byte) (255)))), ((int) (((byte) (192)))));
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (255)))), ((int) (((byte) (255)))), ((int) (((byte) (192)))));
+            this.button10.ImageKey = "stop.png";
+            this.button10.Location = new System.Drawing.Point(448, 351);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(59, 52);
+            this.button10.TabIndex = 22;
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.PauseGeneralTimerClick);
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.Transparent;
+            this.button9.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("button9.BackgroundImage")));
+            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button9.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int) (((byte) (255)))), ((int) (((byte) (192)))), ((int) (((byte) (192)))));
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (255)))), ((int) (((byte) (192)))), ((int) (((byte) (192)))));
+            this.button9.ImageKey = "(отсутствует)";
+            this.button9.Location = new System.Drawing.Point(513, 350);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(59, 52);
+            this.button9.TabIndex = 21;
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.StopGeneralTimerClick);
             // 
             // label27
             // 
@@ -1158,39 +1209,6 @@ namespace ParkingSimulationForms
             this.label15.Size = new System.Drawing.Size(247, 16);
             this.label15.TabIndex = 13;
             this.label15.Text = "Ускорение модельного времени";
-            // 
-            // button12
-            // 
-            this.button12.BackColor = System.Drawing.Color.Transparent;
-            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.button12.Location = new System.Drawing.Point(449, 350);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(56, 52);
-            this.button12.TabIndex = 12;
-            this.button12.UseVisualStyleBackColor = false;
-            this.button12.Click += new System.EventHandler(this.StopGeneralTimerClick);
-            // 
-            // button11
-            // 
-            this.button11.BackColor = System.Drawing.Color.Transparent;
-            this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.button11.Location = new System.Drawing.Point(388, 350);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(55, 52);
-            this.button11.TabIndex = 11;
-            this.button11.UseVisualStyleBackColor = false;
-            this.button11.Click += new System.EventHandler(this.PauseGeneralTimerClick);
-            // 
-            // button10
-            // 
-            this.button10.BackColor = System.Drawing.Color.Transparent;
-            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.button10.Location = new System.Drawing.Point(322, 350);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(60, 54);
-            this.button10.TabIndex = 10;
-            this.button10.UseVisualStyleBackColor = false;
-            this.button10.Click += new System.EventHandler(this.StartGeneralTimerClick);
             // 
             // pictureBox2
             // 
@@ -1601,6 +1619,11 @@ namespace ParkingSimulationForms
             this.ResumeLayout(false);
         }
 
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
+
+        private System.Windows.Forms.Button button9;
+
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Panel panel6;
 
@@ -1670,9 +1693,6 @@ namespace ParkingSimulationForms
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button10;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label label18;
