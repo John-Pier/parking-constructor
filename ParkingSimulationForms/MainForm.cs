@@ -24,7 +24,6 @@ namespace ParkingSimulationForms
         private DateTime dateTimeModel;
         private readonly SettingsModel SettingsModel = new SettingsModel();
         private readonly StatisticModel statisticModel = new StatisticModel();
-        private bool isFirstOpenTabVizualization = true;
         
         public MainForm()
         {
@@ -254,9 +253,8 @@ namespace ParkingSimulationForms
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 2 && isFirstOpenTabVizualization)
+            if (tabControl1.SelectedIndex == 2)
             {
-                isFirstOpenTabVizualization = false;
                 MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
                 if (sceneConstructor.IsParkingModelCreate() && sceneConstructor.ParkingModel.IsParkingModelCorrect())
                 {
