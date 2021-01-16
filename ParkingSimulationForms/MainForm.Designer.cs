@@ -1039,7 +1039,7 @@ namespace ParkingSimulationForms
             // 
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.label27.Location = new System.Drawing.Point(544, 358);
+            this.label27.Location = new System.Drawing.Point(604, 362);
             this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(196, 26);
@@ -1068,16 +1068,16 @@ namespace ParkingSimulationForms
             this.panel8.Controls.Add(this.label17);
             this.panel8.Controls.Add(this.label16);
             this.panel8.Controls.Add(this.hScrollBar1);
-            this.panel8.Location = new System.Drawing.Point(10, 362);
+            this.panel8.Location = new System.Drawing.Point(10, 355);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(223, 42);
+            this.panel8.Size = new System.Drawing.Size(247, 47);
             this.panel8.TabIndex = 14;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.label18.Location = new System.Drawing.Point(99, 21);
+            this.label18.Location = new System.Drawing.Point(112, 24);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(14, 16);
             this.label18.TabIndex = 17;
@@ -1087,7 +1087,7 @@ namespace ParkingSimulationForms
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.label17.Location = new System.Drawing.Point(190, 8);
+            this.label17.Location = new System.Drawing.Point(197, 7);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(14, 16);
             this.label17.TabIndex = 16;
@@ -1105,11 +1105,11 @@ namespace ParkingSimulationForms
             // 
             // hScrollBar1
             // 
-            this.hScrollBar1.Location = new System.Drawing.Point(32, 7);
+            this.hScrollBar1.Location = new System.Drawing.Point(31, 7);
             this.hScrollBar1.Maximum = 309;
             this.hScrollBar1.Minimum = 100;
             this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(154, 17);
+            this.hScrollBar1.Size = new System.Drawing.Size(163, 17);
             this.hScrollBar1.TabIndex = 0;
             this.hScrollBar1.Value = 100;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
@@ -1118,7 +1118,7 @@ namespace ParkingSimulationForms
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (204)));
-            this.label15.Location = new System.Drawing.Point(7, 343);
+            this.label15.Location = new System.Drawing.Point(10, 336);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(247, 16);
             this.label15.TabIndex = 13;
