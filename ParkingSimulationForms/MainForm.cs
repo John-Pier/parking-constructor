@@ -283,7 +283,6 @@ namespace ParkingSimulationForms
         {
             if (tabControl1.SelectedIndex == 2 && isReloadVizualayzer)
             {
-                isReloadVizualayzer = false;
                 MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
                 if (sceneConstructor.IsParkingModelCreate() && sceneConstructor.ParkingModel.IsParkingModelCorrect())
                 {
@@ -307,18 +306,19 @@ namespace ParkingSimulationForms
                     {
                         tabControl1.SelectedIndex = 0;
                     }
-
+                    sceneVisualization.freeLastId();
                     return;
                 }
 
                 if (settingsModel.IsModelValid())
                 {
                     sceneVisualization.SetSettingsModel(settingsModel);
+                    isReloadVizualayzer = false;
                 }
                 else
                 {
                     sceneVisualization.SetSettingsModel(null);
-
+                    sceneVisualization.freeLastId();
                     var result = MessageBox.Show(
                         "Вы не можете запустить визуализатор, потому что текущие настройки не валидны или не заданы.\nХотите вернуться ?",
                         "Настройки не валидны",
