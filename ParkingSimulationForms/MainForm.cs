@@ -15,6 +15,13 @@ using ParkingSimulationForms.views.services;
 
 namespace ParkingSimulationForms
 {
+    public enum TimerStatus
+    {
+        Started,
+        Paused,
+        Stopped
+    }
+    
     public partial class MainForm : Form
     {
         private readonly ParkingSceneConstructor<Image> sceneConstructor = new ParkingSceneConstructor<Image>();
@@ -26,6 +33,8 @@ namespace ParkingSimulationForms
         private readonly StatisticModel statisticModel = new StatisticModel();
         private bool isFirstOpenTabVizualization = true;
         private double accelerate = 1;
+
+        private TimerStatus currentStatus = TimerStatus.Stopped;
         
         public MainForm()
         {
@@ -263,11 +272,14 @@ namespace ParkingSimulationForms
                 MainFormInformationController.initTable(tableLayoutPanel1, tableLayoutPanel2);
                 if (sceneConstructor.IsParkingModelCreate() && sceneConstructor.ParkingModel.IsParkingModelCorrect())
                 {
-                    InitModelTime();
-                    sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
-                    sceneVisualization.NextStep(dateTimeModel);
+                    if (currentStatus == TimerStatus.Stopped)
+                    {
+                        InitModelTime();
+                        sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
+                        sceneVisualization.NextStep(dateTimeModel);
 
-                    DrawImage();
+                        DrawImage();
+                    }
                 }
                 else
                 {
@@ -309,9 +321,11 @@ namespace ParkingSimulationForms
 
         private void StartGeneralTimerClick(object sender, EventArgs e)
         {
-            SetStatistic(true);
-            if (!sceneVisualization.IsSettingsModelSet()) return;
-            
+            if (!sceneVisualization.IsSettingsModelSet() || !sceneConstructor.IsParkingModelCreate() || currentStatus == TimerStatus.Started) return;
+            if (currentStatus != TimerStatus.Paused)
+            {
+                SetStatistic(true);
+            }
             statisticModel.ClearStatistic();
             statisticModel.StartDateTime = dateTimeModel;
             statisticModel.ParkingPlaces = sceneVisualization.getParkingPlaces().Count;
@@ -324,19 +338,25 @@ namespace ParkingSimulationForms
             modelGeneralTimer.Start();
             generationStreamTimer.Start();
             generationStreamTimer.Enabled = true;
+
+            currentStatus = TimerStatus.Started;
         }
 
         private void PauseGeneralTimerClick(object sender, EventArgs e)
         {
+            if (!sceneVisualization.IsSettingsModelSet() || !sceneConstructor.IsParkingModelCreate() || currentStatus != TimerStatus.Started) return;
             statisticModel.EndDateTime = dateTimeModel;
             SetStatistic(false);
 
             modelGeneralTimer.Stop();
             generationStreamTimer.Stop();
+
+            currentStatus = TimerStatus.Paused;
         }
 
         private void StopGeneralTimerClick(object sender, EventArgs e)
         {
+            if (!sceneVisualization.IsSettingsModelSet() || !sceneConstructor.IsParkingModelCreate() || currentStatus != TimerStatus.Started) return;
             statisticModel.EndDateTime = dateTimeModel;
             SetStatistic(false);
             
@@ -344,8 +364,10 @@ namespace ParkingSimulationForms
             generationStreamTimer.Stop();
             sceneVisualization.SetParkingModel(sceneConstructor.ParkingModel);
             sceneVisualization.NextStep(dateTimeModel);
-
+            sceneVisualization.Stop();
             DrawImage();
+            
+            currentStatus = TimerStatus.Stopped;
         }
 
         private void modelGeneralTimer_Tick(object sender, EventArgs e)
@@ -493,7 +515,7 @@ namespace ParkingSimulationForms
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            if (double.TryParse(textBox4.Text, out var value))
+            if (double.TryParse(textBox4.Text, out var value) && value > 0 && value <= 1)
             {
                 SettingsModel.SetProbabilityOfEnteringToParking(value);
             }

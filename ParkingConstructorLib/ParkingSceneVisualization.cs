@@ -20,6 +20,7 @@ namespace ParkingConstructorLib
         private static Bitmap[] textures;
         private DrawerService<T> drawer; //Отрисовщик
         private MovementService<T> movement; //Передвижения
+        private ManagerVehiclesOnRoad<T> roadManager; //Управление движением на дороге
         private SettingsModel settingsModel;
         private StatisticModel statisticModel;
         private UniformDistribution generationStreamRandom = new UniformDistribution(0d, 100d);
@@ -48,32 +49,23 @@ namespace ParkingConstructorLib
                     vehicles.Remove(carTemp);
             }
             catch (Exception) { }
+
+            if(roadManager != null)
+                roadManager.NextStep();
+            
+            drawer.Draw(vehicles, roadManager);
+
             
             statisticModel.SetBusyParkingPlaces(dynamicMap.getParkingPlaces().Count(place => place.isBusy));
-            
-            drawer.Draw(vehicles);
+
         }
 
         public void CreateVehicle()
         {
-            var parkingTimeInMinutes = (int)(settingsModel.ParkingTimeDistribution.GetRandNumber() * 60);
-            AbstractVehicleModel vehicleModel;
-            
-            //TODO: Добавить учет процента заезда машин на парковку
             if (generationStreamRandom.GetRandNumber() > settingsModel.PercentOfTrack)
-            {
-                if(!IsCanAddVehicle(CarType.Car)) return;
-                vehicleModel = new CarVehicleModel(dynamicMap.SpawnRow, dynamicMap.SpawnCol);
-                dynamicMap.AddCar(vehicleModel);
-            }
+                roadManager.CreateNewVehicle(CarType.Car, false);
             else
-            {
-                if(!IsCanAddVehicle(CarType.Truck)) return;
-                vehicleModel = new TruckVehicleModel(dynamicMap.SpawnRow, dynamicMap.SpawnCol);
-                dynamicMap.AddTruck(vehicleModel);
-            }
-            vehicleModel.SetSecondsOnParking(parkingTimeInMinutes);
-            drawer.Draw(dynamicMap.getVehicles());
+                roadManager.CreateNewVehicle(CarType.Truck, false);
         }
 
         public void SetParkingModel(ParkingModel<T> parkingModel)
@@ -112,11 +104,34 @@ namespace ParkingConstructorLib
         public void SetSettingsModel(SettingsModel settingsModel)
         {
             this.settingsModel = settingsModel;
+            int lastRoadPositionIndex = 0;
+            if (parkingModel.RoadDirection == RoadDirections.Bottom || parkingModel.RoadDirection == RoadDirections.Top)
+                lastRoadPositionIndex = parkingModel.ColumnCount - 1;
+            else
+                lastRoadPositionIndex = parkingModel.RowCount - 1;
+            roadManager = new ManagerVehiclesOnRoad<T>(settingsModel, parkingModel, dynamicMap, lastRoadPositionIndex);
+            movement.setRoadManager(roadManager);
         }
 
         public bool IsSettingsModelSet()
         {
             return this.settingsModel != null;
+        }
+
+        public void Stop()
+        {
+            roadManager.Stop();
+            drawer.Stop();
+            dynamicMap = new DynamicMap<T>(this.parkingModel);
+            movement = new MovementService<T>(this.parkingModel, dynamicMap);
+            drawer = new DrawerService<T>(this.parkingModel, textures);
+            int lastRoadPositionIndex = 0;
+            if (parkingModel.RoadDirection == RoadDirections.Bottom || parkingModel.RoadDirection == RoadDirections.Top)
+                lastRoadPositionIndex = parkingModel.ColumnCount - 1;
+            else
+                lastRoadPositionIndex = parkingModel.RowCount - 1;
+            roadManager = new ManagerVehiclesOnRoad<T>(settingsModel, parkingModel, dynamicMap, lastRoadPositionIndex);
+            movement.setRoadManager(roadManager);
         }
     }
 }

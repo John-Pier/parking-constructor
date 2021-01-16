@@ -13,21 +13,26 @@ namespace ParkingSimulationForms.views
     public static class MainFormInformationController
     {
         private static DoubleBufferedTable infoTable;
+        private static bool isInit = false;
         public static void initTable(TableLayoutPanel tlp, DoubleBufferedTable infoTablePar)
         {
-            LabelForTable label1 = new LabelForTable("№ парковочного места", true, false);
-            LabelForTable label2 = new LabelForTable("время приезда", true, false);
-            LabelForTable label3 = new LabelForTable("время стоянки", true, false);
-            LabelForTable label4 = new LabelForTable("сумма (руб)", true, false);
-            tlp.Controls.Add(label1, 0, 0);
-            tlp.Controls.Add(label2, 1, 0);
-            tlp.Controls.Add(label3, 2, 0);
-            tlp.Controls.Add(label4, 3, 0);
-            label1.enableBorder();
-            label2.enableBorder();
-            label3.enableBorder();
-            label4.enableBorder();
-            infoTable = infoTablePar;
+            if (!isInit)
+            {
+                LabelForTable label1 = new LabelForTable("№ парковочного места", true, false);
+                LabelForTable label2 = new LabelForTable("время приезда", true, false);
+                LabelForTable label3 = new LabelForTable("время стоянки", true, false);
+                LabelForTable label4 = new LabelForTable("сумма (руб)", true, false);
+                tlp.Controls.Add(label1, 0, 0);
+                tlp.Controls.Add(label2, 1, 0);
+                tlp.Controls.Add(label3, 2, 0);
+                tlp.Controls.Add(label4, 3, 0);
+                label1.enableBorder();
+                label2.enableBorder();
+                label3.enableBorder();
+                label4.enableBorder();
+                infoTable = infoTablePar;
+                isInit = true;
+            }
         }
         private static void addRow(string number, string timeComing, string timeParking, string price)
         {

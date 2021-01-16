@@ -68,6 +68,11 @@ namespace ParkingConstructorLib.models.vehicles
             return lastDirection;
         }
 
+        public void SetLastDirection(LastDirection lastDirection)
+        {
+            this.lastDirection = lastDirection;
+        }
+
         public void Drive()
         {
             if (columnIndex == nextStepCoors.ColumnIndex)

@@ -20,6 +20,13 @@ namespace ParkingConstructorLib.models
         public int SpawnRow;
         public int SpawnCol;
 
+        public void Stop()
+        {
+            cars = new LinkedList<AbstractVehicleModel>();
+            carParkingPlaces = new LinkedList<AbstractParkingPlace>();
+            truckParkingPlaces = new LinkedList<AbstractParkingPlace>();
+        }
+
         public DynamicMap(ParkingModel<T> model)
         {
             this.model = model;
