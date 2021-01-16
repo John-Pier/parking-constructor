@@ -104,6 +104,7 @@ namespace ParkingConstructorLib
         public void SetSettingsModel(SettingsModel settingsModel)
         {
             this.settingsModel = settingsModel;
+            if(settingsModel == null) return;
             int lastRoadPositionIndex = 0;
             if (parkingModel.RoadDirection == RoadDirections.Bottom || parkingModel.RoadDirection == RoadDirections.Top)
                 lastRoadPositionIndex = parkingModel.ColumnCount - 1;
@@ -115,7 +116,7 @@ namespace ParkingConstructorLib
 
         public bool IsSettingsModelSet()
         {
-            return this.settingsModel != null;
+            return settingsModel != null && settingsModel.GenerationStreamDistribution != null && settingsModel.ParkingTimeDistribution != null;
         }
 
         public void Stop()
