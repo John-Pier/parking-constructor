@@ -54,6 +54,10 @@ namespace ParkingSimulationForms.views
             labels[2].enableBorder();
             labels[3].enableBorder();
         }
+        public static void ClearTable()
+        {
+            infoTable.Controls.Clear();
+        }
         public static void updateInformation(ParkingSceneVisualization<Image> psv, DateTime dateTimeModel, SettingsModel settings)
         {
             LinkedList<AbstractVehicleModel> cars = psv.getVehicles();

@@ -8,6 +8,11 @@ namespace ParkingConstructorLib.models
         public int id;
         public bool isBusy;
         public Coors coors;
+
+        public static void FreeLastId()
+        {
+            lastID = 0;
+        }
         
         protected AbstractParkingPlace(Coors coors)
         {
