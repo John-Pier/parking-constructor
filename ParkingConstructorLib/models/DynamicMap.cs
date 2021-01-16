@@ -146,14 +146,9 @@ namespace ParkingConstructorLib.models
             return truckParkingPlaces;
         }
 
-        public LinkedList<AbstractParkingPlace> getParkingPlaces()
+        public List<AbstractParkingPlace> getParkingPlaces()
         {
-            LinkedList<AbstractParkingPlace> places = new LinkedList<AbstractParkingPlace>();
-            foreach (AbstractParkingPlace placeC in carParkingPlaces)
-                places.AddLast(placeC);
-            foreach (AbstractParkingPlace placeT in truckParkingPlaces)
-                places.AddLast(placeT);
-            return places;
+            return carParkingPlaces.Concat(truckParkingPlaces).ToList();
         }
     }
 }

@@ -80,12 +80,12 @@ namespace ParkingConstructorLib.logic
                         case ParkingModelElementType.Entry:
                             isOneEntry = !isEntryExists;
                             isEntryExists = true;
-                            if (!IsBorderElement(i, j)) return false;
+                            if (!IsCorrectBorderElement(i, j)) return false;
                             break;
                         case ParkingModelElementType.Exit:
                             isOneExit = !isExitExists;
                             isExitExists = true;
-                            if (!IsBorderElement(i, j)) return false;
+                            if (!IsCorrectBorderElement(i, j)) return false;
                             break;
                         case ParkingModelElementType.Cashier:
                             isOneCashier = !isCashierExists;
@@ -122,7 +122,30 @@ namespace ParkingConstructorLib.logic
         {
             return (column == 0 || row == 0) || (column == ColumnCount - 1 || row == RowCount - 1);
         }
-        
-        //private 
+
+        private bool IsCorrectBorderElement(int column, int row)
+        {
+            bool correct;
+
+            switch (RoadDirection)
+            {
+                case RoadDirections.Top:
+                    correct = row == 0;
+                    break;
+                case RoadDirections.Bottom:
+                    correct = row == RowCount - 1;
+                    break;
+                case RoadDirections.Right:
+                    correct = column == ColumnCount - 1;
+                    break;
+                case RoadDirections.Left:
+                    correct = column == 0;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            
+            return correct && IsBorderElement(column, row);
+        }
     }
 }

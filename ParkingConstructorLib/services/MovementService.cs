@@ -27,15 +27,16 @@ namespace ParkingConstructorLib.services
             this.dynamicMap = dynamicMap;
         }
 
+
         public void setRoadManager(ManagerVehiclesOnRoad<T> roadManager)
         {
             this.roadManager = roadManager;
         }
 
-        public Coors[] foundWay(int[,,] localMap, AbstractVehicleModel @abstract)
+        public Coors[] foundWay(int[,,] localMap, AbstractVehicleModel vehicleModel)
         {
-            RunDijkstraAlgorithm(localMap, @abstract);
-            return GetWay(@abstract, localMap);
+            RunDijkstraAlgorithm(localMap, vehicleModel);
+            return GetWay(vehicleModel, localMap);
         }
 
         private void RunDijkstraAlgorithm(int[,,] localMap, AbstractVehicleModel vehicleModel)
@@ -202,7 +203,6 @@ namespace ParkingConstructorLib.services
                         if (!vehicleModel.checkedOnStatisticStopOnPlace)
                         {
                             vehicleModel.checkedOnStatisticStopOnPlace = true;
-                            stats.TakeParkingPlace();
                         }
                         if ((modelDateTime - vehicleModel.GetDateTimeStopping()).TotalMinutes >= vehicleModel.GetSecondsOnParking())
                         {
@@ -212,9 +212,9 @@ namespace ParkingConstructorLib.services
                             vehicleModel.isOnParkingPlace = false;
                             if (vehicleModel.GetType() == "Car")
                             {
-                                foreach (var cpp in carParkingPlaces.Where(cpp => cpp.coors.Equals(vehicleModel.GetCoors())))
+                                foreach (var carParkingPlace in carParkingPlaces.Where(cpp => cpp.coors.Equals(vehicleModel.GetCoors())))
                                 {
-                                    cpp.isBusy = false;
+                                    carParkingPlace.isBusy = false;
                                     break;
                                 }
                             }
@@ -245,6 +245,7 @@ namespace ParkingConstructorLib.services
                     if (dynamicMap.exitCoors.Equals(vehicleModel.GetCoors()) && roadManager.isCanExit())
                     {
                         removedCars.AddLast(vehicleModel);
+
                         stats.FreeParkingPlace();
                         CarType carType;
                         carType = vehicleModel.GetType().Equals("Car") ? CarType.Car : CarType.Truck;
