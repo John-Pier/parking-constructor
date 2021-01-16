@@ -66,7 +66,7 @@ namespace ParkingConstructorLib.services
                     remVehs.AddLast(vehicle);
                     continue;
                 }
-                if (vehicle.position == enterPositionIndex && random.NextDouble() < percentEntering && dynamicMap.IsCanAddVehicle(vehicle.carType))
+                if (vehicle.position == enterPositionIndex && random.NextDouble() < percentEntering && dynamicMap.IsCanAddVehicle(vehicle.carType) && !vehicle.isStayOnParkingInThisTime)
                 {
                     var parkingTimeInMinutes = (int)(settings.ParkingTimeDistribution.GetRandNumber() * 60);
                     AbstractVehicleModel vehicleModel;
