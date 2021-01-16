@@ -157,7 +157,7 @@ namespace ParkingSimulationForms
         private void button2_Click(object sender, EventArgs e)
         {
             SetUpConstructorAndLockSize();
-            constructorController.CurrentElement = new ExitParkingElement(elementsImageList.Images[1]); // выезд
+            constructorController.CurrentElement = new ExitParkingElement(elementsImageList.Images[2]); // выезд
             isReloadVizualayzer = true;
             sceneVisualization.freeLastId();
         }
