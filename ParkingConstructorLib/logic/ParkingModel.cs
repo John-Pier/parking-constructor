@@ -63,10 +63,8 @@ namespace ParkingConstructorLib.logic
 
             var isCashierExists = false;
             var isOneCashier = false;
-
+            
             var isParkingSpaceExists = false;
-
-            // TODO: Проверка на корректную сторону
 
             for (var i = 0; i < ColumnCount; i++)
             {
@@ -113,8 +111,8 @@ namespace ParkingConstructorLib.logic
 
         public void Clear(int columnCount, int rowCount)
         {
-            this.ColumnCount = columnCount;
-            this.RowCount = rowCount;
+            ColumnCount = columnCount;
+            RowCount = rowCount;
             parkingLot = new ParkingModelElement<T>[columnCount, rowCount];
         }
 
