@@ -14,6 +14,7 @@ namespace ParkingSimulationForms.views
     {
         private static DoubleBufferedTable infoTable;
         private static bool isInit = false;
+        //инициализация шапки таблицы
         public static void initTable(TableLayoutPanel tlp, DoubleBufferedTable infoTablePar)
         {
             if (!isInit)
@@ -34,6 +35,7 @@ namespace ParkingSimulationForms.views
                 isInit = true;
             }
         }
+        //Добавить строку в таблицу
         private static void addRow(string number, string timeComing, string timeParking, string price)
         {
             LabelForTable[] labels = new LabelForTable[4];
@@ -54,6 +56,12 @@ namespace ParkingSimulationForms.views
             labels[2].enableBorder();
             labels[3].enableBorder();
         }
+        //Очистить таблицу
+        public static void ClearTable()
+        {
+            infoTable.Controls.Clear();
+        }
+        //Обновить информацию в таблице
         public static void updateInformation(ParkingSceneVisualization<Image> psv, DateTime dateTimeModel, SettingsModel settings)
         {
             LinkedList<AbstractVehicleModel> cars = psv.getVehicles();

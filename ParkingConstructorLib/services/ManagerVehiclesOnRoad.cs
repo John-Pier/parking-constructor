@@ -9,17 +9,18 @@ using System.Threading.Tasks;
 
 namespace ParkingConstructorLib.services
 {
+    //Менеджер управления автомобилями на прилегающей дороге
     public class ManagerVehiclesOnRoad<T> where T : class
     {
-        private LinkedList<VehicleOnRoad> vehicles;
-        private double percentEntering;
-        private DynamicMap<T> dynamicMap;
-        private int lastPositionIndex;
-        private int enterPositionIndex;
-        private int exitPositionIndex;
-        private ParkingModel<T> model;
-        private Random random;
-        private SettingsModel settings;
+        private LinkedList<VehicleOnRoad> vehicles; //Автомобили на прилегающей дороге
+        private double percentEntering; //Процент заезда на парковку
+        private DynamicMap<T> dynamicMap; //Диинамическая карта
+        private int lastPositionIndex; //Индекс, после которого машина исчезает
+        private int enterPositionIndex; //Индекс, совпадающий с въездом на парковку
+        private int exitPositionIndex; //Индекс, совпадающий с выездом из парковки
+        private ParkingModel<T> model; //Модель парковки
+        private Random random; //Объект рандома
+        private SettingsModel settings; //Настройки
         public ManagerVehiclesOnRoad(SettingsModel settings, ParkingModel<T> parkingModel, DynamicMap<T> dynamicMap, int lastPositionIndex)
         {
             vehicles = new LinkedList<VehicleOnRoad>();
@@ -40,22 +41,22 @@ namespace ParkingConstructorLib.services
                 exitPositionIndex = dynamicMap.exitCoors.RowIndex - 1;
             }
         }
-        public LinkedList<VehicleOnRoad> GetVehicleOnRoads()
+        public LinkedList<VehicleOnRoad> GetVehicleOnRoads()//Получить все автомобили на прилегающей дороге
         {
             return vehicles;
         }
-        public void CreateNewVehicle(CarType carType, bool isExit)
+        public void CreateNewVehicle(CarType carType, bool isExit)//Создать новый автомобиль на прилегающей дороге
         {
             if(!isExit)
                 vehicles.AddLast(new VehicleOnRoad(carType));
             else
                 vehicles.AddLast(new VehicleOnRoad(carType, exitPositionIndex));
         }
-        public void Stop()
+        public void Stop()//остановка симуляции - очистка списка автомобилей на прилегающей дороге
         {
             vehicles = new LinkedList<VehicleOnRoad>();
         }
-        public void NextStep()
+        public void NextStep()//Следующий шаг - передвижение, заезд на парковку
         {
             LinkedList<VehicleOnRoad> remVehs = new LinkedList<VehicleOnRoad>();
             foreach(VehicleOnRoad vehicle in vehicles)
@@ -66,7 +67,7 @@ namespace ParkingConstructorLib.services
                     remVehs.AddLast(vehicle);
                     continue;
                 }
-                if (vehicle.position == enterPositionIndex && random.NextDouble() < percentEntering && dynamicMap.IsCanAddVehicle(vehicle.carType))
+                if (vehicle.position == enterPositionIndex && random.NextDouble() < percentEntering && dynamicMap.IsCanAddVehicle(vehicle.carType) && !vehicle.isStayOnParkingInThisTime)
                 {
                     var parkingTimeInMinutes = (int)(settings.ParkingTimeDistribution.GetRandNumber() * 60);
                     AbstractVehicleModel vehicleModel;
@@ -89,7 +90,7 @@ namespace ParkingConstructorLib.services
             foreach(VehicleOnRoad remVeh in remVehs)
                 vehicles.Remove(remVeh);
         }
-        public bool isCanExit()
+        public bool isCanExit()//Может ли сейчас автомобиль выехать с парковки на прилегающую дорогу
         {
             foreach (VehicleOnRoad veh in vehicles)
                 if (veh.position == exitPositionIndex)

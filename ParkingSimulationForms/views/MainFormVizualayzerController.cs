@@ -11,6 +11,7 @@ namespace ParkingSimulationForms.views
         private static PictureBox pb;
         private static double accelerate;
 
+        //Изменить ускорение системы
         public static double changePercentValue(HScrollBar sb)
         {
             accelerate = sb.Value;

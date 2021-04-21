@@ -10,12 +10,13 @@ using System.Threading.Tasks;
 
 namespace ParkingConstructorLib.services
 {
+    //Класс отрисовки
     public class DrawerService<T> where T : class
     {
-        private Bitmap originalImage;
-        private Bitmap imageNow;
-        private ParkingModel<T> model;
-        private Bitmap[] textures;
+        private Bitmap originalImage;//Оригинальное изображение без автомобилей
+        private Bitmap imageNow;//Изображение текущего кадра с автомобилями
+        private ParkingModel<T> model;//Модель парковки
+        private Bitmap[] textures;//Текстуры для отрисовки
         public DrawerService(ParkingModel<T> model, Bitmap[] textures)
         {
             this.model = model;
@@ -30,6 +31,7 @@ namespace ParkingConstructorLib.services
             int i_drawing_delta = 0;
             int j_drawing_delta = 0;
 
+            //Сдвиг из-за расположения доороги
             switch (model.RoadDirection)
             {
                 case RoadDirections.Bottom:
@@ -47,6 +49,7 @@ namespace ParkingConstructorLib.services
                     break;
             }
 
+            //Отрисовка всех блоков
             for (int i = 0; i < model.ColumnCount; i++)
                 for (int j = 0; j < model.RowCount; j++)
                     for (int k = 0; k < textureSize; k++)
@@ -82,10 +85,11 @@ namespace ParkingConstructorLib.services
                             if (textureIndex != -1)
                                 originalImage.SetPixel((i+i_drawing_delta) * textureSize + k, (j+j_drawing_delta) * textureSize + l, textures[textureIndex].GetPixel(k, l));
                         }
-            DrawRoad(model.RoadDirection);
+            DrawRoad(model.RoadDirection);//отрисовка прилегающей дороги
             imageNow = (Bitmap)originalImage.Clone();
         }
 
+        //Отрисовка прилегающей дороги
         private void DrawRoad(RoadDirections dir)
         {
             int textureSize = 10;
@@ -114,6 +118,7 @@ namespace ParkingConstructorLib.services
             }
         }
 
+        //отрисовка автомобилей (каждый кадр)
         public void Draw(LinkedList<AbstractVehicleModel> cars, ManagerVehiclesOnRoad<T> roadManager)
         {
             const int textureSize = 10;
@@ -154,7 +159,7 @@ namespace ParkingConstructorLib.services
                                         result.SetPixel(i_new * textureSize + k, j_new * textureSize + l, textures[9].GetPixel(k, l));
                                 }
             }
-            //Отрисовка машин на дороге
+            //Отрисовка машин на прилегающей дороге
             if(roadManager != null)
             {
                 Bitmap textureCar = null;
@@ -266,12 +271,12 @@ namespace ParkingConstructorLib.services
             imageNow = result;
         }
 
-        public Bitmap getImage()
+        public Bitmap getImage()//Получить текущий кадр
         {
             return imageNow;
         }
 
-        public void Stop()
+        public void Stop()//Остановка симуляции - удаление автомобилей с изображения
         {
             imageNow = originalImage;
         }

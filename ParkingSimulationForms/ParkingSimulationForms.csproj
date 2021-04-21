@@ -110,92 +110,63 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <AdditionalFiles Include="resources\Setting.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ParkingConstructorLib\ParkingConstructorLib.csproj">
       <Project>{20c5bd55-c87f-4bb2-a889-e03cc8839c45}</Project>
       <Name>ParkingConstructorLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AdditionalFiles Include="resources\auto_space.png">
+    <EmbeddedResource Include="resources\cashier_element.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\cashier_element.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\entry.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\entry.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\exit.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\exit.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\help\1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\grass_space.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\help\2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\help\1.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\help\3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\help\2.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\help\4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\help\3.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\help\5.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\help\4.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\help\constructor.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\help\5.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\help\help.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\help\constructor.html">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\help\settings.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\help\help.html">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\help\statistics.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\help\settings.html">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\help\style.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\help\statistics.html">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\help\use.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\help\style.css">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\help\visualizator.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\help\use.html">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\road_line.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\help\visualizator.html">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\stop.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\input_elementp.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\in_element.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\road.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\road_line.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\space.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\stop.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\test.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\truck_space.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -210,15 +181,41 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <AdditionalFiles Include="resources\baseline_pause_circle_black_48dp.png">
+    <Content Include="resources\car_place.png" />
+    <Content Include="resources\grass_space .png" />
+    <Content Include="resources\pause.png" />
+    <Content Include="resources\play.png" />
+    <EmbeddedResource Include="resources\textures\carH.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\baseline_play_circle_black_48dp.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\textures\carV.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="resources\baseline_stop_circle_black_48dp.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\textures\cash.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\textures\enterparking.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\textures\exitparking.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\textures\parkCar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\textures\parkroad.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\textures\parkTruck.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\textures\truckH.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\textures\truckV.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="resources\track_place.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

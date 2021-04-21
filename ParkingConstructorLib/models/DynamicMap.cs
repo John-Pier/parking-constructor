@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace ParkingConstructorLib.models
 {
+    //Класс динамической карты, хранящий в себе все элементы модели - препядствия, ключевые точки, автомобили
     public class DynamicMap<T> where T : class
     {
         private bool[,] map;
@@ -20,6 +21,7 @@ namespace ParkingConstructorLib.models
         public int SpawnRow;
         public int SpawnCol;
 
+        //Сброс карты при остановке симуляции
         public void Stop()
         {
             cars = new LinkedList<AbstractVehicleModel>();
@@ -55,6 +57,7 @@ namespace ParkingConstructorLib.models
             }
         }
 
+        //Пересчитать доступные клетки карты
         public void reloadMap()
         {
             for (int i = 0; i < model.ColumnCount; i++)
@@ -66,16 +69,19 @@ namespace ParkingConstructorLib.models
                 map[car.GetColumnIndex(), car.GetRowIndex()] = false;
         }
 
+        //Добавляем грузовик
         public void AddTruck(AbstractVehicleModel vehicleModel)
         {
             AddVehicle(vehicleModel, truckParkingPlaces);
         }
 
+        //Добавляем легковушку
         public void AddCar(AbstractVehicleModel vehicleModel)
         {
             AddVehicle(vehicleModel, carParkingPlaces);
         }
 
+        //Добавляем транспорт
         private void AddVehicle(AbstractVehicleModel vehicleModel, LinkedList<AbstractParkingPlace> parkingPlaces)
         {
             var palace = parkingPlaces.First(value => !value.isBusy);
@@ -91,6 +97,7 @@ namespace ParkingConstructorLib.models
             reloadMap();
         }
 
+        //Создать и инициализировать карту
         public int[,,] CreateAndInitLocalMap()
         {
             int[,,] localMap = new int[model.ColumnCount, model.RowCount, 3];
@@ -107,6 +114,7 @@ namespace ParkingConstructorLib.models
             return localMap;
         }
 
+        //Возможно ли добавить автотранспорт сейчас? (Есть ли свободные парковки нужного типа)
         public bool IsCanAddVehicle(CarType carType)
         {
             LinkedList<AbstractParkingPlace> parkingPlaces;
@@ -125,6 +133,7 @@ namespace ParkingConstructorLib.models
             return parkingPlaces != null && parkingPlaces.Any(placeForCar => !placeForCar.isBusy);
         }
 
+        //Координаты появления автомобилей на парковке
         private void SetSpawnPoint(int col, int row)
         {
             SpawnCol = col;
